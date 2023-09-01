@@ -2,6 +2,11 @@
 #include "GameEngineDebug.h"
 #include <Windows.h>
 
+#include <d3d11_4.h>
+#include <d3dcompiler.h>
+#include <DirectXPackedVector.h>
+#include <DirectXCollision.h>
+
 // 설명 :
 class GameEngineMath
 {
@@ -466,12 +471,12 @@ public:
 
 	};
 
-	float4x4() 
+	float4x4()
 	{
 		Identity();
 	}
 
-	void Identity() 
+	void Identity()
 	{
 		memset(&Arr1D, 0, sizeof(Arr1D));
 
@@ -501,7 +506,60 @@ public:
 		Arr2D[3][2] = _Value.Z;
 	}
 
+	void RotationXDegs(const float _Value)
+	{
+		RotationXRad(_Value * GameEngineMath::D2R);
+	}
 
+	// X축 회전행렬 = 절대로 X값을 변경하지 않는 행렬
+	void RotationXRad(const float _Value)
+	{
+		Identity();
+		//DirectX::XMMatrixRotationX
+		float CosValue = cosf(_Value);
+		float SinValue = sinf(_Value);
+		Arr2D[1][1] = CosValue;
+		Arr2D[1][2] = SinValue;
+		Arr2D[2][1] = -SinValue;
+		Arr2D[2][2] = CosValue;
+	}
+
+	void RotationYDegs(const float _Value)
+	{
+		RotationYRad(_Value * GameEngineMath::D2R);
+	}
+
+	// Y축 회전행렬 = 절대로 Y값을 변경하지 않는 행렬
+	void RotationYRad(const float _Value)
+	{
+		Identity();
+
+		//DirectX::XMMatrixRotationY
+		float CosValue = cosf(_Value);
+		float SinValue = sinf(_Value);
+		Arr2D[0][0] = CosValue;
+		Arr2D[0][2] = -SinValue;
+		Arr2D[2][0] = SinValue;
+		Arr2D[2][2] = CosValue;
+	}
+
+	void RotationZDegs(const float _Value)
+	{
+		RotationZRad(_Value * GameEngineMath::D2R);
+	}
+	
+	void RotationZRad(const float _Value)
+	{
+		Identity();
+
+		// DirectX::XMMatrixRotationZ
+		float CosValue = cosf(_Value);
+		float SinValue = sinf(_Value);
+		Arr2D[0][0] = CosValue;
+		Arr2D[0][1] = SinValue;
+		Arr2D[1][0] = -SinValue;
+		Arr2D[1][1] = CosValue;
+	}
 	
 
 
