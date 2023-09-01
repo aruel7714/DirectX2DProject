@@ -235,7 +235,7 @@ void ContentsCore::Update(float _Delta)
 		}
 
 		float4x4 View4x4;
-		View4x4.LookAtLH(EyePos, EyeDir, EyeUp);
+		View4x4.LookToLH(EyePos, EyeDir, EyeUp);
 
 		float4x4 Projection4x4;
 
@@ -248,9 +248,9 @@ void ContentsCore::Update(float _Delta)
 
 		// Zoom += _Delta;
 		//									Width						Height						Far		Near
-		//Projection4x4.OrthographicLH(GetStartWindowSize().X * Zoom, GetStartWindowSize().Y * Zoom, 1000.0f, 0.1f);
+		Projection4x4.OrthographicLH(GetStartWindowSize().X, GetStartWindowSize().Y, 1000.0f, 0.1f);
 
-		Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 1000.0f, 0.1f);
+		//Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 0.1f, 1000.0f);
 
 		float4x4 ViewPort4x4;
 		// 확장시키려는 화면 크기고, 이건 윈도우의 크기
