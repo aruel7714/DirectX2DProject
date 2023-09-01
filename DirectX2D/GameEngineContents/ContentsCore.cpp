@@ -44,33 +44,7 @@ void ContentsCore::Update(float _Delta)
 
 
 	{
-		// 물체로서의 크기 회전 위치
-		static float4 Scale = {100.0f, 100.0f, 100.0f}; // 크기
-		static float4 Rotation = {0, 0, 0}; // 회전
-		static float4 Position = {100.0f, 100.0f, 100.0f }; // 이동
-
-		Rotation.X += 360.0f * _Delta;
-		Rotation.Y += 360.0f * _Delta;
-		Rotation.Z += 360.0f * _Delta;
-
-		float4x4 Scale4x4;
-		float4x4 Rotation4x4X;
-		float4x4 Rotation4x4Y;
-		float4x4 Rotation4x4Z;
-		float4x4 Rotation4x4;
-		float4x4 Position4x4;
-
-		Scale4x4.Scale({ 100, 100, 100 });
-
-		//Rotation4x4X.RotationXDegs(Rotation.X);
-		//Rotation4x4Y.RotationYDegs(Rotation.Y);
-		//Rotation4x4Z.RotationZDegs(Rotation.Z);
-		//Rotation4x4 = Rotation4x4X * Rotation4x4Y * Rotation4x4Z;
-		//Position4x4.Pos({ 100, 100, 100 });
-
-		// 행렬의 곱셈은 교환법칙이 성립하지 않습니다.
-		float4x4 World4x4 = Scale4x4 * Rotation4x4 * Position4x4;
-
+		
 
 
 		// 로컬과 월드의 차이입니다.
@@ -84,10 +58,10 @@ void ContentsCore::Update(float _Delta)
 
 		float4 BaseVertexs[4];
 
-		BaseVertexs[0] = { -0.5f, -0.5f, -0.5f };
-		BaseVertexs[1] = { 0.5f, -0.5f, -0.5f };
-		BaseVertexs[2] = { 0.5f, 0.5f, -0.5f };
-		BaseVertexs[3] = { -0.5f, 0.5f, -0.5f };
+		BaseVertexs[0] = { -0.5f, -0.5f, -0.5f, 1.0f };
+		BaseVertexs[1] = { 0.5f, -0.5f, -0.5f, 1.0f };
+		BaseVertexs[2] = { 0.5f, 0.5f, -0.5f, 1.0f };
+		BaseVertexs[3] = { -0.5f, 0.5f, -0.5f, 1.0f };
 
 		// 앞면
 		Vertex[0] = BaseVertexs[0];
@@ -163,6 +137,49 @@ void ContentsCore::Update(float _Delta)
 		// 
 		// short Arr[2][3] = {{0, 1, 2}, {0, 2, 3}}; 24
 
+		// 월드의 영역
+		// 물체로서의 크기 회전 위치
+		static float4 Scale = { 100.0f, 100.0f, 100.0f }; // 크기
+		static float4 Rotation = { 0, 0, 0 }; // 회전
+		static float4 Position = { 100.0f, 100.0f, 100.0f }; // 이동
+
+		Rotation.X += 360.0f * _Delta;
+		Rotation.Y += 360.0f * _Delta;
+		Rotation.Z += 360.0f * _Delta;
+
+		float4x4 Scale4x4;
+		float4x4 Rotation4x4X;
+		float4x4 Rotation4x4Y;
+		float4x4 Rotation4x4Z;
+		float4x4 Rotation4x4;
+		float4x4 Position4x4;
+
+		Scale4x4.Scale(Scale);
+
+		Rotation4x4X.RotationXDegs(Rotation.X);
+		Rotation4x4Y.RotationYDegs(Rotation.Y);
+		Rotation4x4Z.RotationZDegs(Rotation.Z);
+		Rotation4x4 = Rotation4x4X * Rotation4x4Y * Rotation4x4Z;
+		Position4x4.Pos(Position);
+
+		// 행렬의 곱셈은 교환법칙이 성립하지 않습니다.
+		float4x4 World4x4 = Scale4x4 * Rotation4x4 * Position4x4;
+
+		// 카메라의 영역
+		float4x4 View4x4;
+		float4 EyePos = { 0.0f, 0.0f, -1000.0f, 1.0f };
+		float4 EyeDir = { 0.0f, 0.0f, 1.0f, 1.0f };
+		// View4x4.LookToLH
+		// float4 EyeLookPos = {0.0f, 0.0f, 0.0f, 1.0f};
+		// 내부에서 계산된다.
+		// float4 EyeDir = EyePos - EyeLookPos;
+		float4 EyeUp = { 0.0f, 1.0f, 0.0f, 1.0f };
+
+		View4x4.LookAtLH(EyePos, EyeDir, EyeUp);
+
+		float4x4 WorldView4x4 = World4x4 * View4x4;
+
+
 		for (size_t indexCount = 0; indexCount < Index.size() / 3; indexCount++)
 		{
 			int ArrIndex[3];
@@ -211,7 +228,8 @@ void ContentsCore::Update(float _Delta)
 				//WorldPoint = WorldPoint.VectorRotationToDegZ(Rotation.Z);
 				//WorldPoint += Position;
 
-				WorldPoint = WorldPoint * World4x4;
+				//WorldPoint = WorldPoint * World4x4;
+				WorldPoint = WorldPoint * WorldView4x4;
 
 				Trifloat4[VertexCount] = WorldPoint;
 				Tri[VertexCount] = WorldPoint.WindowPOINT();
