@@ -4,6 +4,12 @@
 #include <list>
 #include <memory>
 
+enum EPROJECTIONTYPE
+{
+	Perspective,
+	Orthographic,
+};
+
 // 카메라는 이제는 액터의 계열입니다.
 // 설명 : 
 class GameEngineCamera : public GameEngineActor
@@ -25,6 +31,11 @@ public:
 
 	void SetCameraOrder(int _Order);
 
+	inline void SetProjectionType(EPROJECTIONTYPE _ProjectionType)
+	{
+		ProjectionType = _ProjectionType;
+	}
+
 protected:
 	void Start() override;
 
@@ -33,6 +44,11 @@ protected:
 	void Render(float _DeltaTime);
 
 private:
+	EPROJECTIONTYPE ProjectionType = EPROJECTIONTYPE::Orthographic;
+	float Far = 1000.0f;
+	float Near = 0.1f;
+	float FOV = 60.0f;
+
 	int CameraOrder = 0;
 
 	// 전과 똑같이 카메라가 랜더러를 관리한다.

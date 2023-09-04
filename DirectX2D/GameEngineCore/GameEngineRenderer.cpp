@@ -45,9 +45,11 @@ void GameEngineRenderer::SetViewCameraSelect(int _Order)
 	ViewInfo[Camera.get()] = _Order;
 }
 
-void GameEngineRenderer::Render(float _Delta)
+void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 {
 	{
+		// 아래있는 이녀석들이 리소스라면
+
 		// 로컬과 월드의 차이입니다.
 		// 사각형을 만들기 위해서 점을 4개 만들었습니다.
 		// 바로 월드로 바로만든것
@@ -117,151 +119,151 @@ void GameEngineRenderer::Render(float _Delta)
 			0 + 20, 2 + 20, 3 + 20,
 		};
 
-		// 0   1
-		// 3   2
+		//// 0   1
+		//// 3   2
 
 
-		// 첫번째 방법
-		// Vertex[0] = { -0.5f, -0.5f }; 16
-		// Vertex[1] = { 0.5f, -0.5f }; 16
-		// Vertex[2] = { 0.5f, 0.5f }; 16
-		// 
-		// Vertex1[0] = { -0.5f, -0.5f }; 16
-		// Vertex1[1] = { 0.5f, -0.5f }; 16
-		// Vertex1[2] = { 0.5f, 0.5f }; 16 
-		// 
-		// 두번째 방법
-		// Vertex[0] = { -0.5f, -0.5f }; 16
-		// Vertex[1] = { 0.5f, -0.5f }; 16
-		// Vertex[2] = { 0.5f, 0.5f }; 16
-		// Vertex[3] = { -0.5f, 0.5f }; 16
-		// 
-		// short Arr[2][3] = {{0, 1, 2}, {0, 2, 3}}; 24
+		//// 첫번째 방법
+		//// Vertex[0] = { -0.5f, -0.5f }; 16
+		//// Vertex[1] = { 0.5f, -0.5f }; 16
+		//// Vertex[2] = { 0.5f, 0.5f }; 16
+		//// 
+		//// Vertex1[0] = { -0.5f, -0.5f }; 16
+		//// Vertex1[1] = { 0.5f, -0.5f }; 16
+		//// Vertex1[2] = { 0.5f, 0.5f }; 16 
+		//// 
+		//// 두번째 방법
+		//// Vertex[0] = { -0.5f, -0.5f }; 16
+		//// Vertex[1] = { 0.5f, -0.5f }; 16
+		//// Vertex[2] = { 0.5f, 0.5f }; 16
+		//// Vertex[3] = { -0.5f, 0.5f }; 16
+		//// 
+		//// short Arr[2][3] = {{0, 1, 2}, {0, 2, 3}}; 24
 
-		// 월드의 영역
-		// 물체로서의 크기 회전 위치
-		static float4 Scale = { 100.0f, 100.0f, 100.0f }; // 크기
-		static float4 Rotation = { 0, 0, 0 }; // 회전
-		static float4 Position = { 0.0f, 0.0f, 0.0f }; // 이동
+		//// 월드의 영역
+		//// 물체로서의 크기 회전 위치
+		//static float4 Scale = { 100.0f, 100.0f, 100.0f }; // 크기
+		//static float4 Rotation = { 0, 0, 0 }; // 회전
+		//static float4 Position = { 0.0f, 0.0f, 0.0f }; // 이동
 
-		//Rotation.X += 360.0f * _Delta;
-		//Rotation.Y += 360.0f * _Delta;
-		//Rotation.Z += 360.0f * _Delta;
+		////Rotation.X += 360.0f * _Delta;
+		////Rotation.Y += 360.0f * _Delta;
+		////Rotation.Z += 360.0f * _Delta;
 
-		float CamSpeed = 300.0f;
-		if (GameEngineInput::IsPress('A'))
-		{
-			Position += float4::LEFT * _Delta * CamSpeed;
-		}
+		//float CamSpeed = 300.0f;
+		//if (GameEngineInput::IsPress('A'))
+		//{
+		//	Position += float4::LEFT * _Delta * CamSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('D'))
-		{
-			Position += float4::RIGHT * _Delta * CamSpeed;
-		}
+		//if (GameEngineInput::IsPress('D'))
+		//{
+		//	Position += float4::RIGHT * _Delta * CamSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('W'))
-		{
-			Position += float4::UP * _Delta * CamSpeed;
-		}
+		//if (GameEngineInput::IsPress('W'))
+		//{
+		//	Position += float4::UP * _Delta * CamSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('S'))
-		{
-			Position += float4::DOWN * _Delta * CamSpeed;
-		}
+		//if (GameEngineInput::IsPress('S'))
+		//{
+		//	Position += float4::DOWN * _Delta * CamSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('Q'))
-		{
-			Rotation.Z += 360.0f * _Delta;
-		}
+		//if (GameEngineInput::IsPress('Q'))
+		//{
+		//	Rotation.Z += 360.0f * _Delta;
+		//}
 
-		if (GameEngineInput::IsPress('E'))
-		{
-			Rotation.Z -= 360.0f * _Delta;
-		}
+		//if (GameEngineInput::IsPress('E'))
+		//{
+		//	Rotation.Z -= 360.0f * _Delta;
+		//}
 
-		float4x4 Scale4x4;
-		float4x4 Rotation4x4X;
-		float4x4 Rotation4x4Y;
-		float4x4 Rotation4x4Z;
-		float4x4 Rotation4x4;
-		float4x4 Position4x4;
+		//float4x4 Scale4x4;
+		//float4x4 Rotation4x4X;
+		//float4x4 Rotation4x4Y;
+		//float4x4 Rotation4x4Z;
+		//float4x4 Rotation4x4;
+		//float4x4 Position4x4;
 
-		Scale4x4.Scale(Scale);
+		//Scale4x4.Scale(Scale);
 
-		Rotation4x4X.RotationXDeg(Rotation.X);
-		Rotation4x4Y.RotationYDeg(Rotation.Y);
-		Rotation4x4Z.RotationZDeg(Rotation.Z);
-		Rotation4x4 = Rotation4x4X * Rotation4x4Y * Rotation4x4Z;
-		Position4x4.Position(Position);
+		//Rotation4x4X.RotationXDeg(Rotation.X);
+		//Rotation4x4Y.RotationYDeg(Rotation.Y);
+		//Rotation4x4Z.RotationZDeg(Rotation.Z);
+		//Rotation4x4 = Rotation4x4X * Rotation4x4Y * Rotation4x4Z;
+		//Position4x4.Position(Position);
 
-		// 행렬의 곱셈은 교환법칙이 성립하지 않습니다.
-		float4x4 World4x4 = Scale4x4 * Rotation4x4 * Position4x4;
+		//// 행렬의 곱셈은 교환법칙이 성립하지 않습니다.
+		//float4x4 World4x4 = Scale4x4 * Rotation4x4 * Position4x4;
 
-		// 카메라의 영역
+		//// 카메라의 영역
 
-		static float4 EyePos = { 0.0f, 0.0f, -500.0f, 1.0f };
-		static float4 EyeDir = { 0.0f, 0.0f, 1.0f, 1.0f };
-		// View4x4.LookToLH
-		// float4 EyeLookPos = {0.0f, 0.0f, 0.0f, 1.0f};
-		// 내부에서 계산된다.
-		// float4 EyeDir = EyePos - EyeLookPos;
-		static float4 EyeUp = { 0.0f, 1.0f, 0.0f, 1.0f };
+		//static float4 EyePos = { 0.0f, 0.0f, -500.0f, 1.0f };
+		//static float4 EyeDir = { 0.0f, 0.0f, 1.0f, 1.0f };
+		//// View4x4.LookToLH
+		//// float4 EyeLookPos = {0.0f, 0.0f, 0.0f, 1.0f};
+		//// 내부에서 계산된다.
+		//// float4 EyeDir = EyePos - EyeLookPos;
+		//static float4 EyeUp = { 0.0f, 1.0f, 0.0f, 1.0f };
 
-		float MoveSpeed = 300.0f;
-		if (GameEngineInput::IsPress('J'))
-		{
-			EyePos += float4::LEFT * _Delta * MoveSpeed;
-		}
+		//float MoveSpeed = 300.0f;
+		//if (GameEngineInput::IsPress('J'))
+		//{
+		//	EyePos += float4::LEFT * _Delta * MoveSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('L'))
-		{
-			EyePos += float4::RIGHT * _Delta * MoveSpeed;
-		}
+		//if (GameEngineInput::IsPress('L'))
+		//{
+		//	EyePos += float4::RIGHT * _Delta * MoveSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('I'))
-		{
-			EyePos += float4::FORWARD * _Delta * MoveSpeed;
-		}
+		//if (GameEngineInput::IsPress('I'))
+		//{
+		//	EyePos += float4::FORWARD * _Delta * MoveSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('K'))
-		{
-			EyePos += float4::BACKWARD * _Delta * MoveSpeed;
-		}
+		//if (GameEngineInput::IsPress('K'))
+		//{
+		//	EyePos += float4::BACKWARD * _Delta * MoveSpeed;
+		//}
 
-		if (GameEngineInput::IsPress('U'))
-		{
-			EyeDir.VectorRotationToDegY(360.0f * _Delta);
-		}
+		//if (GameEngineInput::IsPress('U'))
+		//{
+		//	EyeDir.VectorRotationToDegY(360.0f * _Delta);
+		//}
 
-		if (GameEngineInput::IsPress('O'))
-		{
-			EyeDir.VectorRotationToDegY(-360.0f * _Delta);
-		}
+		//if (GameEngineInput::IsPress('O'))
+		//{
+		//	EyeDir.VectorRotationToDegY(-360.0f * _Delta);
+		//}
 
-		float4x4 View4x4;
-		View4x4.LookToLH(EyePos, EyeDir, EyeUp);
+		//float4x4 View4x4;
+		//View4x4.LookToLH(EyePos, EyeDir, EyeUp);
 
 
-		// 보고싶은 화면의 너비
-		// 12800	7200
-		// 윈도우 크기가 아니라 내가 세상을 바라보고 싶은 크기
-		// 줌인 줌아웃을 아주 쉽게 만들수 있을것이다.
+		//// 보고싶은 화면의 너비
+		//// 12800	7200
+		//// 윈도우 크기가 아니라 내가 세상을 바라보고 싶은 크기
+		//// 줌인 줌아웃을 아주 쉽게 만들수 있을것이다.
 
-		//static float Zoom = 1.0f;
+		////static float Zoom = 1.0f;
 
-		// Zoom += _Delta;
-		//									Width						Height						Far		Near
-		float4x4 Projection4x4;
-		Projection4x4.OrthographicLH(1280.0f, 720.0f, 1000.0f, 0.1f);
+		//// Zoom += _Delta;
+		////									Width						Height						Far		Near
+		//float4x4 Projection4x4;
+		//Projection4x4.OrthographicLH(1280.0f, 720.0f, 1000.0f, 0.1f);
 
-		//Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 0.1f, 1000.0f);
+		////Projection4x4.PerspectiveFovLH(60.0f, GetStartWindowSize().X, GetStartWindowSize().Y, 0.1f, 1000.0f);
 
 		float4x4 ViewPort4x4;
 		// 확장시키려는 화면 크기고, 이건 윈도우의 크기
 		ViewPort4x4.ViewPort(1280.0f, 720.0f, 0.0f, 0.0f);
 
 		//float4x4 WorldView4x4 = World4x4 * View4x4;
-		float4x4 WorldViewProjection4x4 = World4x4 * View4x4 * Projection4x4;
+		//float4x4 WorldViewProjection4x4 = World4x4 * View4x4 * Projection4x4;
 
 		HDC DC = GameEngineCore::MainWindow.GetBackBuffer()->GetImageDC();
 
@@ -271,6 +273,8 @@ void GameEngineRenderer::Render(float _Delta)
 			ArrIndex[0] = Index[indexCount * 3 + 0];
 			ArrIndex[1] = Index[indexCount * 3 + 1];
 			ArrIndex[2] = Index[indexCount * 3 + 2];
+
+			const TransformData& TransDataRef = Transform.GetConstTransformDataRef();
 
 			float4 Trifloat4[3];
 			std::vector<POINT> Tri;
@@ -316,7 +320,8 @@ void GameEngineRenderer::Render(float _Delta)
 				// 변환식은 이제 딱 한가지 인것.
 				//WorldPoint = WorldPoint * World4x4;
 				//WorldPoint = WorldPoint * WorldView4x4;
-				WorldPoint = WorldPoint * WorldViewProjection4x4;
+				//WorldPoint = WorldPoint * WorldViewProjection4x4;
+				WorldPoint = WorldPoint * TransDataRef.WorldViewProjectionMatrix;
 
 				WorldPoint /= WorldPoint.W;
 				WorldPoint.W = 1.0f;

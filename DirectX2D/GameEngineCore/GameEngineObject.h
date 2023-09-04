@@ -91,14 +91,16 @@ public:
 
 	virtual void AllUpdate(float _Delta);
 
-	void SetParent(GameEngineObject* _Parent)
+	void SetParent(GameEngineObject* _Parent, int _Order)
 	{
 		Parent = _Parent;
+		Parent->Childs[_Order].push_back(shared_from_this());
+		Transform.SetParent(_Parent->Transform);
 		// Parent->Transform.SetParent(_Parent->Transform);
 	}
 	
 	template<typename ParentType>
-	void SetParent(std::shared_ptr<ParentType> _Parent)
+	void SetParent(std::shared_ptr<ParentType> _Parent, int _Order)
 	{
 		Parent = _Parent.get();
 		Transform.SetParent(_Parent->Transform);

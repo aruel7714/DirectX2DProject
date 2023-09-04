@@ -6,9 +6,11 @@
 class TransformData
 {
 public:
-	float4 Scale;
-	float4 Rotation;
-	float4 Position;
+	// w가 0일때와 1일때의 차이를 잘 기억해놓자.
+
+	float4 Scale = float4::ONENULL;
+	float4 Rotation = float4::ZERONULL;
+	float4 Position = float4::ZERO;
 
 	float4 LocalScale;
 	float4 LocalRotation;
@@ -28,8 +30,8 @@ public:
 	// 월드 공간
 	float4x4 WorldMatrix;
 
-	float4x4 View;
-	float4x4 Projection;
+	float4x4 ViewMatrix;
+	float4x4 ProjectionMatrix;
 	float4x4 ViewPort;
 
 	// 로컬 => 월드 => 뷰 => 프로젝션
@@ -42,6 +44,11 @@ public:
 		PositionMatrix.Position(Position);
 
 		LocalWorldMatrix = ScaleMatrix * RotationMatrix * PositionMatrix * RevolutionMatrix;
+	}
+
+	void WorldViewProjectionCalculation()
+	{
+		WorldViewProjectionMatrix = WorldMatrix * ViewMatrix * ProjectionMatrix;
 	}
 };
 
@@ -59,9 +66,19 @@ public:
 	GameEngineTransform& operator=(const GameEngineTransform& _Other) = delete;
 	GameEngineTransform& operator=(GameEngineTransform&& _Other) noexcept = delete;
 
+	void OrthographicLH(float _Width, float _Height, float _Near, float _Far)
+	{
+		TransData.ProjectionMatrix.OrthographicLH(_Width, _Height, _Near, _Far);
+	}
+
+	void PerspectiveFovLHDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
+	{
+		TransData.ProjectionMatrix.PerspectiveFovLHDeg(_FovAngle, _Width, _Height, _Near, _Far);
+	}
+
 	void LookToLH(const float4& _EyePos, const float4& _EyeDir, const float4& _EyeUp)
 	{
-		TransData.View.LookToLH(_EyePos, _EyeDir, _EyeUp);
+		TransData.ViewMatrix.LookToLH(_EyePos, _EyeDir, _EyeUp);
 	}
 
 	const TransformData& GetConstTransformDataRef()
@@ -70,9 +87,27 @@ public:
 	}
 
 	// set
+	void SetLocalScale(const float4& _Value)
+	{
+		TransData.Scale = _Value;
+		TransformUpdate();
+	}
+
+	void AddLocalRotation(const float4& _Value)
+	{
+		TransData.Rotation += _Value;
+		TransformUpdate();
+	}
+
 	void SetLocalPosition(const float4& _Value)
 	{
 		TransData.Position = _Value;
+		TransformUpdate();
+	}
+
+	void AddLocalPosition(const float4& _Value)
+	{
+		TransData.Position += _Value;
 		TransformUpdate();
 	}
 
@@ -118,18 +153,25 @@ public:
 		return TransData.WorldMatrix.ArrVector[1].NormalizeReturn();
 	}
 
+	void CalculationViewAndProjection(const TransformData& _Transform);
+
+	void CalculationViewAndProjection(const float4x4& _View, const float4x4& _Projection);
+
 	void TransformUpdate();
 
 	void SetParent(GameEngineTransform& _Parent)
 	{
 		Parent = &_Parent;
+		Parent->Childs.push_back(this);
 	}
+
+	void CalChilds();
 
 protected:
 
 private:
 	GameEngineTransform* Parent = nullptr;
-
+	std::list<GameEngineTransform*> Childs;
 	TransformData TransData;
 };
 
