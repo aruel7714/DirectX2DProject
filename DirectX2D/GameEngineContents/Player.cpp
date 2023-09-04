@@ -12,7 +12,9 @@ Player::~Player()
 
 void Player::Start()
 {
-	CreateChild<GameEngineRenderer>();
+	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
+	// Renderer->SetCameraOreder(0);
+	//CreateChild<GameEngineRenderer>();
 }
 
 void Player::Update(float _Delta)

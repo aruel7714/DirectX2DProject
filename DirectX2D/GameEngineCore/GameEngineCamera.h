@@ -6,7 +6,7 @@
 
 // 카메라는 이제는 액터의 계열입니다.
 // 설명 : 
-class GameEngineCamera
+class GameEngineCamera : public GameEngineActor
 {
 	friend class GameEngineRenderer;
 	friend class GameEngineActor;
@@ -23,9 +23,14 @@ public:
 	GameEngineCamera& operator=(const GameEngineCamera & _Other) = delete;
 	GameEngineCamera& operator=(GameEngineCamera && _Other) noexcept = delete;
 
+	void SetCameraOrder(int _Order);
+
 protected:
+	void Start() override;
 
 private:
+	int CameraOrder = 0;
+
 	// 전과 똑같이 카메라가 랜더러를 관리한다.
 	std::map<int, std::list<std::shared_ptr<class GameEngineRenderer>>> Renderers;
 };

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "PlayLevel.h"
 #include "Player.h"
+#include <GameEngineCore/GameEngineRenderer.h>
 
 PlayLevel::PlayLevel()
 {
@@ -12,9 +13,9 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
-	CreateChild<Player>();
+	CreateActor<Player>();
 
-	// CreateChild<GameEngineRenderer>();
+	// CreateActor<GameEngineRenderer>();
 }
 
 void PlayLevel::Update(float _Delta)
