@@ -54,6 +54,8 @@ private:
 
 	void ActorInit(std::shared_ptr<class GameEngineActor> _Actor, int _Order);
 
+	// 이미 액터가 child로 관리하고 있지만
+	// 따로 카메라도 들고 있을 겁니다.
 	std::map<int, std::shared_ptr<class GameEngineCamera>> Cameras;
 
 	//// 그냥 

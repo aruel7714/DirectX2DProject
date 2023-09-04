@@ -99,6 +99,7 @@ public:
 		return Parent;
 	}
 
+
 	template<typename ParentType>
 	ParentType* GetParent()
 	{
@@ -118,7 +119,6 @@ public:
 
 		return CameraPtr;
 	}
-
 	//template<typename ObjectType>
 	//std::shared_ptr<ObjectType> CreateChild(int _Order = 0)
 	//{
