@@ -13,7 +13,9 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
-	CreateActor<Player>();
+	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
+
+	std::shared_ptr<Player> NewPlayer = CreateActor<Player>();
 
 	// CreateActor<GameEngineRenderer>();
 }

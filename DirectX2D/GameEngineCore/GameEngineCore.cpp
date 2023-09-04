@@ -66,6 +66,17 @@ void GameEngineCore::Update()
 	// 이걸 호출한 애는 PlayLevel
 	CurLevel->AddLiveTime(DeltaTime);
 	CurLevel->AllUpdate(DeltaTime);
+
+	HDC DC;
+	{
+		DC = GameEngineCore::MainWindow.GetBackBuffer()->GetImageDC();
+		float4 WinScale = GameEngineCore::MainWindow.GetScale();
+		Rectangle(DC, 0, 0, WinScale.iX(), WinScale.iY());
+	}
+
+	CurLevel->Render(DeltaTime);
+
+	GameEngineCore::MainWindow.DoubleBuffering();
 	// GameEngineWindow::MainWindow.ClearBackBuffer();
 	// CurLevel->ActorRender(Delta);
 	// CurLevel->Render(Delta);
