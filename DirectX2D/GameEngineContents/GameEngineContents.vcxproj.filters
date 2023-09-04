@@ -3,9 +3,29 @@
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="PreCompile.cpp" />
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{6fd140c5-aec2-4f40-ba65-ddb3d3a76f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{440979d4-92a7-461b-8e15-b706be485bb8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

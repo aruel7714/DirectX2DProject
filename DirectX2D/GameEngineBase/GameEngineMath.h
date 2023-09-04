@@ -390,13 +390,6 @@ public:
 		return Result;
 	}
 
-
-	static float4 GetUnitVectorFromDeg(const float _Degree)
-	{
-		// 90 => 1.57
-		return GetUnitVectorFromRad(_Degree * GameEngineMath::D2R);
-	}
-
 	float4 operator*(const class float4x4& _Other) const;
 	float4& operator*=(const class float4x4& _Other);
 };
@@ -702,7 +695,7 @@ public:
 	//							1280		720			5000		0.1
 	void OrthographicLH(float _Width, float _Height, float _Near, float _Far)
 	{
-		DirectXMatrix = DirectX::XMMatrixOrthgraphicLH(_Width, _Height, _Near, _Far);
+		DirectXMatrix = DirectX::XMMatrixOrthographicLH(_Width, _Height, _Near, _Far);
 
 		//// DirectX::XMMatrixOrthgraphicLH
 		//Identity();
