@@ -9,6 +9,7 @@ class GameEngineCore
 public:
 	static GameEngineTime MainTime;
 	static GameEngineWindow MainWindow;
+	static GameEngineDevice MainDevice;
 
 	// constrcuter destructer
 	GameEngineCore();
