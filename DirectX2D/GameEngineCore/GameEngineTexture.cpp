@@ -8,6 +8,12 @@ GameEngineTexture::GameEngineTexture()
 
 GameEngineTexture::~GameEngineTexture()
 {
+	if (nullptr != RTV)
+	{
+		RTV->Release();
+		RTV = nullptr;
+	}
+
 	if (nullptr != Texture2D)
 	{
 		Texture2D->Release();
