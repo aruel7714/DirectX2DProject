@@ -7,14 +7,14 @@ class GameEngineResources
 {
 public:
 	// constrcuter destructer
-	GameEngineResources();
-	~GameEngineResources();
+	GameEngineResources() {}
+	~GameEngineResources() {}
 
 	// delete Function
-	GameEngineResources(const GameEngineResources & _Other) = delete;
-	GameEngineResources(GameEngineResources && _Other) noexcept = delete;
-	GameEngineResources& operator=(const GameEngineResources & _Other) = delete;
-	GameEngineResources& operator=(GameEngineResources && _Other) noexcept = delete;
+	//GameEngineResources(const GameEngineResources & _Other) = delete;
+	//GameEngineResources(GameEngineResources && _Other) noexcept = delete;
+	//GameEngineResources& operator=(const GameEngineResources & _Other) = delete;
+	//GameEngineResources& operator=(GameEngineResources && _Other) noexcept = delete;
 
 protected:
 

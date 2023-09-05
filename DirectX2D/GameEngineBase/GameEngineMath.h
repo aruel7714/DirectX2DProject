@@ -28,6 +28,7 @@ class float4
 public:
 	static const float4 ONE;
 	static const float4 ONENULL;
+
 	static const float4 ZERO;
 	static const float4 ZERONULL;
 	static const float4 LEFT;
@@ -36,6 +37,10 @@ public:
 	static const float4 DOWN;
 	static const float4 FORWARD;
 	static const float4 BACKWARD;
+
+	static const float4 RED;
+	static const float4 GREEN;
+	static const float4 BLUE;
 
 	union 
 	{

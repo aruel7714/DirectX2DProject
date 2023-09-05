@@ -68,16 +68,19 @@ void GameEngineCore::Update()
 	CurLevel->AddLiveTime(DeltaTime);
 	CurLevel->AllUpdate(DeltaTime);
 
-	HDC DC;
-	{
-		DC = GameEngineCore::MainWindow.GetBackBuffer()->GetImageDC();
-		float4 WinScale = GameEngineCore::MainWindow.GetScale();
-		Rectangle(DC, 0, 0, WinScale.iX(), WinScale.iY());
-	}
+	//HDC DC;
+	//{
+	//	DC = GameEngineCore::MainWindow.GetBackBuffer()->GetImageDC();
+	//	float4 WinScale = GameEngineCore::MainWindow.GetScale();
+	//	Rectangle(DC, 0, 0, WinScale.iX(), WinScale.iY());
+	//}
+
+	MainDevice.RenderStart();
 
 	CurLevel->Render(DeltaTime);
 
-	GameEngineCore::MainWindow.DoubleBuffering();
+	MainDevice.RenderEnd();
+	//GameEngineCore::MainWindow.DoubleBuffering();
 	// GameEngineWindow::MainWindow.ClearBackBuffer();
 	// CurLevel->ActorRender(Delta);
 	// CurLevel->Render(Delta);
