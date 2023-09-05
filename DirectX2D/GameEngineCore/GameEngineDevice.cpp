@@ -297,6 +297,11 @@ void GameEngineDevice::CreateSwapChain()
 
 void GameEngineDevice::RenderStart()
 {
+	if (nullptr == Device)
+	{
+		return;
+	}
+
 	// 도화지를 한번 싹 지워요.
 	BackBufferRenderTarget->Clear();
 
@@ -306,6 +311,11 @@ void GameEngineDevice::RenderStart()
 
 void GameEngineDevice::RenderEnd()
 {
+	if (nullptr == Device)
+	{
+		return;
+	}
+
 	HRESULT Result = SwapChain->Present(0, 0);
 	if (Result == DXGI_ERROR_DEVICE_REMOVED || Result == DXGI_ERROR_DEVICE_RESET)
 	{
