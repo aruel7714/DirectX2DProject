@@ -177,6 +177,15 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineDevice.cpp" />
+    <ClCompile Include="GameEngineDevice_Resources.cpp" />
+    <ClCompile Include="GameEngineDirectBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameEngineInputLayOut.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp" />
     <ClCompile Include="GameEngineObject.cpp" />
     <ClCompile Include="GameEngineRenderer.cpp">
@@ -196,6 +205,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineTransform.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameEngineVertex.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameEngineVertexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -219,6 +236,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineDevice.h" />
+    <ClInclude Include="GameEngineDirectBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameEngineInputLayOut.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineLevel.h" />
     <ClInclude Include="GameEngineObject.h" />
     <ClInclude Include="GameEngineRenderer.h">
@@ -238,6 +263,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineTransform.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameEngineVertex.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameEngineVertexBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>

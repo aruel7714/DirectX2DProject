@@ -67,5 +67,7 @@ private:
 	void RenderEnd();
 
 	void CreateSwapChain();
+
+	void ResourcesInit();
 };
 

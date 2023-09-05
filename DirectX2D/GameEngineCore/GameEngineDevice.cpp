@@ -120,6 +120,8 @@ void GameEngineDevice::Initiallize(const class GameEngineWindow& _Window)
 	Window = &_Window;
 
 	CreateSwapChain();
+
+	ResourcesInit();
 }
 
 IDXGIAdapter* GameEngineDevice::GetHighPerformanceAdapter()
