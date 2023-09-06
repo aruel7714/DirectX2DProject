@@ -7,6 +7,11 @@ GameEnginePixelShader::GameEnginePixelShader()
 
 GameEnginePixelShader::~GameEnginePixelShader()
 {
+	if (nullptr != ShaderPtr)
+	{
+		ShaderPtr->Release();
+		ShaderPtr = nullptr;
+	}
 }
 
 void GameEnginePixelShader::ShaderLoad(

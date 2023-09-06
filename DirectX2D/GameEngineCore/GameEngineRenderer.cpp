@@ -15,6 +15,7 @@
 #include "GameEngineRasterizer.h"
 #include "GameEnginePixelShader.h"
 #include "GameEngineRenderTarget.h"
+#include "GameEngineConstantBuffer.h"
 
 GameEngineRenderer::GameEngineRenderer()
 {
@@ -115,6 +116,12 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 
 			// ·¹ÀÌ¾Æ¿ô
 		}
+
+		std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex, 0);
+
+		const TransformData& Daya = Transform.GetConstTransformDataRef();
+
+		Buffer->Setting();
 
 		if (nullptr != LayOut)
 		{

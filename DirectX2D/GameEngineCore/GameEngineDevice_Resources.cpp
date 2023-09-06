@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "GameEngineDevice.h"
+#include "GameEngineTransform.h"
 
 #include "GameEngineVertex.h"
 #include "GameEngineVertexBuffer.h"
@@ -7,6 +8,7 @@
 #include "GameEngineShader.h"
 #include "GameEngineRasterizer.h"
 #include "GameEngineVertexShader.h"
+#include "GameEngineConstantBuffer.h"
 
 void GameEngineDevice::ResourcesInit()
 {
@@ -136,6 +138,16 @@ void GameEngineDevice::ResourcesInit()
 		};
 
 		GameEngineIndexBuffer::Create("FullRect", Index);
+	}
+
+	// 나중에 사라질거임.
+	{
+		// 약간위험할수 있다.
+		// 그래픽카드에서의 바이트 패딩 규칙과
+		// sizeof(TransformData) 바이트패딩 규칙이
+		// 달라서 그림이 다르다고 인식할수 있다.
+		// 주의해야 한다.
+		GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex, 0);
 	}
 
 	{
