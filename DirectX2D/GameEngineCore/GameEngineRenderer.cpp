@@ -58,6 +58,11 @@ void GameEngineRenderer::SetViewCameraSelect(int _Order)
 
 void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 {
+	ResSetting();
+	Draw();
+}
+void GameEngineRenderer::ResSetting()
+{
 	{
 		float4x4 WorldViewProjection = Transform.GetWorldViewProjectionMatrix();
 		// 인풋어셈블러1 버텍스 버퍼 세팅
@@ -117,11 +122,14 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 			// 레이아웃
 		}
 
-		std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex, 0);
+		std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
 
-		const TransformData& Daya = Transform.GetConstTransformDataRef();
-
-		Buffer->Setting();
+		if (nullptr != Buffer)
+		{
+			const TransformData& Data = Transform.GetConstTransformDataRef();
+			Buffer->ChangeData(Data);
+			Buffer->Setting();
+		}
 
 		if (nullptr != LayOut)
 		{
@@ -476,4 +484,14 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 		//// 어떤 모니터에 뿌릴까만이 남게된다.
 		//// 최종적으로 화면에 어떻게 뿌릴것인가만이 남아있다.
 	}
+}
+
+void GameEngineRenderer::Draw()
+{
+	std::shared_ptr<GameEngineIndexBuffer> IndexBuffer = GameEngineIndexBuffer::Find("Rect");
+	if (nullptr == IndexBuffer)
+	{
+		return;
+	}
+	GameEngineCore::GetContext()->DrawIndexed(IndexBuffer->GetIndexCount(), 0, 0);
 }
