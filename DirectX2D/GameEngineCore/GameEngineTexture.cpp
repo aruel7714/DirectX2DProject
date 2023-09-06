@@ -2,6 +2,12 @@
 #include "GameEngineTexture.h"
 #include "GameEngineCore.h"
 
+#ifdef _DEBUG
+#pragma comment(lib, "..\\GameEngineCore\\ThirdParty\\DirectXTex\\lib\\Debug\\DirectXTex.lib")
+#else
+#pragma comment(lib, "..\\GameEngineCore\\ThirdParty\\DirectXTex\\lib\\Release\\DirectXTex.lib")
+#endif
+
 GameEngineTexture::GameEngineTexture()
 {
 }
@@ -42,4 +48,9 @@ void GameEngineTexture::CreateRenderTargetView()
 		MsgBoxAssert("랜더타겟뷰 생성에 실패했습니다.");
 		return;
 	}
+}
+
+void GameEngineTexture::ResLoad(std::string_view _Path)
+{
+	int a = 0;
 }
