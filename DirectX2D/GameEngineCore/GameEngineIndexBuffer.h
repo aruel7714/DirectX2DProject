@@ -35,7 +35,7 @@ public:
 protected:
 
 private:
-	const class GameEngineInputLayOut* VertexInfoPtr;
+	// const class GameEngineInputLayOut* VertexInfoPtr;
 
 	//                                점1개의 크기가 얼마? 점 개수가 몇개냐.,
 	void ResCreate(const void* _Data, size_t _IndexCount);

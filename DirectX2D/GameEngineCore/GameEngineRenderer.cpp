@@ -72,7 +72,7 @@ void GameEngineRenderer::ResSetting()
 			VertexBuffer->Setting();
 		}
 
-		std::shared_ptr<GameEngineVertexShader> VertexShader = GameEngineVertexShader::Find("ColorShader_VS");
+		std::shared_ptr<GameEngineVertexShader> VertexShader = GameEngineVertexShader::Find("TextureShader_VS");
 
 		if (nullptr != VertexShader && nullptr != VertexBuffer && nullptr == LayOut)
 		{
@@ -122,13 +122,13 @@ void GameEngineRenderer::ResSetting()
 			// 레이아웃
 		}
 
-		std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
+		std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex);
 
 		if (nullptr != Buffer)
 		{
 			const TransformData& Data = Transform.GetConstTransformDataRef();
 			Buffer->ChangeData(Data);
-			Buffer->Setting();
+			Buffer->Setting(0);
 		}
 
 		if (nullptr != LayOut)
@@ -175,7 +175,7 @@ void GameEngineRenderer::ResSetting()
 			Rasterizer->Setting();
 		}
 
-		std::shared_ptr<GameEnginePixelShader> PixelShader = GameEnginePixelShader::Find("ColorShader_PS");
+		std::shared_ptr<GameEnginePixelShader> PixelShader = GameEnginePixelShader::Find("TextureShader_PS");
 		if (nullptr != PixelShader)
 		{
 			PixelShader->Setting();
@@ -193,7 +193,7 @@ void GameEngineRenderer::ResSetting()
 
 		// 그걸 다시 옵션을 줄수 있는데.
 		// 인덱스버퍼를 사용하는 경우 호출하는 DRAW함수 이다.
-		GameEngineCore::GetContext()->DrawIndexed(6, 0, 0);
+		// GameEngineCore::GetContext()->DrawIndexed(6, 0, 0);
 
 		//std::vector<GameEngineVertex2D> Vertex;
 		//Vertex.resize(4 * 6);
