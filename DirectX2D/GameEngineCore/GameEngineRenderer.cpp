@@ -58,6 +58,7 @@ void GameEngineRenderer::SetViewCameraSelect(int _Order)
 void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 {
 	{
+		float4x4 WorldViewProjection = Transform.GetWorldViewProjectionMatrix();
 		// 인풋어셈블러1 버텍스 버퍼 세팅
 		std::shared_ptr<GameEngineVertexBuffer> VertexBuffer = GameEngineVertexBuffer::Find("Rect");
 		if (nullptr != VertexBuffer)
@@ -137,7 +138,7 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 		// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
 		// 선의 배열로 보고 그려라.
 		// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
-		GameEngineCore::MainDevice.GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		GameEngineCore::GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		// 나중에 아웃풋 머저 때문에 그렇습니다.
 		D3D11_VIEWPORT ViewPort = {};
@@ -151,7 +152,7 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 		ViewPort.TopLeftX = 0.0f;
 		ViewPort.TopLeftY = 0.0f;
 
-		GameEngineCore::MainDevice.GetContext()->RSSetViewports(1, &ViewPort);
+		GameEngineCore::GetContext()->RSSetViewports(1, &ViewPort);
 
 		std::shared_ptr<GameEngineRasterizer> Rasterizer = GameEngineRasterizer::Find("EngineRasterizer");
 		if (nullptr != Rasterizer)
@@ -165,11 +166,19 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 			PixelShader->Setting();
 		}
 
-		std::shared_ptr<class GameEngineRenderTarget> BackBufferRenderTarget = GameEngineCore::MainDevice.GetBackBufferRenderTarget();
+		std::shared_ptr<class GameEngineRenderTarget> BackBufferRenderTarget = GameEngineCore::GetBackBufferRenderTarget();
 		if (nullptr != BackBufferRenderTarget)
 		{
 			BackBufferRenderTarget->Setting();
 		}
+
+		// 세팅된 버텍스 버퍼로 그려라
+		// 그린다라는 버튼을 누르지는 않은것.
+		// 이게 찍는 버튼이다.
+
+		// 그걸 다시 옵션을 줄수 있는데.
+		// 인덱스버퍼를 사용하는 경우 호출하는 DRAW함수 이다.
+		GameEngineCore::GetContext()->DrawIndexed(6, 0, 0);
 
 		//std::vector<GameEngineVertex2D> Vertex;
 		//Vertex.resize(4 * 6);

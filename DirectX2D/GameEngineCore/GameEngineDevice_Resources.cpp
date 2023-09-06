@@ -94,12 +94,18 @@ void GameEngineDevice::ResourcesInit()
 		std::vector<GameEngineVertex2D> Vertex;
 		Vertex.resize(4);
 
-		GameEngineVertex2D BaseVertexs[4];
+		//GameEngineVertex2D BaseVertexs[4];
 
-		BaseVertexs[0] = { { -0.5f, -0.5f, -0.5f, 1.0f } };
-		BaseVertexs[1] = { { 0.5f, -0.5f, -0.5f, 1.0f } };
-		BaseVertexs[2] = { { 0.5f, 0.5f, -0.5f, 1.0f } };
-		BaseVertexs[3] = { { -0.5f, 0.5f, -0.5f, 1.0f } };
+		//BaseVertexs[0] = { { -0.5f, -0.5f, -0.5f, 1.0f } };
+		//BaseVertexs[1] = { { 0.5f, -0.5f, -0.5f, 1.0f } };
+		//BaseVertexs[2] = { { 0.5f, 0.5f, -0.5f, 1.0f } };
+		//BaseVertexs[3] = { { -0.5f, 0.5f, -0.5f, 1.0f } };
+
+		Vertex[0] = { { -0.5f, -0.5f, -0.5f, 1.0f } };
+		Vertex[1] = { { 0.5f, -0.5f, -0.5f, 1.0f } };
+		Vertex[2] = { { 0.5f, 0.5f, -0.5f, 1.0f } };
+		Vertex[3] = { { -0.5f, 0.5f, -0.5f, 1.0f } };
+
 
 		GameEngineVertexBuffer::Create("Rect", Vertex);
 
@@ -110,6 +116,26 @@ void GameEngineDevice::ResourcesInit()
 		};
 		
 		GameEngineIndexBuffer::Create("Rect", Index);
+	}
+
+	{
+		std::vector<GameEngineVertex2D> Vertex;
+		Vertex.resize(4);
+
+		Vertex[0] = { { -1.0f, -1.0f, 0.0f, 1.0f } };
+		Vertex[1] = { { 1.0f, -1.0f, 0.0f, 1.0f } };
+		Vertex[2] = { { 1.0f, 1.0f, 0.0f, 1.0f } };
+		Vertex[3] = { { -1.0f, 1.0f, 0.0f, 1.0f } };
+
+		GameEngineVertexBuffer::Create("FullRect", Vertex);
+
+		std::vector<unsigned int> Index =
+		{
+			0, 1, 2,
+			0, 2, 3
+		};
+
+		GameEngineIndexBuffer::Create("FullRect", Index);
 	}
 
 	{
@@ -141,7 +167,7 @@ void GameEngineDevice::ResourcesInit()
 		D3D11_RASTERIZER_DESC Desc = {};
 		Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 		Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
-		Desc.DepthClipEnable = TRUE;
+		// Desc.DepthClipEnable = TRUE;
 		std::shared_ptr<GameEngineRasterizer> Rasterizer = GameEngineRasterizer::Create("EngineRasterizer", Desc);
 	}
 }

@@ -17,27 +17,27 @@ void Player::Start()
 	//CreateChild<GameEngineRenderer>();
 	{
 		std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-		Renderer->Transform.SetLocalPosition({ 0, 150, 0 });
-		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
+		//Renderer->Transform.SetLocalPosition({ 0, 150, 0 });
+		//Renderer->Transform.SetLocalScale({ 50, 50, 100 });
 	}
 
-	{
-		std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-		Renderer->Transform.SetLocalPosition({ 0, -150, 0 });
-		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
-	}
+	//{
+	//	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
+	//	Renderer->Transform.SetLocalPosition({ 0, -150, 0 });
+	//	Renderer->Transform.SetLocalScale({ 50, 50, 100 });
+	//}
 
-	{
-		std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-		Renderer->Transform.SetLocalPosition({ -150, 0, 0 });
-		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
-	}
+	//{
+	//	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
+	//	Renderer->Transform.SetLocalPosition({ -150, 0, 0 });
+	//	Renderer->Transform.SetLocalScale({ 50, 50, 100 });
+	//}
 
-	{
-		std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-		Renderer->Transform.SetLocalPosition({ 150, 0, 0 });
-		Renderer->Transform.SetLocalScale({ 50, 50, 100 });
-	}
+	//{
+	//	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
+	//	Renderer->Transform.SetLocalPosition({ 150, 0, 0 });
+	//	Renderer->Transform.SetLocalScale({ 50, 50, 100 });
+	//}
 }
 
 void Player::Update(float _Delta)

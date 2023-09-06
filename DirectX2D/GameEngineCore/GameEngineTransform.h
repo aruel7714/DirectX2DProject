@@ -167,6 +167,11 @@ public:
 
 	void CalChilds();
 
+	float4x4 GetWorldViewProjectionMatrix()
+	{
+		return TransData.WorldViewProjectionMatrix;
+	}
+
 protected:
 
 private:
