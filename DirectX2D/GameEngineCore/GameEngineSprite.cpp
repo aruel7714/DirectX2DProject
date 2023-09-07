@@ -14,7 +14,7 @@ GameEngineSprite::~GameEngineSprite()
 {
 }
 
-// 이미지가 1장있는데 그 이미지를 잘라서 랜더링하는
+// 이미지가 1장 있는데 그 이미지를 잘라서 랜더링하는 
 void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, unsigned int _Y)
 {
 	// 기본생성자가 있는 자료형은 내부에서 만든다.
@@ -50,7 +50,10 @@ void GameEngineSprite::ResCreateCut(std::string_view _Name, unsigned int _X, uns
 		Start.Pos2DY = Start.Scale2DY;
 	}
 
+
 	// GameEngineTexture::Find(_Name);
+
+
 }
 
 SpriteData GameEngineSprite::GetSpriteData(unsigned int _Index)

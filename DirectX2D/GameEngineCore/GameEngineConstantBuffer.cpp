@@ -28,6 +28,7 @@ void GameEngineConstantBuffer::ResCreate(int _ByteSize)
 	}
 }
 
+
 void GameEngineConstantBuffer::Setting(UINT _Slot)
 {
 	switch (Type)
@@ -76,11 +77,11 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 
 	D3D11_MAPPED_SUBRESOURCE Data = {};
 
-	// 그래픽카드는 초고속으로 랜더링 연산을
+	// 그래픽카드는 초고속으로 랜더링 연산을 
 	// 병렬적으로 실행한다.
 	// 그러므로 데이터를 CPU에서 데이터를 변경한다는 것은
 	// 그래픽카드에게 예약하는 형태가 됩니다.
-	// 그리고 그런 예약 대부분은 그래픽 카드를 느리게 만듭니다.
+	// 그리고 그런 예약 대부분은 그래픽카드를 느리게 만듭니다.
 	// 잠깐 그리는거 멈춰봐 그리는데 필요한 데이터를 새로 가져왔어
 	// 최대한 1번에 세팅하는 구조가 최고다.
 	// map을 호출하는 횟수가 문제다.
@@ -90,7 +91,7 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 	// 이 버퍼를 잠깐 쓰지마 잠궈 데이터 변경할거야.
 	GameEngineCore::GetContext()->Map(Buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &Data);
 
-	// 그래픽카드에 직접 쓸수있는 주소값을 담아줍니다.
+	// 그래픽카드에 직접 슬수있는 주소값을 담아줍니다.
 	// Data
 
 	if (Data.pData == nullptr)
@@ -102,6 +103,8 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 
 	memcpy_s(Data.pData, BufferInfo.ByteWidth, _Data, BufferInfo.ByteWidth);
 
-	// 다 썼어
+
+
+	// 다썼어.
 	GameEngineCore::GetContext()->Unmap(Buffer, 0);
 }

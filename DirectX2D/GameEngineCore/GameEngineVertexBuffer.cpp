@@ -17,7 +17,7 @@ void GameEngineVertexBuffer::ResCreate(const void* _Data, size_t _VertexSize, si
 	D3D11_SUBRESOURCE_DATA Data;
 	Data.pSysMem = _Data;
 
-	// 버퍼는 방금전에 말했듯이
+	// 버퍼는 방금전에 말했듯이 
 	// 무슨 용도로 쓸거야?
 	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	BufferInfo.ByteWidth = static_cast<UINT>(VertexSize * VertexCount);
@@ -41,6 +41,7 @@ void GameEngineVertexBuffer::Setting()
 	{
 		MsgBoxAssert("만들어지지도 않은 버텍스 버퍼를 세팅할 수는 없습니다.");
 	}
+
 
 	// 버텍스버퍼를 여러개 넣어줄수 있다.
 	GameEngineCore::GetContext()->IASetVertexBuffers(0, 1, &Buffer, &VertexSize, &Offset);

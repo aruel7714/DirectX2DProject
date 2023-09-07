@@ -13,10 +13,10 @@ public:
 	~GameEngineIndexBuffer();
 
 	// delete Function
-	GameEngineIndexBuffer(const GameEngineIndexBuffer & _Other) = delete;
-	GameEngineIndexBuffer(GameEngineIndexBuffer && _Other) noexcept = delete;
-	GameEngineIndexBuffer& operator=(const GameEngineIndexBuffer & _Other) = delete;
-	GameEngineIndexBuffer& operator=(GameEngineIndexBuffer && _Other) noexcept = delete;
+	GameEngineIndexBuffer(const GameEngineIndexBuffer& _Other) = delete;
+	GameEngineIndexBuffer(GameEngineIndexBuffer&& _Other) noexcept = delete;
+	GameEngineIndexBuffer& operator=(const GameEngineIndexBuffer& _Other) = delete;
+	GameEngineIndexBuffer& operator=(GameEngineIndexBuffer&& _Other) noexcept = delete;
 
 	static std::shared_ptr<GameEngineIndexBuffer> Create(std::string_view _Name, const std::vector<unsigned int>& _Data)
 	{

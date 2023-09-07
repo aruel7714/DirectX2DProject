@@ -28,13 +28,14 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	//}
 	//TestTexture->PSSetting(0);
 
-	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData", ShaderType::Vertex);
 
 	if (nullptr != Buffer)
 	{
 		Buffer->ChangeData(CurSprite.SpritePivot);
 		Buffer->Setting(1);
 	}
+
 
 	CurSprite.Texture->PSSetting(0);
 
@@ -45,12 +46,13 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	}
 	Sampler->PSSetting(0);
 
-	// ³»²¨ Á¶±Ý´õ ³Ö°í
+
+	// ³»²¨ ÂÉ±Ý´õ ³Ö°í 
 
 	GameEngineRenderer::Draw();
 }
 
-void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int index)
+void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int index /*= 0*/)
 {
 	Sprite = GameEngineSprite::Find(_Name);
 

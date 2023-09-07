@@ -32,6 +32,7 @@ GameEngineTexture::~GameEngineTexture()
 	}
 }
 
+
 void GameEngineTexture::CreateRenderTargetView()
 {
 	if (nullptr != RTV)
@@ -54,13 +55,14 @@ void GameEngineTexture::CreateRenderTargetView()
 		MsgBoxAssert("랜더타겟뷰 생성에 실패했습니다.");
 		return;
 	}
+
 }
 
 void GameEngineTexture::ResLoad(std::string_view _Path)
 {
-	// 팩토리니 어뎁터니
+	// 팩토리니 어뎁터니 
 
-	// png 및 다수의 이미지를 로드 가능한 함수
+	// png 및 다수의 이미지를 로드 가능한 함수 
 
 	GameEnginePath NewPath = _Path;
 
@@ -68,7 +70,7 @@ void GameEngineTexture::ResLoad(std::string_view _Path)
 
 	std::wstring wPath = GameEngineString::AnsiToUnicode(_Path);
 
-	// 그래픽
+	// 그래픽 
 	if (Ext == ".DDS")
 	{
 		if (S_OK != DirectX::LoadFromDDSFile(wPath.c_str(), DirectX::DDS_FLAGS_NONE, &Data, Image))
@@ -95,13 +97,14 @@ void GameEngineTexture::ResLoad(std::string_view _Path)
 	(
 		GameEngineCore::GetDevice(),
 		Image.GetImages(),
-		Image.GetImageCount(),
+		Image.GetImageCount(), // 이미지가 겹쳐있을수 있다.
 		Image.GetMetadata(),
 		&SRV
 	))
 	{
 		MsgBoxAssert("텍스처 로드에 실패했습니다." + std::string(_Path.data()));
 	}
+
 	Desc.Width = static_cast<UINT>(Data.width);
 	Desc.Height = static_cast<UINT>(Data.height);
 }

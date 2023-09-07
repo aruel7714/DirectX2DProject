@@ -7,6 +7,7 @@
 class GameEngineCore
 {
 	friend class GameEngineLevel;
+
 public:
 	static GameEngineTime MainTime;
 	static GameEngineWindow MainWindow;
@@ -24,11 +25,12 @@ public:
 
 	// GameEngineCoreObject를 상속받은 클래스만 템플릿으로 사용 가능하다.
 	template<typename ObjectType>
-	static void EngineStart(HINSTANCE _Inst) 
+	static void EngineStart(HINSTANCE _Inst)
 	{
 		CoreObject = std::make_shared<ObjectType>();
 		EngineProcess(_Inst, ObjectType::GetWindowTitle(), ObjectType::GetStartWindowPos(), ObjectType::GetStartWindowSize());
 	}
+
 
 	template<typename LevelType>
 	static void CreateLevel(const std::string& _Name)
@@ -51,7 +53,7 @@ public:
 	{
 		std::string Upper = GameEngineString::ToUpperReturn(_Name);
 
-		std::map <std::string, std::shared_ptr<GameEngineLevel>>::iterator Finditer = AllLevel.find(Upper);
+		std::map<std::string, std::shared_ptr<GameEngineLevel>>::iterator Finditer = AllLevel.find(Upper);
 
 		// 이미 내부에 TitleLevel이 존재한다.
 		if (AllLevel.end() == Finditer)
@@ -92,10 +94,11 @@ private:
 	static std::shared_ptr<GameEngineLevel> NextLevel;
 	static std::map<std::string, std::shared_ptr<GameEngineLevel>> AllLevel;
 
+
 	static void Start();
 	static void Update();
 	static void Release();
-	
+
 
 
 };

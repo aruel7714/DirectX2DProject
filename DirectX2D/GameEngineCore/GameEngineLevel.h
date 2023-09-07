@@ -2,10 +2,12 @@
 #include "GameEngineObject.h"
 
 // 설명 :
+// class GameEngineActor; 이래도되고
 class GameEngineLevel : public GameEngineObject
 {
 	friend class GameEngineCore;
 	friend class GameEngineCamera;
+
 public:
 	// constrcuter destructer
 	GameEngineLevel();
@@ -63,7 +65,7 @@ private:
 
 	// 액터관련 기능들
 	void AllUpdate(float _Delta) override;
-	
+
 	//void Render(float _Delta);
 
 	void ActorRelease();
@@ -75,8 +77,5 @@ private:
 	// 이미 액터가 child로 관리하고 있지만
 	// 따로 카메라도 들고 있을 겁니다.
 	std::map<int, std::shared_ptr<class GameEngineCamera>> Cameras;
-
-	//// 그냥 
-	// std::map<int, std::list<std::shared_ptr<class GameEngineActor>>> AllActors;
 };
 

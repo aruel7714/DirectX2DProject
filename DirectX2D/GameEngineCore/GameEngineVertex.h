@@ -1,8 +1,8 @@
 #pragma once
 #include "GameEngineInputLayOut.h"
-// InputLayOut 이란 점 1개의 구조에요.
+// Input LayOut이란 점 1개의 구조에요.
 
-// 설명 : 얘가 제일 잘알고 있어야 합니다.
+// 설명 : 애가 제일 잘알고 있어야 합니다.
 class GameEngineVertex2D
 {
 public:

@@ -1,7 +1,7 @@
 #pragma once
 #include "GameEngineResources.h"
 
-// 설명 : 
+// 설명 :
 class GameEngineRasterizer : public GameEngineResources<GameEngineRasterizer>
 {
 public:
@@ -10,10 +10,10 @@ public:
 	~GameEngineRasterizer();
 
 	// delete Function
-	GameEngineRasterizer(const GameEngineRasterizer & _Other) = delete;
-	GameEngineRasterizer(GameEngineRasterizer && _Other) noexcept = delete;
-	GameEngineRasterizer& operator=(const GameEngineRasterizer & _Other) = delete;
-	GameEngineRasterizer& operator=(GameEngineRasterizer && _Other) noexcept = delete;
+	GameEngineRasterizer(const GameEngineRasterizer& _Other) = delete;
+	GameEngineRasterizer(GameEngineRasterizer&& _Other) noexcept = delete;
+	GameEngineRasterizer& operator=(const GameEngineRasterizer& _Other) = delete;
+	GameEngineRasterizer& operator=(GameEngineRasterizer&& _Other) noexcept = delete;
 
 	static std::shared_ptr<GameEngineRasterizer> Create(std::string_view _Name, const D3D11_RASTERIZER_DESC& _Desc)
 	{

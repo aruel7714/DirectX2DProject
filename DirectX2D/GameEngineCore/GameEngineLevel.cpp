@@ -4,7 +4,7 @@
 #include "GameEngineActor.h"
 #include "GameEngineCamera.h"
 
-GameEngineLevel::GameEngineLevel() 
+GameEngineLevel::GameEngineLevel()
 {
 	// Main
 	{
@@ -26,7 +26,7 @@ std::shared_ptr<GameEngineCamera> GameEngineLevel::CreateCamera(int _Order, int 
 	return NewCamera;
 }
 
-GameEngineLevel::~GameEngineLevel() 
+GameEngineLevel::~GameEngineLevel()
 {
 }
 
@@ -55,20 +55,21 @@ void GameEngineLevel::Render(float _Delta)
 {
 	for (std::pair<const int, std::shared_ptr<class GameEngineCamera>>& CameraPair : Cameras)
 	{
-		// 래퍼런스로 받는다.
+		// 레퍼런스로 받는다.
 		std::shared_ptr<GameEngineCamera>& Camera = CameraPair.second;
 		Camera->Render(_Delta);
 	}
 }
+
 
 void GameEngineLevel::ActorRelease()
 {
 
 }
 
+
 void GameEngineLevel::ActorInit(std::shared_ptr<class GameEngineActor> _Actor, int _Order)
 {
 	_Actor->SetParent(this, _Order);
 	_Actor->Start();
-	//Childs[_Order].push_back(_Actor);
 }

@@ -1,4 +1,5 @@
 #include "PreCompile.h"
+#include "GameEngineCore.h"
 #include "GameEngineDirectBuffer.h"
 
 GameEngineDirectBuffer::GameEngineDirectBuffer()

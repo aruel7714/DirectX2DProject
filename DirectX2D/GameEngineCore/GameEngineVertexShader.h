@@ -2,7 +2,7 @@
 #include "GameEngineShader.h"
 #include "GameEngineResources.h"
 
-// 설명 : 
+// 설명 :
 class GameEngineVertexShader : public GameEngineResources<GameEngineVertexShader>, public GameEngineShader
 {
 	friend class GameEngineInputLayOut;
@@ -13,15 +13,13 @@ public:
 	~GameEngineVertexShader();
 
 	// delete Function
-	GameEngineVertexShader(const GameEngineVertexShader & _Other) = delete;
-	GameEngineVertexShader(GameEngineVertexShader && _Other) noexcept = delete;
-	GameEngineVertexShader& operator=(const GameEngineVertexShader & _Other) = delete;
-	GameEngineVertexShader& operator=(GameEngineVertexShader && _Other) noexcept = delete;
+	GameEngineVertexShader(const GameEngineVertexShader& _Other) = delete;
+	GameEngineVertexShader(GameEngineVertexShader&& _Other) noexcept = delete;
+	GameEngineVertexShader& operator=(const GameEngineVertexShader& _Other) = delete;
+	GameEngineVertexShader& operator=(GameEngineVertexShader&& _Other) noexcept = delete;
 
 	static std::shared_ptr<GameEngineVertexShader> Load(std::string_view _Path, std::string_view _EntryPoint, UINT _VersionHight = 5, UINT _VersionLow = 0)
 	{
-		//GameEnginePath Path = _Path;
-		//std::string Name = Path.GetFileName();
 		return Load(_Path, _EntryPoint, _EntryPoint, _VersionHight, _VersionLow);
 	}
 
@@ -41,5 +39,6 @@ private:
 	ID3D11VertexShader* ShaderPtr = nullptr;
 
 	void ShaderLoad(std::string_view _Path, std::string_view _EntryPoint, UINT _VersionHight = 5, UINT _VersionLow = 0);
+
 };
 

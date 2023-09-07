@@ -1,7 +1,7 @@
 #pragma once
 #include "GameEngineResources.h"
 
-// 설명 : 
+// 설명 :
 class GameEngineSampler : public GameEngineResources<GameEngineSampler>
 {
 public:
@@ -10,10 +10,10 @@ public:
 	~GameEngineSampler();
 
 	// delete Function
-	GameEngineSampler(const GameEngineSampler & _Other) = delete;
-	GameEngineSampler(GameEngineSampler && _Other) noexcept = delete;
-	GameEngineSampler& operator=(const GameEngineSampler & _Other) = delete;
-	GameEngineSampler& operator=(GameEngineSampler && _Other) noexcept = delete;
+	GameEngineSampler(const GameEngineSampler& _Other) = delete;
+	GameEngineSampler(GameEngineSampler&& _Other) noexcept = delete;
+	GameEngineSampler& operator=(const GameEngineSampler& _Other) = delete;
+	GameEngineSampler& operator=(GameEngineSampler&& _Other) noexcept = delete;
 
 	static std::shared_ptr<GameEngineSampler> Create(std::string_view _Name, const D3D11_SAMPLER_DESC& _Desc)
 	{

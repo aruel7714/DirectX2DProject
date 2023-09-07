@@ -29,5 +29,6 @@ void GameEngineRasterizer::Setting()
 	{
 		MsgBoxAssert("레스터 라이저 세팅이 존재하지 앟는데 세팅하려고 했습니다.");
 	}
+
 	GameEngineCore::GetContext()->RSSetState(State);
 }

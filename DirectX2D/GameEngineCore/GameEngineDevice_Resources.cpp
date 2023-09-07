@@ -125,11 +125,10 @@ void GameEngineDevice::ResourcesInit()
 		//BaseVertexs[3] = { { -0.5f, 0.5f, -0.5f, 1.0f } };
 
 		// 이미지를 자르려면 TEXCOORD값이 바뀌어야 하는데.
-		Vertex[0] = { { -0.5f, 0.5f, -0.5f, 1.0f }, {0.0f, 0.0f} };
-		Vertex[1] = { { 0.5f, 0.5f, -0.5f, 1.0f }, {1.0f, 0.0f} };
-		Vertex[2] = { { 0.5f, -0.5f, -0.5f, 1.0f }, {1.0f, 1.0f} };
-		Vertex[3] = { { -0.5f, -0.5f, -0.5f, 1.0f }, {0.0f, 1.0f} };
-
+		Vertex[0] = { { -0.5f, 0.5f, 0.0f, 1.0f }, {0.0f, 0.0f} };
+		Vertex[1] = { { 0.5f, 0.5f, 0.0f, 1.0f } , {1.0f, 0.0f} };
+		Vertex[2] = { { 0.5f, -0.5f, 0.0f, 1.0f }  , {1.0f, 1.0f} };
+		Vertex[3] = { { -0.5f, -0.5f, 0.0f, 1.0f } , {0.0f, 1.0f} };
 
 		GameEngineVertexBuffer::Create("Rect", Vertex);
 
@@ -147,9 +146,9 @@ void GameEngineDevice::ResourcesInit()
 		Vertex.resize(4);
 
 		Vertex[0] = { { -1.0f, -1.0f, 0.0f, 1.0f }, {0.0f, 0.0f} };
-		Vertex[1] = { { 1.0f, -1.0f, 0.0f, 1.0f }, {1.0f, 0.0f} };
-		Vertex[2] = { { 1.0f, 1.0f, 0.0f, 1.0f }, {1.0f, 1.0f} };
-		Vertex[3] = { { -1.0f, 1.0f, 0.0f, 1.0f }, {0.0f, 1.0f} };
+		Vertex[1] = { { 1.0f, -1.0f, 0.0f, 1.0f },  {1.0f, 0.0f} };
+		Vertex[2] = { { 1.0f, 1.0f, 0.0f, 1.0f },   {1.0f, 1.0f} };
+		Vertex[3] = { { -1.0f, 1.0f, 0.0f, 1.0f },  {0.0f, 1.0f} };
 
 		GameEngineVertexBuffer::Create("FullRect", Vertex);
 

@@ -9,6 +9,7 @@ GameEngineTransform::~GameEngineTransform()
 {
 }
 
+
 void GameEngineTransform::TransformUpdate()
 {
 	TransData.LocalCalculation();

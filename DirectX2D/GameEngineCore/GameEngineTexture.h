@@ -3,7 +3,7 @@
 
 #include "..\\GameEngineCore\\ThirdParty\\DirectXTex\\inc\\DirectXTex.h"
 
-// 설명 : 
+// 설명 :
 class GameEngineTexture : public GameEngineResources<GameEngineTexture>
 {
 public:
@@ -12,10 +12,10 @@ public:
 	~GameEngineTexture();
 
 	// delete Function
-	GameEngineTexture(const GameEngineTexture & _Other) = delete;
-	GameEngineTexture(GameEngineTexture && _Other) noexcept = delete;
-	GameEngineTexture& operator=(const GameEngineTexture & _Other) = delete;
-	GameEngineTexture& operator=(GameEngineTexture && _Other) noexcept = delete;
+	GameEngineTexture(const GameEngineTexture& _Other) = delete;
+	GameEngineTexture(GameEngineTexture&& _Other) noexcept = delete;
+	GameEngineTexture& operator=(const GameEngineTexture& _Other) = delete;
+	GameEngineTexture& operator=(GameEngineTexture&& _Other) noexcept = delete;
 
 	static std::shared_ptr<GameEngineTexture> Create(ID3D11Texture2D* _Res)
 	{
@@ -61,11 +61,12 @@ public:
 protected:
 
 private:
-	D3D11_TEXTURE2D_DESC Desc;	// 텍스처를 Create할때 정보인데. 그냥 load할때도 사용할 것이다.
+	D3D11_TEXTURE2D_DESC Desc; // 텍스처를 Create할때 정보인데. 그냥 load할때도 사용할것이다.
 
 	ID3D11Texture2D* Texture2D = nullptr;
-	ID3D11RenderTargetView* RTV = nullptr; // 이 텍스처를 수정대상으로 삼거나 수정할 수 있는 권한.
-	ID3D11ShaderResourceView* SRV = nullptr;	// 쉐이더에 세팅해줄수 있는 권한이다.
+
+	ID3D11RenderTargetView* RTV = nullptr; // 이 텍스처를 수정대상으로 삼거나 수정할수 있는 권한.
+	ID3D11ShaderResourceView* SRV = nullptr; // 쉐이더에 세팅해줄수 있는 권한이다.
 
 	DirectX::TexMetadata Data;
 	DirectX::ScratchImage Image;

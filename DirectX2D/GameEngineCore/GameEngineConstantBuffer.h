@@ -2,7 +2,7 @@
 #include "GameEngineDirectBuffer.h"
 #include "GameEngineShader.h"
 
-// 설명 : 
+// 설명 :
 class GameEngineConstantBuffer :
 	public GameEngineResources<GameEngineConstantBuffer>, public GameEngineDirectBuffer
 {
@@ -12,12 +12,12 @@ public:
 	~GameEngineConstantBuffer();
 
 	// delete Function
-	GameEngineConstantBuffer(const GameEngineConstantBuffer & _Other) = delete;
-	GameEngineConstantBuffer(GameEngineConstantBuffer && _Other) noexcept = delete;
-	GameEngineConstantBuffer& operator=(const GameEngineConstantBuffer & _Other) = delete;
-	GameEngineConstantBuffer& operator=(GameEngineConstantBuffer && _Other) noexcept = delete;
+	GameEngineConstantBuffer(const GameEngineConstantBuffer& _Other) = delete;
+	GameEngineConstantBuffer(GameEngineConstantBuffer&& _Other) noexcept = delete;
+	GameEngineConstantBuffer& operator=(const GameEngineConstantBuffer& _Other) = delete;
+	GameEngineConstantBuffer& operator=(GameEngineConstantBuffer&& _Other) noexcept = delete;
 
-	static std::shared_ptr<GameEngineConstantBuffer> CreateAndFind(int _Byte, const std::string_view& _Name, ShaderType _Type = ShaderType::None, int Slot = 0)
+	static std::shared_ptr<GameEngineConstantBuffer> CreateAndFind(int _Byte, std::string_view _Name, ShaderType _Type = ShaderType::None, int Slot = 0)
 	{
 		if (ConstantBuffers.end() == ConstantBuffers.find(_Byte))
 		{
@@ -60,7 +60,7 @@ private:
 	ShaderType Type = ShaderType::None;
 	int Slot = 0;
 
-	// 자료구조를 Resources랑 다르게 가지고 있어야 한다.
+	// 자료구조를 Resources랑 다르게 다르게 가지고 있어야 한다.
 	//            500byte         transformdata
 	static std::map<int, std::map<std::string, std::shared_ptr<GameEngineConstantBuffer>>> ConstantBuffers;
 

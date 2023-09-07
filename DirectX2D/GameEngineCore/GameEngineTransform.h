@@ -3,6 +3,7 @@
 // 기하구조를 표현하고
 // 부모자식관계를 처리한다.
 
+// 왜 굳이. 
 class TransformData
 {
 public:
@@ -19,22 +20,23 @@ public:
 	float4 WorldScale;
 	float4 WorldRotation;
 	float4 WorldPosition;
-	
-	float4x4 ScaleMatrix;		// 크기
-	float4x4 RotationMatrix;	// 
-	float4x4 PositionMatrix;	//
-	float4x4 RevolutionMatrix;	// 
-	float4x4 ParentMatrix;
 
-	float4x4 LocalWorldMatrix;	//
+	float4x4 ScaleMatrix; // 크
+	float4x4 RotationMatrix; // 자
+	float4x4 PositionMatrix; // 이
+	float4x4 RevolutionMatrix; // 공
+	float4x4 ParentMatrix; // 공
+
+	float4x4 LocalWorldMatrix;
 	// 월드 공간
 	float4x4 WorldMatrix;
+
 
 	float4x4 ViewMatrix;
 	float4x4 ProjectionMatrix;
 	float4x4 ViewPort;
 
-	// 로컬 => 월드 => 뷰 => 프로젝션
+	// 로컬 => 월드 => 뷰 => 프로젝션 
 	float4x4 WorldViewProjectionMatrix;
 
 	void LocalCalculation()
@@ -52,7 +54,7 @@ public:
 	}
 };
 
-// 설명 : 
+// 설명 :
 class GameEngineTransform
 {
 public:
@@ -86,7 +88,6 @@ public:
 		return TransData;
 	}
 
-	// set
 	void SetLocalScale(const float4& _Value)
 	{
 		TransData.Scale = _Value;
@@ -97,6 +98,7 @@ public:
 	{
 		TransData.Rotation += _Value;
 		TransformUpdate();
+
 	}
 
 	void SetLocalPosition(const float4& _Value)
@@ -110,6 +112,9 @@ public:
 		TransData.Position += _Value;
 		TransformUpdate();
 	}
+
+
+
 
 	// Get
 	float4 GetWorldPosition()
@@ -132,6 +137,7 @@ public:
 	{
 		return -(TransData.WorldMatrix.ArrVector[2].NormalizeReturn());
 	}
+
 
 	float4 GetWorldRightVector()
 	{
@@ -178,5 +184,6 @@ private:
 	GameEngineTransform* Parent = nullptr;
 	std::list<GameEngineTransform*> Childs;
 	TransformData TransData;
+
 };
 

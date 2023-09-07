@@ -11,6 +11,7 @@ class GameEngineObject : public std::enable_shared_from_this<GameEngineObject>
 {
 	friend class GameEngineLevel;
 	friend class GameEngineCore;
+
 public:
 	GameEngineTransform Transform;
 
@@ -28,6 +29,7 @@ public:
 	virtual void Update(float _Delta) {}
 	virtual void Release() {}
 
+
 	virtual void On()
 	{
 		IsUpdateValue = true;
@@ -38,7 +40,7 @@ public:
 		IsUpdateValue = false;
 	}
 
-	void Daath()
+	void Death()
 	{
 		this->IsDeathValue = true;
 	}
@@ -74,7 +76,7 @@ public:
 		return LiveTime;
 	}
 
-	void ResetLiveTIme()
+	void ResetLiveTime()
 	{
 		LiveTime = 0.0f;
 	}
@@ -96,11 +98,10 @@ public:
 		Parent = _Parent;
 		Parent->Childs[_Order].push_back(shared_from_this());
 		Transform.SetParent(_Parent->Transform);
-		// Parent->Transform.SetParent(_Parent->Transform);
 	}
-	
+
 	template<typename ParentType>
-	void SetParent(std::shared_ptr<ParentType> _Parent, int _Order)
+	void SetParent(std::shared_ptr<ParentType> _Parent)
 	{
 		Parent = _Parent.get();
 		Transform.SetParent(_Parent->Transform);
@@ -155,11 +156,11 @@ public:
 
 protected:
 	GameEngineObject* Parent = nullptr;
-
 	// 오더링을 위해서
 	std::map<int, std::list<std::shared_ptr<class GameEngineObject>>> Childs;
 
 private:
+
 	std::string Name;
 	float LiveTime = 0.0f;
 	int UpdateOrder = 0;
@@ -172,4 +173,5 @@ private:
 	}
 
 };
+
 

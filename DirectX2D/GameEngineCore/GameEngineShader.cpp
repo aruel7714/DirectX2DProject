@@ -36,9 +36,9 @@ void GameEngineShader::CreateVersion(ShaderType _Type, UINT _VersionHigh, UINT _
 	}
 
 	Version += "_";
-	Version += std::to_string(_VersionHigh);	// 5
+	Version += std::to_string(_VersionHigh); // 5
 	Version += "_";
-	Version += std::to_string(_VersionLow);		// 5
+	Version += std::to_string(_VersionLow); // 5
 
 	// "vs_5_0"
 }
@@ -90,7 +90,6 @@ bool GameEngineShader::AutoCompile(GameEngineFile& _File)
 			// 내가 지정한 위치에서부터 앞으로 찾기 아서 
 			size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 			std::string_view EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex + 2);
-
 			GameEnginePixelShader::Load(_File.GetStringPath(), EntryName);
 		}
 	}

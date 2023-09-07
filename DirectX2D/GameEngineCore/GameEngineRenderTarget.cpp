@@ -10,6 +10,7 @@ GameEngineRenderTarget::~GameEngineRenderTarget()
 {
 }
 
+
 // 다이렉트에서 무슨일을 하건 우리는 결국 device와 컨텍스트에
 void GameEngineRenderTarget::Clear()
 {
@@ -18,6 +19,7 @@ void GameEngineRenderTarget::Clear()
 		GameEngineCore::GetContext()->ClearRenderTargetView(RTV[i], ClearColor[i].Arr1D);
 	}
 }
+
 void GameEngineRenderTarget::Setting()
 {
 	if (0 >= RTV.size())

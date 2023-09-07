@@ -131,6 +131,8 @@ void GameEngineRenderer::ResSetting()
 			Buffer->Setting(0);
 		}
 
+
+
 		if (nullptr != LayOut)
 		{
 			LayOut->Setting();
@@ -141,6 +143,7 @@ void GameEngineRenderer::ResSetting()
 		{
 			VertexShader->Setting();
 		}
+
 
 		std::shared_ptr<GameEngineIndexBuffer> IndexBuffer = GameEngineIndexBuffer::Find("Rect");
 		if (nullptr != IndexBuffer)
@@ -155,11 +158,12 @@ void GameEngineRenderer::ResSetting()
 		// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
 		GameEngineCore::GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
+
 		// 나중에 아웃풋 머저 때문에 그렇습니다.
 		D3D11_VIEWPORT ViewPort = {};
 
 		// 좀더 식이 있어야 하는데 그건 다이렉트가 알아서 해준다.
-		// 우리 viewport들어가
+		// 우리 viewport들어가 
 		ViewPort.Width = GameEngineCore::MainWindow.GetScale().X;
 		ViewPort.Height = GameEngineCore::MainWindow.GetScale().Y;
 		ViewPort.MinDepth = 0.0f;
@@ -168,6 +172,7 @@ void GameEngineRenderer::ResSetting()
 		ViewPort.TopLeftY = 0.0f;
 
 		GameEngineCore::GetContext()->RSSetViewports(1, &ViewPort);
+
 
 		std::shared_ptr<GameEngineRasterizer> Rasterizer = GameEngineRasterizer::Find("EngineRasterizer");
 		if (nullptr != Rasterizer)
@@ -180,6 +185,9 @@ void GameEngineRenderer::ResSetting()
 		{
 			PixelShader->Setting();
 		}
+
+
+
 
 		std::shared_ptr<class GameEngineRenderTarget> BackBufferRenderTarget = GameEngineCore::GetBackBufferRenderTarget();
 		if (nullptr != BackBufferRenderTarget)

@@ -20,7 +20,7 @@ void GameEngineCamera::Start()
 
 	if (nullptr == Level)
 	{
-		MsgBoxAssert("Level이 nullptr입니다.");
+		MsgBoxAssert("Level이 nullptr입니다");
 		return;
 	}
 
@@ -58,7 +58,7 @@ void GameEngineCamera::SetCameraOrder(int _Order)
 
 	if (nullptr == Level)
 	{
-		MsgBoxAssert("Level이 nullptr입니다.");
+		MsgBoxAssert("Level이 nullptr입니다");
 		return;
 	}
 
@@ -72,7 +72,7 @@ void GameEngineCamera::SetCameraOrder(int _Order)
 
 void GameEngineCamera::Render(float _DeltaTime)
 {
-	// 랜더러가 없으면 continue;
+	//  랜더러가 없으면 continue;
 	if (true == Renderers.empty())
 	{
 		return;
@@ -93,8 +93,6 @@ void GameEngineCamera::Render(float _DeltaTime)
 
 		for (std::shared_ptr<class GameEngineRenderer>& Renderer : RendererList)
 		{
-			// Transform
-
 			Renderer->Transform.CalculationViewAndProjection(Transform.GetConstTransformDataRef());
 			Renderer->Render(this, _DeltaTime);
 		}

@@ -1,7 +1,8 @@
 #pragma once
 #include <GameEngineBase/GameEnginePath.h>
 
-// 설명 : 
+
+// 설명 :
 template<typename ResourcesType>
 class GameEngineResources
 {
@@ -11,10 +12,12 @@ public:
 	~GameEngineResources() {}
 
 	// delete Function
-	//GameEngineResources(const GameEngineResources & _Other) = delete;
-	//GameEngineResources(GameEngineResources && _Other) noexcept = delete;
-	//GameEngineResources& operator=(const GameEngineResources & _Other) = delete;
-	//GameEngineResources& operator=(GameEngineResources && _Other) noexcept = delete;
+	//GameEngineResources(const GameEngineResources& _Other) = delete;
+	//GameEngineResources(GameEngineResources&& _Other) noexcept = delete;
+	//GameEngineResources& operator=(const GameEngineResources& _Other) = delete;
+	//GameEngineResources& operator=(GameEngineResources&& _Other) noexcept = delete;
+
+
 	static std::shared_ptr<ResourcesType> Find(std::string_view _Name)
 	{
 		std::string UpperName = GameEngineString::ToUpperReturn(_Name);
@@ -36,6 +39,7 @@ public:
 		Name = _Name;
 	}
 
+
 protected:
 
 
@@ -45,6 +49,7 @@ protected:
 		UnNameRes.push_back(NewRes);
 		return NewRes;
 	}
+
 
 	static std::shared_ptr<ResourcesType> CreateRes(std::string_view _Name)
 	{
@@ -72,9 +77,10 @@ private:
 	GameEnginePath Path;
 };
 
-// 템플릿 클래스 내부의 static 변수 초기화 하는법
+// 템플릿 클래스 내부의 static변수 초기화 하는법
 template<typename ResourcesType>
 std::map<std::string, std::shared_ptr<ResourcesType>> GameEngineResources<ResourcesType>::NameRes;
 
 template<typename ResourcesType>
 std::list<std::shared_ptr<ResourcesType>> GameEngineResources<ResourcesType>::UnNameRes;
+

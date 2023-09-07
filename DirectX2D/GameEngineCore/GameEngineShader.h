@@ -12,7 +12,7 @@ enum class ShaderType
 	Max, // max는 for문돌리거나 할때 필요하니까.
 };
 
-// 설명 : 
+// 설명 :
 class GameEngineShader
 {
 public:
@@ -23,10 +23,12 @@ public:
 	~GameEngineShader();
 
 	// delete Function
-	GameEngineShader(const GameEngineShader & _Other) = delete;
-	GameEngineShader(GameEngineShader && _Other) noexcept = delete;
-	GameEngineShader& operator=(const GameEngineShader & _Other) = delete;
-	GameEngineShader& operator=(GameEngineShader && _Other) noexcept = delete;
+	GameEngineShader(const GameEngineShader& _Other) = delete;
+	GameEngineShader(GameEngineShader&& _Other) noexcept = delete;
+	GameEngineShader& operator=(const GameEngineShader& _Other) = delete;
+	GameEngineShader& operator=(GameEngineShader&& _Other) noexcept = delete;
+
+
 
 protected:
 	void CreateVersion(ShaderType _Type, UINT _VersionHigh, UINT _VersionLow);
