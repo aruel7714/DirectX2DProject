@@ -1,5 +1,9 @@
 #include "PreCompile.h"
 #include "TitleLevel.h"
+#include "ContentsEnum.h"
+#include "BackCloud.h"
+#include "FrontCloud.h"
+#include "MainLogo.h"
 
 TitleLevel::TitleLevel()
 {
@@ -17,22 +21,27 @@ void TitleLevel::Start()
 		Dir.MoveChild("ContentsResources");
 		Dir.MoveChild("Texture");
 		Dir.MoveChild("TitleLevel");
-		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 
-		for (size_t i = 0; i < Directorys.size(); i++)
+		for (size_t i = 0; i < Files.size(); i++)
 		{
-			GameEngineDirectory& Dir = Directorys[i];
-
-			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+			GameEngineFile& File = Files[i];
+			GameEngineTexture::Load(File.GetStringPath());
 		}
 
-		GameEngineSprite::CreateSingle("BackCloud.png");
-		GameEngineSprite::CreateSingle("FrontCloud.png");
-		GameEngineSprite::CreateSingle("MainLogo.png");
+		GameEngineSprite::CreateSingle("BackCloud2.png");
+		GameEngineSprite::CreateSingle("FrontCloud2.png");
+		GameEngineSprite::CreateSingle("MainLogo2.png");
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective)
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
+
+	{
+		std::shared_ptr<BackCloud> BackObject = CreateActor<BackCloud>(ContentsObjectType::BackCloud);
+		std::shared_ptr<FrontCloud> FrontObject = CreateActor<FrontCloud>(ContentsObjectType::FrontCloud);
+		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(ContentsObjectType::MainLogo);
+	}
 }
 void TitleLevel::Update(float _Delta)
 {

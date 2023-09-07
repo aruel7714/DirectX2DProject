@@ -12,6 +12,24 @@
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BackCloud.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TownLevel.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSky.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontCloud.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLogo.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -28,6 +46,24 @@
     <ClInclude Include="TitleLevel.h">
       <Filter>Level\Title</Filter>
     </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="BackCloud.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TownLevel.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSky.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontCloud.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLogo.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -41,6 +77,9 @@
     </Filter>
     <Filter Include="Level\Title">
       <UniqueIdentifier>{f930fa9b-5ef3-4736-afe6-37b5cba4828c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Town">
+      <UniqueIdentifier>{0a124edd-6bf7-4748-84ba-1c8fb514f910}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

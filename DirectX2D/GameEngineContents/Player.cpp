@@ -21,27 +21,11 @@ void Player::Start()
 
 		MainSpriteRenderer = CreateComponent<GameEngineSpriteRenderer>();
 
-		MainSpriteRenderer->SetSprite("TestPlayer.png", 5);
+		//MainSpriteRenderer->SetSprite("TestPlayer.png", 5);
 		/*Renderer0->Transform.SetLocalPosition({ 0, 150, 0 });
 		Renderer0->Transform.SetLocalScale({ 50, 50, 100 });*/
 
-		// Renderer0->SetSprite("NSet.png");
-
-		// NewRender->SetSprite("AAA.png", 0);
-		{
-			//NewRender->SetConstnetbuffer("");
-			//NewRender->SetTextureSetting("");
-			//NewRender->SetTextureCurtingdataSetting("");
-			//NewRender->SetConstnetResSetting("");
-			//NewRender->SetConstnetResSetting("");
-			//NewRender->SetConstnetResSetting("");
-			//NewRender->SetConstnetResSetting("");
-			//NewRender->SetConstnetResSetting("");
-			//NewRender->SetConstnetResSetting("");
-
-		}
-
-
+		
 
 	}
 
