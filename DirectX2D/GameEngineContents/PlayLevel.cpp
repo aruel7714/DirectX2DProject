@@ -1,8 +1,7 @@
 #include "PreCompile.h"
 #include "PlayLevel.h"
 #include "Player.h"
-#include <GameEngineCore/GameEngineRenderer.h>
-#include <GameEngineCore/GameEngineSprite.h>
+
 
 PlayLevel::PlayLevel()
 {
@@ -42,6 +41,16 @@ void PlayLevel::Start()
 }
 
 void PlayLevel::Update(float _Delta)
+{
+	int a = 0;
+}
+
+void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
+{
+	int a = 0;
+}
+
+void PlayLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	int a = 0;
 }

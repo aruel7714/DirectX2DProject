@@ -28,6 +28,8 @@ public:
 	virtual void Start() {}
 	virtual void Update(float _Delta) {}
 	virtual void Release() {}
+	virtual void LevelStart(class GameEngineLevel* _NextLevel) {}
+	virtual void LevelEnd(class GameEngineLevel* _NextLevel) {}
 
 
 	virtual void On()
@@ -55,7 +57,7 @@ public:
 		return Parent == nullptr ? IsDeathValue : Parent->IsDeathValue && IsDeathValue;
 	}
 
-	int GetUpdateOrder()
+	int GetOrder()
 	{
 		return UpdateOrder;
 	}
@@ -63,10 +65,10 @@ public:
 	template<typename EnumType>
 	void SetOrder(EnumType _Order)
 	{
-		SetUpdateOrder(static_cast<int>(_Order));
+		SetOrder(static_cast<int>(_Order));
 	}
 
-	virtual void SetUpdateOrder(int _Order)
+	virtual void SetOrder(int _Order)
 	{
 		UpdateOrder = _Order;
 	}
@@ -90,6 +92,9 @@ public:
 	{
 		return Name;
 	}
+
+	void AllLevelStart(class GameEngineLevel* _PrevLevel);
+	void AllLevelEnd(class GameEngineLevel* _NextLevel);
 
 	virtual void AllUpdate(float _Delta);
 

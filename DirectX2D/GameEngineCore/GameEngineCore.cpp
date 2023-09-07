@@ -35,12 +35,14 @@ void GameEngineCore::Update()
 	{
 		if (nullptr != CurLevel)
 		{
+			CurLevel->AllLevelEnd(NextLevel.get());
 			//CurLevel->LevelEnd(NextLevel);
 			//CurLevel->ActorLevelEnd();
 		}
 
 		// NextLevel->OverCheck(CurLevel);
 
+		NextLevel->AllLevelStart(CurLevel.get());
 		//NextLevel->LevelStart(CurLevel);
 		//NextLevel->ActorLevelStart();
 
@@ -52,6 +54,12 @@ void GameEngineCore::Update()
 
 	MainTime.Update();
 	float DeltaTime = MainTime.GetDeltaTime();
+
+	if (DeltaTime > 1.0f / 60.0f)
+	{
+		DeltaTime = 1.0f / 60.0f;
+	}
+
 	GameEngineSound::Update();
 	GameEngineInput::Update(DeltaTime);
 	CoreObject->Update(DeltaTime);

@@ -18,7 +18,10 @@ public:
 
 	std::vector<class GameEngineFile> GetAllFile(std::vector<std::string> _Ext = std::vector<std::string>());
 
+	std::vector<GameEngineDirectory> GetAllDirectory();
+
 protected:
+	void RecursiveAllDirectory(std::string _Path, std::vector<class GameEngineDirectory>& _Return);
 
 private:
 
