@@ -42,7 +42,6 @@ void Player::Start()
 	}
 
 	MainRenderer->SetSprite("Idle");
-	MainRenderer->AutoSpriteSizeOn();
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	MainRenderer->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
