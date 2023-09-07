@@ -1,8 +1,11 @@
 #pragma once
 
-enum class ContentsObjectType
+enum class RenderOrder
 {
-	BackCloud,
-	FrontCloud,
-	MainLogo
+	//BackCloud,
+	//FrontCloud,
+	//MainLogo,
+	BackGround,
+	Logo,
+	Player,
 };

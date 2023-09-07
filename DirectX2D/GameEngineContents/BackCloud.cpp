@@ -12,7 +12,7 @@ BackCloud::~BackCloud()
 void BackCloud::Start()
 {
 	{
-		Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
+		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
 		Renderer->SetSprite("BackCloud2.png");
 
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BackCloud2.png");

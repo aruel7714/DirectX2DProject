@@ -18,7 +18,7 @@ void TownSky::Start()
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Sky_Day2.png");
 
 		float4 HScale = Texture->GetScale().Half();
-		HScale = float4::ZERO;
+		HScale.Y *= -1.0f;
 
 		Renderer->Transform.SetLocalPosition(HScale);
 	}

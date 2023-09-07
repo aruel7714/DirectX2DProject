@@ -38,9 +38,9 @@ void TitleLevel::Start()
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
 
 	{
-		std::shared_ptr<BackCloud> BackObject = CreateActor<BackCloud>(ContentsObjectType::BackCloud);
-		std::shared_ptr<FrontCloud> FrontObject = CreateActor<FrontCloud>(ContentsObjectType::FrontCloud);
-		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(ContentsObjectType::MainLogo);
+		std::shared_ptr<BackCloud> BackObject = CreateActor<BackCloud>(RenderOrder::BackGround);
+		std::shared_ptr<FrontCloud> FrontObject = CreateActor<FrontCloud>(RenderOrder::BackGround);
+		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(RenderOrder::Logo);
 	}
 }
 void TitleLevel::Update(float _Delta)

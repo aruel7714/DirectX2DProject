@@ -54,15 +54,17 @@ void PlayLevel::Start()
 		GameEngineSprite::CreateSingle("TownLayer_Day.png");
 	}
 
+	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 
-	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
+	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
+
 
 	{
-		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(ContentsObjectType::BackCloud);
+		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
 	}
 
-	//std::shared_ptr<Player> NewPlayer = CreateActor<Player>();
+	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 }
 

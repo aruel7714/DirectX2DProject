@@ -12,7 +12,7 @@ FrontCloud::~FrontCloud()
 void FrontCloud::Start()
 {
 	{
-		Renderer = CreateComponent<GameEngineSpriteRenderer>(0);
+		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
 		Renderer->SetSprite("FrontCloud2.png");
 
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("FrontCloud2.png");

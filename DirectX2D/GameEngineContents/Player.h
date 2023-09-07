@@ -1,6 +1,14 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class PlayerState
+{
+	Idle,
+	Run,
+	Jump,
+	Max
+};
+
 // Ό³Έν : 
 class Player : public GameEngineActor
 {
@@ -20,6 +28,23 @@ protected:
 	void Update(float _Delta);
 
 private:
-	std::shared_ptr<class GameEngineSpriteRenderer> MainSpriteRenderer;
+	std::shared_ptr<class GameEngineSpriteRenderer> MainRenderer;
+
+	PlayerState State = PlayerState::Max;
+	
+	void ChangeState(PlayerState _State);
+	void StateUpdate(float _Delta);
+
+	void ChangeAnimationState(const std::string& _State);
+
+	void IdleStart();
+	void IdleUpdate(float _Delta);
+
+	void RunStart();
+	void RunUpdate(float _Delta);
+
+	void JumpStart();
+	void JumpUpdate(float _Delta);
+
 };
 
