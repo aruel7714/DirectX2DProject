@@ -91,6 +91,8 @@ void GameEngineCore::Update()
 	CurLevel->Render(DeltaTime);
 
 	MainDevice.RenderEnd();
+
+	CurLevel->AllReleaseCheck();
 	//GameEngineCore::MainWindow.DoubleBuffering();
 	// GameEngineWindow::MainWindow.ClearBackBuffer();
 	// CurLevel->ActorRender(Delta);
