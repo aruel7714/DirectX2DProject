@@ -7,5 +7,6 @@ enum class RenderOrder
 	//MainLogo,
 	BackGround,
 	Logo,
+	Floor,
 	Player,
 };

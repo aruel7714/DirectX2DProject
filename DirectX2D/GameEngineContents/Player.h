@@ -46,5 +46,6 @@ private:
 	void JumpStart();
 	void JumpUpdate(float _Delta);
 
+	void CameraFocus();
 };
 

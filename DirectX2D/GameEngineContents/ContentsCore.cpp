@@ -2,6 +2,7 @@
 #include "ContentsCore.h"
 #include "PlayLevel.h"
 #include "TitleLevel.h"
+#include "TownLevel.h"
 
 ContentsCore::ContentsCore() 
 {
@@ -13,9 +14,10 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
+	//GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
+	GameEngineCore::CreateLevel<TownLevel>("TownLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
-	GameEngineCore::ChangeLevel("PlayLevel");
+	GameEngineCore::ChangeLevel("TownLevel");
 	//GameEngineCore::ChangeLevel("PlayLevel");
 
 	//// 회전방향을 외적으로 알아내는 방법

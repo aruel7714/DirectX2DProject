@@ -58,10 +58,15 @@ void Player::Start()
 	}
 
 	MainRenderer->SetSprite("Idle");
+	MainRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
-	MainRenderer->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
 	
+	float4 Scale = MainRenderer->Transform.GetLocalScale();
+	Scale *= 4.0f;
+
+	Transform.SetLocalScale(Scale);
 	
 	ChangeState(PlayerState::Idle);
 
@@ -92,6 +97,7 @@ void Player::Start()
 void Player::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+	CameraFocus();
 
 	//float Speed = 100.0f;
 
@@ -124,6 +130,12 @@ void Player::Update(float _Delta)
 	//{
 	//	Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	//}
+}
+
+void Player::CameraFocus()
+{
+	float4 PlayerPos = Transform.GetWorldPosition();
+	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(PlayerPos);
 }
 
 void Player::ChangeState(PlayerState _State)
@@ -181,6 +193,13 @@ void Player::IdleUpdate(float _Delta)
 	{
 		ChangeState(PlayerState::Run);
 	}
+
+
+	//Debug
+	if (true == GameEngineInput::IsPress('W') || true == GameEngineInput::IsPress('S'))
+	{
+		ChangeState(PlayerState::Run);
+	}
 }
 
 void Player::RunStart()
@@ -199,8 +218,17 @@ void Player::RunUpdate(float _Delta)
 	{
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
+	else if (true == GameEngineInput::IsPress('W'))
+	{
+		Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+	}
+	else if (true == GameEngineInput::IsPress('S'))
+	{
+		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
+	}
 
-	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D'))
+	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D') &&
+		true == GameEngineInput::IsFree('W') && true == GameEngineInput::IsFree('S'))
 	{
 		ChangeState(PlayerState::Idle);
 	}

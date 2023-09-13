@@ -204,6 +204,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TownFloor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownSky.cpp">
       <SubType>
       </SubType>
@@ -238,6 +246,14 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TitleLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownFloor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownLevel.h">
       <SubType>
       </SubType>
     </ClInclude>

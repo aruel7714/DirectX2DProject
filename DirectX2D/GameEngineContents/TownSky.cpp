@@ -20,10 +20,12 @@ void TownSky::Start()
 		float4 HScale = Texture->GetScale().Half();
 		HScale.Y *= -1.0f;
 
-		Renderer->Transform.SetLocalPosition(HScale);
+		Transform.SetLocalPosition(HScale);
 	}
 }
 void TownSky::Update(float _Delta)
 {
-
+	float4 SkyPosition = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	
+	Transform.SetLocalPosition(SkyPosition);
 }

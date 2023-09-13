@@ -27,6 +27,12 @@
     <ClCompile Include="MainLogo.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
+    <ClCompile Include="TownFloor.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="TownLevel.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -57,6 +63,12 @@
     </ClInclude>
     <ClInclude Include="MainLogo.h">
       <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TownFloor.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="TownLevel.h">
+      <Filter>Level\Town</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
