@@ -29,6 +29,22 @@ void Player::Start()
 		}
 	}
 
+	//if (nullptr == GameEngineSprite::Find("Run"))
+	//{
+	//	GameEngineDirectory Dir;
+	//	Dir.MoveParentToExistsChild("ContentsResources");
+	//	Dir.MoveChild("ContentsResources\\Texture\\Player\\");
+
+	//	std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+	//	for (size_t i = 0; i < Directorys.size(); i++)
+	//	{
+	//		GameEngineDirectory& Dir = Directorys[i];
+
+	//		GameEngineSprite::CreateFolder(Dir.GetStringPath());
+	//	}
+	//}
+
 	MainRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Player);
 
 	//std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
@@ -46,7 +62,7 @@ void Player::Start()
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	MainRenderer->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
 	
-	//ChangeAnimationState("Idle");
+	
 	ChangeState(PlayerState::Idle);
 
 
@@ -161,7 +177,10 @@ void Player::IdleStart()
 }
 void Player::IdleUpdate(float _Delta)
 {
-
+	if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('D'))
+	{
+		ChangeState(PlayerState::Run);
+	}
 }
 
 void Player::RunStart()
@@ -170,7 +189,21 @@ void Player::RunStart()
 }
 void Player::RunUpdate(float _Delta)
 {
+	float Speed = 100.0f;
 
+	if (true == GameEngineInput::IsPress('A'))
+	{
+		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+	}
+	else if (true == GameEngineInput::IsPress('D'))
+	{
+		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+	}
+
+	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D'))
+	{
+		ChangeState(PlayerState::Idle);
+	}
 }
 
 void Player::JumpStart()

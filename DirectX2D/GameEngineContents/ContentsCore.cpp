@@ -15,7 +15,7 @@ void ContentsCore::Start()
 {
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
-	GameEngineCore::ChangeLevel("TitleLevel");
+	GameEngineCore::ChangeLevel("PlayLevel");
 	//GameEngineCore::ChangeLevel("PlayLevel");
 
 	//// 회전방향을 외적으로 알아내는 방법

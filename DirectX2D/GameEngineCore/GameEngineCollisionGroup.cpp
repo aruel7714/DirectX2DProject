@@ -15,7 +15,7 @@ void GameEngineCollisionGroup::AllReleaseCheck()
 	std::list<std::shared_ptr<class GameEngineCollision>>::iterator StartIter = Collisions.begin();
 	std::list<std::shared_ptr<class GameEngineCollision>>::iterator EndIter = Collisions.end();
 
-	for ( ; StartIter < EndIter; )
+	for ( ; StartIter != EndIter; )
 	{
 		if (false == (*StartIter)->IsDeath())
 		{

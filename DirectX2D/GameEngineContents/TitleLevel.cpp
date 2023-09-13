@@ -35,7 +35,7 @@ void TitleLevel::Start()
 	}
 
 	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Perspective);
+	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	{
 		std::shared_ptr<BackCloud> BackObject = CreateActor<BackCloud>(RenderOrder::BackGround);
