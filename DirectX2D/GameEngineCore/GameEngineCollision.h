@@ -92,7 +92,7 @@ protected:
 
 private:
 	ColType CollisionType = ColType::SPHERE2D;
-	std::set<GameEngineCollision*> Others;
+	std::set<std::shared_ptr<GameEngineCollision>> Others;
 
 };
 

@@ -51,6 +51,7 @@ void GameEngineRenderer::Start()
 {
 	// 메인카메라에 들어갔다.
 	//SetViewCameraSelect(0);
+	DataTransform = &Transform;
 	SetCameraOrder(0);
 
 	//GameEngineActor* Actor = GetActor();
