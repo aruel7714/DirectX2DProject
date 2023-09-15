@@ -6,9 +6,6 @@
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
@@ -33,15 +30,24 @@
     <ClCompile Include="TownLevel.cpp">
       <Filter>Level\Town</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_State.cpp">
+      <Filter>Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugFloor.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMap.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="PlayLevel.h">
       <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <Filter>Global</Filter>
@@ -70,6 +76,15 @@
     <ClInclude Include="TownLevel.h">
       <Filter>Level\Town</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugFloor.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMap.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -86,6 +101,9 @@
     </Filter>
     <Filter Include="Level\Town">
       <UniqueIdentifier>{0a124edd-6bf7-4748-84ba-1c8fb514f910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Player">
+      <UniqueIdentifier>{a9800554-a275-487f-8aa3-74ae6f3b05b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include "ContentsEnum.h"
 #include "TownSky.h"
 #include "TownFloor.h"
+#include "DebugFloor.h"
+#include "TestMap.h"
 
 TownLevel::TownLevel()
 {
@@ -44,10 +46,14 @@ void TownLevel::Start()
 			}
 		}
 
+		
+
 		GameEngineSprite::CreateSingle("Sky_Day2.png");
 		//GameEngineSprite::CreateSingle("TownBG_Day.png");
 		//GameEngineSprite::CreateSingle("TownLayer_Day.png");
 		GameEngineSprite::CreateSingle("Town.png");
+		GameEngineSprite::CreateSingle("Town_Debug.png");
+		GameEngineSprite::CreateSingle("Test.png");
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -58,7 +64,11 @@ void TownLevel::Start()
 	{
 		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
 
-		std::shared_ptr<TownFloor> _TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
+		//std::shared_ptr<TownFloor> _TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
+
+		//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
+
+		std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
 	}
 
 	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
@@ -67,7 +77,7 @@ void TownLevel::Start()
 
 void TownLevel::Update(float _Delta)
 {
-
+	
 }
 
 void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)

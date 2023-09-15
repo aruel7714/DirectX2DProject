@@ -47,5 +47,8 @@ private:
 	void JumpUpdate(float _Delta);
 
 	void CameraFocus();
+
+private:
+	float4 GravityForce = {0.0f, 0.0f, 0.0f, 1.0f};
 };
 

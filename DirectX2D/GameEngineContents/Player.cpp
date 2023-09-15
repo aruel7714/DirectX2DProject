@@ -2,6 +2,9 @@
 #include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineTexture.h>
+#include "TownFloor.h"
+#include "DebugFloor.h"
+#include "TestMap.h"
 
 Player::Player()
 {
@@ -61,7 +64,9 @@ void Player::Start()
 	MainRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
-	Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	//Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	//Transform.SetLocalPosition({ HalfWindowScale.X, -1200.0f, -500.0f });
+	Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
 	
 	float4 Scale = MainRenderer->Transform.GetLocalScale();
 	Scale *= 4.0f;
@@ -96,6 +101,9 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
+	float4 PlayerPos = Transform.GetWorldPosition();
+	int a = 0;
+
 	StateUpdate(_Delta);
 	CameraFocus();
 
@@ -130,6 +138,25 @@ void Player::Update(float _Delta)
 	//{
 	//	Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	//}
+	float4 ColorPosition = Transform.GetWorldPosition();
+	ColorPosition.Y -= 64.0f;
+	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+	GameEngineColor Color = TestMap::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+
+	/*while(GameEngineColor::RED != Color)
+	{
+		GravityForce.Y -= _Delta * 100.0f;
+		Transform.AddLocalPosition(GravityForce * _Delta);
+	}*/
+	if (GameEngineColor::RED != Color)
+	{
+		GravityForce.Y -= _Delta * 100.0f;
+		Transform.AddLocalPosition(GravityForce * _Delta);
+	}
+	else
+	{
+		GravityForce = 0.0f;
+	}
 }
 
 void Player::CameraFocus()
@@ -183,62 +210,3 @@ void Player::ChangeAnimationState(const std::string& _State)
 	MainRenderer->ChangeAnimation(AnimationName);
 }
 
-void Player::IdleStart()
-{
-	ChangeAnimationState("Idle");
-}
-void Player::IdleUpdate(float _Delta)
-{
-	if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('D'))
-	{
-		ChangeState(PlayerState::Run);
-	}
-
-
-	//Debug
-	if (true == GameEngineInput::IsPress('W') || true == GameEngineInput::IsPress('S'))
-	{
-		ChangeState(PlayerState::Run);
-	}
-}
-
-void Player::RunStart()
-{
-	ChangeAnimationState("Run");
-}
-void Player::RunUpdate(float _Delta)
-{
-	float Speed = 100.0f;
-
-	if (true == GameEngineInput::IsPress('A'))
-	{
-		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
-	}
-	else if (true == GameEngineInput::IsPress('D'))
-	{
-		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
-	}
-	else if (true == GameEngineInput::IsPress('W'))
-	{
-		Transform.AddLocalPosition(float4::UP * _Delta * Speed);
-	}
-	else if (true == GameEngineInput::IsPress('S'))
-	{
-		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
-	}
-
-	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D') &&
-		true == GameEngineInput::IsFree('W') && true == GameEngineInput::IsFree('S'))
-	{
-		ChangeState(PlayerState::Idle);
-	}
-}
-
-void Player::JumpStart()
-{
-	ChangeAnimationState("Jump");
-}
-void Player::JumpUpdate(float _Delta)
-{
-
-}
