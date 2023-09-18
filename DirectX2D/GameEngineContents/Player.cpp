@@ -68,10 +68,17 @@ void Player::Start()
 	//Transform.SetLocalPosition({ HalfWindowScale.X, -1200.0f, -500.0f });
 	Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
 	
-	float4 Scale = MainRenderer->Transform.GetLocalScale();
+	//float4 Scale = MainRenderer->Transform.GetLocalScale();
+	//Scale *= 4.0f;
+
+	float4 Scale = MainRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;
 
-	Transform.SetLocalScale(Scale);
+	//Transform.SetLocalScale(Scale);
+	MainRenderer->SetImageScale(Scale);
+
+	//float4 Scale2 = Transform.GetLocalScale();
+	
 	
 	ChangeState(PlayerState::Idle);
 
@@ -141,7 +148,7 @@ void Player::Update(float _Delta)
 	float4 ColorPosition = Transform.GetWorldPosition();
 	ColorPosition.Y -= 64.0f;
 	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
-	GameEngineColor Color = TestMap::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
 
 	/*while(GameEngineColor::RED != Color)
 	{

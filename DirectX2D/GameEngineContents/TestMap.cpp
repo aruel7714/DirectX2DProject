@@ -24,16 +24,21 @@ void TestMap::Start()
 	TestRenderer->SetSamplerState(SamplerOption::POINT);
 	TestRenderer->SetImageScale(ImageScale);
 
-	float4 HScale = TestRenderer->GetCurSprite().Texture->GetScale();
+	float4 HScale = TestRenderer->GetCurSprite().Texture->GetScale().Half();
 	
 	int a = 0;
 	//HScale.Z = -500.0f;
 	//HScale *= 4.0f;
 	//Transform.SetLocalScale(HScale);
 
-	HScale.Y *= -1.0f;
-	Transform.SetLocalPosition(HScale);
+	//HScale.Y *= -1.0f;
+	//Transform.SetLocalPosition(HScale);
 
+	float4 ImageHalfScale = ImageScale.Half();
+	ImageHalfScale.Y *= -1.0f;
+	Transform.SetLocalPosition(ImageHalfScale);
+
+	int b = 0;
 	//Transform.SetLocalPosition(float4::ZERO);
 
 }
@@ -51,6 +56,7 @@ GameEngineColor TestMap::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
 
 	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find("Test.png");
 
+	float4 Scale = Tex->GetScale();
 
-	return Tex->GetColor(_Pos, _DefaultColor);
+	return Tex->GetColor(_Pos / 4.0f, _DefaultColor);
 }

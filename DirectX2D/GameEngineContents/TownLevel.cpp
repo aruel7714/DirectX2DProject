@@ -64,11 +64,11 @@ void TownLevel::Start()
 	{
 		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
 
-		//std::shared_ptr<TownFloor> _TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
+		std::shared_ptr<TownFloor> _TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
 
 		//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
 
-		std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
+		//std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
 	}
 
 	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
