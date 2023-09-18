@@ -155,8 +155,8 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 			{
 				_Event.Exit(_Collision.get(), Collsion.get());
 				// Other->Others.erase(_Collision.get());
-				_Collision->Others.erase(Collsion);
 			}
+			_Collision->Others.erase(Collsion);
 		}
 	}
 
@@ -173,8 +173,8 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 				{
 					_Event.Enter(_Collision.get(), Other.get());
 					//Other->Others.insert(_Collision.get());
-					_Collision->Others.insert(Other);
 				}
+				_Collision->Others.insert(Other);
 			}
 			else
 			{
