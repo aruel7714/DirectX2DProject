@@ -41,11 +41,13 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 
 	CurTime += _DeltaTime;
 
-	if (Inter <= CurTime)
+	//if (Inter <= CurTime)
+	if (Inter[CurIndex] <= CurTime)
 	{
+		CurTime -= Inter[CurIndex];
 		++CurIndex;
 		EventCheck = true;
-		CurTime -= Inter;
+		//CurTime -= Inter;
 
 		if (CurIndex > End - Start)
 		{
@@ -72,7 +74,7 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 
 GameEngineSpriteRenderer::GameEngineSpriteRenderer()
 {
-	Sampler = GameEngineSampler::Find("LINEAR");
+	//Sampler = GameEngineSampler::Find("LINEAR");
 }
 
 GameEngineSpriteRenderer::~GameEngineSpriteRenderer()
@@ -87,6 +89,7 @@ void GameEngineSpriteRenderer::Start()
 
 	ImageTransform.SetParent(Transform);
 
+	Sampler = GameEngineSampler::Find("LINEAR");
 
 	// CreateChild<GameEngineComponent>(0);
 
@@ -167,7 +170,7 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	// std::shared_ptr<GameEngineSampler> Sampler = GameEngineSampler::Find("EngineBaseSampler");
 	if (nullptr == Sampler)
 	{
-		MsgBoxAssert("존재하지 않는 텍스처를 사용하려고 했습니다.");
+		MsgBoxAssert("존재하지 않는 샘플러를 사용하려고 했습니다.");
 	}
 	Sampler->PSSetting(0);
 
@@ -223,7 +226,7 @@ void GameEngineSpriteRenderer::CreateAnimation(
 	NewAnimation->SpriteName = _SpriteName;
 	NewAnimation->Sprite = Sprite;
 	NewAnimation->Loop = _Loop;
-	NewAnimation->Inter = _Inter;
+	//NewAnimation->Inter = _Inter;
 	NewAnimation->Parent = this;
 
 	if (_Start != -1)
@@ -248,6 +251,12 @@ void GameEngineSpriteRenderer::CreateAnimation(
 	for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i++)
 	{
 		NewAnimation->Index.push_back(i);
+	}
+
+	NewAnimation->Inter.resize(NewAnimation->Index.size());
+	for (size_t i = 0; i < NewAnimation->Index.size(); i++)
+	{
+		NewAnimation->Inter[i] = _Inter;
 	}
 
 	NewAnimation->CurIndex = 0;
