@@ -31,10 +31,14 @@ void TitleLevel::Start()
 
 		GameEngineSprite::CreateSingle("BackCloud2.png");
 		GameEngineSprite::CreateSingle("FrontCloud2.png");
-		GameEngineSprite::CreateSingle("MainLogo2.png");
+		//GameEngineSprite::CreateSingle("MainLogo2.png");
+		GameEngineSprite::CreateSingle("MainLogo4x.png");
 	}
 
-	GetMainCamera()->Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f });
+	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
+	HalfWindowScale.Y *= -1.0f;
+
+	GetMainCamera()->Transform.SetLocalPosition(HalfWindowScale);
 	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 	{

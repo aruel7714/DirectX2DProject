@@ -13,15 +13,15 @@ void MainLogo::Start()
 {
 	{
 		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Logo);
-		Renderer->SetSprite("MainLogo2.png");
+		Renderer->SetSprite("MainLogo4x.png");
 
-		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("MainLogo2.png");
+		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("MainLogo4x.png");
 
-		float4 HScale = Texture->GetScale().Half();
-		HScale.X *= 0.0f;
-		HScale.Y *= 1.0f;
+		Renderer->SetPivotType(PivotType::Bottom);
 
-		Renderer->Transform.SetLocalPosition(HScale);
+		float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
+		Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y - 45.0f, -500.0f });
+
 	}
 }
 void MainLogo::Update(float _Delta)

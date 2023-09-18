@@ -14,11 +14,16 @@ void BackCloud::Start()
 	{
 		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
 		Renderer->SetSprite("BackCloud2.png");
-		Renderer->SetImageScale(float4{ 500 , 500 });
+		//Renderer->SetImageScale(float4{ 500 , 500 });
 		/*Renderer2 = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
 		Renderer2->SetSprite("BackCloud2.png");*/
 
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BackCloud2.png");
+
+		float4 HScale = Texture->GetScale().Half();
+		HScale.Y *= -1.0f;
+
+		Transform.SetLocalPosition(HScale);
 
 		//float4 HScale = Texture->GetScale().Half();
 		//HScale.X -= 0.0f;

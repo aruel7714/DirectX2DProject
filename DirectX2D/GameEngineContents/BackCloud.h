@@ -21,5 +21,6 @@ protected:
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> Renderer;
 	std::shared_ptr<class GameEngineSpriteRenderer> Renderer2;
+	//std::shared_ptr<class GameEngineSpriteRenderer> Renderer3;
 
 };

@@ -20,10 +20,11 @@ void FrontCloud::Start()
 
 
 		float4 HScale = Texture->GetScale().Half();
-		HScale.X -= 640.0f;
-		HScale.Y *= 0.0f;
+		//HScale.X -= 640.0f;
+		//HScale.Y *= 0.0f;
+		HScale.Y *= -1.0f;
 
-		Renderer->Transform.SetLocalPosition(HScale);
+		Transform.SetLocalPosition(HScale);
 	}
 }
 void FrontCloud::Update(float _Delta)
