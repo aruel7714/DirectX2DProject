@@ -170,6 +170,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineBlend.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineCamera.cpp">
       <SubType>
       </SubType>
@@ -273,6 +277,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineBlend.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineCamera.h">
       <SubType>
       </SubType>
