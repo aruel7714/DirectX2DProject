@@ -342,7 +342,10 @@ public:
 		return POINT{ iX(), iY() };
 	}
 
-
+	std::string ToString(std::string_view _Next = "")
+	{
+		return "X : " + std::to_string(X) + " Y : " + std::to_string(Y) + " Z : " + std::to_string(Z) + _Next.data();
+	}
 
 public:
 	inline float Angle2DDeg()
@@ -699,6 +702,13 @@ public:
 	void RotationZDeg(const float _Value)
 	{
 		RotationZRad(_Value * GameEngineMath::D2R);
+	}
+
+	float4x4 InverseReturn() const
+	{
+		float4x4 Result;
+		Result.DirectXMatrix = DirectX::XMMatrixInverse(nullptr, DirectXMatrix);
+		return Result;
 	}
 	
 	void RotationZRad(const float _Value)
