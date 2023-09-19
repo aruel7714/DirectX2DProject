@@ -68,6 +68,8 @@ void Player::Start()
 	//Transform.SetLocalPosition({ HalfWindowScale.X, -1200.0f, -500.0f });
 	Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
 	
+	MainRenderer->SetPivotType(PivotType::Bottom);
+
 	//float4 Scale = MainRenderer->Transform.GetLocalScale();
 	//Scale *= 4.0f;
 
@@ -146,7 +148,7 @@ void Player::Update(float _Delta)
 	//	Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
 	//}
 	float4 ColorPosition = Transform.GetWorldPosition();
-	ColorPosition.Y -= 64.0f;
+	//ColorPosition.Y -= 64.0f;
 	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
 
@@ -170,6 +172,36 @@ void Player::CameraFocus()
 {
 	float4 PlayerPos = Transform.GetWorldPosition();
 	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(PlayerPos);
+
+	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	int a = 0;
+
+	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
+	float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4;
+
+	if (WindowScale.Half().X >= CameraPos.X)
+	{
+		CameraPos.X = WindowScale.Half().X;
+		//GetLevel()->GetMainCamera()->Transform.SetLocalPosition(CameraPos);
+	}
+
+	if (-MapScale.Y + WindowScale.Half().Y >= CameraPos.Y)
+	{
+		CameraPos.Y = -MapScale.Y + WindowScale.Half().Y;
+		//GetLevel()->GetMainCamera()->Transform.SetLocalPosition(CameraPos);
+	}
+
+	if (MapScale.X - WindowScale.Half().X <= CameraPos.X)
+	{
+		CameraPos.X = MapScale.X - WindowScale.Half().X;
+	}
+
+	if (-WindowScale.Half().Y <= CameraPos.Y)
+	{
+		CameraPos.Y = -WindowScale.Half().Y;
+	}
+
+	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(CameraPos);
 }
 
 void Player::ChangeState(PlayerState _State)
