@@ -84,7 +84,6 @@ void Player::Start()
 	
 	ChangeState(PlayerState::Idle);
 
-
 	//MainSpriteRenderer->SetSprite("TestPlayer.png", 5);
 		/*Renderer0->Transform.SetLocalPosition({ 0, 150, 0 });
 		Renderer0->Transform.SetLocalScale({ 50, 50, 100 });*/
@@ -166,6 +165,30 @@ void Player::Update(float _Delta)
 	else
 	{
 		GravityForce = 0.0f;
+	}
+
+	DirCheck();
+	
+	CheckDelta += _Delta;
+	int iCheckDelta = static_cast<int>(CheckDelta);
+
+	/*if (iCheckDelta % 5 == 4)
+	{
+		MainRenderer->RightFlip();
+		CheckDelta = 0.0f;
+	}*/
+	
+
+	if (Dir == PlayerDir::Left)
+	{
+		//MainRenderer->LeftFlip();
+		Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+	}
+
+	if (Dir == PlayerDir::Right)
+	{
+		//MainRenderer->RightFlip();
+		Transform.SetLocalScale({ abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
 	}
 }
 
@@ -250,3 +273,19 @@ void Player::ChangeAnimationState(const std::string& _State)
 	MainRenderer->ChangeAnimation(AnimationName);
 }
 
+void Player::DirCheck()
+{
+	float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
+	float4 PlayerPos = Transform.GetWorldPosition();
+
+	if (0.0f <= WorldMousePos.X - PlayerPos.X)
+	{
+		Dir = PlayerDir::Right;
+		OutputDebugStringA("Right\n");
+	}
+	else
+	{
+		Dir = PlayerDir::Left;
+		OutputDebugStringA("Left\n");
+	}
+}

@@ -37,8 +37,8 @@ public:
 
 		std::shared_ptr<GameEngineConstantBuffer> Res = GameEngineResources::CreateRes();
 		Res->SetName(UpperName);
-		Res->Type = _Type;
-		Res->Slot = Slot;
+		//Res->Type = _Type;
+		//Res->Slot = Slot;
 		ConstantBuffers[_Byte][UpperName] = Res;
 		Res->ResCreate(_Byte);
 		return Res;

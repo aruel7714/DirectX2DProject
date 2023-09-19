@@ -9,6 +9,12 @@ enum class PlayerState
 	Max
 };
 
+enum class PlayerDir
+{
+	Left,
+	Right,
+};
+
 // Ό³Έν : 
 class Player : public GameEngineActor
 {
@@ -48,7 +54,14 @@ private:
 
 	void CameraFocus();
 
+	void DirCheck();
 private:
 	float4 GravityForce = {0.0f, 0.0f, 0.0f, 1.0f};
+
+	PlayerDir Dir = PlayerDir::Right;
+	
+private:
+	//Debug
+	float CheckDelta = 0.0f;
 };
 
