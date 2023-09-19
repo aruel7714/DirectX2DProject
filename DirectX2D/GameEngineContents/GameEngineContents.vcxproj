@@ -221,6 +221,18 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TownSecondFloorLeft.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorMiddle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorRight.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownSky.cpp">
       <SubType>
       </SubType>
@@ -271,6 +283,18 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TownLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorLeft.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorMiddle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorRight.h">
       <SubType>
       </SubType>
     </ClInclude>

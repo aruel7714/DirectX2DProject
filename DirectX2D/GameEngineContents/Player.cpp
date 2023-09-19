@@ -151,6 +151,7 @@ void Player::Update(float _Delta)
 	//ColorPosition.Y -= 64.0f;
 	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+	GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, { 0, 0, 255, 0 });
 
 	/*while(GameEngineColor::RED != Color)
 	{

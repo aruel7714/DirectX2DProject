@@ -8,6 +8,7 @@ enum class RenderOrder
 	Debug,
 	BackGround,
 	Logo,
+	SecondFloor,
 	Floor,
 	Player,
 };

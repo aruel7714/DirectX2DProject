@@ -6,6 +6,9 @@
 #include "TownFloor.h"
 #include "DebugFloor.h"
 #include "TestMap.h"
+#include "TownSecondFloorLeft.h"
+#include "TownSecondFloorMiddle.h"
+#include "TownSecondFloorRight.h"
 
 TownLevel::TownLevel()
 {
@@ -40,7 +43,19 @@ void TownLevel::Start()
 			std::vector<GameEngineFile> Files = Dir.GetAllFile();
 			for (size_t i = 0; i < Files.size(); i++)
 			{
-				// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
+				GameEngineFile& File = Files[i];
+				GameEngineTexture::Load(File.GetStringPath());
+			}
+		}
+
+		if (nullptr == GameEngineSprite::Find("SecondFloor3_32.png"))
+		{
+			GameEngineDirectory Dir;
+			Dir.MoveParentToExistsChild("ContentsResources");
+			Dir.MoveChild("ContentsResources\\Texture\\Town\\TownSecondFloor");
+			std::vector<GameEngineFile> Files = Dir.GetAllFile();
+			for (size_t i = 0; i < Files.size(); i++)
+			{
 				GameEngineFile& File = Files[i];
 				GameEngineTexture::Load(File.GetStringPath());
 			}
@@ -54,6 +69,8 @@ void TownLevel::Start()
 		GameEngineSprite::CreateSingle("Town.png");
 		GameEngineSprite::CreateSingle("Town_Debug.png");
 		GameEngineSprite::CreateSingle("Test.png");
+		GameEngineSprite::CreateSingle("SecondFloor3_32.png");
+		GameEngineSprite::CreateSingle("SecondFloor2_32.png");
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -69,6 +86,10 @@ void TownLevel::Start()
 		//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
 
 		//std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
+
+		std::shared_ptr<TownSecondFloorLeft> LeftSecondFloor = CreateActor<TownSecondFloorLeft>(RenderOrder::SecondFloor);
+		std::shared_ptr<TownSecondFloorRight> RightSecondFloor = CreateActor<TownSecondFloorRight>(RenderOrder::SecondFloor);
+		std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
 	}
 
 	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);

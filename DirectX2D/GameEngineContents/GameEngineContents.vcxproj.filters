@@ -42,6 +42,15 @@
     <ClCompile Include="TestMap.cpp">
       <Filter>Level\Town</Filter>
     </ClCompile>
+    <ClCompile Include="TownSecondFloorLeft.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorRight.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorMiddle.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -83,6 +92,15 @@
       <Filter>Level\Town</Filter>
     </ClInclude>
     <ClInclude Include="TestMap.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorLeft.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorRight.h">
+      <Filter>Level\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorMiddle.h">
       <Filter>Level\Town</Filter>
     </ClInclude>
   </ItemGroup>
