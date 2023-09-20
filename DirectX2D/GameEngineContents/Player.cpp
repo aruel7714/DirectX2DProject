@@ -152,7 +152,7 @@ void Player::Update(float _Delta)
 	//ColorPosition.Y -= 64.0f;
 	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
 	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
-	GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, { 0, 0, 255, 0 });
+	GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor { 0, 0, 255, 255 });
 
 	/*while(GameEngineColor::RED != Color)
 	{
@@ -161,7 +161,7 @@ void Player::Update(float _Delta)
 	}*/
 	if (GameEngineColor::RED != Color)
 	{
-		GravityForce.Y -= _Delta * 100.0f;
+		GravityForce.Y -= _Delta * 1000.0f;
 		Transform.AddLocalPosition(GravityForce * _Delta);
 	}
 	else

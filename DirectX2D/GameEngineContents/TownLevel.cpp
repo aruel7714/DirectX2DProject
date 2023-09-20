@@ -81,6 +81,8 @@ void TownLevel::Start()
 		//GameEngineSprite::CreateSingle("TownLayer_Day.png");
 		GameEngineSprite::CreateSingle("Town.png");
 		GameEngineSprite::CreateSingle("Town_Debug.png");
+		GameEngineSprite::CreateSingle("Town_DebugAll.png");
+		GameEngineSprite::CreateSingle("Town_DebugRed.png");
 		GameEngineSprite::CreateSingle("Test.png");
 		GameEngineSprite::CreateSingle("SecondFloor3_32.png");
 		GameEngineSprite::CreateSingle("SecondFloor2_32.png");

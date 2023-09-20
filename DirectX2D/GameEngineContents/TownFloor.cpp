@@ -18,7 +18,7 @@ void TownFloor::Start()
 	FloorRenderer->SetSprite("Town.png");
 
 	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
-	DebugFloorRenderer->SetSprite("Town_Debug.png");
+	DebugFloorRenderer->SetSprite("Town_DebugRed.png");
 	
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Town.png");
 
@@ -81,7 +81,7 @@ GameEngineColor TownFloor::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
 	// 이미지는 위에서부터 아래로 내려갈수록 +가 되기 때문이다.
 	_Pos.Y *= -1.0f;
 
-	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find("Town_Debug.png");
+	std::shared_ptr<GameEngineTexture> Tex = GameEngineTexture::Find("Town_DebugRed.png");
 
 
 	return Tex->GetColor(_Pos / 4.0f, _DefaultColor);
