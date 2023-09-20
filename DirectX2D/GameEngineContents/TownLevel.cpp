@@ -9,6 +9,7 @@
 #include "TownSecondFloorLeft.h"
 #include "TownSecondFloorMiddle.h"
 #include "TownSecondFloorRight.h"
+#include "TownBuilding.h"
 
 TownLevel::TownLevel()
 {
@@ -61,6 +62,18 @@ void TownLevel::Start()
 			}
 		}
 
+		{
+			GameEngineDirectory Dir;
+			Dir.MoveParentToExistsChild("ContentsResources");
+			Dir.MoveChild("ContentsResources\\Texture\\Town\\TownBuilding");
+			std::vector<GameEngineFile> Files = Dir.GetAllFile();
+			for (size_t i = 0; i < Files.size(); i++)
+			{
+				GameEngineFile& File = Files[i];
+				GameEngineTexture::Load(File.GetStringPath());
+			}
+		}
+
 		
 
 		GameEngineSprite::CreateSingle("Sky_Day2.png");
@@ -71,6 +84,11 @@ void TownLevel::Start()
 		GameEngineSprite::CreateSingle("Test.png");
 		GameEngineSprite::CreateSingle("SecondFloor3_32.png");
 		GameEngineSprite::CreateSingle("SecondFloor2_32.png");
+
+		// Building
+		GameEngineSprite::CreateSingle("TrainingSchool.png");
+		GameEngineSprite::CreateSingle("Shop.png");
+		GameEngineSprite::CreateSingle("BlackSmith.png");
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -90,6 +108,8 @@ void TownLevel::Start()
 		std::shared_ptr<TownSecondFloorLeft> LeftSecondFloor = CreateActor<TownSecondFloorLeft>(RenderOrder::SecondFloor);
 		std::shared_ptr<TownSecondFloorRight> RightSecondFloor = CreateActor<TownSecondFloorRight>(RenderOrder::SecondFloor);
 		std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
+
+		std::shared_ptr<TownBuilding> TownBuildings = CreateActor<TownBuilding>(RenderOrder::Building);
 	}
 
 	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);

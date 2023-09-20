@@ -54,6 +54,9 @@
     <ClCompile Include="TitleBird.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
+    <ClCompile Include="TownBuilding.cpp">
+      <Filter>Level\Town</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -108,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="TitleBird.h">
       <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TownBuilding.h">
+      <Filter>Level\Town</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

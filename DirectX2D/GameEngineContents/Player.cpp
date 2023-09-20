@@ -64,9 +64,11 @@ void Player::Start()
 	MainRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
+	float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4.0f;
 	//Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
 	//Transform.SetLocalPosition({ HalfWindowScale.X, -1200.0f, -500.0f });
-	Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
+	//Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
+	Transform.SetLocalPosition({MapScale.Half().X, -MapScale.Half().Y, -500.0f});
 	
 	MainRenderer->SetPivotType(PivotType::Bottom);
 

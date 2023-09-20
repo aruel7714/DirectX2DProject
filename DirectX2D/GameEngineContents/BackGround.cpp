@@ -11,7 +11,7 @@ BackGround::~BackGround()
 
 void BackGround::Start()
 {
-
+	WindowScale = GameEngineCore::MainWindow.GetScale();
 }
 void BackGround::Update(float _Delta)
 {

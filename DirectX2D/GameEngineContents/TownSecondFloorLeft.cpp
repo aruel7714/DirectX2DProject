@@ -29,7 +29,8 @@ void TownSecondFloorLeft::Start()
 	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
 	float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4;
 
-	Transform.SetLocalPosition({ (Texture->GetScale().X) + 30.0f , -(MapScale.Y - 192.0f)});
+	//Transform.SetLocalPosition({ (Texture->GetScale().X) + 30.0f , -(MapScale.Y - 192.0f)});
+	Transform.SetLocalPosition({ (Texture->GetScale().X) + 94.0f , -(MapScale.Y - 192.0f) });
 
 	// Middle Position
 	//Transform.SetLocalPosition({ MapScale.X / 2.0f, -(MapScale.Y - 192.0f) });

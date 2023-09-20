@@ -21,6 +21,10 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
+	float4 WindowScale = float4::ZERO;
+
+	float4 ImageScale = float4::ZERO;
+
 private:
 	
 };

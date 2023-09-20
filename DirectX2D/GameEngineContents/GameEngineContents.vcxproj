@@ -217,6 +217,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TownBuilding.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownFloor.cpp">
       <SubType>
       </SubType>
@@ -283,6 +287,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownBuilding.h">
       <SubType>
       </SubType>
     </ClInclude>
