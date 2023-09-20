@@ -12,9 +12,9 @@ BackCloud::~BackCloud()
 void BackCloud::Start()
 {
 	{
-		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
+		Renderer = CreateComponent<GameEngineSpriteRenderer>(TitleRenderOrder::BackCloud);
 		Renderer->SetSprite("BackCloud2.png");
-		Renderer2 = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
+		Renderer2 = CreateComponent<GameEngineSpriteRenderer>(TitleRenderOrder::BackCloud);
 		Renderer2->SetSprite("BackCloud2.png");
 
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BackCloud2.png");
@@ -43,7 +43,7 @@ void BackCloud::Start()
 }
 void BackCloud::Update(float _Delta)
 {
-	float Speed = 50.0f;
+	float Speed = 10.0f;
 
 	Renderer->Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
 	Renderer2->Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);

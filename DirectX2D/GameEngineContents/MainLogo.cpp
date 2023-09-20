@@ -12,7 +12,7 @@ MainLogo::~MainLogo()
 void MainLogo::Start()
 {
 	{
-		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Logo);
+		Renderer = CreateComponent<GameEngineSpriteRenderer>(TitleRenderOrder::MainLogo);
 		Renderer->SetSprite("MainLogo4x.png");
 
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("MainLogo4x.png");

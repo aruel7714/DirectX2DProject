@@ -12,9 +12,9 @@ FrontCloud::~FrontCloud()
 void FrontCloud::Start()
 {
 	{
-		Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
+		Renderer = CreateComponent<GameEngineSpriteRenderer>(TitleRenderOrder::FrontCloud);
 		Renderer->SetSprite("FrontCloud2.png");
-		Renderer2 = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackGround);
+		Renderer2 = CreateComponent<GameEngineSpriteRenderer>(TitleRenderOrder::FrontCloud);
 		Renderer2->SetSprite("FrontCloud2.png");
 
 		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("FrontCloud2.png");
@@ -34,7 +34,7 @@ void FrontCloud::Start()
 }
 void FrontCloud::Update(float _Delta)
 {
-	float Speed = 100.0f;
+	float Speed = 75.0f;
 
 	Renderer->Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
 	Renderer2->Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);

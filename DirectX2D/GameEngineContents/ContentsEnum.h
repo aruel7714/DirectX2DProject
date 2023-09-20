@@ -12,3 +12,12 @@ enum class RenderOrder
 	Floor,
 	Player,
 };
+
+enum class TitleRenderOrder
+{
+	BackCloud,
+	MiddleCloud,
+	TitleBird,
+	FrontCloud,
+	MainLogo,
+};
