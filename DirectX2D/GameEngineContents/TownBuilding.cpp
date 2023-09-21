@@ -53,6 +53,32 @@ void TownBuilding::Start()
 		BlackSmith->Transform.SetLocalPosition({ MapScale.X - 992.0f, -(MapScale.Y - 192.0f) });
 	}
 
+	{
+		Boutique = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Building);
+		Boutique->SetSprite("Boutique.png");
+
+		ImageScale = GameEngineTexture::Find("Boutique.png")->GetScale() * 4.0f;
+
+		Boutique->SetSamplerState(SamplerOption::POINT);
+		Boutique->SetImageScale(ImageScale);
+		Boutique->SetPivotType(PivotType::Bottom);
+
+		Boutique->Transform.SetLocalPosition({ 883.0f, -(MapScale.Y - 192.0f - 576.0f) });
+	}
+
+	{
+		Gunsmith = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Building);
+		Gunsmith->SetSprite("Gunsmith.png");
+
+		ImageScale = GameEngineTexture::Find("Gunsmith.png")->GetScale() * 4.0f;
+
+		Gunsmith->SetSamplerState(SamplerOption::POINT);
+		Gunsmith->SetImageScale(ImageScale);
+		Gunsmith->SetPivotType(PivotType::Bottom);
+
+		Gunsmith->Transform.SetLocalPosition({ MapScale.X - 524.0f, -(MapScale.Y - 192.0f - 576.0f) });
+	}
+
 	
 
 	

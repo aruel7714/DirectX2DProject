@@ -10,6 +10,11 @@
 #include "TownSecondFloorMiddle.h"
 #include "TownSecondFloorRight.h"
 #include "TownBuilding.h"
+#include "TownNPCBlackSmith.h"
+#include "TownNPCMerchant.h"
+#include "TownNPCCommander.h"
+#include "TownNPCBoutique.h"
+#include "TownNPCPistolMan.h"
 
 TownLevel::TownLevel()
 {
@@ -74,6 +79,23 @@ void TownLevel::Start()
 			}
 		}
 
+		{
+			// NPC
+			{
+				GameEngineDirectory Dir;
+				Dir.MoveParentToExistsChild("ContentsResources");
+				Dir.MoveChild("ContentsResources\\Texture\\Town\\TownNPC\\");
+				std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+				for (size_t i = 0; i < Directorys.size(); i++)
+				{
+					GameEngineDirectory& Dir = Directorys[i];
+
+					GameEngineSprite::CreateFolder(Dir.GetStringPath());
+				}
+			}
+		}
+
 		
 
 		GameEngineSprite::CreateSingle("Sky_Day2.png");
@@ -91,6 +113,8 @@ void TownLevel::Start()
 		GameEngineSprite::CreateSingle("TrainingSchool.png");
 		GameEngineSprite::CreateSingle("Shop.png");
 		GameEngineSprite::CreateSingle("BlackSmith.png");
+		GameEngineSprite::CreateSingle("Boutique.png");
+		GameEngineSprite::CreateSingle("Gunsmith.png");
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -112,6 +136,15 @@ void TownLevel::Start()
 		std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
 
 		std::shared_ptr<TownBuilding> TownBuildings = CreateActor<TownBuilding>(RenderOrder::Building);
+	}
+
+	{
+		//NPC
+		std::shared_ptr<TownNPCBlackSmith> Haken = CreateActor<TownNPCBlackSmith>(RenderOrder::NPC);
+		std::shared_ptr<TownNPCMerchant> Millia = CreateActor<TownNPCMerchant>(RenderOrder::NPC);
+		std::shared_ptr<TownNPCCommander> Coblovina = CreateActor<TownNPCCommander>(RenderOrder::NPC);
+		std::shared_ptr<TownNPCBoutique> Bloch = CreateActor<TownNPCBoutique>(RenderOrder::NPC);
+		std::shared_ptr<TownNPCPistolMan> Fiat = CreateActor<TownNPCPistolMan>(RenderOrder::NPC);
 	}
 
 	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);

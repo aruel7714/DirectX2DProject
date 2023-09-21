@@ -22,5 +22,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainingSchool;
 	std::shared_ptr<class GameEngineSpriteRenderer> Shop;
 	std::shared_ptr<class GameEngineSpriteRenderer> BlackSmith;
+	std::shared_ptr<class GameEngineSpriteRenderer> Boutique;
+	std::shared_ptr<class GameEngineSpriteRenderer> Gunsmith;
 };
 

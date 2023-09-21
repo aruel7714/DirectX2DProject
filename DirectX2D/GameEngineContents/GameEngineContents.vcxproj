@@ -229,6 +229,26 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TownNPCBlackSmith.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownNPCBoutique.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownNPCCommander.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownNPCMerchant.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownNPCPistolMan.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownSecondFloorLeft.cpp">
       <SubType>
       </SubType>
@@ -299,6 +319,26 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TownLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownNPCBlackSmith.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownNPCBoutique.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownNPCCommander.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownNPCMerchant.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownNPCPistolMan.h">
       <SubType>
       </SubType>
     </ClInclude>

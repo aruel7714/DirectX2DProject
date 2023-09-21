@@ -9,6 +9,7 @@ enum class RenderOrder
 	BackGround,
 	SecondFloor,
 	Building,
+	NPC,
 	Floor,
 	Player,
 };
