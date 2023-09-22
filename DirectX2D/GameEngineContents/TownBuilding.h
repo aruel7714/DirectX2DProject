@@ -1,7 +1,7 @@
 #pragma once
 #include "BackGround.h"
 
-// ¼³¸í : 
+// Â¼Â³Â¸Ã­ : 
 class TownBuilding : public BackGround
 {
 public:
@@ -24,5 +24,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> BlackSmith;
 	std::shared_ptr<class GameEngineSpriteRenderer> Boutique;
 	std::shared_ptr<class GameEngineSpriteRenderer> Gunsmith;
+std::shared_ptr<class GameEngineSpriteRenderer> Temple;
+std::shared_ptr<class GameEngineSpriteRenderer> FrontTemple;
 };
 
