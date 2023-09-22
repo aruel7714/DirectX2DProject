@@ -12,6 +12,7 @@ enum class RenderOrder
 	NPC,
 	Floor,
 	Player,
+	FrontBuilding,
 };
 
 enum class TitleRenderOrder

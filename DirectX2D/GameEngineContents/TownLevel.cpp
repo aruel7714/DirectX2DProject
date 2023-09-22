@@ -10,11 +10,14 @@
 #include "TownSecondFloorMiddle.h"
 #include "TownSecondFloorRight.h"
 #include "TownBuilding.h"
+
+//NPC
 #include "TownNPCBlackSmith.h"
 #include "TownNPCMerchant.h"
 #include "TownNPCCommander.h"
 #include "TownNPCBoutique.h"
 #include "TownNPCPistolMan.h"
+#include "TownNPCTemple.h"
 
 TownLevel::TownLevel()
 {
@@ -115,6 +118,8 @@ void TownLevel::Start()
 		GameEngineSprite::CreateSingle("BlackSmith.png");
 		GameEngineSprite::CreateSingle("Boutique.png");
 		GameEngineSprite::CreateSingle("Gunsmith.png");
+		GameEngineSprite::CreateSingle("Temple.png");
+		GameEngineSprite::CreateSingle("TempleFront.png");
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
@@ -145,6 +150,7 @@ void TownLevel::Start()
 		std::shared_ptr<TownNPCCommander> Coblovina = CreateActor<TownNPCCommander>(RenderOrder::NPC);
 		std::shared_ptr<TownNPCBoutique> Bloch = CreateActor<TownNPCBoutique>(RenderOrder::NPC);
 		std::shared_ptr<TownNPCPistolMan> Fiat = CreateActor<TownNPCPistolMan>(RenderOrder::NPC);
+		std::shared_ptr<TownNPCTemple> Rozen = CreateActor<TownNPCTemple>(RenderOrder::NPC);
 	}
 
 	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);

@@ -72,6 +72,9 @@
     <ClCompile Include="TownNPCPistolMan.cpp">
       <Filter>Level\Town\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="TownNPCTemple.cpp">
+      <Filter>Level\Town\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -143,6 +146,9 @@
       <Filter>Level\Town\NPC</Filter>
     </ClInclude>
     <ClInclude Include="TownNPCPistolMan.h">
+      <Filter>Level\Town\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="TownNPCTemple.h">
       <Filter>Level\Town\NPC</Filter>
     </ClInclude>
   </ItemGroup>

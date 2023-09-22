@@ -79,7 +79,31 @@ void TownBuilding::Start()
 		Gunsmith->Transform.SetLocalPosition({ MapScale.X - 524.0f, -(MapScale.Y - 192.0f - 576.0f) });
 	}
 
-	
+	{
+		Temple = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Building);
+		Temple->SetSprite("Temple.png");
+
+		ImageScale = GameEngineTexture::Find("Temple.png")->GetScale() * 4.0f;
+
+		Temple->SetSamplerState(SamplerOption::POINT);
+		Temple->SetImageScale(ImageScale);
+		Temple->SetPivotType(PivotType::Bottom);
+
+		Temple->Transform.SetLocalPosition({ MapScale.Half().X + 88.0f, -(MapScale.Y - 192.0f - 448.0f)});
+	}
+
+	{
+		FrontTemple = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::FrontBuilding);
+		FrontTemple->SetSprite("TempleFront.png");
+
+		ImageScale = GameEngineTexture::Find("TempleFront.png")->GetScale() * 4.0f;
+
+		FrontTemple->SetSamplerState(SamplerOption::POINT);
+		FrontTemple->SetImageScale(ImageScale);
+		FrontTemple->SetPivotType(PivotType::Bottom);
+
+		FrontTemple->Transform.SetLocalPosition({ MapScale.Half().X - 136.0f, -(MapScale.Y - 192.0f - 448.0f) });
+	}
 
 	
 
