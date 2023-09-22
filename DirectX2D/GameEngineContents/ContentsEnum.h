@@ -2,17 +2,18 @@
 
 enum class RenderOrder
 {
-	//BackCloud,
-	//FrontCloud,
-	//MainLogo,
 	Debug,
 	BackGround,
+	BackProp,
 	SecondFloor,
+	MiddleFloor,
 	Building,
+	MiddleProp,
 	NPC,
 	Floor,
 	Player,
 	FrontBuilding,
+	FrontProp,
 };
 
 enum class TitleRenderOrder
