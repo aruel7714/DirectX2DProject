@@ -210,7 +210,8 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 			//CurSprite.Texture->PSSetting(0);
 
 			//std::shared_ptr<GameEngineConstantBuffer> TransBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex);
-			std::shared_ptr<GameEngineConstantBuffer> TransBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
+			//std::shared_ptr<GameEngineConstantBuffer> TransBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
+			std::shared_ptr<GameEngineConstantBuffer> TransBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", {});
 
 			if (nullptr != TransBuffer)
 			{
@@ -230,20 +231,21 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 				// 내 행렬을 전부다 계산하고 넘긴다.
 
 				TransBuffer->ChangeData(Data);
-				TransBuffer->Setting(0);
+				//TransBuffer->Setting(0);
+				TransBuffer->VSSetting(0);
 			}
 
 			SpriteData& TileSprite = Tiles[y][x].Data;
 
 			//std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData", ShaderType::Vertex);
-			std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
-			if (nullptr != SpriteBuffer)
-			{
-				SpriteBuffer->ChangeData(TileSprite.SpritePivot);
-				SpriteBuffer->Setting(1);
-			}
+			//std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+			//if (nullptr != SpriteBuffer)
+			//{
+			//	SpriteBuffer->ChangeData(TileSprite.SpritePivot);
+			//	SpriteBuffer->Setting(1);
+			//}
 
-			Tiles[y][x].Data.Texture->PSSetting(0);
+			//Tiles[y][x].Data.Texture->PSSetting(0);
 
 			if (nullptr == Sampler)
 			{

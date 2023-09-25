@@ -85,11 +85,29 @@ void GameEngineSpriteRenderer::Start()
 {
 	GameEngineRenderer::Start();
 
-	DataTransform = &ImageTransform;
+	//DataTransform = &ImageTransform;
 
 	ImageTransform.SetParent(Transform);
 
-	Sampler = GameEngineSampler::Find("LINEAR");
+	SetMesh("Rect");
+	SetMaterial("2DTexture");
+
+	const TransformData& Data = ImageTransform.GetConstTransformDataRef();
+	ShaderResHelper.ConstantBufferLink("TransformData", Data);
+
+	ShaderResHelper.ConstantBufferLink("SpriteData", CurSprite.SpritePivot);
+	ShaderResHelper.SetTexture("DiffuseTex", "NSet.Png");
+
+	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+	//if (nullptr != Buffer)
+	//{
+	//	Buffer->ChangeData(CurSprite.SpritePivot);
+	//	Buffer->Setting(1);
+	//}
+	// CurSprite.Texture->PSSetting(0);
+
+
+	//Sampler = GameEngineSampler::Find("LINEAR");
 
 	// CreateChild<GameEngineComponent>(0);
 
@@ -144,8 +162,12 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 
 	// 랜더러는 뭐든지 그릴수 있어 니가 세팅만 잘해주면
 
+	ShaderResHelper.SetTexture("DiffuseTex", CurSprite.Texture);
+
+	GameEngineRenderer::Render(_Camera, _Delta);
+
 	// 부모쪽에서 대부분의 일은 해주고
-	GameEngineRenderer::ResSetting();
+	//GameEngineRenderer::ResSetting();
 
 	// 용도에 의해서
 	// 여기에서 세팅되는것이 순서상 여기가 맞아.
@@ -157,28 +179,28 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	//TestTexture->PSSetting(0);
 
 	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData", ShaderType::Vertex);
-	std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
+	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
 
-	if (nullptr != Buffer)
-	{
-		Buffer->ChangeData(CurSprite.SpritePivot);
-		Buffer->Setting(1);
-	}
+	//if (nullptr != Buffer)
+	//{
+	//	Buffer->ChangeData(CurSprite.SpritePivot);
+	//	Buffer->Setting(1);
+	//}
 
 
-	CurSprite.Texture->PSSetting(0);
+	//CurSprite.Texture->PSSetting(0);
 
 	// std::shared_ptr<GameEngineSampler> Sampler = GameEngineSampler::Find("EngineBaseSampler");
-	if (nullptr == Sampler)
-	{
-		MsgBoxAssert("존재하지 않는 샘플러를 사용하려고 했습니다.");
-	}
-	Sampler->PSSetting(0);
+	//if (nullptr == Sampler)
+	//{
+	//	MsgBoxAssert("존재하지 않는 샘플러를 사용하려고 했습니다.");
+	//}
+	//Sampler->PSSetting(0);
 
 
 	// 내꺼 쪼금더 넣고 
 
-	GameEngineRenderer::Draw();
+	//GameEngineRenderer::Draw();
 }
 
 void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int index /*= 0*/)
@@ -298,20 +320,20 @@ void GameEngineSpriteRenderer::AutoSpriteSizeOff()
 	IsImageSize = false;
 }
 
-void GameEngineSpriteRenderer::SetSamplerState(SamplerOption _Option)
-{
-	switch (_Option)
-	{
-	case SamplerOption::LINEAR:
-		Sampler = GameEngineSampler::Find("LINEAR");
-		break;
-	case SamplerOption::POINT:
-		Sampler = GameEngineSampler::Find("POINT");
-		break;
-	default:
-		break;
-	}
-}
+//void GameEngineSpriteRenderer::SetSamplerState(SamplerOption _Option)
+//{
+//	switch (_Option)
+//	{
+//	case SamplerOption::LINEAR:
+//		Sampler = GameEngineSampler::Find("LINEAR");
+//		break;
+//	case SamplerOption::POINT:
+//		Sampler = GameEngineSampler::Find("POINT");
+//		break;
+//	default:
+//		break;
+//	}
+//}
 
 void GameEngineSpriteRenderer::SetFrameEvent(std::string_view _AnimationName, int _Frame, std::function<void(GameEngineSpriteRenderer*)> _Function)
 {

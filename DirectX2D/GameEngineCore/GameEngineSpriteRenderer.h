@@ -39,11 +39,11 @@ public:
 	std::vector<float> Inter;
 };
 
-enum class SamplerOption
-{
-	LINEAR,
-	POINT,
-};
+//enum class SamplerOption
+//{
+//	LINEAR,
+//	POINT,
+//};
 
 enum class PivotType
 {
@@ -127,7 +127,7 @@ public:
 		AutoScaleRatio.X = -abs(AutoScaleRatio.X);
 	}
 
-	void SetSamplerState(SamplerOption _Option);
+	//void SetSamplerState(SamplerOption _Option);
 
 	bool IsCurAnimationEnd()
 	{

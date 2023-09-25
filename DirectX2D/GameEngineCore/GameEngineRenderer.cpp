@@ -52,7 +52,7 @@ void GameEngineRenderer::Start()
 {
 	// 메인카메라에 들어갔다.
 	//SetViewCameraSelect(0);
-	DataTransform = &Transform;
+	//DataTransform = &Transform;
 	SetCameraOrder(0);
 
 	//GameEngineActor* Actor = GetActor();
@@ -92,7 +92,110 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 	ResSetting();
 	Draw();
 }
+
 void GameEngineRenderer::ResSetting()
+{
+	Mesh->InputAssembler1();
+	Material->VertexShader();
+	LayOut->Setting();
+	Mesh->InputAssembler2();
+	Material->Rasterizer();
+	Material->PixelShader();
+	Material->Blend();
+
+	ShaderResHelper.AllShaderResourcesSetting();
+
+	// 애는 솔직히 랜더 타겟이 가져가야 합니다.
+	D3D11_VIEWPORT ViewPort = {};
+	ViewPort.Width = GameEngineCore::MainWindow.GetScale().X;
+	ViewPort.Height = GameEngineCore::MainWindow.GetScale().Y;
+	ViewPort.MinDepth = 0.0f;
+	ViewPort.MaxDepth = 1.0f;
+	ViewPort.TopLeftX = 0.0f;
+	ViewPort.TopLeftY = 0.0f;
+	GameEngineCore::GetContext()->RSSetViewports(1, &ViewPort);
+
+	std::shared_ptr<class GameEngineRenderTarget> BackBufferRenderTarget = GameEngineCore::GetBackBufferRenderTarget();
+	if (nullptr != BackBufferRenderTarget)
+	{
+		BackBufferRenderTarget->Setting();
+	}
+
+
+	//	float4x4 WorldViewProjection = Transform.GetWorldViewProjectionMatrix();
+	//	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", _shader);
+	//	//if (nullptr != Buffer)
+	//	//{
+	//	//	const TransformData& Data = DataTransform->GetConstTransformDataRef();
+	//	//	Buffer->ChangeData(Data);
+	//	//	Buffer->Setting(0);
+	//	//}
+
+}
+
+void GameEngineRenderer::Draw()
+{
+	Mesh->Draw();
+}
+
+void GameEngineRenderer::SetMesh(std::string_view _Name)
+{
+	Mesh = GameEngineMesh::Find(_Name);
+
+	if (nullptr == Mesh)
+	{
+		MsgBoxAssert("존재하지 않는 매쉬를 세팅하려고 했습니다.");
+	}
+
+	if (nullptr == LayOut && nullptr != Material)
+	{
+		LayOut = std::make_shared<GameEngineInputLayOut>();
+		LayOut->ResCreate(Mesh->GetVertexBuffer(), Material->GetVertexShader());
+	}
+
+}
+
+void GameEngineRenderer::SetMaterial(std::string_view _Name)
+{
+	Material = GameEngineMaterial::Find(_Name);
+
+	if (nullptr == Material)
+	{
+		MsgBoxAssert("존재하지 않는 매쉬를 세팅하려고 했습니다.");
+	}
+
+	if (nullptr == LayOut && nullptr != Mesh)
+	{
+		LayOut = std::make_shared<GameEngineInputLayOut>();
+		LayOut->ResCreate(Mesh->GetVertexBuffer(), Material->GetVertexShader());
+	}
+
+	// 버텍스 쉐이더와 픽셀쉐이더가 다 들어있는 상태다.
+
+	// 랜더러의 쉐이더 리소스 헬퍼에
+	// 버텍스와 픽셀쉐이더의 리소스정보들을 복사 받습니다.
+	ShaderResHelper.ShaderResCopy(Material->GetVertexShader().get());
+	ShaderResHelper.ShaderResCopy(Material->GetPixelShader().get());
+
+	// 이걸 회사의 약속.
+
+	if (ShaderResHelper.IsConstantBuffer("TransformData"))
+	{
+		const TransformData& Data = Transform.GetConstTransformDataRef();
+		ShaderResHelper.ConstantBufferLink("TransformData", Data);
+	}
+
+	//	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", _shader);
+//	//if (nullptr != Buffer)
+//	//{
+//	//	const TransformData& Data = DataTransform->GetConstTransformDataRef();
+//	//	Buffer->ChangeData(Data);
+//	//	Buffer->Setting(0);
+//	//}
+
+}
+
+/*void GameEngineRenderer::ResSetting()
 {
 	{
 		float4x4 WorldViewProjection = Transform.GetWorldViewProjectionMatrix();
@@ -154,14 +257,14 @@ void GameEngineRenderer::ResSetting()
 		}
 
 		//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData", ShaderType::Vertex);
-		std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
+		//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(TransformData), "TransformData");
 
-		if (nullptr != Buffer)
-		{
-			const TransformData& Data = DataTransform->GetConstTransformDataRef();
-			Buffer->ChangeData(Data);
-			Buffer->Setting(0);
-		}
+		//if (nullptr != Buffer)
+		//{
+		//	const TransformData& Data = DataTransform->GetConstTransformDataRef();
+		//	Buffer->ChangeData(Data);
+		//	Buffer->Setting(0);
+		//}
 
 
 
@@ -529,13 +632,14 @@ void GameEngineRenderer::ResSetting()
 		//// 최종적으로 화면에 어떻게 뿌릴것인가만이 남아있다.
 	}
 }
+*/
 
-void GameEngineRenderer::Draw()
-{
-	std::shared_ptr<GameEngineIndexBuffer> IndexBuffer = GameEngineIndexBuffer::Find("Rect");
-	if (nullptr == IndexBuffer)
-	{
-		return;
-	}
-	GameEngineCore::GetContext()->DrawIndexed(IndexBuffer->GetIndexCount(), 0, 0);
-}
+//void GameEngineRenderer::Draw()
+//{
+//	std::shared_ptr<GameEngineIndexBuffer> IndexBuffer = GameEngineIndexBuffer::Find("Rect");
+//	if (nullptr == IndexBuffer)
+//	{
+//		return;
+//	}
+//	GameEngineCore::GetContext()->DrawIndexed(IndexBuffer->GetIndexCount(), 0, 0);
+//}

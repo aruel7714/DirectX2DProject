@@ -218,7 +218,7 @@ void GameEngineTransform::TransformUpdate()
 	AbsoluteRotation = false;
 	AbsolutePosition = false;
 }
-}
+
 
 void GameEngineTransform::CalculationViewAndProjection(const TransformData& _Transform)
 {

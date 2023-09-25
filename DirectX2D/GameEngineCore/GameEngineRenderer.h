@@ -1,6 +1,9 @@
 #pragma once
 #include "GameEngineObject.h"
 #include "GameEngineComponent.h"
+#include "GameEngineMesh.h"
+#include "GameEngineMaterial.h"
+#include "GameEngineShaderResHelper.h"
 
 // 설명 : 
 class GameEngineRenderer : public GameEngineComponent
@@ -42,6 +45,9 @@ public:
 
 	void SetCameraOrder(int _Order);
 
+	void SetMesh(std::string_view _Name);
+	void SetMaterial(std::string_view _Name);
+
 protected:
 	void Start();
 	virtual void Render(class GameEngineCamera* _Camera, float _Delta);
@@ -49,15 +55,20 @@ protected:
 	void ResSetting();
 	void Draw();
 
+	std::shared_ptr<class GameEngineInputLayOut> LayOut;
+	std::shared_ptr<class GameEngineMesh> Mesh;
+	std::shared_ptr<class GameEngineMaterial> Material;
+	GameEngineShaderResHelper ShaderResHelper;
+
 	// 분명히 자신의 랜더링 순서이다.
 
-	GameEngineTransform* DataTransform;
+	//GameEngineTransform* DataTransform;
 
 private:
 	//std::map<class GameEngineCamera*, int> ViewInfo;
 	class GameEngineCamera* Camera = nullptr;
 
-	std::shared_ptr<class GameEngineInputLayOut> LayOut = nullptr;
+	//std::shared_ptr<class GameEngineInputLayOut> LayOut = nullptr;
 
 	//int CameraOrder = 0;
 };

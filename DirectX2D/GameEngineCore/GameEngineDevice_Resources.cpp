@@ -13,6 +13,8 @@
 #include "GameEngineTexture.h"
 #include "GameEngineSprite.h"
 #include "GameEngineBlend.h"
+#include "GameEngineMesh.h"
+#include "GameEngineMaterial.h"
 
 void GameEngineDevice::ResourcesInit()
 {
@@ -30,22 +32,22 @@ void GameEngineDevice::ResourcesInit()
 		// 로컬이 존재하지 않는다.
 
 		// 로컬상태
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("GameEngineCoreShader");
-		Dir.MoveChild("GameEngineCoreShader");
-		std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
+	//{
+	//	GameEngineDirectory Dir;
+	//	Dir.MoveParentToExistsChild("GameEngineCoreShader");
+	//	Dir.MoveChild("GameEngineCoreShader");
+	//	std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
 
-		for (size_t i = 0; i < Files.size(); i++)
-		{
-			//GameEngineVertexShader::Load(Files[i].GetStringPath(), "ColorShader_VS");
+	//	for (size_t i = 0; i < Files.size(); i++)
+	//	{
+	//		//GameEngineVertexShader::Load(Files[i].GetStringPath(), "ColorShader_VS");
 
-			// GameEngineShader::AutoCompile();
+	//		// GameEngineShader::AutoCompile();
 
-			GameEngineFile& File = Files[i];
-			GameEngineShader::AutoCompile(File);
-		}
-	}
+	//		GameEngineFile& File = Files[i];
+	//		GameEngineShader::AutoCompile(File);
+	//	}
+	//}
 
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
@@ -140,6 +142,8 @@ void GameEngineDevice::ResourcesInit()
 		};
 		
 		GameEngineIndexBuffer::Create("Rect", Index);
+
+		GameEngineMesh::Create("Rect");
 	}
 
 	{
@@ -243,7 +247,8 @@ void GameEngineDevice::ResourcesInit()
 		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
-		std::shared_ptr<GameEngineBlend> Blend = GameEngineBlend::Create("EngineBlend", Desc);
+		//std::shared_ptr<GameEngineBlend> Blend = GameEngineBlend::Create("EngineBlend", Desc);
+		std::shared_ptr<GameEngineBlend> Blend = GameEngineBlend::Create("AlphaBlend", Desc);
 	}
 
 	{
@@ -252,7 +257,7 @@ void GameEngineDevice::ResourcesInit()
 		// 일반적인 보간형식 <= 뭉개진다.
 		// D3D11_FILTER_MIN_MAG_MIP_
 		// 그 밉맵에서 색상가져올때 다 뭉개는 방식으로 가져오겠다.
-		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 		Desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		Desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -263,7 +268,7 @@ void GameEngineDevice::ResourcesInit()
 		Desc.MinLOD = -FLT_MAX;
 		Desc.MaxLOD = FLT_MAX;
 
-		std::shared_ptr<GameEngineSampler> Rasterizer = GameEngineSampler::Create("LINEAR", Desc);
+		std::shared_ptr<GameEngineSampler> Rasterizer = GameEngineSampler::Create("EngineBaseSampler", Desc);
 	}
 
 
@@ -286,4 +291,31 @@ void GameEngineDevice::ResourcesInit()
 
 		std::shared_ptr<GameEngineSampler> Rasterizer = GameEngineSampler::Create("POINT", Desc);
 	}
+
+	{
+		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("GameEngineCoreShader");
+		Dir.MoveChild("GameEngineCoreShader");
+		std::vector<GameEngineFile> Files = Dir.GetAllFile({ ".fx" });
+
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
+			GameEngineFile& File = Files[i];
+			GameEngineShader::AutoCompile(File);
+		}
+	}
+
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("2DTexture");
+		Mat->SetVertexShader("TextureShader_VS");
+		Mat->SetPixelShader("TextureShader_PS");
+	}
+
+	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
+	// 기본 매쉬
+	// 기본 텍스처
+	// 기본 쉐이더
+	// 여기에서 자기 텍스처 로드하지마세요.
 }

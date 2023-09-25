@@ -18,7 +18,8 @@ public:
 	GameEngineConstantBuffer& operator=(GameEngineConstantBuffer&& _Other) noexcept = delete;
 
 	//static std::shared_ptr<GameEngineConstantBuffer> CreateAndFind(int _Byte, std::string_view _Name, ShaderType _Type = ShaderType::None, int Slot = 0)
-	static std::shared_ptr<GameEngineConstantBuffer> CreateAndFind(int _Byte, std::string_view _Name, int Slot = 0)
+	//static std::shared_ptr<GameEngineConstantBuffer> CreateAndFind(int _Byte, std::string_view _Name, int Slot = 0)
+	static std::shared_ptr<GameEngineConstantBuffer> CreateAndFind(int _Byte, std::string_view _Name, D3D11_SHADER_BUFFER_DESC _BufferDesc)
 	{
 		if (ConstantBuffers.end() == ConstantBuffers.find(_Byte))
 		{
@@ -37,6 +38,7 @@ public:
 
 		std::shared_ptr<GameEngineConstantBuffer> Res = GameEngineResources::CreateRes();
 		Res->SetName(UpperName);
+		Res->BufferDesc = _BufferDesc;
 		//Res->Type = _Type;
 		//Res->Slot = Slot;
 		ConstantBuffers[_Byte][UpperName] = Res;
@@ -53,11 +55,15 @@ public:
 	// 1바이트 자료형
 	void ChangeData(const void* _Data, UINT _Size);
 
-	void Setting(UINT _Slot);
+	//void Setting(UINT _Slot);
+	void VSSetting(UINT _Slot);
+	void PSSetting(UINT _Slot);
 
 protected:
 
 private:
+	D3D11_SHADER_BUFFER_DESC BufferDesc;
+
 	//ShaderType Type = ShaderType::None;
 	//int Slot = 0;
 
