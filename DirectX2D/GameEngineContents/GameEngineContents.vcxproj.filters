@@ -24,9 +24,6 @@
     <ClCompile Include="MainLogo.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
-    <ClCompile Include="TownFloor.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
     <ClCompile Include="TownLevel.cpp">
       <Filter>Level\Town</Filter>
     </ClCompile>
@@ -36,26 +33,8 @@
     <ClCompile Include="Player_State.cpp">
       <Filter>Object\Player</Filter>
     </ClCompile>
-    <ClCompile Include="DebugFloor.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="TestMap.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="TownSecondFloorLeft.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="TownSecondFloorRight.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="TownSecondFloorMiddle.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
     <ClCompile Include="TitleBird.cpp">
       <Filter>Level\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="TownBuilding.cpp">
-      <Filter>Level\Town</Filter>
     </ClCompile>
     <ClCompile Include="TownNPCBlackSmith.cpp">
       <Filter>Level\Town\NPC</Filter>
@@ -77,6 +56,27 @@
     </ClCompile>
     <ClCompile Include="TownNPCBuilder.cpp">
       <Filter>Level\Town\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugFloor.cpp">
+      <Filter>Level\Town\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMap.cpp">
+      <Filter>Level\Town\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="TownFloor.cpp">
+      <Filter>Level\Town\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorLeft.cpp">
+      <Filter>Level\Town\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorMiddle.cpp">
+      <Filter>Level\Town\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSecondFloorRight.cpp">
+      <Filter>Level\Town\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="TownBuilding.cpp">
+      <Filter>Level\Town\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,35 +106,14 @@
     <ClInclude Include="MainLogo.h">
       <Filter>Level\Title</Filter>
     </ClInclude>
-    <ClInclude Include="TownFloor.h">
-      <Filter>Level\Town</Filter>
-    </ClInclude>
     <ClInclude Include="TownLevel.h">
       <Filter>Level\Town</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Object\Player</Filter>
     </ClInclude>
-    <ClInclude Include="DebugFloor.h">
-      <Filter>Level\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="TestMap.h">
-      <Filter>Level\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="TownSecondFloorLeft.h">
-      <Filter>Level\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="TownSecondFloorRight.h">
-      <Filter>Level\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="TownSecondFloorMiddle.h">
-      <Filter>Level\Town</Filter>
-    </ClInclude>
     <ClInclude Include="TitleBird.h">
       <Filter>Level\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="TownBuilding.h">
-      <Filter>Level\Town</Filter>
     </ClInclude>
     <ClInclude Include="TownNPCBlackSmith.h">
       <Filter>Level\Town\NPC</Filter>
@@ -156,6 +135,27 @@
     </ClInclude>
     <ClInclude Include="TownNPCBuilder.h">
       <Filter>Level\Town\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugFloor.h">
+      <Filter>Level\Town\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMap.h">
+      <Filter>Level\Town\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="TownFloor.h">
+      <Filter>Level\Town\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorLeft.h">
+      <Filter>Level\Town\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorMiddle.h">
+      <Filter>Level\Town\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSecondFloorRight.h">
+      <Filter>Level\Town\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="TownBuilding.h">
+      <Filter>Level\Town\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +179,12 @@
     </Filter>
     <Filter Include="Level\Town\NPC">
       <UniqueIdentifier>{916a9076-a7b3-427a-9edb-f2fa5cba9238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Town\Floor">
+      <UniqueIdentifier>{422ed723-88fa-40ad-8031-fbd043411681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Town\Object">
+      <UniqueIdentifier>{2f7abd27-f06f-4a45-a4fe-3802f0cb78ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

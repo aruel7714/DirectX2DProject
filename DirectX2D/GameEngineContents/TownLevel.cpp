@@ -121,6 +121,11 @@ void TownLevel::Start()
 		GameEngineSprite::CreateSingle("Gunsmith.png");
 		GameEngineSprite::CreateSingle("Temple.png");
 		GameEngineSprite::CreateSingle("TempleFront.png");
+		GameEngineSprite::CreateSingle("BuildingOffice.png");
+
+		// BuildingProp
+		GameEngineSprite::CreateSingle("BlackSmithDisplay.png");
+		GameEngineSprite::CreateSingle("Target.png");
 	}
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();

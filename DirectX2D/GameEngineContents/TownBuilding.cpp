@@ -105,6 +105,42 @@ void TownBuilding::Start()
 		FrontTemple->Transform.SetLocalPosition({ MapScale.Half().X - 136.0f, -(MapScale.Y - 192.0f - 448.0f) });
 	}
 
+	{
+		BuildingOffice = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BackBuilding);
+		BuildingOffice->SetSprite("BuildingOffice.png");
+
+		ImageScale = GameEngineTexture::Find("BuildingOffice.png")->GetScale() * 4.0f;
+
+		BuildingOffice->SetImageScale(ImageScale);
+		BuildingOffice->SetPivotType(PivotType::Bottom);
+
+		BuildingOffice->Transform.SetLocalPosition({ 2436.0f, -(MapScale.Y - 192.0f) });
+	}
+
+	{
+		BlackSmithDisplay = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BuildingProp);
+		BlackSmithDisplay->SetSprite("BlackSmithDisplay.png");
+
+		ImageScale = GameEngineTexture::Find("BlackSmithDisplay.png")->GetScale() * 4.0f;
+
+		BlackSmithDisplay->SetImageScale(ImageScale);
+		BlackSmithDisplay->SetPivotType(PivotType::Bottom);
+
+		BlackSmithDisplay->Transform.SetLocalPosition({ MapScale.X - 992.0f, -(MapScale.Y - 192.0f) });
+	}
+
+	{
+		TrainingTarget = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BuildingProp);
+		TrainingTarget->SetSprite("Target.png");
+
+		ImageScale = GameEngineTexture::Find("Target.png")->GetScale() * 4.0f;
+
+		TrainingTarget->SetImageScale(ImageScale);
+		TrainingTarget->SetPivotType(PivotType::Bottom);
+
+		TrainingTarget->Transform.SetLocalPosition({ 1204.0f, -(MapScale.Y - 192.0f) });
+	}
+
 	
 
 }

@@ -19,6 +19,7 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 private:
+	// Building
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainingSchool;
 	std::shared_ptr<class GameEngineSpriteRenderer> Shop;
 	std::shared_ptr<class GameEngineSpriteRenderer> BlackSmith;
@@ -26,5 +27,10 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> Gunsmith;
 	std::shared_ptr<class GameEngineSpriteRenderer> Temple;
 	std::shared_ptr<class GameEngineSpriteRenderer> FrontTemple;
+	std::shared_ptr<class GameEngineSpriteRenderer> BuildingOffice;
+
+	// BuildingProp
+	std::shared_ptr<class GameEngineSpriteRenderer> BlackSmithDisplay;
+	std::shared_ptr<class GameEngineSpriteRenderer> TrainingTarget;
 };
 
