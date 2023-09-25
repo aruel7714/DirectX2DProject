@@ -24,8 +24,13 @@ void TownNPCBuilder::Start()
 
 	float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4.0f;
 
-	//Transform.SetLocalPosition({ MapScale.X - 1280.0f, -(MapScale.Y - 192.0f - 576.0f) });
+	Transform.SetLocalPosition({ 2368.0f, -(MapScale.Y - 192.0f) });
 
-	YulfordRenderer->ChangeAnimation("Millia_Idle");
+	YulfordRenderer->ChangeAnimation("Yulford_Idle");
 	YulfordRenderer->Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+}
+
+void TownNPCBuilder::Update(float _Delta)
+{
+
 }
