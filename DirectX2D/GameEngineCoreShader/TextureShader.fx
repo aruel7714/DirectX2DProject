@@ -14,6 +14,21 @@ struct PixelOutPut
     float4 TEXCOORD : TEXCOORD;
 };
 
+// 상수버퍼를 만들때는 최대한
+// 16바이트 만드는게 좋다.
+// 그래픽카드라는것은 실수를 연산하기 위해서 만들어 졌어요.
+// hlsl에서는 bool같은건 사용하지 않는 것이 더 좋다.
+cbuffer SpriteRendererInfo : register(b3)
+{
+    int FlipLeft = 0;
+    int FlipUp = 0;
+    float Temp1;
+    float Temp2;
+};
+
+// 최적화는 
+// 횟수가 중요합니다.
+
 cbuffer SpriteData : register(b1)
 {
     float Pos2DX;
