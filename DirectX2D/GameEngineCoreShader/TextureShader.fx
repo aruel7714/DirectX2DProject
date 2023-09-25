@@ -51,8 +51,25 @@ PixelOutPut TextureShader_VS(GameEngineVertex2D _Input)
     // Result.TEXCOORD = _Input.TEXCOORD;
     
     // 6의 버텍스가 들어올것이다.
-    Result.TEXCOORD.x = (_Input.TEXCOORD.x * Scale2DX) + Pos2DX;
-    Result.TEXCOORD.y = (_Input.TEXCOORD.y * Scale2DY) + Pos2DY;
+    
+    float4 CalUV = _Input.TEXCOORD;
+    
+    // hlsl은 사용하지 않은 녀석은 인식하지 못합니다.
+    // 결과에 유의미한 영향을 주는 리소스가 아니면 hlsl은 최적화를 통해서 그 리소스를 배제한다.
+    // 결과에 영향을 안주는 상수버퍼가 의미가 있어? 그런 상수버퍼는 내가 알아서 삭제할께.
+    if (0 != FlipLeft)
+    {
+        CalUV.x *= -1;
+        CalUV.x += 1;
+    }
+
+    if (0 != FlipUp)
+    {
+        CalUV.y *= -1;
+        CalUV.y += 1;
+    }
+    Result.TEXCOORD.x = (CalUV.x * Scale2DX) + Pos2DX;
+    Result.TEXCOORD.y = (CalUV.y * Scale2DY) + Pos2DY;
     
     // 버텍스 들은 어떻게 되어있나?
     return Result;

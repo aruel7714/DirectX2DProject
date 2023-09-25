@@ -14,7 +14,7 @@ void TownNPCMerchant::Start()
 	MilliaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	MilliaRenderer->CreateAnimation("Millia_Idle", "Merchant_Millia");
 	MilliaRenderer->SetSprite("Merchant_Millia");
-	MilliaRenderer->SetSamplerState(SamplerOption::POINT);
+	//MilliaRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = MilliaRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

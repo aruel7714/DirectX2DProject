@@ -14,7 +14,7 @@ void TownNPCBoutique::Start()
 	BlochRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	BlochRenderer->CreateAnimation("Bloch_Idle", "Boutique_Bloch");
 	BlochRenderer->SetSprite("Boutique_Bloch");
-	BlochRenderer->SetSamplerState(SamplerOption::POINT);
+	//BlochRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = BlochRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

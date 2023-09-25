@@ -14,7 +14,7 @@ void TownNPCBuilder::Start()
 	YulfordRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	YulfordRenderer->CreateAnimation("Yulford_Idle", "Builder_Yulford");
 	YulfordRenderer->SetSprite("Builder_Yulford");
-	YulfordRenderer->SetSamplerState(SamplerOption::POINT);
+	//YulfordRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = YulfordRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

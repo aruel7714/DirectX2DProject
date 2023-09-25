@@ -24,10 +24,10 @@ void TownFloor::Start()
 
 	float4 ImageScale = Texture->GetScale() * 4;
 
-	FloorRenderer->SetSamplerState(SamplerOption::POINT);
+	//FloorRenderer->SetSamplerState(SamplerOption::POINT);
 	FloorRenderer->SetImageScale(ImageScale);
 
-	DebugFloorRenderer->SetSamplerState(SamplerOption::POINT);
+	//DebugFloorRenderer->SetSamplerState(SamplerOption::POINT);
 	DebugFloorRenderer->SetImageScale(ImageScale);
 
 	float4 ImageHalfScale = ImageScale.Half();

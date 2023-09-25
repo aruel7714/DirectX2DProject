@@ -61,7 +61,7 @@ void Player::Start()
 	}
 
 	MainRenderer->SetSprite("Idle");
-	MainRenderer->SetSamplerState(SamplerOption::POINT);
+	//MainRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4.0f;

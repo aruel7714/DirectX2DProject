@@ -14,7 +14,7 @@ void TownNPCBlackSmith::Start()
 	HakenRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	HakenRenderer->CreateAnimation("Haken_Idle", "BlackSmith_Haken");
 	HakenRenderer->SetSprite("BlackSmith_Haken");
-	HakenRenderer->SetSamplerState(SamplerOption::POINT);
+	//HakenRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = HakenRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

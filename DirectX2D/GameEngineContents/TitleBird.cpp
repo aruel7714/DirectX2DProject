@@ -15,7 +15,7 @@ void TitleBird::Start()
 
 	TitleBirdRenderer->CreateAnimation("TitleBird_Move", "Bird", 0.07f);
 	TitleBirdRenderer->SetSprite("Bird");
-	TitleBirdRenderer->SetSamplerState(SamplerOption::POINT);
+	//TitleBirdRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = TitleBirdRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

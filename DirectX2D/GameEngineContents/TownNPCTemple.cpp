@@ -14,7 +14,7 @@ void TownNPCTemple::Start()
 	RozenRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	RozenRenderer->CreateAnimation("Rozen_Idle", "Temple_Rozen");
 	RozenRenderer->SetSprite("Temple_Rozen");
-	RozenRenderer->SetSamplerState(SamplerOption::POINT);
+	//RozenRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = RozenRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

@@ -14,7 +14,7 @@ void TownNPCPistolMan::Start()
 	FiatRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	FiatRenderer->CreateAnimation("Fiat_Idle", "PistolMan_Fiat");
 	FiatRenderer->SetSprite("PistolMan_Fiat");
-	FiatRenderer->SetSamplerState(SamplerOption::POINT);
+	//FiatRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = FiatRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

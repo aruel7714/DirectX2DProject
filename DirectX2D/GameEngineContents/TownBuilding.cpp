@@ -19,7 +19,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("TrainingSchool.png")->GetScale() * 4.0f;
 
-		TrainingSchool->SetSamplerState(SamplerOption::POINT);
+		//TrainingSchool->SetSamplerState(SamplerOption::POINT);
 		TrainingSchool->SetImageScale(ImageScale);
 		TrainingSchool->SetPivotType(PivotType::Bottom);
 
@@ -32,7 +32,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("Shop.png")->GetScale() * 4.0f;
 
-		Shop->SetSamplerState(SamplerOption::POINT);
+		//Shop->SetSamplerState(SamplerOption::POINT);
 		Shop->SetImageScale(ImageScale);
 		Shop->SetPivotType(PivotType::Bottom);
 
@@ -46,7 +46,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("BlackSmith.png")->GetScale() * 4.0f;
 
-		BlackSmith->SetSamplerState(SamplerOption::POINT);
+		//BlackSmith->SetSamplerState(SamplerOption::POINT);
 		BlackSmith->SetImageScale(ImageScale);
 		BlackSmith->SetPivotType(PivotType::Bottom);
 
@@ -59,7 +59,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("Boutique.png")->GetScale() * 4.0f;
 
-		Boutique->SetSamplerState(SamplerOption::POINT);
+		//Boutique->SetSamplerState(SamplerOption::POINT);
 		Boutique->SetImageScale(ImageScale);
 		Boutique->SetPivotType(PivotType::Bottom);
 
@@ -72,7 +72,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("Gunsmith.png")->GetScale() * 4.0f;
 
-		Gunsmith->SetSamplerState(SamplerOption::POINT);
+		//Gunsmith->SetSamplerState(SamplerOption::POINT);
 		Gunsmith->SetImageScale(ImageScale);
 		Gunsmith->SetPivotType(PivotType::Bottom);
 
@@ -85,7 +85,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("Temple.png")->GetScale() * 4.0f;
 
-		Temple->SetSamplerState(SamplerOption::POINT);
+		//Temple->SetSamplerState(SamplerOption::POINT);
 		Temple->SetImageScale(ImageScale);
 		Temple->SetPivotType(PivotType::Bottom);
 
@@ -98,7 +98,7 @@ void TownBuilding::Start()
 
 		ImageScale = GameEngineTexture::Find("TempleFront.png")->GetScale() * 4.0f;
 
-		FrontTemple->SetSamplerState(SamplerOption::POINT);
+		//FrontTemple->SetSamplerState(SamplerOption::POINT);
 		FrontTemple->SetImageScale(ImageScale);
 		FrontTemple->SetPivotType(PivotType::Bottom);
 

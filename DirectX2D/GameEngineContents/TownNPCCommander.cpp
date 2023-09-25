@@ -14,7 +14,7 @@ void TownNPCCommander::Start()
 	CoblovinaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	CoblovinaRenderer->CreateAnimation("Coblovina_Idle", "Commander_Coblovina");
 	CoblovinaRenderer->SetSprite("Commander_Coblovina");
-	CoblovinaRenderer->SetSamplerState(SamplerOption::POINT);
+	//CoblovinaRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 Scale = CoblovinaRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;

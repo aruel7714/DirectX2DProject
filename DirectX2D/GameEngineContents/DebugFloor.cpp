@@ -19,7 +19,7 @@ void DebugFloor::Start()
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Town_Debug.png");
 
-	DebugFloorRenderer->SetSamplerState(SamplerOption::POINT);
+	//DebugFloorRenderer->SetSamplerState(SamplerOption::POINT);
 
 	float4 HScale = Texture->GetScale().Half();
 

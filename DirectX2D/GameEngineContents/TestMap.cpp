@@ -21,7 +21,7 @@ void TestMap::Start()
 
 	float4 ImageScale = Texture->GetScale() * 4;
 
-	TestRenderer->SetSamplerState(SamplerOption::POINT);
+	//TestRenderer->SetSamplerState(SamplerOption::POINT);
 	TestRenderer->SetImageScale(ImageScale);
 
 	float4 HScale = TestRenderer->GetCurSprite().Texture->GetScale().Half();

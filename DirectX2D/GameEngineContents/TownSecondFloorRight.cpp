@@ -20,7 +20,7 @@ void TownSecondFloorRight::Start()
 
 	float4 ImageScale = Texture->GetScale() * 4.0f;
 
-	SecondFloorRightRenderer->SetSamplerState(SamplerOption::POINT);
+	//SecondFloorRightRenderer->SetSamplerState(SamplerOption::POINT);
 	SecondFloorRightRenderer->SetImageScale(ImageScale);
 
 	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
