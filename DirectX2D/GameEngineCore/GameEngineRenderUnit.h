@@ -3,7 +3,7 @@
 // 설명 :
 // 랜더링의 최소단위
 // 이녀석을 돌리면 랜더링이 된다.
-class GameEngineRenderUnit
+class GameEngineRenderUnit : public GameEngineObject
 {
 public:
 	// constrcuter destructer

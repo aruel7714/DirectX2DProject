@@ -241,7 +241,13 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 			//TransBuffer->VSSetting(0);
 			//}
 
-			SpriteData& TileSprite = Tiles[y][x].Data;
+			//SpriteData& TileSprite = Tiles[y][x].Data;
+
+			ShaderResHelper.SetConstantBufferLink("SpriteData", Tiles[y][x].Data.SpritePivot);
+			SpriteData TileSprite = DefaultSprite->GetSpriteData(static_cast<unsigned int>(Tiles[y][x].Index));
+			ShaderResHelper.SetTexture("DiffuseTex", TileSprite.Texture);
+
+			GameEngineRenderer::Render(_Camera, _Delta);
 
 			//std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData", ShaderType::Vertex);
 			//std::shared_ptr<GameEngineConstantBuffer> SpriteBuffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
