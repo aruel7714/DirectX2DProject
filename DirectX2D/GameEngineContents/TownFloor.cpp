@@ -59,7 +59,16 @@ void TownFloor::Update(float _Delta)
 	float4 FloorPos = Transform.GetWorldPosition();
 	int a = 0;
 
-	
+	if (false == IsDebug)
+	{
+		FloorRenderer->On();
+		DebugFloorRenderer->Off();
+	}
+	else
+	{
+		FloorRenderer->Off();
+		DebugFloorRenderer->On();
+	}
 }
 
 void TownFloor::SetDebugMode()

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Level1F.h"
 #include "Level1F_Floor1.h"
+#include "Player.h"
 
 Level1F::Level1F()
 {
@@ -29,6 +30,8 @@ void Level1F::Start()
 	GameEngineSprite::CreateSingle("Start1F_Debug.png");
 
 	std::shared_ptr<Level1F_Floor1> Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder::Floor);
+
+	std::shared_ptr<class Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
 }
 void Level1F::Update(float _Delta)
 {

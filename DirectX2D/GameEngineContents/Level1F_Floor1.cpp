@@ -30,5 +30,19 @@ void Level1F_Floor1::Start()
 
 void Level1F_Floor1::Update(float _Delta)
 {
+	if (false == IsDebug)
+	{
+		FloorRenderer->On();
+		DebugFloorRenderer->Off();
+	}
+	else
+	{
+		FloorRenderer->Off();
+		DebugFloorRenderer->On();
+	}
 
+	if (true == GameEngineInput::IsDown(VK_F5))
+	{
+		IsDebug = !IsDebug;
+	}
 }

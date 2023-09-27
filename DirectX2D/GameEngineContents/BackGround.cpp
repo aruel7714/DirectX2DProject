@@ -5,6 +5,7 @@ BackGround* BackGround::DebugBackGround;
 
 BackGround::BackGround()
 {
+
 }
 
 BackGround::~BackGround()
@@ -17,16 +18,7 @@ void BackGround::Start()
 }
 void BackGround::Update(float _Delta)
 {
-	if (false == IsDebug)
-	{
-		FloorRenderer->On();
-		DebugFloorRenderer->Off();
-	}
-	else
-	{
-		FloorRenderer->Off();
-		DebugFloorRenderer->On();
-	}
+	
 }
 
 GameEngineColor BackGround::GetColor(float4 _Pos, GameEngineColor _DefaultColor)
