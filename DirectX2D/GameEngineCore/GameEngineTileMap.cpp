@@ -75,8 +75,7 @@ void GameEngineTileMap::SetTileIndex(const SetTileParameterIndex& _Parameter)
 
 void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 {
-	ResSetting();
-
+	
 	float4 CameraPos = _Camera->Transform.GetWorldPosition();
 	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
 
