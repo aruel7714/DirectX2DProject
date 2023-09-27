@@ -187,6 +187,11 @@ public:
 		return CurFrameAnimations->CurIndex;
 	}
 
+	inline GameEngineTransform& GetImageTransform()
+	{
+		return ImageTransform;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
