@@ -15,7 +15,7 @@ public:
 	BackGround& operator=(const BackGround & _Other) = delete;
 	BackGround& operator=(BackGround && _Other) noexcept = delete;
 
-
+	static BackGround* DebugBackGround;
 
 protected:
 	void Start() override;
@@ -24,6 +24,13 @@ protected:
 	float4 WindowScale = float4::ZERO;
 
 	float4 ImageScale = float4::ZERO;
+
+	std::shared_ptr<class GameEngineSpriteRenderer> FloorRenderer = nullptr;
+	std::shared_ptr<class GameEngineSpriteRenderer> DebugFloorRenderer = nullptr;
+
+	GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
+
+	bool IsDebug = false;
 
 private:
 	

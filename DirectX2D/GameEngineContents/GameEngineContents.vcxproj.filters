@@ -78,6 +78,13 @@
     <ClCompile Include="TownBuilding.cpp">
       <Filter>Level\Town\Object</Filter>
     </ClCompile>
+    <ClCompile Include="PlayActor.cpp" />
+    <ClCompile Include="Level1F.cpp">
+      <Filter>Level\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_Floor1.cpp">
+      <Filter>Level\Stage1F</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -157,6 +164,13 @@
     <ClInclude Include="TownBuilding.h">
       <Filter>Level\Town\Object</Filter>
     </ClInclude>
+    <ClInclude Include="PlayActor.h" />
+    <ClInclude Include="Level1F.h">
+      <Filter>Level\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_Floor1.h">
+      <Filter>Level\Stage1F</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -185,6 +199,9 @@
     </Filter>
     <Filter Include="Level\Town\Object">
       <UniqueIdentifier>{2f7abd27-f06f-4a45-a4fe-3802f0cb78ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Stage1F">
+      <UniqueIdentifier>{a098b667-8fef-4d15-9862-7f8161fe820a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

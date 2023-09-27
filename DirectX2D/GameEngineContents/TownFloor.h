@@ -20,17 +20,14 @@ public:
 
 	void SetDebugMode();
 
-	GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
+	//GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
 
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
 private:
-	bool IsDebug = false;
-
-	std::shared_ptr<class GameEngineSpriteRenderer> FloorRenderer;
-	std::shared_ptr<class GameEngineSpriteRenderer> DebugFloorRenderer;
+	
 
 	//bool SwitchRenderValue = true;
 	

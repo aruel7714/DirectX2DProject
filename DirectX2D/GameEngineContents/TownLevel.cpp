@@ -160,18 +160,21 @@ void TownLevel::Start()
 		std::shared_ptr<TownNPCBuilder> Yulford = CreateActor<TownNPCBuilder>(RenderOrder::NPC);
 	}
 
-	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
-
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
+	
 }
 
 void TownLevel::Update(float _Delta)
 {
-	
+	if (GameEngineInput::IsPress('O'))
+	{
+		GameEngineCore::ChangeLevel("Level1F");
+	}
 }
 
 void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-
+	MainPlayer->Transform.SetWorldPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
 }
 void TownLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {

@@ -6,6 +6,8 @@
 #include "DebugFloor.h"
 #include "TestMap.h"
 
+Player* Player::MainPlayer = nullptr;
+
 Player::Player()
 {
 }
@@ -16,12 +18,14 @@ Player::~Player()
 
 void Player::Start()
 {
+	MainPlayer = this;
+
 	if(nullptr == GameEngineSprite::Find("Idle"))
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("ContentsResources");
 		Dir.MoveChild("ContentsResources\\Texture\\Player\\");
-
+		
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
 		for (size_t i = 0; i < Directorys.size(); i++)
@@ -68,7 +72,7 @@ void Player::Start()
 	//Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
 	//Transform.SetLocalPosition({ HalfWindowScale.X, -1200.0f, -500.0f });
 	//Transform.SetLocalPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
-	Transform.SetLocalPosition({MapScale.Half().X, -MapScale.Half().Y, -500.0f});
+	//Transform.SetLocalPosition({MapScale.Half().X, -MapScale.Half().Y, -500.0f});
 	
 	MainRenderer->SetPivotType(PivotType::Bottom);
 
@@ -117,57 +121,26 @@ void Player::Update(float _Delta)
 	StateUpdate(_Delta);
 	CameraFocus();
 
-	//float Speed = 100.0f;
+	//float4 ColorPosition = Transform.GetWorldPosition();
+	////ColorPosition.Y -= 64.0f;
+	////GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+	//GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor { 0, 0, 255, 255 });
 
-	//if (GameEngineInput::IsPress('A'))
+	///*while(GameEngineColor::RED != Color)
 	//{
-	//	Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
-	//}
-
-	//if (GameEngineInput::IsPress('D'))
+	//	GravityForce.Y -= _Delta * 100.0f;
+	//	Transform.AddLocalPosition(GravityForce * _Delta);
+	//}*/
+	//if (GameEngineColor::RED != Color)
 	//{
-	//	Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+	//	GravityForce.Y -= _Delta * 1000.0f;
+	//	Transform.AddLocalPosition(GravityForce * _Delta);
 	//}
-
-	//if (GameEngineInput::IsPress('W'))
+	//else
 	//{
-	//	Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+	//	GravityForce = 0.0f;
 	//}
-
-	//if (GameEngineInput::IsPress('S'))
-	//{
-	//	Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
-	//}
-
-	//if (GameEngineInput::IsPress('Q'))
-	//{
-	//	Transform.AddLocalRotation({ 0.0f, 0.0f, 360.0f * _Delta });
-	//}
-
-	//if (GameEngineInput::IsPress('E'))
-	//{
-	//	Transform.AddLocalRotation({ 0.0f, 0.0f, -360.0f * _Delta });
-	//}
-	float4 ColorPosition = Transform.GetWorldPosition();
-	//ColorPosition.Y -= 64.0f;
-	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
-	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
-	GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor { 0, 0, 255, 255 });
-
-	/*while(GameEngineColor::RED != Color)
-	{
-		GravityForce.Y -= _Delta * 100.0f;
-		Transform.AddLocalPosition(GravityForce * _Delta);
-	}*/
-	if (GameEngineColor::RED != Color)
-	{
-		GravityForce.Y -= _Delta * 1000.0f;
-		Transform.AddLocalPosition(GravityForce * _Delta);
-	}
-	else
-	{
-		GravityForce = 0.0f;
-	}
 
 	DirCheck();
 	
@@ -289,5 +262,29 @@ void Player::DirCheck()
 	{
 		Dir = PlayerDir::Left;
 		OutputDebugStringA("Left\n");
+	}
+}
+
+void Player::Gravity(float _Delta)
+{
+	float4 ColorPosition = Transform.GetWorldPosition();
+	//ColorPosition.Y -= 64.0f;
+	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+	GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor{ 0, 0, 255, 255 });
+
+	/*while(GameEngineColor::RED != Color)
+	{
+		GravityForce.Y -= _Delta * 100.0f;
+		Transform.AddLocalPosition(GravityForce * _Delta);
+	}*/
+	if (GameEngineColor::RED != Color)
+	{
+		GravityForce.Y -= _Delta * 1000.0f;
+		Transform.AddLocalPosition(GravityForce * _Delta);
+	}
+	else
+	{
+		GravityForce = 0.0f;
 	}
 }

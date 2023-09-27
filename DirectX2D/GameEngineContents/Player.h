@@ -18,6 +18,8 @@ enum class PlayerDir
 // Ό³Έν : 
 class Player : public GameEngineActor
 {
+private:
+	static Player* MainPlayer;
 public:
 	// constrcuter destructer
 	Player();
@@ -55,13 +57,18 @@ private:
 	void CameraFocus();
 
 	void DirCheck();
+
+	void Gravity(float _Delta);
 private:
 	float4 GravityForce = {0.0f, 0.0f, 0.0f, 1.0f};
 
 	PlayerDir Dir = PlayerDir::Right;
+
+	float Speed = 1000.0f;
 	
 private:
 	//Debug
 	float CheckDelta = 0.0f;
+
 };
 
