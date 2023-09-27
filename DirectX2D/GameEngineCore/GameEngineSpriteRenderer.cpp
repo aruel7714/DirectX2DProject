@@ -93,11 +93,11 @@ void GameEngineSpriteRenderer::Start()
 	SetMaterial("2DTexture");
 
 	const TransformData& Data = ImageTransform.GetConstTransformDataRef();
-	ShaderResHelper.SetConstantBufferLink("TransformData", Data);
+	GetShaderResHelper().SetConstantBufferLink("TransformData", Data);
 
-	ShaderResHelper.SetConstantBufferLink("SpriteData", CurSprite.SpritePivot);
+	GetShaderResHelper().SetConstantBufferLink("SpriteData", CurSprite.SpritePivot);
 	//ShaderResHelper.SetTexture("DiffuseTex", "NSet.Png");
-	ShaderResHelper.SetConstantBufferLink("SpriteRendererInfo", SpriteRendererInfoValue);
+	GetShaderResHelper().SetConstantBufferLink("SpriteRendererInfo", SpriteRendererInfoValue);
 
 	SetSprite("NSet.Png");
 
@@ -165,7 +165,7 @@ void GameEngineSpriteRenderer::Render(GameEngineCamera* _Camera, float _Delta)
 
 	// 랜더러는 뭐든지 그릴수 있어 니가 세팅만 잘해주면
 
-	ShaderResHelper.SetTexture("DiffuseTex", CurSprite.Texture);
+	GetShaderResHelper().SetTexture("DiffuseTex", CurSprite.Texture);
 
 	GameEngineRenderer::Render(_Camera, _Delta);
 

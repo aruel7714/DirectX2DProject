@@ -179,7 +179,7 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 
 
 	TransformData Data;
-	ShaderResHelper.SetConstantBufferLink("TransformData", Data);
+	GetShaderResHelper().SetConstantBufferLink("TransformData", Data);
 	for (size_t y = StartY; y < EndY; y++)
 	{
 		for (size_t x = StartX; x < EndX; x++)
@@ -243,9 +243,9 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 
 			//SpriteData& TileSprite = Tiles[y][x].Data;
 
-			ShaderResHelper.SetConstantBufferLink("SpriteData", Tiles[y][x].Data.SpritePivot);
+			GetShaderResHelper().SetConstantBufferLink("SpriteData", Tiles[y][x].Data.SpritePivot);
 			SpriteData TileSprite = DefaultSprite->GetSpriteData(static_cast<unsigned int>(Tiles[y][x].Index));
-			ShaderResHelper.SetTexture("DiffuseTex", TileSprite.Texture);
+			GetShaderResHelper().SetTexture("DiffuseTex", TileSprite.Texture);
 
 			GameEngineRenderer::Render(_Camera, _Delta);
 
@@ -264,10 +264,6 @@ void GameEngineTileMap::Render(GameEngineCamera* _Camera, float _Delta)
 			//	MsgBoxAssert("존재하지 않는 샘플러를 사용하려고 했습니다.");
 			//}
 			//Sampler->PSSetting(0);
-
-			ResSetting();
-
-			Draw();
 		}
 	}
 }
