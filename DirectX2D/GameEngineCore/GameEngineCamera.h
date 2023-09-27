@@ -4,12 +4,6 @@
 #include <list>
 #include <memory>
 
-enum EPROJECTIONTYPE
-{
-	Perspective,
-	Orthographic,
-};
-
 // 카메라는 이제는 액터의 계열입니다.
 // 설명 : 
 class GameEngineCamera : public GameEngineActor

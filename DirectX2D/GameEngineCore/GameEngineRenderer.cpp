@@ -53,7 +53,7 @@ void GameEngineRenderer::Start()
 	// 메인카메라에 들어갔다.
 	//SetViewCameraSelect(0);
 	//DataTransform = &Transform;
-	SetCameraOrder(0);
+	SetCameraOrder(ECAMERAORDER::Main);
 
 	//GameEngineActor* Actor = GetActor();
 
@@ -158,6 +158,8 @@ void GameEngineRenderer::SetMesh(std::string_view _Name)
 void GameEngineRenderer::SetMaterial(std::string_view _Name)
 {
 	Material = GameEngineMaterial::Find(_Name);
+
+	ShaderResHelper.ResClear();
 
 	if (nullptr == Material)
 	{

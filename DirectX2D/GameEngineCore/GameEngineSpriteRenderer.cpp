@@ -96,8 +96,10 @@ void GameEngineSpriteRenderer::Start()
 	ShaderResHelper.SetConstantBufferLink("TransformData", Data);
 
 	ShaderResHelper.SetConstantBufferLink("SpriteData", CurSprite.SpritePivot);
-	ShaderResHelper.SetTexture("DiffuseTex", "NSet.Png");
+	//ShaderResHelper.SetTexture("DiffuseTex", "NSet.Png");
 	ShaderResHelper.SetConstantBufferLink("SpriteRendererInfo", SpriteRendererInfoValue);
+
+	SetSprite("NSet.Png");
 
 	//std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(sizeof(float4), "SpriteData");
 	//if (nullptr != Buffer)

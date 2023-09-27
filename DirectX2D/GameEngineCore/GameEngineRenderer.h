@@ -43,6 +43,10 @@ public:
 		SetRenderOrder(static_cast<int>(_Order));
 	}
 
+	void SetCameraOrder(ECAMERAORDER _Order)
+	{
+		SetCameraOrder(static_cast<int>(_Order));
+	}
 	void SetCameraOrder(int _Order);
 
 	void SetMesh(std::string_view _Name);
