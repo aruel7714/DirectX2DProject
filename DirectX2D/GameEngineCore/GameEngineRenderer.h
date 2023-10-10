@@ -69,6 +69,7 @@ public:
 protected:
 	void Start();
 	virtual void Render(class GameEngineCamera* _Camera, float _Delta);
+	virtual void SetMaterialEvent(std::string_view _Name, int _Index = 0);
 
 	//void ResSetting();
 	//void Draw();

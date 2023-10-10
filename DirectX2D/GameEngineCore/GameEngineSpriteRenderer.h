@@ -48,7 +48,12 @@ public:
 enum class PivotType
 {
 	Center,
+	Top,
+	RightUp,
+	Right,
+	RightBottom,
 	Bottom,
+	LeftBottom,
 	Left,
 	LeftTop,
 };
@@ -196,6 +201,8 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render(GameEngineCamera* _Camera, float _Delta) override;
+	void SetMaterialEvent(std::string_view _Name, int _Index);
+
 	int Index = 0;
 
 private:
