@@ -17,6 +17,9 @@ public:
 
 	static BackGround* DebugBackGround;
 
+	GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
+
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -28,7 +31,7 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> FloorRenderer = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> DebugFloorRenderer = nullptr;
 
-	GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
+	//GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
 
 	bool IsDebug = false;
 

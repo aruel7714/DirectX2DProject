@@ -15,6 +15,8 @@ public:
 	Level1F_Floor1& operator=(const Level1F_Floor1 & _Other) = delete;
 	Level1F_Floor1& operator=(Level1F_Floor1 && _Other) noexcept = delete;
 
+	void SetDebugBackGround();
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

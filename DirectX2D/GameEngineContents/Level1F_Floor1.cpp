@@ -26,6 +26,8 @@ void Level1F_Floor1::Start()
 	float4 ImageHalfScale = ImageScale.Half();
 	ImageHalfScale.Y *= -1.0f;
 	Transform.SetLocalPosition(ImageHalfScale);
+
+	//DebugBackGround = this;
 }
 
 void Level1F_Floor1::Update(float _Delta)
@@ -45,4 +47,9 @@ void Level1F_Floor1::Update(float _Delta)
 	{
 		IsDebug = !IsDebug;
 	}
+}
+
+void Level1F_Floor1::SetDebugBackGround()
+{
+	DebugBackGround = this;
 }

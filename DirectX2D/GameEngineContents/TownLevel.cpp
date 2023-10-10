@@ -136,7 +136,7 @@ void TownLevel::Start()
 	{
 		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
 
-		std::shared_ptr<TownFloor> _TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
+		_TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
 
 		//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
 
@@ -147,6 +147,8 @@ void TownLevel::Start()
 		std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
 
 		std::shared_ptr<TownBuilding> TownBuildings = CreateActor<TownBuilding>(RenderOrder::Building);
+
+
 	}
 
 	{
@@ -175,6 +177,8 @@ void TownLevel::Update(float _Delta)
 void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	MainPlayer->Transform.SetWorldPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
+
+	_TownFloor->SetDebugBackGround();
 }
 void TownLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {

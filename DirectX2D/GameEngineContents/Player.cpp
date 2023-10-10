@@ -273,7 +273,8 @@ void Player::Gravity(float _Delta)
 	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
 	//GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor{ 0, 0, 255, 255 });
 
-	GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+	GameEngineColor Color = BackGround::DebugBackGround->GetColor(ColorPosition, GameEngineColor::RED);
 
 	/*while(GameEngineColor::RED != Color)
 	{

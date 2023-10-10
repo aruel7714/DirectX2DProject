@@ -47,6 +47,7 @@ void TownFloor::Start()
 
 	//FloorRenderer->On();
 
+	//DebugBackGround = this;
 }
 
 void TownFloor::Update(float _Delta)
@@ -103,3 +104,8 @@ void TownFloor::SetDebugMode()
 //		DebugFloorRenderer->On();
 //	}
 //}
+
+void TownFloor::SetDebugBackGround()
+{
+	DebugBackGround = this;
+}

@@ -29,11 +29,20 @@ void Level1F::Start()
 	GameEngineSprite::CreateSingle("Start1F.png");
 	GameEngineSprite::CreateSingle("Start1F_Debug.png");
 
-	std::shared_ptr<Level1F_Floor1> Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder::Floor);
+	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder::Floor);
 
 	std::shared_ptr<class Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
 }
 void Level1F::Update(float _Delta)
+{
+
+}
+
+void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
+{
+	Level1F_Floor->SetDebugBackGround();
+}
+void Level1F::LevelEnd(GameEngineLevel* _NextLevel)
 {
 
 }

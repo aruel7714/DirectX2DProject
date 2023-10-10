@@ -31,7 +31,7 @@ void GameEngineRenderTarget::Setting()
 	GameEngineCore::GetContext()->OMSetRenderTargets(static_cast<UINT>(RTV.size()), &RTV[0], nullptr);
 }
 
-void GameEngineRenderTarget::CreateDepthTexture(int _Index = 0)
+void GameEngineRenderTarget::CreateDepthTexture(int _Index/* = 0*/)
 {
 	// 텍스처를 직접 만드는 첫번째 작업
 	D3D11_TEXTURE2D_DESC Desc;

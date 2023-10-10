@@ -20,6 +20,8 @@ public:
 
 	void SetDebugMode();
 
+	void SetDebugBackGround();
+
 	//GameEngineColor GetColor(float4 _Pos, GameEngineColor _DefaultColor = { 255, 255, 255, 255 });
 
 protected:
