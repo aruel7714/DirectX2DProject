@@ -85,6 +85,9 @@
     <ClCompile Include="Level1F_Floor1.cpp">
       <Filter>Level\Stage1F</Filter>
     </ClCompile>
+    <ClCompile Include="FloorDoor.cpp">
+      <Filter>Level\Stage1F</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -169,6 +172,9 @@
       <Filter>Level\Stage1F</Filter>
     </ClInclude>
     <ClInclude Include="Level1F_Floor1.h">
+      <Filter>Level\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorDoor.h">
       <Filter>Level\Stage1F</Filter>
     </ClInclude>
   </ItemGroup>

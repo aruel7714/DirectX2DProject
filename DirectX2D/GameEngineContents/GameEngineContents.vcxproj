@@ -182,6 +182,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FloorDoor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FrontCloud.cpp">
       <SubType>
       </SubType>
@@ -295,6 +299,10 @@
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="DebugFloor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FloorDoor.h">
       <SubType>
       </SubType>
     </ClInclude>
