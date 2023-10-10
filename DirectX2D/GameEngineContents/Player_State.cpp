@@ -39,20 +39,20 @@ void Player::RunUpdate(float _Delta)
 	{
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
-	else if (true == GameEngineInput::IsPress('W'))
-	{
-		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
-		ChangeState(PlayerState::Jump);
-	}
+	//else if (true == GameEngineInput::IsPress('W'))
+	//{
+	//	//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+	//	ChangeState(PlayerState::Jump);
+	//}
 	else if (true == GameEngineInput::IsPress('S'))
 	{
 		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
 	}
 
-	//if (true == GameEngineInput::IsPress('W'))
-	//{
-	//	ChangeState(PlayerState::Jump);
-	//}
+	if (true == GameEngineInput::IsPress('W'))
+	{
+		ChangeState(PlayerState::Jump);
+	}
 
 
 	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D') &&
@@ -74,6 +74,15 @@ void Player::JumpUpdate(float _Delta)
 	if (GameEngineColor::RED == Color)
 	{
 		ChangeState(PlayerState::Idle);
+	}
+
+	if (true == GameEngineInput::IsPress('A'))
+	{
+		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+	}
+	else if (true == GameEngineInput::IsPress('D'))
+	{
+		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
 
 }
