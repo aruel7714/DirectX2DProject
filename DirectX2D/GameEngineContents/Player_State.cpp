@@ -41,7 +41,8 @@ void Player::RunUpdate(float _Delta)
 	}
 	else if (true == GameEngineInput::IsPress('W'))
 	{
-		Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+		ChangeState(PlayerState::Jump);
 	}
 	else if (true == GameEngineInput::IsPress('S'))
 	{
@@ -64,14 +65,16 @@ void Player::RunUpdate(float _Delta)
 void Player::JumpStart()
 {
 	ChangeAnimationState("Jump");
-
-	float JumpPower = 1000.0f;
-
-	GravityForce.Y += JumpPower;
 }
 void Player::JumpUpdate(float _Delta)
 {
+	Transform.AddLocalPosition(float4::UP * _Delta * JumpPower);
 	Gravity(_Delta);
+
+	if (GameEngineColor::RED == Color)
+	{
+		ChangeState(PlayerState::Idle);
+	}
 
 }
 

@@ -65,7 +65,10 @@ private:
 	PlayerDir Dir = PlayerDir::Right;
 
 	float Speed = 1000.0f;
+
+	float JumpPower = 700.0f;
 	
+	GameEngineColor Color;
 private:
 	//Debug
 	float CheckDelta = 0.0f;

@@ -256,13 +256,15 @@ void Player::DirCheck()
 	if (0.0f <= WorldMousePos.X - PlayerPos.X)
 	{
 		Dir = PlayerDir::Right;
-		OutputDebugStringA("Right\n");
+		//OutputDebugStringA("Right\n");
 	}
 	else
 	{
 		Dir = PlayerDir::Left;
-		OutputDebugStringA("Left\n");
+		//OutputDebugStringA("Left\n");
 	}
+
+	OutputDebugStringA(PlayerPos.ToString("\n").c_str());
 }
 
 void Player::Gravity(float _Delta)
@@ -274,7 +276,7 @@ void Player::Gravity(float _Delta)
 	//GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor{ 0, 0, 255, 255 });
 
 	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
-	GameEngineColor Color = BackGround::DebugBackGround->GetColor(ColorPosition, GameEngineColor::RED);
+	Color = BackGround::DebugBackGround->GetColor(ColorPosition, GameEngineColor::RED);
 
 	/*while(GameEngineColor::RED != Color)
 	{
