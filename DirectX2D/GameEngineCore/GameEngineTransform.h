@@ -20,6 +20,7 @@ enum class ColType
 	MAX,
 };
 
+
 class CollisionData
 {
 public:
@@ -72,8 +73,6 @@ public:
 
 	}
 };
-
-
 
 // 왜 굳이. 
 class TransformData
@@ -202,7 +201,6 @@ public:
 	{
 		TransData.Rotation += _Value;
 		TransformUpdate();
-
 	}
 
 	void SetLocalPosition(const float4& _Value)
@@ -268,8 +266,6 @@ public:
 		return TransData.WorldRotation;
 	}
 
-
-	// Get
 	float4 GetWorldPosition() const
 	{
 		return TransData.WorldPosition;
@@ -289,6 +285,7 @@ public:
 	{
 		return TransData.LocalPosition;
 	}
+
 
 	// 회전 그 자체로 한 오브젝트의 앞 위 오른쪽
 	// [1][0][0][0] 오른쪽
@@ -353,7 +350,6 @@ public:
 
 	CollisionData ColData;
 	// ColType _ThisType, GameEngineTransform& _LeftTrans, ColType _OtherType, GameEngineTransform& _RightTrans
-
 protected:
 
 private:
@@ -363,4 +359,5 @@ private:
 	TransformData TransData;
 
 };
+
 

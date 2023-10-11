@@ -40,5 +40,5 @@ enum class TitleRenderOrder
 enum class CollisionType
 {
 	Player,
-
+	Trigger,
 };

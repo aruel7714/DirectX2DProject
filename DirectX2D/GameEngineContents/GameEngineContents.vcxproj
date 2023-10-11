@@ -234,6 +234,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TownDungeonIngurgitate.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownDungeonTrigger.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownFloor.cpp">
       <SubType>
       </SubType>
@@ -345,6 +353,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TownBuilding.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownDungeonIngurgitate.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownDungeonTrigger.h">
       <SubType>
       </SubType>
     </ClInclude>

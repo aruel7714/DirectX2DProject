@@ -88,6 +88,12 @@
     <ClCompile Include="FloorDoor.cpp">
       <Filter>Level\Stage1F</Filter>
     </ClCompile>
+    <ClCompile Include="TownDungeonIngurgitate.cpp">
+      <Filter>Level\Town\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="TownDungeonTrigger.cpp">
+      <Filter>Level\Town\Trigger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -177,6 +183,12 @@
     <ClInclude Include="FloorDoor.h">
       <Filter>Level\Stage1F</Filter>
     </ClInclude>
+    <ClInclude Include="TownDungeonIngurgitate.h">
+      <Filter>Level\Town\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="TownDungeonTrigger.h">
+      <Filter>Level\Town\Trigger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -208,6 +220,9 @@
     </Filter>
     <Filter Include="Level\Stage1F">
       <UniqueIdentifier>{a098b667-8fef-4d15-9862-7f8161fe820a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Town\Trigger">
+      <UniqueIdentifier>{c2ac737f-72e7-48b1-bf6a-731a7e6d03b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

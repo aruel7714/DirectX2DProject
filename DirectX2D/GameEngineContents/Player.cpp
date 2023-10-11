@@ -94,7 +94,9 @@ void Player::Start()
 		PlayerCollision = CreateComponent<GameEngineCollision>(CollisionType::Player);
 		PlayerCollision->SetCollisionType(ColType::AABBBOX2D);
 		PlayerCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 4.0f, 1.0f });
-		PlayerCollision->Transform.SetLocalScale({ Scale.X / 2.0f, Scale.Y, 1.0f });
+		PlayerCollision->Transform.SetLocalScale({ Scale.X / 2.0f, Scale.Y / 2.0f, 1.0f });
+		//PlayerCollision->Transform.SetLocalScale({ 100.0f, 10.0f, 1.0f });
+		
 	}
 
 	
@@ -152,6 +154,17 @@ void Player::Update(float _Delta)
 		//MainRenderer->RightFlip();
 		Transform.SetLocalScale({ abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
 	}
+
+	float4 Mat = PlayerCollision->Transform.GetLocalScale();
+	int b = 0;
+
+	EventParameter Parameter;
+	Parameter.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+		_Other->Death();
+	};
+
+	PlayerCollision->CollisionEvent(CollisionType::Trigger, Parameter);
 }
 
 void Player::CameraFocus()
@@ -277,6 +290,7 @@ void Player::Gravity(float _Delta)
 	}
 	else
 	{
+		Transform.AddLocalPosition(float4::UP * 0.1f);
 		GravityForce = 0.0f;
 	}
 }

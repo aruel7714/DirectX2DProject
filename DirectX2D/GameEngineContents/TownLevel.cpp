@@ -19,6 +19,10 @@
 #include "TownNPCPistolMan.h"
 #include "TownNPCTemple.h"
 #include "TownNPCBuilder.h"
+#include "TownDungeonIngurgitate.h"
+
+//Trigger
+#include "TownDungeonTrigger.h"
 
 TownLevel::TownLevel()
 {
@@ -162,6 +166,11 @@ void TownLevel::Start()
 		std::shared_ptr<TownNPCBuilder> Yulford = CreateActor<TownNPCBuilder>(RenderOrder::NPC);
 	}
 
+	{
+		//Trigger
+		Trigger = CreateActor<TownDungeonTrigger>(RenderOrder::Building);
+	}
+
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	
 }
@@ -172,6 +181,26 @@ void TownLevel::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("Level1F");
 	}
+
+	if (Trigger->DungeonTriggerCollision->IsDeath())
+	{
+		if (Count == 0)
+		{
+			DungeonIngurgitate = CreateActor<TownDungeonIngurgitate>(RenderOrder::NPC);
+			DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
+			Count++;
+		}
+	}
+
+	if (nullptr != DungeonIngurgitate)
+	{
+		if (DungeonIngurgitate->IngurgitateRenderer->IsCurAnimationEnd())
+		{
+			GameEngineCore::ChangeLevel("Level1F");
+		}
+	}
+
+	
 }
 
 void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)

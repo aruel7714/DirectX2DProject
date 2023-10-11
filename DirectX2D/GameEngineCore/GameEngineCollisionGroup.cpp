@@ -10,12 +10,14 @@ GameEngineCollisionGroup::~GameEngineCollisionGroup()
 {
 }
 
+
+
 void GameEngineCollisionGroup::AllReleaseCheck()
 {
 	std::list<std::shared_ptr<class GameEngineCollision>>::iterator StartIter = Collisions.begin();
 	std::list<std::shared_ptr<class GameEngineCollision>>::iterator EndIter = Collisions.end();
 
-	for ( ; StartIter != EndIter; )
+	for (; StartIter != EndIter; )
 	{
 		if (false == (*StartIter)->IsDeath())
 		{
@@ -27,12 +29,15 @@ void GameEngineCollisionGroup::AllReleaseCheck()
 	}
 }
 
+
+
 bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _Collision)
 {
 	if (false == _Collision->IsUpdate())
 	{
 		return false;
 	}
+
 
 	for (std::shared_ptr<class GameEngineCollision> Collision : Collisions)
 	{
@@ -96,6 +101,7 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 		return false;
 	}
 
+
 	// static 지역변수로 만들면
 	// std::list Nodes delete를 한다.
 	// 쓰레드나 이런것에서 위험하지만
@@ -126,7 +132,9 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 	}
 
 	return false;
+
 }
+
 
 bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _Collision, const float4& _NextPos, std::function<void(std::vector<std::shared_ptr<GameEngineCollision>>& _Collisions)> _Function)
 {
@@ -151,6 +159,11 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 			continue;
 		}
 
+		if (false == Collision->IsUpdate())
+		{
+			continue;
+		}
+
 		if (true == GameEngineTransform::Collision({ Data , Collision->Transform.ColData, _Collision->GetCollisionType(), Collision->GetCollisionType() }))
 		{
 			ResultCollision.push_back(Collision);
@@ -164,6 +177,7 @@ bool GameEngineCollisionGroup::Collision(std::shared_ptr<GameEngineCollision> _C
 
 	return false;
 }
+
 
 bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollision> _Collision, const EventParameter& _Event)
 {
@@ -182,6 +196,11 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 			continue;
 		}
 
+		if (false == Collision->IsUpdate())
+		{
+			continue;
+		}
+
 		if (true == GameEngineTransform::Collision({ _Collision->Transform.ColData , Collision->Transform.ColData, _Collision->GetCollisionType(), Collision->GetCollisionType() }))
 		{
 			ResultCollision.push_back(Collision);
@@ -194,8 +213,8 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 			if (_Event.Exit)
 			{
 				_Event.Exit(_Collision.get(), Collision.get());
-				// Other->Others.erase(_Collision.get());
 			}
+
 			_Collision->Others.erase(Collision);
 		}
 	}
@@ -212,8 +231,8 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 				if (_Event.Enter)
 				{
 					_Event.Enter(_Collision.get(), Other.get());
-					//Other->Others.insert(_Collision.get());
 				}
+
 				_Collision->Others.insert(Other);
 			}
 			else
@@ -229,7 +248,7 @@ bool GameEngineCollisionGroup::CollisionEvent(std::shared_ptr<GameEngineCollisio
 	return false;
 }
 
-void GameEngineCollisionGroup::PushCollision(std::shared_ptr<class GameEngineCollision> _Collision)
+void GameEngineCollisionGroup::PushCollision(std::shared_ptr<GameEngineCollision> _Collision)
 {
 	if (nullptr == _Collision)
 	{
@@ -239,4 +258,3 @@ void GameEngineCollisionGroup::PushCollision(std::shared_ptr<class GameEngineCol
 
 	Collisions.push_back(_Collision);
 }
-

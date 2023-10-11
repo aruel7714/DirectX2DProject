@@ -3,20 +3,22 @@
 #include <memory>
 #include "GameEngineCollision.h"
 
-// 설명 : 
+// 설명 :
 class GameEngineCollisionGroup : public GameEngineObject
 {
 	friend class GameEngineLevel;
+
 public:
 	// constrcuter destructer
 	GameEngineCollisionGroup();
 	~GameEngineCollisionGroup();
 
 	// delete Function
-	GameEngineCollisionGroup(const GameEngineCollisionGroup & _Other) = delete;
-	GameEngineCollisionGroup(GameEngineCollisionGroup && _Other) noexcept = delete;
-	GameEngineCollisionGroup& operator=(const GameEngineCollisionGroup & _Other) = delete;
-	GameEngineCollisionGroup& operator=(GameEngineCollisionGroup && _Other) noexcept = delete;
+	GameEngineCollisionGroup(const GameEngineCollisionGroup& _Other) = delete;
+	GameEngineCollisionGroup(GameEngineCollisionGroup&& _Other) noexcept = delete;
+	GameEngineCollisionGroup& operator=(const GameEngineCollisionGroup& _Other) = delete;
+	GameEngineCollisionGroup& operator=(GameEngineCollisionGroup&& _Other) noexcept = delete;
+
 
 	bool Collision(std::shared_ptr<GameEngineCollision> _Collision);
 
@@ -35,6 +37,5 @@ private:
 	void PushCollision(std::shared_ptr<class GameEngineCollision> _Collision);
 
 	std::list<std::shared_ptr<class GameEngineCollision>> Collisions;
-
 };
 

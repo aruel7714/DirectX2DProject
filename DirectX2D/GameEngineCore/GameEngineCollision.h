@@ -12,7 +12,7 @@ public:
 	std::function<void(class GameEngineCollision* _This, class GameEngineCollision* _Collisions)> Exit = nullptr;
 };
 
-// 설명 : 
+// 설명 :
 class GameEngineCollision : public GameEngineComponent
 {
 	friend class GameEngineCollisionGroup;
@@ -22,12 +22,12 @@ public:
 	~GameEngineCollision();
 
 	// delete Function
-	GameEngineCollision(const GameEngineCollision & _Other) = delete;
-	GameEngineCollision(GameEngineCollision && _Other) noexcept = delete;
-	GameEngineCollision& operator=(const GameEngineCollision & _Other) = delete;
-	GameEngineCollision& operator=(GameEngineCollision && _Other) noexcept = delete;
+	GameEngineCollision(const GameEngineCollision& _Other) = delete;
+	GameEngineCollision(GameEngineCollision&& _Other) noexcept = delete;
+	GameEngineCollision& operator=(const GameEngineCollision& _Other) = delete;
+	GameEngineCollision& operator=(GameEngineCollision&& _Other) noexcept = delete;
 
-	// 충돌했다 안했다를 알고 싶으면 리턴값을 확인하면 되고
+	// 충돌했다 안했다를 알고 싶으면 리턴값을 확인하면 되고.
 
 	template<typename EnumType>
 	bool Collision(EnumType _Order)
@@ -94,6 +94,5 @@ protected:
 private:
 	ColType CollisionType = ColType::SPHERE2D;
 	std::set<std::shared_ptr<GameEngineCollision>> Others;
-
 };
 

@@ -141,7 +141,6 @@ void GameEngineTransform::TransformUpdate()
 	if (nullptr != Parent)
 	{
 		TransData.ParentMatrix = Parent->TransData.WorldMatrix;
-		//TransData.WorldMatrix = TransData.LocalWorldMatrix * TransData.ParentMatrix;
 		TransData.WorldMatrix = TransData.WorldMatrix * TransData.ParentMatrix;
 
 		// 나는 부모의 행렬을 곱해서 나의 행렬이 나오게 되었다.
@@ -180,7 +179,6 @@ void GameEngineTransform::TransformUpdate()
 	TransData.WorldRotation = TransData.WorldQuaternion.QuaternionToEulerDeg();
 
 	TransData.LocalWorldMatrix.Decompose(TransData.LocalScale, TransData.LocalQuaternion, TransData.LocalPosition);
-	//TransData.LocalRotation = TransData.WorldQuaternion.QuaternionToEulerDeg();
 	TransData.LocalRotation = TransData.LocalQuaternion.QuaternionToEulerDeg();
 
 
