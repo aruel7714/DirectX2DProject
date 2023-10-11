@@ -69,9 +69,12 @@ private:
 	float JumpPower = 700.0f;
 	
 	GameEngineColor Color;
+
 private:
 	//Debug
 	float CheckDelta = 0.0f;
+
+	std::shared_ptr<GameEngineCollision> PlayerCollision;
 
 };
 

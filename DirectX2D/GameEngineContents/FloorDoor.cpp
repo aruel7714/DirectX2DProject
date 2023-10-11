@@ -12,7 +12,7 @@ FloorDoor::~FloorDoor()
 void FloorDoor::Start()
 {
 	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder1F::Prop);
-	DoorRenderer->CreateAnimation("Door_Close", "Door");
+	DoorRenderer->CreateAnimation("Door_Close", "Door", 0.1f, -1, -1, false);
 	DoorRenderer->SetSprite("Door");
 
 	float4 Scale = DoorRenderer->GetCurSprite().Texture->GetScale();

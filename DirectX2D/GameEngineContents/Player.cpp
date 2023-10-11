@@ -90,27 +90,14 @@ void Player::Start()
 	
 	ChangeState(PlayerState::Idle);
 
-	//MainSpriteRenderer->SetSprite("TestPlayer.png", 5);
-		/*Renderer0->Transform.SetLocalPosition({ 0, 150, 0 });
-		Renderer0->Transform.SetLocalScale({ 50, 50, 100 });*/
+	{
+		PlayerCollision = CreateComponent<GameEngineCollision>(CollisionType::Player);
+		PlayerCollision->SetCollisionType(ColType::AABBBOX2D);
+		PlayerCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 4.0f, 1.0f });
+		PlayerCollision->Transform.SetLocalScale({ Scale.X / 2.0f, Scale.Y, 1.0f });
+	}
 
-	//{
-	//	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-	//	Renderer->Transform.SetLocalPosition({ 0, -150, 0 });
-	//	Renderer->Transform.SetLocalScale({ 50, 50, 100 });
-	//}
-
-	//{
-	//	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-	//	Renderer->Transform.SetLocalPosition({ -150, 0, 0 });
-	//	Renderer->Transform.SetLocalScale({ 50, 50, 100 });
-	//}
-
-	//{
-	//	std::shared_ptr<GameEngineRenderer> Renderer = CreateComponent<GameEngineRenderer>(0);
-	//	Renderer->Transform.SetLocalPosition({ 150, 0, 0 });
-	//	Renderer->Transform.SetLocalScale({ 50, 50, 100 });
-	//}
+	
 }
 
 void Player::Update(float _Delta)

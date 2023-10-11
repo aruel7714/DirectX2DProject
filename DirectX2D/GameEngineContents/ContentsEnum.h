@@ -36,3 +36,9 @@ enum class TitleRenderOrder
 	FrontCloud,
 	MainLogo,
 };
+
+enum class CollisionType
+{
+	Player,
+
+};
