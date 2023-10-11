@@ -43,11 +43,11 @@ void Level1F::Start()
 	GameEngineSprite::CreateSingle("Start1F.png");
 	GameEngineSprite::CreateSingle("Start1F_Debug.png");
 
-	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder::Floor);
+	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder1F::Floor);
 
-	std::shared_ptr<class Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
+	std::shared_ptr<class Player> MainPlayer = CreateActor<Player>(RenderOrder1F::Player);
 
-	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder::Building);
+	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder1F::Prop);
 }
 void Level1F::Update(float _Delta)
 {

@@ -11,10 +11,10 @@ Level1F_Floor1::~Level1F_Floor1()
 
 void Level1F_Floor1::Start()
 {
-	FloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
+	FloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder1F::Floor);
 	FloorRenderer->SetSprite("Start1F.png");
 	
-	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
+	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder1F::Floor);
 	DebugFloorRenderer->SetSprite("Start1F_Debug.png");
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Start1F.png");

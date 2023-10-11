@@ -20,6 +20,14 @@ enum class RenderOrder
 	FrontProp,
 };
 
+enum class RenderOrder1F
+{
+	BackGround,
+	Floor,
+	Prop,
+	Player
+};
+
 enum class TitleRenderOrder
 {
 	BackCloud,
