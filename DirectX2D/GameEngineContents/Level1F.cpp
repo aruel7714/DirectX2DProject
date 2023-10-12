@@ -40,14 +40,40 @@ void Level1F::Start()
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Dungeon\\DungeonBuilding");
+		std::vector<GameEngineFile> Files = Dir.GetAllFile();
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			GameEngineFile& File = Files[i];
+			GameEngineTexture::Load(File.GetStringPath());
+		}
+	}
+
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Dungeon\\NPC\\");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	GameEngineSprite::CreateSingle("Start1F.png");
 	GameEngineSprite::CreateSingle("Start1F_Debug.png");
 
-	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder1F::Floor);
+	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrderDungeon::Floor);
 
-	MainPlayer = CreateActor<Player>(RenderOrder1F::Player);
+	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
 
-	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder1F::Prop);
+	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrderDungeon::Prop);
 }
 void Level1F::Update(float _Delta)
 {

@@ -80,19 +80,25 @@
     </ClCompile>
     <ClCompile Include="PlayActor.cpp" />
     <ClCompile Include="Level1F.cpp">
-      <Filter>Level\Stage1F</Filter>
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClCompile>
     <ClCompile Include="Level1F_Floor1.cpp">
-      <Filter>Level\Stage1F</Filter>
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClCompile>
     <ClCompile Include="FloorDoor.cpp">
-      <Filter>Level\Stage1F</Filter>
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClCompile>
     <ClCompile Include="TownDungeonIngurgitate.cpp">
       <Filter>Level\Town\NPC</Filter>
     </ClCompile>
     <ClCompile Include="TownDungeonTrigger.cpp">
       <Filter>Level\Town\Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonBuildingInn.cpp">
+      <Filter>Level\Dungeon</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonNPCInn.cpp">
+      <Filter>Level\Dungeon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,19 +181,25 @@
     </ClInclude>
     <ClInclude Include="PlayActor.h" />
     <ClInclude Include="Level1F.h">
-      <Filter>Level\Stage1F</Filter>
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClInclude>
     <ClInclude Include="Level1F_Floor1.h">
-      <Filter>Level\Stage1F</Filter>
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClInclude>
     <ClInclude Include="FloorDoor.h">
-      <Filter>Level\Stage1F</Filter>
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClInclude>
     <ClInclude Include="TownDungeonIngurgitate.h">
       <Filter>Level\Town\NPC</Filter>
     </ClInclude>
     <ClInclude Include="TownDungeonTrigger.h">
       <Filter>Level\Town\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonBuildingInn.h">
+      <Filter>Level\Dungeon</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonNPCInn.h">
+      <Filter>Level\Dungeon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,11 +230,14 @@
     <Filter Include="Level\Town\Object">
       <UniqueIdentifier>{2f7abd27-f06f-4a45-a4fe-3802f0cb78ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\Stage1F">
-      <UniqueIdentifier>{a098b667-8fef-4d15-9862-7f8161fe820a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level\Town\Trigger">
       <UniqueIdentifier>{c2ac737f-72e7-48b1-bf6a-731a7e6d03b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon">
+      <UniqueIdentifier>{e889f7c6-2df9-4829-89d9-36fd0bbf0e3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Stage1F">
+      <UniqueIdentifier>{a098b667-8fef-4d15-9862-7f8161fe820a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

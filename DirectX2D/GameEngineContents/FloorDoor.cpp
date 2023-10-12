@@ -11,7 +11,7 @@ FloorDoor::~FloorDoor()
 
 void FloorDoor::Start()
 {
-	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder1F::Prop);
+	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Prop);
 	DoorRenderer->CreateAnimation("Door_Close", "Door", 0.1f, -1, -1, false);
 	DoorRenderer->SetSprite("Door");
 

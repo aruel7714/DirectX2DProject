@@ -20,11 +20,13 @@ enum class RenderOrder
 	FrontProp,
 };
 
-enum class RenderOrder1F
+enum class RenderOrderDungeon
 {
 	BackGround,
 	Floor,
 	Prop,
+	Building,
+	NPC,
 	Player
 };
 
