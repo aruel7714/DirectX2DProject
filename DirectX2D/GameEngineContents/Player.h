@@ -6,6 +6,7 @@ enum class PlayerState
 	Idle,
 	Run,
 	Jump,
+	Stay,
 	Max
 };
 
@@ -31,6 +32,8 @@ public:
 	Player& operator=(const Player & _Other) = delete;
 	Player& operator=(Player && _Other) noexcept = delete;
 
+	void ChangeStateStay();
+
 protected:
 	void Start();
 	void Update(float _Delta);
@@ -53,6 +56,9 @@ private:
 
 	void JumpStart();
 	void JumpUpdate(float _Delta);
+	
+	void StayStart();
+	void StayUpdate(float _Delta);
 
 	void CameraFocus();
 

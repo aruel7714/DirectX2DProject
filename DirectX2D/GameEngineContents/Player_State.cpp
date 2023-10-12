@@ -87,6 +87,15 @@ void Player::JumpUpdate(float _Delta)
 
 }
 
+void Player::StayStart()
+{
+	ChangeAnimationState("Stay");
+}
+void Player::StayUpdate(float _Delta)
+{
+	Gravity(_Delta);
+}
+
 //if (GameEngineColor::RED != Color)
 //{
 //	GravityForce.Y -= _Delta * 1000.0f;

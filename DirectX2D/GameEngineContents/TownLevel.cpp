@@ -190,6 +190,7 @@ void TownLevel::Update(float _Delta)
 			DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
 			Count++;
 		}
+		MainPlayer->ChangeStateStay();
 	}
 
 	if (nullptr != DungeonIngurgitate)

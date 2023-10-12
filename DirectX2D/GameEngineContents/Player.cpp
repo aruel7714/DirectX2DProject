@@ -5,6 +5,7 @@
 #include "TownFloor.h"
 #include "DebugFloor.h"
 #include "TestMap.h"
+#include "TownDungeonTrigger.h"
 
 Player* Player::MainPlayer = nullptr;
 
@@ -62,6 +63,7 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Player_Idle", "Idle");
 		MainRenderer->CreateAnimation("Player_Run", "Run");
 		MainRenderer->CreateAnimation("Player_Jump", "Jump");
+		MainRenderer->CreateAnimation("Player_Stay", "Idle");
 	}
 
 	MainRenderer->SetSprite("Idle");
@@ -89,6 +91,7 @@ void Player::Start()
 	
 	
 	ChangeState(PlayerState::Idle);
+	//ChangeState(PlayerState::Stay);
 
 	{
 		PlayerCollision = CreateComponent<GameEngineCollision>(CollisionType::Player);
@@ -165,6 +168,7 @@ void Player::Update(float _Delta)
 	};
 
 	PlayerCollision->CollisionEvent(CollisionType::Trigger, Parameter);
+
 }
 
 void Player::CameraFocus()
@@ -218,6 +222,9 @@ void Player::ChangeState(PlayerState _State)
 		case PlayerState::Jump:
 			JumpStart();
 			break;
+		case PlayerState::Stay:
+			StayStart();
+			break;
 		default:
 			break;
 		}
@@ -234,6 +241,8 @@ void Player::StateUpdate(float _Delta)
 		return RunUpdate(_Delta);
 	case PlayerState::Jump:
 		return JumpUpdate(_Delta);
+	case PlayerState::Stay:
+		return StayUpdate(_Delta);
 	default:
 		break;
 	}
@@ -293,4 +302,9 @@ void Player::Gravity(float _Delta)
 		Transform.AddLocalPosition(float4::UP * 0.1f);
 		GravityForce = 0.0f;
 	}
+}
+
+void Player::ChangeStateStay()
+{
+	ChangeState(PlayerState::Stay);
 }
