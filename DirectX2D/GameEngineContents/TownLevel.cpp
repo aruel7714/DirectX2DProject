@@ -205,7 +205,7 @@ void TownLevel::Update(float _Delta)
 
 void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	MainPlayer->Transform.SetWorldPosition({ 0.0f, 0.0f, -500.0f, 1.0f });
+	MainPlayer->Transform.SetWorldPosition({ 3700.0f, -890.0f, -500.0f, 1.0f });
 
 	_TownFloor->SetDebugBackGround();
 }

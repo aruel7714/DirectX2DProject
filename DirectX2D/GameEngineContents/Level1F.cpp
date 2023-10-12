@@ -45,7 +45,7 @@ void Level1F::Start()
 
 	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder1F::Floor);
 
-	std::shared_ptr<class Player> MainPlayer = CreateActor<Player>(RenderOrder1F::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder1F::Player);
 
 	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder1F::Prop);
 }
@@ -57,6 +57,7 @@ void Level1F::Update(float _Delta)
 void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	Level1F_Floor->SetDebugBackGround();
+	MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
 }
 void Level1F::LevelEnd(GameEngineLevel* _NextLevel)
 {
