@@ -28,6 +28,13 @@ void TownNPCPistolMan::Start()
 
 	FiatRenderer->ChangeAnimation("Fiat_Idle");
 	FiatRenderer->Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+
+	{
+		FiatCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
+		FiatCollision->SetCollisionType(ColType::AABBBOX2D);
+		FiatCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		FiatCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 }
 
 void TownNPCPistolMan::Update(float _Delta)

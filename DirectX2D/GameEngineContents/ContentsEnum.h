@@ -41,4 +41,5 @@ enum class CollisionType
 {
 	Player,
 	Trigger,
+	NPC,
 };

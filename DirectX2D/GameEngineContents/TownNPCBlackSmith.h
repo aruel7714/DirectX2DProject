@@ -21,5 +21,6 @@ protected:
 
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> HakenRenderer;
+	std::shared_ptr<class GameEngineCollision> HakenCollision;
 };
 

@@ -18,7 +18,7 @@ void Level1F::Start()
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("ContentsResources");
-		Dir.MoveChild("ContentsResources\\Texture\\Stage1F\\Floor1F");
+		Dir.MoveChild("ContentsResources\\Texture\\Dungeon\\Stage1F\\Floor1F");
 		std::vector<GameEngineFile> Files = Dir.GetAllFile();
 		for (size_t i = 0; i < Files.size(); i++)
 		{
@@ -31,7 +31,7 @@ void Level1F::Start()
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("ContentsResources");
-		Dir.MoveChild("ContentsResources\\Texture\\Stage1F\\Prop");
+		Dir.MoveChild("ContentsResources\\Texture\\Dungeon\\Prop");
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 		for (size_t i = 0; i < Directorys.size(); i++)
 		{

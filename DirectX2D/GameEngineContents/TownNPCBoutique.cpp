@@ -29,6 +29,13 @@ void TownNPCBoutique::Start()
 
 	BlochRenderer->ChangeAnimation("Bloch_Idle");
 	BlochRenderer->Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+
+	{
+		BlochCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
+		BlochCollision->SetCollisionType(ColType::AABBBOX2D);
+		BlochCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		BlochCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 }
 
 void TownNPCBoutique::Update(float _Delta)

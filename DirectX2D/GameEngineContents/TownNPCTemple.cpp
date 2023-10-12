@@ -28,6 +28,13 @@ void TownNPCTemple::Start()
 
 	RozenRenderer->ChangeAnimation("Rozen_Idle");
 	RozenRenderer->Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+
+	{
+		RozenCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
+		RozenCollision->SetCollisionType(ColType::AABBBOX2D);
+		RozenCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		RozenCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 }
 
 void TownNPCTemple::Update(float _Delta)

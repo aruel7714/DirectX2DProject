@@ -28,6 +28,13 @@ void TownNPCMerchant::Start()
 
 	MilliaRenderer->ChangeAnimation("Millia_Idle");
 	MilliaRenderer->Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+
+	{
+		MilliaCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
+		MilliaCollision->SetCollisionType(ColType::AABBBOX2D);
+		MilliaCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		MilliaCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 }
 
 void TownNPCMerchant::Update(float _Delta)

@@ -28,6 +28,13 @@ void TownNPCBlackSmith::Start()
 	Transform.SetLocalPosition({ MapScale.X - 992.0f, -(MapScale.Y - 192.0f) });
 
 	HakenRenderer->ChangeAnimation("Haken_Idle");
+
+	{
+		HakenCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
+		HakenCollision->SetCollisionType(ColType::AABBBOX2D);
+		HakenCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		HakenCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 }
 
 void TownNPCBlackSmith::Update(float _Delta)

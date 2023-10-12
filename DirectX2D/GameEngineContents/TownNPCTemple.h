@@ -20,5 +20,6 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> RozenRenderer;
+	std::shared_ptr<GameEngineCollision> RozenCollision;
 };
 

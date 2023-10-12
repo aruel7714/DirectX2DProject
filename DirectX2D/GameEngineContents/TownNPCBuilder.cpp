@@ -28,6 +28,13 @@ void TownNPCBuilder::Start()
 
 	YulfordRenderer->ChangeAnimation("Yulford_Idle");
 	YulfordRenderer->Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+
+	{
+		YulfordCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
+		YulfordCollision->SetCollisionType(ColType::AABBBOX2D);
+		YulfordCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		YulfordCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 }
 
 void TownNPCBuilder::Update(float _Delta)
