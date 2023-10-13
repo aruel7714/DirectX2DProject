@@ -24,6 +24,8 @@ protected:
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 
 private:
+	std::shared_ptr<class Player> MainPlayer;
+	std::shared_ptr<class TownFloor> _TownFloor;
 
 };
 

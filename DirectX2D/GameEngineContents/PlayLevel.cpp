@@ -3,6 +3,14 @@
 #include "Player.h"
 #include "ContentsEnum.h"
 #include "TownSky.h"
+#include "TownFloor.h"
+#include "TownSecondFloorLeft.h"
+#include "TownSecondFloorMiddle.h"
+#include "TownSecondFloorRight.h"
+
+#include "DungeonBuildingInn.h"
+#include "DungeonNPCInn.h"
+
 
 
 PlayLevel::PlayLevel()
@@ -54,6 +62,8 @@ void PlayLevel::Start()
 		GameEngineSprite::CreateSingle("TownLayer_Day.png");
 	}
 
+	
+
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 
 	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
@@ -62,9 +72,23 @@ void PlayLevel::Start()
 
 	{
 		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
+
+		_TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
+
+		//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
+
+		//std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
+
+		std::shared_ptr<TownSecondFloorLeft> LeftSecondFloor = CreateActor<TownSecondFloorLeft>(RenderOrder::SecondFloor);
+		std::shared_ptr<TownSecondFloorRight> RightSecondFloor = CreateActor<TownSecondFloorRight>(RenderOrder::SecondFloor);
+		std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
+
+		std::shared_ptr<DungeonBuildingInn> BuidingInn = CreateActor<DungeonBuildingInn>(RenderOrder::Building);
+		std::shared_ptr<DungeonNPCInn> Inn = CreateActor<DungeonNPCInn>(RenderOrder::NPC);
+
 	}
 
-	std::shared_ptr<Player> MainPlayer = CreateActor<Player>(RenderOrder::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 }
 

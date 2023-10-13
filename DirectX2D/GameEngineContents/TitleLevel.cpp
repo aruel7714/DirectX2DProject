@@ -71,6 +71,11 @@ void TitleLevel::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("TownLevel");
 	}
+
+	if (GameEngineInput::IsPress(VK_F1))
+	{
+		GameEngineCore::ChangeLevel("PlayLevel");
+	}
 }
 
 void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)

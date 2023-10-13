@@ -15,7 +15,7 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	//GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
+	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<TownLevel>("TownLevel");
 	GameEngineCore::CreateLevel<Level1F>("Level1F");
