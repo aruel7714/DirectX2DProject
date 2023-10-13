@@ -6,6 +6,7 @@
 #include "DebugFloor.h"
 #include "TestMap.h"
 #include "TownDungeonTrigger.h"
+#include "BackGround.h"
 
 Player* Player::MainPlayer = nullptr;
 
@@ -180,7 +181,9 @@ void Player::CameraFocus()
 	int a = 0;
 
 	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
-	float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4;
+	//float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4;
+	float4 MapScale = BackGround::DebugBackGround->DebugFloorRenderer->GetCurSprite().Texture->GetScale() * 4;
+	int c = 0;
 
 	if (WindowScale.Half().X >= CameraPos.X)
 	{

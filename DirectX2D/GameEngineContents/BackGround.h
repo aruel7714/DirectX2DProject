@@ -4,6 +4,7 @@
 // Ό³Έν : 
 class BackGround : public GameEngineActor
 {
+	friend class Player;
 public:
 	// constrcuter destructer
 	BackGround();
