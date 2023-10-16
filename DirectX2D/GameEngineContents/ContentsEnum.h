@@ -15,6 +15,7 @@ enum class RenderOrder
 	MiddleProp,
 	Floor,
 	NPC,
+	Weapon,
 	Player,
 	FrontBuilding,
 	FrontProp,

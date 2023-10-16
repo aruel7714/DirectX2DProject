@@ -7,6 +7,7 @@
 #include "TestMap.h"
 #include "TownDungeonTrigger.h"
 #include "BackGround.h"
+#include "ShortSword.h"
 
 Player* Player::MainPlayer = nullptr;
 
@@ -169,6 +170,14 @@ void Player::Update(float _Delta)
 	};
 
 	PlayerCollision->CollisionEvent(CollisionType::Trigger, Parameter);
+
+	float4 WeaponPos = PlayerPos;
+
+	//WeaponPos.X += MainRenderer->Transform.GetLocalScale().X;
+	WeaponPos.X += Mat.X;
+	WeaponPos.Y += Mat.Y / 2.0f;
+
+	ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
 
 }
 

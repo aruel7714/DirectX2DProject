@@ -24,6 +24,9 @@
 //Trigger
 #include "TownDungeonTrigger.h"
 
+//Weapon
+#include "ShortSword.h"
+
 TownLevel::TownLevel()
 {
 }
@@ -89,22 +92,20 @@ void TownLevel::Start()
 
 		{
 			// NPC
+
+			GameEngineDirectory Dir;
+			Dir.MoveParentToExistsChild("ContentsResources");
+			Dir.MoveChild("ContentsResources\\Texture\\Town\\TownNPC\\");
+			std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+			for (size_t i = 0; i < Directorys.size(); i++)
 			{
-				GameEngineDirectory Dir;
-				Dir.MoveParentToExistsChild("ContentsResources");
-				Dir.MoveChild("ContentsResources\\Texture\\Town\\TownNPC\\");
-				std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+				GameEngineDirectory& Dir = Directorys[i];
 
-				for (size_t i = 0; i < Directorys.size(); i++)
-				{
-					GameEngineDirectory& Dir = Directorys[i];
-
-					GameEngineSprite::CreateFolder(Dir.GetStringPath());
-				}
+				GameEngineSprite::CreateFolder(Dir.GetStringPath());
 			}
-		}
 
-		
+		}
 
 		GameEngineSprite::CreateSingle("Sky_Day2.png");
 		//GameEngineSprite::CreateSingle("TownBG_Day.png");
@@ -172,7 +173,7 @@ void TownLevel::Start()
 	}
 
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
-	
+	std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
 }
 
 void TownLevel::Update(float _Delta)

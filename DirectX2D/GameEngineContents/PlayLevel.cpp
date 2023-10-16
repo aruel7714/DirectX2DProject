@@ -42,53 +42,51 @@ void PlayLevel::Start()
 
 	//}
 
-	{
-		GameEngineDirectory Dir;
-		Dir.MoveParentToExistsChild("GameEngineResources");
-		Dir.MoveChild("ContentsResources");
-		Dir.MoveChild("Texture");
-		Dir.MoveChild("Town");
-		std::vector<GameEngineFile> Files = Dir.GetAllFile();
-
-		for (size_t i = 0; i < Files.size(); i++)
-		{
-			// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
-			GameEngineFile& File = Files[i];
-			GameEngineTexture::Load(File.GetStringPath());
-		}
-
-		GameEngineSprite::CreateSingle("Sky_Day2.png");
-		GameEngineSprite::CreateSingle("TownBG_Day.png");
-		GameEngineSprite::CreateSingle("TownLayer_Day.png");
-	}
-
 	
 
-	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
+	//if (nullptr == GameEngineSprite::Find("Sky_Day2.png"))
+	//{
+	//	GameEngineDirectory Dir;
+	//	Dir.MoveParentToExistsChild("ContentsResources");
+	//	Dir.MoveChild("ContentsResources\\Texture\\Town\\TownSky");
+	//	std::vector<GameEngineFile> Files = Dir.GetAllFile();
+	//	for (size_t i = 0; i < Files.size(); i++)
+	//	{
+	//		// 구조적으로 잘 이해하고 있는지를 자신이 명확하게 인지하기 위해서
+	//		GameEngineFile& File = Files[i];
+	//		GameEngineTexture::Load(File.GetStringPath());
+	//	}
 
-	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
-	GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
+	//	GameEngineSprite::CreateSingle("Sky_Day2.png");
+	//}
+
+	//
+
+	//float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
+
+	//GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y, -500.0f });
+	//GetMainCamera()->SetProjectionType(EPROJECTIONTYPE::Orthographic);
 
 
-	{
-		std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
+	//{
+	//	std::shared_ptr<TownSky> TownBackSky = CreateActor<TownSky>(RenderOrder::BackGround);
 
-		_TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
+	//	_TownFloor = CreateActor<TownFloor>(RenderOrder::Floor);
 
-		//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
+	//	//std::shared_ptr<DebugFloor> DebugTownFloor = CreateActor<DebugFloor>(RenderOrder::Debug);
 
-		//std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
+	//	//std::shared_ptr<TestMap> TestMapFloor = CreateActor<TestMap>(RenderOrder::Floor);
 
-		std::shared_ptr<TownSecondFloorLeft> LeftSecondFloor = CreateActor<TownSecondFloorLeft>(RenderOrder::SecondFloor);
-		std::shared_ptr<TownSecondFloorRight> RightSecondFloor = CreateActor<TownSecondFloorRight>(RenderOrder::SecondFloor);
-		std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
+	//	std::shared_ptr<TownSecondFloorLeft> LeftSecondFloor = CreateActor<TownSecondFloorLeft>(RenderOrder::SecondFloor);
+	//	std::shared_ptr<TownSecondFloorRight> RightSecondFloor = CreateActor<TownSecondFloorRight>(RenderOrder::SecondFloor);
+	//	std::shared_ptr<TownSecondFloorMiddle> MiddleSecondFloor = CreateActor<TownSecondFloorMiddle>(RenderOrder::SecondFloor);
 
-		std::shared_ptr<DungeonBuildingInn> BuidingInn = CreateActor<DungeonBuildingInn>(RenderOrder::Building);
-		std::shared_ptr<DungeonNPCInn> Inn = CreateActor<DungeonNPCInn>(RenderOrder::NPC);
+	//	std::shared_ptr<DungeonBuildingInn> BuidingInn = CreateActor<DungeonBuildingInn>(RenderOrder::Building);
+	//	std::shared_ptr<DungeonNPCInn> Inn = CreateActor<DungeonNPCInn>(RenderOrder::NPC);
 
-	}
+	//}
 
-	MainPlayer = CreateActor<Player>(RenderOrder::Player);
+	//MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 }
 

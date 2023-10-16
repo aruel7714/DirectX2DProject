@@ -100,6 +100,9 @@
     <ClCompile Include="DungeonNPCInn.cpp">
       <Filter>Level\Dungeon</Filter>
     </ClCompile>
+    <ClCompile Include="ShortSword.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -201,6 +204,9 @@
     <ClInclude Include="DungeonNPCInn.h">
       <Filter>Level\Dungeon</Filter>
     </ClInclude>
+    <ClInclude Include="ShortSword.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -238,6 +244,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\Stage1F">
       <UniqueIdentifier>{a098b667-8fef-4d15-9862-7f8161fe820a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon">
+      <UniqueIdentifier>{436b7a20-cbb6-412a-80cc-d093464d5704}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
