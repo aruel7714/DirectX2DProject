@@ -177,6 +177,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BeforeBossEncounterLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossEncounterLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="DebugFloor.cpp">
       <SubType>
@@ -313,6 +321,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BeforeBossEncounterLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossEncounterLevel.h">
       <SubType>
       </SubType>
     </ClInclude>

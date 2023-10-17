@@ -103,6 +103,12 @@
     <ClCompile Include="ShortSword.cpp">
       <Filter>Object\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="BeforeBossEncounterLevel.cpp">
+      <Filter>Level\Dungeon\Stage2F</Filter>
+    </ClCompile>
+    <ClCompile Include="BossEncounterLevel.cpp">
+      <Filter>Level\Dungeon\Stage2F</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -207,6 +213,12 @@
     <ClInclude Include="ShortSword.h">
       <Filter>Object\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="BeforeBossEncounterLevel.h">
+      <Filter>Level\Dungeon\Stage2F</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEncounterLevel.h">
+      <Filter>Level\Dungeon\Stage2F</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -247,6 +259,9 @@
     </Filter>
     <Filter Include="Object\Weapon">
       <UniqueIdentifier>{436b7a20-cbb6-412a-80cc-d093464d5704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Stage2F">
+      <UniqueIdentifier>{a6438f6e-f3b6-4beb-90e2-cee1cf7b09ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
