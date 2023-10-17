@@ -64,6 +64,9 @@
     <Filter Include="Global">
       <UniqueIdentifier>{ec3dab43-52af-4434-938f-fa07a1b392b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{9920427f-a5b0-4387-b632-9200db8f5542}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -183,6 +186,27 @@
     </ClCompile>
     <ClCompile Include="GameEngineDepthStencil.cpp">
       <Filter>Resources\RenderingSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx11.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineGUI.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +330,33 @@
     </ClInclude>
     <ClInclude Include="GameEngineDepthStencil.h">
       <Filter>Resources\RenderingSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx11.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineGUI.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
