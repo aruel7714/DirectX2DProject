@@ -27,6 +27,12 @@ void GameEngineCamera::Start()
 		return;
 	}
 
+	IsFreeCamera = false;
+	if (Level->GetMainCamera().get() == this)
+	{
+		GameEngineInput::AddInputObject(this);
+	}
+
 	// Level->Cameras[CameraOrder] = GetDynamic_Cast_This<GameEngineCamera>();
 }
 

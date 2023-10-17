@@ -58,6 +58,8 @@ private:
 	float FOV = 60.0f;
 	float ZoomValue = 0.0f;
 
+	bool IsFreeCamera = false;
+
 	int CameraOrder = 0;
 
 	// 전과 똑같이 카메라가 랜더러를 관리한다.
