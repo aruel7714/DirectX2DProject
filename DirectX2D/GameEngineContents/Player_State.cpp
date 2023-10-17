@@ -8,14 +8,14 @@ void Player::IdleStart()
 void Player::IdleUpdate(float _Delta)
 {
 	Gravity(_Delta);
-	if (true == GameEngineInput::IsPress('A') || true == GameEngineInput::IsPress('D'))
+	if (true == GameEngineInput::IsPress('A', this) || true == GameEngineInput::IsPress('D', this))
 	{
 		ChangeState(PlayerState::Run);
 	}
 
 
 	//Debug
-	if (true == GameEngineInput::IsPress('W') || true == GameEngineInput::IsPress('S'))
+	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress('S', this))
 	{
 		//ChangeState(PlayerState::Jump);
 		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
@@ -31,11 +31,11 @@ void Player::RunUpdate(float _Delta)
 {
 	Gravity(_Delta);
 
-	if (true == GameEngineInput::IsPress('A'))
+	if (true == GameEngineInput::IsPress('A', this))
 	{
 		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
 	}
-	else if (true == GameEngineInput::IsPress('D'))
+	else if (true == GameEngineInput::IsPress('D', this))
 	{
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
@@ -44,19 +44,19 @@ void Player::RunUpdate(float _Delta)
 	//	//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
 	//	ChangeState(PlayerState::Jump);
 	//}
-	else if (true == GameEngineInput::IsPress('S'))
+	else if (true == GameEngineInput::IsPress('S', this))
 	{
 		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
 	}
 
-	if (true == GameEngineInput::IsPress('W'))
+	if (true == GameEngineInput::IsPress('W', this))
 	{
 		ChangeState(PlayerState::Jump);
 	}
 
 
-	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D') &&
-		true == GameEngineInput::IsFree('W') && true == GameEngineInput::IsFree('S'))
+	if (true == GameEngineInput::IsFree('A', this) && true == GameEngineInput::IsFree('D', this) &&
+		true == GameEngineInput::IsFree('W', this) && true == GameEngineInput::IsFree('S', this))
 	{
 		ChangeState(PlayerState::Idle);
 	}
@@ -76,11 +76,11 @@ void Player::JumpUpdate(float _Delta)
 		ChangeState(PlayerState::Idle);
 	}
 
-	if (true == GameEngineInput::IsPress('A'))
+	if (true == GameEngineInput::IsPress('A', this))
 	{
 		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
 	}
-	else if (true == GameEngineInput::IsPress('D'))
+	else if (true == GameEngineInput::IsPress('D', this))
 	{
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}

@@ -217,6 +217,7 @@ void Player::CameraFocus()
 	}
 
 	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(CameraPos);
+	GameEngineInput::AddInputObject(this);
 }
 
 void Player::ChangeState(PlayerState _State)

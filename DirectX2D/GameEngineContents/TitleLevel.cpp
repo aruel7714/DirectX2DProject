@@ -64,15 +64,16 @@ void TitleLevel::Start()
 		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(TitleRenderOrder::MainLogo);
 		std::shared_ptr<TitleBird> BirdObject = CreateActor<TitleBird>(TitleRenderOrder::TitleBird);
 	}
+	GameEngineInput::AddInputObject(this);
 }
 void TitleLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsPress('P'))
+	if (GameEngineInput::IsPress('P', this))
 	{
 		GameEngineCore::ChangeLevel("TownLevel");
 	}
 
-	if (GameEngineInput::IsPress(VK_F1))
+	if (GameEngineInput::IsPress(VK_F1, this))
 	{
 		GameEngineCore::ChangeLevel("PlayLevel");
 	}

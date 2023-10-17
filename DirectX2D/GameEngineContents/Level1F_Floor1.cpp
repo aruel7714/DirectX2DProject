@@ -43,7 +43,7 @@ void Level1F_Floor1::Update(float _Delta)
 		DebugFloorRenderer->On();
 	}
 
-	if (true == GameEngineInput::IsDown(VK_F5))
+	if (true == GameEngineInput::IsDown(VK_F5, this))
 	{
 		IsDebug = !IsDebug;
 	}

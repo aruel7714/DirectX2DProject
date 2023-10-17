@@ -41,7 +41,7 @@ void ContentsCore::Start()
 	//}
 
 	//int a = 0;
-
+	GameEngineRenderTarget::IsDepth = false;
 }
 
 void ContentsCore::Update(float _Delta)
