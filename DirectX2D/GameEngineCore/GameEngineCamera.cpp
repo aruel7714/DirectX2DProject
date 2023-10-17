@@ -5,6 +5,9 @@
 #include "GameEngineCore.h"
 #include "GameEngineRenderTarget.h"
 
+float GameEngineCamera::FreeRotSpeed = 180.0f;
+float GameEngineCamera::FreeSpeed = 200.0f;
+
 GameEngineCamera::GameEngineCamera()
 {
 }
@@ -27,11 +30,11 @@ void GameEngineCamera::Start()
 		return;
 	}
 
-	IsFreeCamera = false;
-	if (Level->GetMainCamera().get() == this)
-	{
-		GameEngineInput::AddInputObject(this);
-	}
+	IsFreeCameraValue = false;
+	//if (Level->GetMainCamera().get() == this)
+	//{
+	//	GameEngineInput::AddInputObject(this);
+	//}
 
 	// Level->Cameras[CameraOrder] = GetDynamic_Cast_This<GameEngineCamera>();
 }
@@ -40,27 +43,98 @@ void GameEngineCamera::Update(float _Delta)
 {
 	GameEngineActor::Update(_Delta);
 
-	float4 Position = Transform.GetWorldPosition();
-	float4 Forward = Transform.GetWorldForwardVector();
-	float4 Up = Transform.GetWorldUpVector();
+	//float4 Position = Transform.GetWorldPosition();
+	//float4 Forward = Transform.GetWorldForwardVector();
+	//float4 Up = Transform.GetWorldUpVector();
 
-	Transform.LookToLH(Position, Forward, Up);
+	//Transform.LookToLH(Position, Forward, Up);
 
-	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
+	//float4 WindowScale = GameEngineCore::MainWindow.GetScale();
 
-	WindowScale *= ZoomValue;
+	//WindowScale *= ZoomValue;
 
-	switch (ProjectionType)
+	ScreenMousePos = GameEngineCore::MainWindow.GetMousePos();
+
+	ScreenMouseDir = ScreenMousePrevPos - ScreenMousePos;
+	ScreenMouseDirNormal = ScreenMouseDir.NormalizeReturn();
+
+	ScreenMousePrevPos = ScreenMousePos;
+
+	if (false == IsFreeCameraValue)
 	{
-	case EPROJECTIONTYPE::Perspective:
-		Transform.PerspectiveFovLHDeg(FOV, WindowScale.X, WindowScale.Y, Near, Far);
-		break;
-	case EPROJECTIONTYPE::Orthographic:
-		Transform.OrthographicLH(WindowScale.X, WindowScale.Y, Near, Far);
-		break;
-	default:
-		break;
+		return;
 	}
+
+	if (GameEngineInput::IsDown('O', this))
+	{
+		switch (ProjectionType)
+		{
+		case EPROJECTIONTYPE::Perspective:
+			ProjectionType = EPROJECTIONTYPE::Orthographic;
+			break;
+		case EPROJECTIONTYPE::Orthographic:
+			ProjectionType = EPROJECTIONTYPE::Perspective;
+			break;
+		default:
+			break;
+		}
+	}
+
+	float Speed = FreeSpeed;
+
+	if (GameEngineInput::IsPress(VK_LSHIFT, this))
+	{
+		Speed *= 5.0f;
+	}
+
+	if (GameEngineInput::IsPress('A', this))
+	{
+		Transform.AddLocalPosition(Transform.GetWorldLeftVector() * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress('D', this))
+	{
+		Transform.AddLocalPosition(Transform.GetWorldRightVector() * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress('W', this))
+	{
+		Transform.AddLocalPosition(Transform.GetWorldForwardVector() * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress('S', this))
+	{
+		Transform.AddLocalPosition(Transform.GetWorldBackVector() * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress('Q', this))
+	{
+		Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress('E', this))
+	{
+		Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
+	}
+
+	if (GameEngineInput::IsPress(VK_RBUTTON, this))
+	{
+		float4 Dir = ScreenMouseDirNormal;
+
+		Transform.AddWorldRotation({ -Dir.Y, -Dir.X });
+	}
+
+	//switch (ProjectionType)
+	//{
+	//case EPROJECTIONTYPE::Perspective:
+	//	Transform.PerspectiveFovLHDeg(FOV, WindowScale.X, WindowScale.Y, Near, Far);
+	//	break;
+	//case EPROJECTIONTYPE::Orthographic:
+	//	Transform.OrthographicLH(WindowScale.X, WindowScale.Y, Near, Far);
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 void GameEngineCamera::SetCameraOrder(int _Order)
@@ -83,6 +157,8 @@ void GameEngineCamera::SetCameraOrder(int _Order)
 
 void GameEngineCamera::Render(float _DeltaTime)
 {
+	CameraUpdate(_DeltaTime);
+
 	//  랜더러가 없으면 continue;
 	if (true == Renderers.empty())
 	{
@@ -173,3 +249,57 @@ float4 GameEngineCamera::GetWorldMousePos2D()
 
 	return MousePos;
 }
+
+void GameEngineCamera::CameraUpdate(float _DeltaTime)
+{
+
+	if (GameEngineInput::IsDown(VK_OEM_4, this))
+	{
+		IsFreeCameraValue = !IsFreeCameraValue;
+
+		if (true == IsFreeCameraValue)
+		{
+			GameEngineInput::IsOnlyInputObject(this);
+			PrevProjectionType = ProjectionType;
+			ProjectionType = EPROJECTIONTYPE::Perspective;
+			OriginData = Transform.GetConstTransformDataRef();
+		}
+		else
+		{
+			ProjectionType = PrevProjectionType;
+			Transform.SetTransformData(OriginData);
+		}
+	}
+
+	if (true == IsFreeCameraValue)
+	{
+		// 자율행동 카메라로 행동
+	}
+	else if (nullptr != Target)
+	{
+		// 내가 따라다니는 녀석이 있다면
+		Transform.SetWorldPosition(Target->GetWorldPosition() + Pivot);
+	}
+
+	float4 Position = Transform.GetWorldPosition();
+	float4 Forward = Transform.GetWorldForwardVector();
+	float4 Up = Transform.GetWorldUpVector();
+
+	Transform.LookToLH(Position, Forward, Up);
+
+	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
+
+	WindowScale *= ZoomValue;
+
+	switch (ProjectionType)
+	{
+	case EPROJECTIONTYPE::Perspective:
+		Transform.PerspectiveFovLHDeg(FOV, WindowScale.X, WindowScale.Y, Near, Far);
+		break;
+	case EPROJECTIONTYPE::Orthographic:
+		Transform.OrthographicLH(WindowScale.X, WindowScale.Y, Near, Far);
+		break;
+	default:
+		break;
+	}
+
