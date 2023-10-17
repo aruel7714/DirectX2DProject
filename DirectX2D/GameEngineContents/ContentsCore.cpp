@@ -5,6 +5,27 @@
 #include "TownLevel.h"
 #include "Level1F.h"
 
+void LevelChangeWindow::Start()
+{
+
+}
+void LevelChangeWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
+{
+	if (ImGui::Button("TitleLevel"))
+	{
+		GameEngineCore::ChangeLevel("TitleLevel");
+	}
+
+	if (ImGui::Button("TownLevel"))
+	{
+		GameEngineCore::ChangeLevel("TownLevel");
+	}
+	if (ImGui::Button("Level1F"))
+	{
+		GameEngineCore::ChangeLevel("Level1F");
+	}
+}
+
 ContentsCore::ContentsCore() 
 {
 }
@@ -15,6 +36,8 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
+	GameEngineGUI::CreateGUIWindow<LevelChangeWindow>("LevelChange");
+
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<TownLevel>("TownLevel");

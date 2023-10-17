@@ -1,6 +1,14 @@
 #pragma once
 #include <GameEngineCore/GameEngineObject.h>
 #include <GameEngineCore/GameEngineCore.h>
+#include <GameEngineCore/GameEngineGUI.h>
+
+class LevelChangeWindow : public GameEngineGUIWindow
+{
+public:
+	void Start() override;
+	void OnGUI(GameEngineLevel* _Level, float _DeltaTime) override;
+};
 
 // Ό³Έν :
 class ContentsCore : public GameEngineObject
