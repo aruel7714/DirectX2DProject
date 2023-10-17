@@ -266,6 +266,7 @@ void GameEngineCamera::CameraUpdate(float _DeltaTime)
 		}
 		else
 		{
+			GameEngineInput::IsObjectAllInputOn();
 			ProjectionType = PrevProjectionType;
 			Transform.SetTransformData(OriginData);
 		}
