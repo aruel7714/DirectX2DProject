@@ -104,10 +104,16 @@
       <Filter>Object\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="BeforeBossEncounterLevel.cpp">
-      <Filter>Level\Dungeon\Stage2F</Filter>
+      <Filter>Level\Dungeon\Stage2F\BeforeBossEncounter</Filter>
     </ClCompile>
     <ClCompile Include="BossEncounterLevel.cpp">
-      <Filter>Level\Dungeon\Stage2F</Filter>
+      <Filter>Level\Dungeon\Stage2F\BossEncounter</Filter>
+    </ClCompile>
+    <ClCompile Include="BeforeBossEncounterFloor.cpp">
+      <Filter>Level\Dungeon\Stage2F\BeforeBossEncounter</Filter>
+    </ClCompile>
+    <ClCompile Include="BossEncounterFloor.cpp">
+      <Filter>Level\Dungeon\Stage2F\BossEncounter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,10 +220,16 @@
       <Filter>Object\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="BeforeBossEncounterLevel.h">
-      <Filter>Level\Dungeon\Stage2F</Filter>
+      <Filter>Level\Dungeon\Stage2F\BeforeBossEncounter</Filter>
     </ClInclude>
     <ClInclude Include="BossEncounterLevel.h">
-      <Filter>Level\Dungeon\Stage2F</Filter>
+      <Filter>Level\Dungeon\Stage2F\BossEncounter</Filter>
+    </ClInclude>
+    <ClInclude Include="BeforeBossEncounterFloor.h">
+      <Filter>Level\Dungeon\Stage2F\BeforeBossEncounter</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEncounterFloor.h">
+      <Filter>Level\Dungeon\Stage2F\BossEncounter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +274,12 @@
     </Filter>
     <Filter Include="Level\Dungeon\Stage2F">
       <UniqueIdentifier>{a6438f6e-f3b6-4beb-90e2-cee1cf7b09ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Stage2F\BeforeBossEncounter">
+      <UniqueIdentifier>{6b626e41-959d-42a6-b344-5dc47480a550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Stage2F\BossEncounter">
+      <UniqueIdentifier>{a731e4d3-9dc8-440a-b79e-ae8c18dce797}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

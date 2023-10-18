@@ -5,6 +5,9 @@
 #include "TownLevel.h"
 #include "Level1F.h"
 
+#include "BeforeBossEncounterLevel.h"
+#include "BossEncounterLevel.h"
+
 void LevelChangeWindow::Start()
 {
 
@@ -24,6 +27,15 @@ void LevelChangeWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	{
 		GameEngineCore::ChangeLevel("Level1F");
 	}
+	if (ImGui::Button("BeforeBossEncounterLevel"))
+	{
+		GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
+	}
+	if (ImGui::Button("BossEncounterLevel"))
+	{
+		GameEngineCore::ChangeLevel("BossEncounterLevel");
+	}
+	
 }
 
 ContentsCore::ContentsCore() 
@@ -42,6 +54,9 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<TownLevel>("TownLevel");
 	GameEngineCore::CreateLevel<Level1F>("Level1F");
+	
+	GameEngineCore::CreateLevel<BeforeBossEncounterLevel>("BeforeBossEncounterLevel");
+	GameEngineCore::CreateLevel<BossEncounterLevel>("BossEncounterLevel");
 	//GameEngineCore::ChangeLevel("TownLevel");
 	GameEngineCore::ChangeLevel("TitleLevel");
 	//GameEngineCore::ChangeLevel("PlayLevel");
