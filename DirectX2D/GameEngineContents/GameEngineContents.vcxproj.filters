@@ -85,9 +85,6 @@
     <ClCompile Include="Level1F_Floor1.cpp">
       <Filter>Level\Dungeon\Stage1F</Filter>
     </ClCompile>
-    <ClCompile Include="FloorDoor.cpp">
-      <Filter>Level\Dungeon\Stage1F</Filter>
-    </ClCompile>
     <ClCompile Include="TownDungeonIngurgitate.cpp">
       <Filter>Level\Town\NPC</Filter>
     </ClCompile>
@@ -114,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="BossEncounterFloor.cpp">
       <Filter>Level\Dungeon\Stage2F\BossEncounter</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorDoor.cpp">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +201,6 @@
     <ClInclude Include="Level1F_Floor1.h">
       <Filter>Level\Dungeon\Stage1F</Filter>
     </ClInclude>
-    <ClInclude Include="FloorDoor.h">
-      <Filter>Level\Dungeon\Stage1F</Filter>
-    </ClInclude>
     <ClInclude Include="TownDungeonIngurgitate.h">
       <Filter>Level\Town\NPC</Filter>
     </ClInclude>
@@ -230,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="BossEncounterFloor.h">
       <Filter>Level\Dungeon\Stage2F\BossEncounter</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorDoor.h">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +280,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\Stage2F\BossEncounter">
       <UniqueIdentifier>{a731e4d3-9dc8-440a-b79e-ae8c18dce797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\DungeonProp">
+      <UniqueIdentifier>{4fa64143-4c9d-4f01-8077-8191f6f7adad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

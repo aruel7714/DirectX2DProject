@@ -73,7 +73,13 @@ void Level1F::Start()
 
 	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
 
+	MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
+
 	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrderDungeon::Prop);
+	
+	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Start1F.png");
+	float4 MapScale = Texture->GetScale() * 4.0f;
+	Door->SetDoorPosition({ 515.0f, -(MapScale.Y - 128.0f) });
 }
 void Level1F::Update(float _Delta)
 {
@@ -83,7 +89,7 @@ void Level1F::Update(float _Delta)
 void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	Level1F_Floor->SetDebugBackGround();
-	MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
+	//MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
 }
 void Level1F::LevelEnd(GameEngineLevel* _NextLevel)
 {

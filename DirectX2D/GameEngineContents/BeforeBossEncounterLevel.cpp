@@ -2,6 +2,7 @@
 #include "BeforeBossEncounterLevel.h"
 #include "BeforeBossEncounterFloor.h"
 #include "Player.h"
+#include "FloorDoor.h"
 
 BeforeBossEncounterLevel::BeforeBossEncounterLevel()
 {
@@ -33,7 +34,11 @@ void BeforeBossEncounterLevel::Start()
 
 	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
 
-	
+	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrderDungeon::Prop);
+
+	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossEncount.png");
+	float4 MapScale = Texture->GetScale() * 4.0f;
+	Door->SetDoorPosition({ 478.0f, -(MapScale.Y - 192.0f) });
 }
 void BeforeBossEncounterLevel::Update(float _Delta)
 {
@@ -43,7 +48,7 @@ void BeforeBossEncounterLevel::Update(float _Delta)
 void BeforeBossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	BeforeBossEncounterFloor->SetDebugBackGround();
-	MainPlayer->Transform.SetLocalPosition({ 492.0f , -576.0f });
+	MainPlayer->Transform.SetLocalPosition({ 478.0f , -576.0f });
 }
 void BeforeBossEncounterLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {

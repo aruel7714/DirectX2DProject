@@ -15,6 +15,8 @@ public:
 	FloorDoor& operator=(const FloorDoor & _Other) = delete;
 	FloorDoor& operator=(FloorDoor && _Other) noexcept = delete;
 
+	void SetDoorPosition(float4 _Pos);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

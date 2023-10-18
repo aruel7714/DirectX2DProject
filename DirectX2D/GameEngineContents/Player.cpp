@@ -135,8 +135,10 @@ void Player::Update(float _Delta)
 	//{
 	//	GravityForce = 0.0f;
 	//}
-
-	DirCheck();
+	if (State != PlayerState::Stay)
+	{
+		DirCheck();
+	}
 	
 	CheckDelta += _Delta;
 	int iCheckDelta = static_cast<int>(CheckDelta);
