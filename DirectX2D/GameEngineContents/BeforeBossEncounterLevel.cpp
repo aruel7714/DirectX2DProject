@@ -3,6 +3,8 @@
 #include "BeforeBossEncounterFloor.h"
 #include "Player.h"
 #include "FloorDoor.h"
+#include "DungeonMoveTrigger.h"
+#include "BossEncounterLevel.h"
 
 BeforeBossEncounterLevel::BeforeBossEncounterLevel()
 {
@@ -14,6 +16,8 @@ BeforeBossEncounterLevel::~BeforeBossEncounterLevel()
 
 void BeforeBossEncounterLevel::Start()
 {
+	//this->SetName(std::string("BeforeBossEncounterLevel"));
+
 	if (nullptr == GameEngineSprite::Find("BossEncounter.png"))
 	{
 		GameEngineDirectory Dir;
@@ -39,15 +43,30 @@ void BeforeBossEncounterLevel::Start()
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossEncount.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 	Door->SetDoorPosition({ 478.0f, -(MapScale.Y - 192.0f) });
+
+	{
+		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerRight->SetMoveTriggerPosition({ MapScale.X - 16.0f, -(MapScale.Y - 192.0f - 128.0f) });
+		TriggerRight->SetMoveTriggerScale({ 64.0f ,256.0f });
+	}
 }
 void BeforeBossEncounterLevel::Update(float _Delta)
 {
+	EventParameter Parameter;
+	Parameter.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+		GameEngineCore::ChangeLevel("BossEncounterLevel");
+	};
 
+	TriggerRight->MoveTriggerCollision->CollisionEvent(CollisionType::Player, Parameter);
+
+	//TriggerRight->CollisionEvent(CollisionType::Trigger, Parameter);
 }
 
 void BeforeBossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	BeforeBossEncounterFloor->SetDebugBackGround();
+
 	MainPlayer->Transform.SetLocalPosition({ 478.0f , -576.0f });
 }
 void BeforeBossEncounterLevel::LevelEnd(GameEngineLevel* _NextLevel)

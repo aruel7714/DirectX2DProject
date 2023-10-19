@@ -115,6 +115,12 @@
     <ClCompile Include="FloorDoor.cpp">
       <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClCompile>
+    <ClCompile Include="DungeonMoveTrigger.cpp">
+      <Filter>Level\Dungeon\Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonMap.cpp">
+      <Filter>Level\Dungeon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -231,6 +237,12 @@
     <ClInclude Include="FloorDoor.h">
       <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClInclude>
+    <ClInclude Include="DungeonMoveTrigger.h">
+      <Filter>Level\Dungeon\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonMap.h">
+      <Filter>Level\Dungeon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -283,6 +295,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\DungeonProp">
       <UniqueIdentifier>{4fa64143-4c9d-4f01-8077-8191f6f7adad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Trigger">
+      <UniqueIdentifier>{c4b9e120-0471-473c-ba4c-3f0230bd8a63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

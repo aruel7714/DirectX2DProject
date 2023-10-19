@@ -1,8 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
+#include "DungeonMap.h"
 
 // Ό³Έν : 
-class BeforeBossEncounterLevel : public GameEngineLevel
+class BeforeBossEncounterLevel : public DungeonMap
 {
 public:
 	// constrcuter destructer
@@ -24,5 +24,7 @@ protected:
 private:
 	std::shared_ptr<class BeforeBossEncounterFloor> BeforeBossEncounterFloor;
 	std::shared_ptr<class Player> MainPlayer;
+
+	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
 };
 
