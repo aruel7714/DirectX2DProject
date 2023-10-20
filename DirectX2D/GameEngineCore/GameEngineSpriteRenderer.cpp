@@ -451,3 +451,11 @@ void GameEngineSpriteRenderer::SetMaterialEvent(std::string_view _Name, int _Ind
 
 	SetSprite("NSet.png");
 }
+
+void GameEngineSpriteRenderer::SetMaskTexture(std::string_view _Texture)
+{
+	// 이녀석한테 있는
+	GameEngineRenderer::SetMaterial("2DTextureMask");
+
+	GetShaderResHelper().SetTexture("MaskTex", _Texture);
+}
