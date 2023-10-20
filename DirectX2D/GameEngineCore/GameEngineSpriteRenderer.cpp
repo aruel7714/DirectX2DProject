@@ -448,6 +448,7 @@ void GameEngineSpriteRenderer::SetMaterialEvent(std::string_view _Name, int _Ind
 	GetShaderResHelper().SetConstantBufferLink("SpriteData", CurSprite.SpritePivot);
 	// ShaderResHelper.SetTexture("DiffuseTex", "NSet.Png");
 	GetShaderResHelper().SetConstantBufferLink("SpriteRendererInfo", SpriteRendererInfoValue);
+	GetShaderResHelper().SetConstantBufferLink("ColorData", ColorDataValue);
 
 	SetSprite("NSet.png");
 }
