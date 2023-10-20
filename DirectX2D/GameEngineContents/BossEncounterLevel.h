@@ -25,6 +25,6 @@ private:
 	std::shared_ptr<class BossEncounterFloor> BossEncounterFloor;
 	std::shared_ptr<class Player> MainPlayer;
 
-	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
+	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
 };
 

@@ -37,6 +37,7 @@ void BeforeBossEncounterLevel::Start()
 	BeforeBossEncounterFloor = CreateActor<class BeforeBossEncounterFloor>(RenderOrderDungeon::Floor);
 
 	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
+	MainPlayer->Transform.SetLocalPosition({ 478.0f , -576.0f });
 
 	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrderDungeon::Prop);
 
@@ -65,11 +66,16 @@ void BeforeBossEncounterLevel::Update(float _Delta)
 
 void BeforeBossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	PrevLevel = _PrevLevel;
+
 	BeforeBossEncounterFloor->SetDebugBackGround();
 
-	MainPlayer->Transform.SetLocalPosition({ 478.0f , -576.0f });
+	if (NextLevel == _PrevLevel)
+	{
+		MainPlayer->Transform.SetLocalPosition({ TriggerRight->MoveTriggerCollision->Transform.GetLocalPosition().X - 96.0f , -576.0f});
+	}
 }
 void BeforeBossEncounterLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	//NextLevel = _NextLevel;
 }

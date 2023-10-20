@@ -18,7 +18,7 @@ public:
 
 	float GetDeltaTime() 
 	{
-		return FloatDelta;
+		return FloatDelta * GlobalTimeScale;
 	}
 
 	void Reset();
