@@ -19,6 +19,8 @@ public:
 
 	void Gravity(float _Delta);
 
+	void GravityState(float _Delta, float4 _CheckPos);
+
 	void SetGravityForceY(float _GravityForceY)
 	{
 		GravityForce.Y = _GravityForceY;

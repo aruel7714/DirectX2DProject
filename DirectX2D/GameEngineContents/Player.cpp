@@ -104,16 +104,19 @@ void Player::Start()
 		
 	}
 
-	
+	GameEngineInput::AddInputObject(this);
 }
 
 void Player::Update(float _Delta)
 {
 	float4 PlayerPos = Transform.GetWorldPosition();
+	Color = BackGround::DebugBackGround->GetColor(PlayerPos, GameEngineColor::RED);
 	int a = 0;
 
 	StateUpdate(_Delta);
 	CameraFocus();
+
+	//GravityState(_Delta, Transform.GetLocalPosition());
 
 	//float4 ColorPosition = Transform.GetWorldPosition();
 	////ColorPosition.Y -= 64.0f;
@@ -185,16 +188,15 @@ void Player::Update(float _Delta)
 
 void Player::CameraFocus()
 {
-	float4 PlayerPos = Transform.GetWorldPosition();
-	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(PlayerPos);
+	//float4 PlayerPos = Transform.GetWorldPosition();
+	//GetLevel()->GetMainCamera()->Transform.SetLocalPosition(PlayerPos);
 
-	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
-	int a = 0;
+	//float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetWorldPosition();
+	float4 CameraPos = Transform.GetWorldPosition();
 
 	float4 WindowScale = GameEngineCore::MainWindow.GetScale();
 	//float4 MapScale = GameEngineTexture::Find("Town.png")->GetScale() * 4;
 	float4 MapScale = BackGround::DebugBackGround->DebugFloorRenderer->GetCurSprite().Texture->GetScale() * 4;
-	int c = 0;
 
 	if (WindowScale.Half().X >= CameraPos.X)
 	{
@@ -219,7 +221,6 @@ void Player::CameraFocus()
 	}
 
 	GetLevel()->GetMainCamera()->Transform.SetLocalPosition(CameraPos);
-	GameEngineInput::AddInputObject(this);
 }
 
 void Player::ChangeState(PlayerState _State)
@@ -291,33 +292,33 @@ void Player::DirCheck()
 	OutputDebugStringA(PlayerPos.ToString("\n").c_str());
 }
 
-void Player::Gravity(float _Delta)
-{
-	float4 ColorPosition = Transform.GetWorldPosition();
-	//ColorPosition.Y -= 64.0f;
-	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
-	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
-	//GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor{ 0, 0, 255, 255 });
-
-	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
-	Color = BackGround::DebugBackGround->GetColor(ColorPosition, GameEngineColor::RED);
-
-	/*while(GameEngineColor::RED != Color)
-	{
-		GravityForce.Y -= _Delta * 100.0f;
-		Transform.AddLocalPosition(GravityForce * _Delta);
-	}*/
-	if (GameEngineColor::RED != Color)
-	{
-		GravityForce.Y -= _Delta * 1000.0f;
-		Transform.AddLocalPosition(GravityForce * _Delta);
-	}
-	else
-	{
-		Transform.AddLocalPosition(float4::UP * 0.1f);
-		GravityForce = 0.0f;
-	}
-}
+//void Player::Gravity(float _Delta)
+//{
+//	float4 ColorPosition = Transform.GetWorldPosition();
+//	//ColorPosition.Y -= 64.0f;
+//	//GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
+//	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+//	//GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor{ 0, 0, 255, 255 });
+//
+//	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
+//	Color = BackGround::DebugBackGround->GetColor(ColorPosition, GameEngineColor::RED);
+//
+//	/*while(GameEngineColor::RED != Color)
+//	{
+//		GravityForce.Y -= _Delta * 100.0f;
+//		Transform.AddLocalPosition(GravityForce * _Delta);
+//	}*/
+//	if (GameEngineColor::RED != Color)
+//	{
+//		GravityForce.Y -= _Delta * 1000.0f;
+//		Transform.AddLocalPosition(GravityForce * _Delta);
+//	}
+//	else
+//	{
+//		Transform.AddLocalPosition(float4::UP * 0.1f);
+//		GravityForce = 0.0f;
+//	}
+//}
 
 void Player::ChangeStateStay()
 {

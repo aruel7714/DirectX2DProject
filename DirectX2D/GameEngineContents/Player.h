@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "PlayActor.h"
 
 enum class PlayerState
 {
@@ -17,7 +18,7 @@ enum class PlayerDir
 };
 
 // Ό³Έν : 
-class Player : public GameEngineActor
+class Player : public PlayActor
 {
 private:
 	static Player* MainPlayer;
@@ -64,7 +65,7 @@ private:
 
 	void DirCheck();
 
-	void Gravity(float _Delta);
+	//void Gravity(float _Delta);
 private:
 	float4 GravityForce = {0.0f, 0.0f, 0.0f, 1.0f};
 
