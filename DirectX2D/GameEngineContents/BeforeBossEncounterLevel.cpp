@@ -70,7 +70,7 @@ void BeforeBossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	BeforeBossEncounterFloor->SetDebugBackGround();
 
-	if (NextLevel == _PrevLevel)
+	if (FindLevel("BossEncounterLevel") == _PrevLevel)
 	{
 		MainPlayer->Transform.SetLocalPosition({ TriggerRight->MoveTriggerCollision->Transform.GetLocalPosition().X - 96.0f , -576.0f});
 	}

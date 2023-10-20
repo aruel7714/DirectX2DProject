@@ -54,7 +54,7 @@ void BossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	//MainPlayer->Transform.SetLocalPosition({ 180.0f , -1088.0f });
 
 
-	if (NextLevel == _PrevLevel)
+	if (FindLevel("BeforeBossEncounterLevel") == _PrevLevel)
 	{
 		MainPlayer->Transform.SetLocalPosition({ 96.0f , -1088.0f });
 	}

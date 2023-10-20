@@ -27,9 +27,7 @@ protected:
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 
-	void FindLevel(const std::string& _Name);
-
+	GameEngineLevel* FindLevel(const std::string& _Name);
 private:
-	std::map<std::string, std::shared_ptr<GameEngineLevel>> AllLevel;
 };
 
