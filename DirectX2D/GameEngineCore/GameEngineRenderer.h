@@ -9,7 +9,7 @@ struct RenderBaseInfo
 {
 	float4 BaseColor;
 	int IsMask = 0;
-	int Temp0 = 0;
+	int BaseColorOnly = 0;
 	int Temp1 = 0;
 	int Temp2 = 0;
 };
