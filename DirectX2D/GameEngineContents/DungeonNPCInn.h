@@ -15,6 +15,8 @@ public:
 	DungeonNPCInn& operator=(const DungeonNPCInn & _Other) = delete;
 	DungeonNPCInn& operator=(DungeonNPCInn && _Other) noexcept = delete;
 
+	void SetInnPosition(float4 _Pos);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

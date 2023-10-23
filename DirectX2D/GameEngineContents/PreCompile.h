@@ -16,3 +16,4 @@
 #include <GameEngineCore/GameEngineTexture.h>
 
 #include "ContentsEnum.h"
+#include "DungeonMoveTrigger.h"

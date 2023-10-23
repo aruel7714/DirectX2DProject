@@ -227,6 +227,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Level1F_Inn.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_Inn_Floor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MainLogo.cpp">
       <SubType>
       </SubType>
@@ -388,6 +396,14 @@
     </ClInclude>
     <ClInclude Include="Level1F.h" />
     <ClInclude Include="Level1F_Floor1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_Inn.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_Inn_Floor.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -15,6 +15,8 @@ public:
 	DungeonBuildingInn& operator=(const DungeonBuildingInn & _Other) = delete;
 	DungeonBuildingInn& operator=(DungeonBuildingInn && _Other) noexcept = delete;
 
+	void SetBuildingPosition(float4 _Pos);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

@@ -1,9 +1,12 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
+
 #include "PlayLevel.h"
 #include "TitleLevel.h"
 #include "TownLevel.h"
+
 #include "Level1F.h"
+#include "Level1F_Inn.h"
 
 #include "BeforeBossEncounterLevel.h"
 #include "BossEncounterLevel.h"
@@ -54,6 +57,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<TownLevel>("TownLevel");
 	GameEngineCore::CreateLevel<Level1F>("Level1F");
+	GameEngineCore::CreateLevel<Level1F_Inn>("Level1F_Inn");
 	
 	GameEngineCore::CreateLevel<BeforeBossEncounterLevel>("BeforeBossEncounterLevel");
 	GameEngineCore::CreateLevel<BossEncounterLevel>("BossEncounterLevel");

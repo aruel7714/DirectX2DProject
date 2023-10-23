@@ -29,7 +29,7 @@ void BossEncounterLevel::Start()
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
-		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 128.0f - 128.0f) });
+		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 192.0f - 128.0f) });
 		TriggerLeft->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}
 }

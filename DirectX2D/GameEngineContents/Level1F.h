@@ -1,8 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
+#include "DungeonMap.h"
 
 // Ό³Έν : 
-class Level1F : public GameEngineLevel
+class Level1F : public DungeonMap
 {
 public:
 	// constrcuter destructer
@@ -24,5 +24,7 @@ protected:
 private:
 	std::shared_ptr<class Player> MainPlayer;
 	std::shared_ptr<class Level1F_Floor1> Level1F_Floor;
+
+	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
 };
 

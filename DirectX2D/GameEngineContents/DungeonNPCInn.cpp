@@ -23,6 +23,8 @@ void DungeonNPCInn::Start()
 
 	InnRenderer->ChangeAnimation("Inn_Idle");
 
+	InnRenderer->LeftFlip();
+
 	{
 		InnCollision = CreateComponent<GameEngineCollision>(CollisionType::NPC);
 		InnCollision->SetCollisionType(ColType::AABBBOX2D);
@@ -33,4 +35,9 @@ void DungeonNPCInn::Start()
 void DungeonNPCInn::Update(float _Delta)
 {
 
+}
+
+void DungeonNPCInn::SetInnPosition(float4 _Pos)
+{
+	Transform.SetLocalPosition(_Pos);
 }
