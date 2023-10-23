@@ -10,8 +10,11 @@ struct RenderBaseInfo
 	float4 BaseColor;
 	int IsMask = 0;
 	int BaseColorOnly = 0;
-	int Temp1 = 0;
-	int Temp2 = 0;
+	int MaskMode = 0;
+	int BaseTemp2 = 0;
+	float4 RendererScreenPos;
+	float4 RenderScreenScale;
+	float4 MaskScreeneScale;
 };
 
 // 설명 : GameEngineRenderer에게 Order는 랜더링 되는 순서를 의미합니다.
@@ -74,6 +77,8 @@ public:
 	void SetMaterial(std::string_view _Name, int _Index = 0);
 
 	GameEngineShaderResHelper& GetShaderResHelper(int _Index = 0);
+
+	float4 GetScreenPosition();
 
 protected:
 	void Start();
