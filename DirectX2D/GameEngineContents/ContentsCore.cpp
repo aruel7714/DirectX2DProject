@@ -7,6 +7,7 @@
 
 #include "Level1F.h"
 #include "Level1F_Inn.h"
+#include "Level1F_Shop.h"
 
 #include "BeforeBossEncounterLevel.h"
 #include "BossEncounterLevel.h"
@@ -58,6 +59,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<TownLevel>("TownLevel");
 	GameEngineCore::CreateLevel<Level1F>("Level1F");
 	GameEngineCore::CreateLevel<Level1F_Inn>("Level1F_Inn");
+	GameEngineCore::CreateLevel<Level1F_Shop>("Level1F_Shop");
 	
 	GameEngineCore::CreateLevel<BeforeBossEncounterLevel>("BeforeBossEncounterLevel");
 	GameEngineCore::CreateLevel<BossEncounterLevel>("BossEncounterLevel");

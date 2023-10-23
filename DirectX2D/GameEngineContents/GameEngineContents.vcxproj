@@ -202,11 +202,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="DungeonBuildingShop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DungeonMap.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="DungeonMoveTrigger.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DungeonNPCGiant.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -232,6 +240,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Level1F_Inn_Floor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_Shop.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_Shop_Floor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -374,11 +390,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="DungeonBuildingShop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DungeonMap.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="DungeonMoveTrigger.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DungeonNPCGiant.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -404,6 +428,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Level1F_Inn_Floor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_Shop.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_Shop_Floor.h">
       <SubType>
       </SubType>
     </ClInclude>

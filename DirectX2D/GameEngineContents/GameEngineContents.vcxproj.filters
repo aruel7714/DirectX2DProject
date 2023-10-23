@@ -91,12 +91,6 @@
     <ClCompile Include="TownDungeonTrigger.cpp">
       <Filter>Level\Town\Trigger</Filter>
     </ClCompile>
-    <ClCompile Include="DungeonBuildingInn.cpp">
-      <Filter>Level\Dungeon</Filter>
-    </ClCompile>
-    <ClCompile Include="DungeonNPCInn.cpp">
-      <Filter>Level\Dungeon</Filter>
-    </ClCompile>
     <ClCompile Include="ShortSword.cpp">
       <Filter>Object\Weapon</Filter>
     </ClCompile>
@@ -118,14 +112,32 @@
     <ClCompile Include="DungeonMoveTrigger.cpp">
       <Filter>Level\Dungeon\Trigger</Filter>
     </ClCompile>
-    <ClCompile Include="DungeonMap.cpp">
-      <Filter>Level\Dungeon</Filter>
-    </ClCompile>
     <ClCompile Include="Level1F_Inn.cpp">
       <Filter>Level\Dungeon\Stage1F</Filter>
     </ClCompile>
     <ClCompile Include="Level1F_Inn_Floor.cpp">
       <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_Shop.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_Shop_Floor.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonNPCInn.cpp">
+      <Filter>Level\Dungeon\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonBuildingInn.cpp">
+      <Filter>Level\Dungeon\Building</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonMap.cpp">
+      <Filter>Level\Dungeon\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonBuildingShop.cpp">
+      <Filter>Level\Dungeon\Building</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonNPCGiant.cpp">
+      <Filter>Level\Dungeon\NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,12 +231,6 @@
     <ClInclude Include="TownDungeonTrigger.h">
       <Filter>Level\Town\Trigger</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonBuildingInn.h">
-      <Filter>Level\Dungeon</Filter>
-    </ClInclude>
-    <ClInclude Include="DungeonNPCInn.h">
-      <Filter>Level\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="ShortSword.h">
       <Filter>Object\Weapon</Filter>
     </ClInclude>
@@ -246,14 +252,32 @@
     <ClInclude Include="DungeonMoveTrigger.h">
       <Filter>Level\Dungeon\Trigger</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonMap.h">
-      <Filter>Level\Dungeon</Filter>
-    </ClInclude>
     <ClInclude Include="Level1F_Inn.h">
       <Filter>Level\Dungeon\Stage1F</Filter>
     </ClInclude>
     <ClInclude Include="Level1F_Inn_Floor.h">
       <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_Shop.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_Shop_Floor.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonNPCInn.h">
+      <Filter>Level\Dungeon\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonBuildingInn.h">
+      <Filter>Level\Dungeon\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonMap.h">
+      <Filter>Level\Dungeon\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonBuildingShop.h">
+      <Filter>Level\Dungeon\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonNPCGiant.h">
+      <Filter>Level\Dungeon\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +334,15 @@
     </Filter>
     <Filter Include="Level\Dungeon\Trigger">
       <UniqueIdentifier>{c4b9e120-0471-473c-ba4c-3f0230bd8a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\NPC">
+      <UniqueIdentifier>{2aa765ed-af09-4d4e-9f75-ccbea6ec1ccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Building">
+      <UniqueIdentifier>{de0cfe3d-3685-4ee5-8063-4d3121fe3b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Global">
+      <UniqueIdentifier>{4d184c28-2b54-4817-bb76-c908d7297600}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

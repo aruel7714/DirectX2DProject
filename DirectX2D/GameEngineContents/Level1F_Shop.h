@@ -2,18 +2,18 @@
 #include "DungeonMap.h"
 
 // Ό³Έν : 
-class Level1F : public DungeonMap
+class Level1F_Shop : public DungeonMap
 {
 public:
 	// constrcuter destructer
-	Level1F();
-	~Level1F();
+	Level1F_Shop();
+	~Level1F_Shop();
 
 	// delete Function
-	Level1F(const Level1F & _Other) = delete;
-	Level1F(Level1F && _Other) noexcept = delete;
-	Level1F& operator=(const Level1F & _Other) = delete;
-	Level1F& operator=(Level1F && _Other) noexcept = delete;
+	Level1F_Shop(const Level1F_Shop & _Other) = delete;
+	Level1F_Shop(Level1F_Shop && _Other) noexcept = delete;
+	Level1F_Shop& operator=(const Level1F_Shop & _Other) = delete;
+	Level1F_Shop& operator=(Level1F_Shop && _Other) noexcept = delete;
 
 protected:
 	void Start() override;
@@ -21,11 +21,10 @@ protected:
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
-private:
-	std::shared_ptr<class Player> MainPlayer;
-	std::shared_ptr<class Level1F_Floor1> Level1F_Floor;
 
+private:
+	std::shared_ptr<class Level1F_Shop_Floor> ShopFloor;
+	std::shared_ptr<class Player> MainPlayer;
 	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
-	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
 };
 
