@@ -3,6 +3,7 @@
 #include <map>
 #include <list>
 #include <memory>
+#include <set>
 
 // 카메라는 이제는 액터의 계열입니다.
 // 설명 : 
@@ -68,6 +69,11 @@ public:
 	float4 GetScreenMouseDir() { return ScreenMouseDir; }
 	float4 GetScreenMouseDirNormal() { return ScreenMouseDirNormal; }
 
+	int SetZSort(int _SortOrder)
+	{
+		ZSortMap.insert(_SortOrder);
+	}
+
 protected:
 	void Start() override;
 
@@ -101,6 +107,8 @@ private:
 	float4 ScreenMouseDir;
 	float4 ScreenMouseDirNormal;
 	TransformData OriginData;
+
+	std::set<int> ZSortMap;
 
 	void CameraUpdate(float _DeltaTime);
 };
