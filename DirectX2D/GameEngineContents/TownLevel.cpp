@@ -188,7 +188,9 @@ void TownLevel::Update(float _Delta)
 		if (Count == 0)
 		{
 			DungeonIngurgitate = CreateActor<TownDungeonIngurgitate>(RenderOrder::NPC);
-			DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
+			//DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
+			float4 Pos = MainPlayer->Transform.GetLocalPosition();
+			DungeonIngurgitate->Transform.SetLocalPosition({ Pos.X, Trigger->DungeonTriggerCollision->Transform.GetLocalPosition().Y + 32.0f});
 			Count++;
 		}
 		MainPlayer->ChangeStateStay();

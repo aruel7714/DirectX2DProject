@@ -37,7 +37,7 @@ GameEngineLevel* DungeonMap::FindLevel(const std::string& _Name)
 	// 이미 내부에 TitleLevel이 존재한다.
 	if (AllLevel.end() == Finditer)
 	{
-		MsgBoxAssert(Upper + "의 이름을 가진 GameEngineLevel은 존재하지 않습니다.");
+		MsgBoxAssert(Upper + "의 이름을 가진 DungeonMap은 존재하지 않습니다.");
 		return nullptr;
 	}
 	

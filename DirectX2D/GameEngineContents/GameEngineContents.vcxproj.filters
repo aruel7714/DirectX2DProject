@@ -139,6 +139,15 @@
     <ClCompile Include="DungeonNPCGiant.cpp">
       <Filter>Level\Dungeon\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="AfterBossEncounterLevel.cpp">
+      <Filter>Level\Dungeon\Stage2F\AfterBossEncounter</Filter>
+    </ClCompile>
+    <ClCompile Include="AfterBossEncounterFloor.cpp">
+      <Filter>Level\Dungeon\Stage2F\AfterBossEncounter</Filter>
+    </ClCompile>
+    <ClCompile Include="DownDoor.cpp">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -279,6 +288,15 @@
     <ClInclude Include="DungeonNPCGiant.h">
       <Filter>Level\Dungeon\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="AfterBossEncounterLevel.h">
+      <Filter>Level\Dungeon\Stage2F\AfterBossEncounter</Filter>
+    </ClInclude>
+    <ClInclude Include="AfterBossEncounterFloor.h">
+      <Filter>Level\Dungeon\Stage2F\AfterBossEncounter</Filter>
+    </ClInclude>
+    <ClInclude Include="DownDoor.h">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -343,6 +361,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\Global">
       <UniqueIdentifier>{4d184c28-2b54-4817-bb76-c908d7297600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Stage2F\AfterBossEncounter">
+      <UniqueIdentifier>{86ea3889-4d5f-4f68-893b-a8c56aac04f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

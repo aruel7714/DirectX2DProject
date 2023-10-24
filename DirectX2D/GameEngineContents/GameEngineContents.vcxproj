@@ -169,6 +169,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AfterBossEncounterFloor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="AfterBossEncounterLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BackCloud.cpp">
       <SubType>
       </SubType>
@@ -195,6 +203,10 @@
     </ClCompile>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="DebugFloor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DownDoor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -356,6 +368,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AfterBossEncounterFloor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AfterBossEncounterLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BackCloud.h">
       <SubType>
       </SubType>
@@ -383,6 +403,10 @@
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="DebugFloor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DownDoor.h">
       <SubType>
       </SubType>
     </ClInclude>

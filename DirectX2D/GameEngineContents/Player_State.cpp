@@ -18,9 +18,9 @@ void Player::IdleUpdate(float _Delta)
 	//Debug
 	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress('S', this))
 	{
-		//ChangeState(PlayerState::Jump);
+		ChangeState(PlayerState::Jump);
 		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
-		ChangeState(PlayerState::Run);
+		//ChangeState(PlayerState::Run);
 	}
 }
 
