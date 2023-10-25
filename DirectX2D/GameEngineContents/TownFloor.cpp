@@ -18,7 +18,8 @@ void TownFloor::Start()
 	FloorRenderer->SetSprite("Town.png");
 
 	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
-	DebugFloorRenderer->SetSprite("Town_DebugRed.png");
+	//DebugFloorRenderer->SetSprite("Town_DebugRed.png");
+	DebugFloorRenderer->SetSprite("Town_DebugAll.png");
 	
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Town.png");
 

@@ -26,7 +26,7 @@ void AfterBossEncounterLevel::Start()
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
 	std::shared_ptr<DownDoor> Door = CreateActor<DownDoor>(RenderOrderDungeon::NPC);
-	Door->SetDoorPosition({ 638.0f, MapScale.Y - 256.0f });
+	Door->SetDoorPosition({ 638.0f, -(MapScale.Y - 256.0f) });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);

@@ -11,11 +11,11 @@ DownDoor::~DownDoor()
 
 void DownDoor::Start()
 {
-	GameEngineSprite::CreateSingle("Door0.png");
+	GameEngineSprite::CreateSingle("Door.png");
 	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::NPC);
-	DoorRenderer->SetSprite("Door0.png");
+	DoorRenderer->SetSprite("Door.png");
 
-	ImageScale = GameEngineTexture::Find("Door0.png")->GetScale() * 4.0f;
+	ImageScale = GameEngineTexture::Find("Door.png")->GetScale() * 4.0f;
 
 	DoorRenderer->SetImageScale(ImageScale);
 	DoorRenderer->SetPivotType(PivotType::Bottom);

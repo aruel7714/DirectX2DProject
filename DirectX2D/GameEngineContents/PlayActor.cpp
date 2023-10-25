@@ -20,6 +20,7 @@ void PlayActor::Gravity(float _Delta)
 void PlayActor::GravityState(float _Delta, float4 _CheckPos)
 {
 	GameEngineColor CheckColor = BackGround::DebugBackGround->GetColor(_CheckPos, GameEngineColor::RED);
+	int a = 0;
 
 	if (GameEngineColor::RED != CheckColor && GameEngineColor::BLUE != CheckColor)
 	{

@@ -75,7 +75,7 @@ void Player::JumpUpdate(float _Delta)
 	//Transform.AddLocalPosition(float4::UP * _Delta * 100.0f);
 	GravityState(_Delta, Transform.GetLocalPosition());
 
-	if (GameEngineColor::RED == Color)
+	if (GameEngineColor::RED == Color || GameEngineColor::BLUE == Color)
 	{
 		ChangeState(PlayerState::Idle);
 	}
