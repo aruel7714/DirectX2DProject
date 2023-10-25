@@ -98,13 +98,13 @@ void Level1F::Update(float _Delta)
 	EventParameter ParameterLeft;
 	ParameterLeft.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F_Inn");
+		GameEngineCore::ChangeLevel("Level1F_1");
 	};
 
 	EventParameter ParameterRight;
 	ParameterRight.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F_Shop");
+		GameEngineCore::ChangeLevel("Level1F_2");
 	};
 
 	TriggerLeft->MoveTriggerCollision->CollisionEvent(CollisionType::Player, ParameterLeft);
@@ -116,12 +116,12 @@ void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 	Level1F_Floor->SetDebugBackGround();
 	//MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
 
-	if (FindLevel("Level1F_Inn") == _PrevLevel)
+	if (FindLevel("Level1F_1") == _PrevLevel)
 	{
 		MainPlayer->Transform.SetLocalPosition({ 96.0f , -640.0f });
 	}
 
-	if (FindLevel("Level1F_Shop") == _PrevLevel)
+	if (FindLevel("Level1F_2") == _PrevLevel)
 	{
 		MainPlayer->Transform.SetLocalPosition({ TriggerRight->MoveTriggerCollision->Transform.GetLocalPosition().X - 96.0f , -640.0f });
 	}

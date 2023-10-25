@@ -26,5 +26,6 @@ private:
 	std::shared_ptr<class Level1F_Shop_Floor> ShopFloor;
 	std::shared_ptr<class Player> MainPlayer;
 	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
+	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
 };
 

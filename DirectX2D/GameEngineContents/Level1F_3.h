@@ -25,5 +25,7 @@ protected:
 private:
 	std::shared_ptr<class Level1F_3_Floor> Floor3;
 	std::shared_ptr<class Player> MainPlayer;
+	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
+	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
 };
 

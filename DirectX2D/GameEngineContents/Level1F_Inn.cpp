@@ -43,7 +43,7 @@ void Level1F_Inn::Update(float _Delta)
 	EventParameter Parameter;
 	Parameter.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F");
+		GameEngineCore::ChangeLevel("Level1F_1");
 	};
 
 	TriggerRight->MoveTriggerCollision->CollisionEvent(CollisionType::Player, Parameter);
@@ -53,7 +53,7 @@ void Level1F_Inn::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	InnFloor->SetDebugBackGround();
 
-	if (FindLevel("Level1F") == _PrevLevel)
+	if (FindLevel("Level1F_1") == _PrevLevel)
 	{
 		MainPlayer->Transform.SetLocalPosition({ TriggerRight->MoveTriggerCollision->Transform.GetLocalPosition().X - 96.0f , -512.0f });
 	}
