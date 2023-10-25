@@ -243,6 +243,30 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Level1F.cpp" />
+    <ClCompile Include="Level1F_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_1_Floor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_2_Floor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_3.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_3_Floor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Level1F_Floor1.cpp">
       <SubType>
       </SubType>
@@ -252,6 +276,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Level1F_Inn_Floor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_Last.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Level1F_Last_Floor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -443,6 +475,30 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Level1F.h" />
+    <ClInclude Include="Level1F_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_1_Floor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_2_Floor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_3_Floor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Level1F_Floor1.h">
       <SubType>
       </SubType>
@@ -452,6 +508,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Level1F_Inn_Floor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_Last.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Level1F_Last_Floor.h">
       <SubType>
       </SubType>
     </ClInclude>

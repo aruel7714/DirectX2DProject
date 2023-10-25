@@ -238,6 +238,9 @@ void Player::ChangeState(PlayerState _State)
 		case PlayerState::Jump:
 			JumpStart();
 			break;
+		case PlayerState::Dash:
+			DashStart();
+			break;
 		case PlayerState::Stay:
 			StayStart();
 			break;
@@ -257,6 +260,8 @@ void Player::StateUpdate(float _Delta)
 		return RunUpdate(_Delta);
 	case PlayerState::Jump:
 		return JumpUpdate(_Delta);
+	case PlayerState::Dash:
+		return DashUpdate(_Delta);
 	case PlayerState::Stay:
 		return StayUpdate(_Delta);
 	default:

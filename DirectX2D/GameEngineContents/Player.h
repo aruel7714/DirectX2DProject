@@ -7,6 +7,7 @@ enum class PlayerState
 	Idle,
 	Run,
 	Jump,
+	Dash,
 	Stay,
 	Max
 };
@@ -57,6 +58,9 @@ private:
 
 	void JumpStart();
 	void JumpUpdate(float _Delta);
+
+	void DashStart();
+	void DashUpdate(float _Delta);
 	
 	void StayStart();
 	void StayUpdate(float _Delta);

@@ -148,6 +148,30 @@
     <ClCompile Include="DownDoor.cpp">
       <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClCompile>
+    <ClCompile Include="Level1F_1.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_1_Floor.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_2.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_2_Floor.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_3.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_3_Floor.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_Last.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1F_Last_Floor.cpp">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -296,6 +320,30 @@
     </ClInclude>
     <ClInclude Include="DownDoor.h">
       <Filter>Level\Dungeon\DungeonProp</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_1.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_1_Floor.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_2.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_2_Floor.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_3.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_3_Floor.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_Last.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1F_Last_Floor.h">
+      <Filter>Level\Dungeon\Stage1F</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

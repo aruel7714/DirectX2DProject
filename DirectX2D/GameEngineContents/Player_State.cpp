@@ -91,6 +91,15 @@ void Player::JumpUpdate(float _Delta)
 
 }
 
+void Player::DashStart()
+{
+
+}
+void Player::DashUpdate(float _Delta)
+{
+
+}
+
 void Player::StayStart()
 {
 	ChangeAnimationState("Stay");
