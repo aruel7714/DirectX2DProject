@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Player.h"
+#include "BackGround.h"
 
 void Player::IdleStart()
 {
@@ -16,12 +17,21 @@ void Player::IdleUpdate(float _Delta)
 
 
 	//Debug
-	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress('S', this))
+	if (true == GameEngineInput::IsPress('W', this)/* || true == GameEngineInput::IsPress('S', this)*/)
 	{
 		ChangeState(PlayerState::Jump);
 		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
 		//ChangeState(PlayerState::Run);
 	}
+
+	if (GameEngineColor::BLUE == BackGround::DebugBackGround->GetColor(Transform.GetLocalPosition(), GameEngineColor::BLUE))
+	{
+		if (true == GameEngineInput::IsPress('S', this) /*&& true == GameEngineInput::IsPress(VK_SPACE, this)*/)
+		{
+			Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
+		}
+	}
+	
 }
 
 void Player::RunStart()
