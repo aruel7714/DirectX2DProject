@@ -83,7 +83,7 @@ void Player::Start()
 	//float4 Scale = MainRenderer->Transform.GetLocalScale();
 	//Scale *= 4.0f;
 
-	float4 Scale = MainRenderer->GetCurSprite().Texture->GetScale();
+	Scale = MainRenderer->GetCurSprite().Texture->GetScale();
 	Scale *= 4.0f;
 
 	//Transform.SetLocalScale(Scale);
@@ -99,7 +99,7 @@ void Player::Start()
 		PlayerCollision = CreateComponent<GameEngineCollision>(CollisionType::Player);
 		PlayerCollision->SetCollisionType(ColType::AABBBOX2D);
 		PlayerCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 4.0f, 1.0f });
-		PlayerCollision->Transform.SetLocalScale({ Scale.X / 2.0f, Scale.Y / 2.0f, 1.0f });
+		PlayerCollision->Transform.SetLocalScale({Scale.X / 2.0f, Scale.Y / 2.0f, 1.0f });
 		//PlayerCollision->Transform.SetLocalScale({ 100.0f, 10.0f, 1.0f });
 		
 	}
@@ -241,6 +241,9 @@ void Player::ChangeState(PlayerState _State)
 		case PlayerState::Dash:
 			DashStart();
 			break;
+		case PlayerState::DownJump:
+			DownJumpStart();
+			break;
 		case PlayerState::Stay:
 			StayStart();
 			break;
@@ -262,6 +265,8 @@ void Player::StateUpdate(float _Delta)
 		return JumpUpdate(_Delta);
 	case PlayerState::Dash:
 		return DashUpdate(_Delta);
+	case PlayerState::DownJump:
+		return DownJumpUpdate(_Delta);
 	case PlayerState::Stay:
 		return StayUpdate(_Delta);
 	default:

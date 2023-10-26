@@ -19,7 +19,7 @@ public:
 
 	void Gravity(float _Delta);
 
-	void GravityState(float _Delta, float4 _CheckPos);
+	void GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale);
 
 	void SetGravityForceY(float _GravityForceY)
 	{
@@ -32,7 +32,9 @@ public:
 	}
 
 protected:
-	
+	float4 SaveGravityForce = float4::ZERO;
+
+	bool CheckBlue = false;
 
 private:
 	float4 GravityForce = float4::ZERO;
@@ -40,5 +42,6 @@ private:
 	float GravityPower = 1000.0f;
 
 	float4 ColorPosition = Transform.GetWorldPosition();
+
 };
 

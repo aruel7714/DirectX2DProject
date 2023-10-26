@@ -8,6 +8,7 @@ enum class PlayerState
 	Run,
 	Jump,
 	Dash,
+	DownJump,
 	Stay,
 	Max
 };
@@ -61,6 +62,9 @@ private:
 
 	void DashStart();
 	void DashUpdate(float _Delta);
+
+	void DownJumpStart();
+	void DownJumpUpdate(float _Delta);
 	
 	void StayStart();
 	void StayUpdate(float _Delta);
@@ -86,7 +90,11 @@ private:
 	//Debug
 	float CheckDelta = 0.0f;
 
+	float4 Scale = float4::ZERO;
+
 	std::shared_ptr<GameEngineCollision> PlayerCollision;
+
+	bool IsBlue = true;
 
 };
 
