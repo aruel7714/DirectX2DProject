@@ -1,8 +1,8 @@
 #pragma once
-#include "BackGround.h"
+#include <GameEngineCore/GameEngineActor.h>
 
 // Ό³Έν : 
-class DownDoor : public BackGround
+class DownDoor : public GameEngineActor
 {
 public:
 	// constrcuter destructer

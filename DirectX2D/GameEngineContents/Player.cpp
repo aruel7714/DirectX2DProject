@@ -121,28 +121,6 @@ void Player::Update(float _Delta)
 	StateUpdate(_Delta);
 	CameraFocus();
 
-	//GravityState(_Delta, Transform.GetLocalPosition());
-
-	//float4 ColorPosition = Transform.GetWorldPosition();
-	////ColorPosition.Y -= 64.0f;
-	////GameEngineColor Color = TestMap::DebugFloor->GetColor(Transform.GetWorldPosition(), GameEngineColor::RED);
-	//GameEngineColor Color = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor::RED);
-	//GameEngineColor Color2 = TownFloor::DebugFloor->GetColor(ColorPosition, GameEngineColor { 0, 0, 255, 255 });
-
-	///*while(GameEngineColor::RED != Color)
-	//{
-	//	GravityForce.Y -= _Delta * 100.0f;
-	//	Transform.AddLocalPosition(GravityForce * _Delta);
-	//}*/
-	//if (GameEngineColor::RED != Color)
-	//{
-	//	GravityForce.Y -= _Delta * 1000.0f;
-	//	Transform.AddLocalPosition(GravityForce * _Delta);
-	//}
-	//else
-	//{
-	//	GravityForce = 0.0f;
-	//}
 	if (State != PlayerState::Stay)
 	{
 		DirCheck();
@@ -150,13 +128,6 @@ void Player::Update(float _Delta)
 	
 	CheckDelta += _Delta;
 	int iCheckDelta = static_cast<int>(CheckDelta);
-
-	/*if (iCheckDelta % 5 == 4)
-	{
-		MainRenderer->RightFlip();
-		CheckDelta = 0.0f;
-	}*/
-	
 
 	if (Dir == PlayerDir::Left)
 	{
@@ -189,11 +160,16 @@ void Player::Update(float _Delta)
 	WeaponPos.X += Mat.X;
 	WeaponPos.Y += Mat.Y / 2.0f;
 
-	
-
 	// ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
 	
+	
 
+	EventParameter LevelChangeEvent;
+	LevelChangeEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+		DownFloorFunc();
+	};
+	PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
 }
 
 void Player::CameraFocus()
@@ -343,4 +319,12 @@ void Player::DirCheck()
 void Player::ChangeStateStay()
 {
 	ChangeState(PlayerState::Stay);
+}
+
+void Player::DownFloorFunc()
+{
+	if (true == GameEngineInput::IsPress('F', this))
+	{
+		GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
+	}
 }

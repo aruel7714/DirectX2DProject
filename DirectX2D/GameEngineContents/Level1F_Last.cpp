@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Level1F_Last.h"
 #include "Level1F_Last_Floor.h"
+#include "DownDoor.h"
 
 Level1F_Last::Level1F_Last()
 {
@@ -21,6 +22,9 @@ void Level1F_Last::Start()
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Level1F_Last.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
+
+	std::shared_ptr<DownDoor> Door = CreateActor<DownDoor>(RenderOrder::NPC);
+	Door->SetDoorPosition({ (MapScale.X / 2.0f) - 2.0f, -(MapScale.Y - 128.0f) });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

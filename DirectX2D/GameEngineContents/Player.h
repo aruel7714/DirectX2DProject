@@ -73,6 +73,8 @@ private:
 
 	void DirCheck();
 
+	void DownFloorFunc();
+
 	//void Gravity(float _Delta);
 private:
 	float4 GravityForce = {0.0f, 0.0f, 0.0f, 1.0f};
