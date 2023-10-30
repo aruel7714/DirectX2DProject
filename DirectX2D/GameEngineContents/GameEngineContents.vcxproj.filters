@@ -172,6 +172,12 @@
     <ClCompile Include="Level1F_Last_Floor.cpp">
       <Filter>Level\Dungeon\Stage1F</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="HandCrossbow.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -344,6 +350,12 @@
     </ClInclude>
     <ClInclude Include="Level1F_Last_Floor.h">
       <Filter>Level\Dungeon\Stage1F</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="HandCrossbow.h">
+      <Filter>Object\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

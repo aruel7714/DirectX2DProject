@@ -242,6 +242,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="HandCrossbow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Level1F.cpp" />
     <ClCompile Include="Level1F_1.cpp">
       <SubType>
@@ -398,6 +402,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AfterBossEncounterFloor.h">
@@ -471,6 +479,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FrontCloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="HandCrossbow.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -621,6 +633,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TownSky.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
       <SubType>
       </SubType>
     </ClInclude>

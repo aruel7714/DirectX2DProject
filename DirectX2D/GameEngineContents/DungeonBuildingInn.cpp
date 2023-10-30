@@ -12,7 +12,7 @@ DungeonBuildingInn::~DungeonBuildingInn()
 void DungeonBuildingInn::Start()
 {
 	GameEngineSprite::CreateSingle("DungeonInn.png");
-	DungeonInnRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Building);
+	DungeonInnRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::DungeonBuilding);
 	DungeonInnRenderer->SetSprite("DungeonInn.png");
 
 	ImageScale = GameEngineTexture::Find("DungeonInn.png")->GetScale() * 4.0f;

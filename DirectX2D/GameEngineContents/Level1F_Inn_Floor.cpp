@@ -11,10 +11,10 @@ Level1F_Inn_Floor::~Level1F_Inn_Floor()
 
 void Level1F_Inn_Floor::Start()
 {
-	FloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Floor);
+	FloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
 	FloorRenderer->SetSprite("1F_Inn.png");
 
-	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Floor);
+	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
 	DebugFloorRenderer->SetSprite("1F_Inn_Debug.png");
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("1F_Inn.png");

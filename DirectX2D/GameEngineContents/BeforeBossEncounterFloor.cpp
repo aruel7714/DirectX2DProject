@@ -11,10 +11,10 @@ BeforeBossEncounterFloor::~BeforeBossEncounterFloor()
 
 void BeforeBossEncounterFloor::Start()
 {
-	FloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Floor);
+	FloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
 	FloorRenderer->SetSprite("BossEncount.png");
 
-	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Floor);
+	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
 	DebugFloorRenderer->SetSprite("BossEncount_Debug.png");
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossEncount.png");

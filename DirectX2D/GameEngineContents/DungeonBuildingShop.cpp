@@ -12,7 +12,7 @@ DungeonBuildingShop::~DungeonBuildingShop()
 void DungeonBuildingShop::Start()
 {
 	GameEngineSprite::CreateSingle("InDungeonShop.png");
-	DungeonShopRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::Building);
+	DungeonShopRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::DungeonBuilding);
 	DungeonShopRenderer->SetSprite("InDungeonShop.png");
 
 	ImageScale = GameEngineTexture::Find("InDungeonShop.png")->GetScale() * 4.0f;

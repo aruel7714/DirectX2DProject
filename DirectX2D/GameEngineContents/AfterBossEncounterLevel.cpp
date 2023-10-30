@@ -18,18 +18,18 @@ void AfterBossEncounterLevel::Start()
 	GameEngineSprite::CreateSingle("AfterBossEncounter.png");
 	GameEngineSprite::CreateSingle("AfterBossEncounter_Debug.png");
 
-	AfterBossEncounterFloor = CreateActor<class AfterBossEncounterFloor>(RenderOrderDungeon::Floor);
+	AfterBossEncounterFloor = CreateActor<class AfterBossEncounterFloor>(RenderOrder::Floor);
 
-	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("AfterBossEncounter.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
-	std::shared_ptr<DownDoor> Door = CreateActor<DownDoor>(RenderOrderDungeon::NPC);
+	std::shared_ptr<DownDoor> Door = CreateActor<DownDoor>(RenderOrder::NPC);
 	Door->SetDoorPosition({ 638.0f, -(MapScale.Y - 256.0f) });
 
 	{
-		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::Building);
 		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 256.0f - 128.0f) });
 		TriggerLeft->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}

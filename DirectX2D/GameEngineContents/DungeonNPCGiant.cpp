@@ -11,7 +11,7 @@ DungeonNPCGiant::~DungeonNPCGiant()
 
 void DungeonNPCGiant::Start()
 {
-	GiantRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::NPC);
+	GiantRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	GiantRenderer->CreateAnimation("Giant_Idle", "Giant");
 	GiantRenderer->SetSprite("Giant");
 

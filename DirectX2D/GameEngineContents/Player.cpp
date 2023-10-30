@@ -8,6 +8,7 @@
 #include "TownDungeonTrigger.h"
 #include "BackGround.h"
 #include "ShortSword.h"
+#include "HandCrossbow.h"
 
 Player* Player::MainPlayer = nullptr;
 
@@ -94,6 +95,10 @@ void Player::Start()
 	
 	ChangeState(PlayerState::Idle);
 	//ChangeState(PlayerState::Stay);
+
+	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
+	std::shared_ptr<HandCrossbow> WeaponHandCrossbow = GetLevel()->CreateActor<HandCrossbow>(RenderOrder::Weapon);
+	
 
 	{
 		PlayerCollision = CreateComponent<GameEngineCollision>(CollisionType::Player);
@@ -182,7 +187,10 @@ void Player::Update(float _Delta)
 	WeaponPos.X += Mat.X;
 	WeaponPos.Y += Mat.Y / 2.0f;
 
-	ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
+	
+
+	// ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
+	
 
 }
 

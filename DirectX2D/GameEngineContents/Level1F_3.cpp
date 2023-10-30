@@ -15,21 +15,21 @@ void Level1F_3::Start()
 	GameEngineSprite::CreateSingle("Level1F_3.png");
 	GameEngineSprite::CreateSingle("Level1F_3_Debug.png");
 
-	Floor3 = CreateActor<class Level1F_3_Floor>(RenderOrderDungeon::Floor);
+	Floor3 = CreateActor<class Level1F_3_Floor>(RenderOrder::Floor);
 
-	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Level1F_3.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
 	{
-		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 128.0f - 128.0f) });
 		TriggerLeft->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}
 
 	{
-		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerRight->SetMoveTriggerPosition({ MapScale.X - 16.0f, -(512.0f - 128.0f) });
 		TriggerRight->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}

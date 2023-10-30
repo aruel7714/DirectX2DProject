@@ -12,7 +12,7 @@ DownDoor::~DownDoor()
 void DownDoor::Start()
 {
 	GameEngineSprite::CreateSingle("Door.png");
-	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::NPC);
+	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	DoorRenderer->SetSprite("Door.png");
 
 	ImageScale = GameEngineTexture::Find("Door.png")->GetScale() * 4.0f;

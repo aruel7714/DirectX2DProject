@@ -173,7 +173,7 @@ void TownLevel::Start()
 	}
 
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
-	std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
+	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
 }
 
 void TownLevel::Update(float _Delta)

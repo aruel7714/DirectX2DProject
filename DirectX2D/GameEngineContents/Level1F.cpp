@@ -69,26 +69,26 @@ void Level1F::Start()
 	GameEngineSprite::CreateSingle("Start1F.png");
 	GameEngineSprite::CreateSingle("Start1F_Debug.png");
 
-	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrderDungeon::Floor);
+	Level1F_Floor = CreateActor<Level1F_Floor1>(RenderOrder::Floor);
 
-	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 	MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
 
-	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrderDungeon::Prop);
+	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder::DungeonProp);
 	
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Start1F.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 	Door->SetDoorPosition({ 515.0f, -(MapScale.Y - 128.0f) });
 
 	{
-		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 128.0f - 128.0f) });
 		TriggerLeft->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}
 
 	{
-		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerRight->SetMoveTriggerPosition({ MapScale.X - 16.0f, -(MapScale.Y - 128.0f - 128.0f) });
 		TriggerRight->SetMoveTriggerScale({ 64.0f ,256.0f });
 	}

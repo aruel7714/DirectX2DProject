@@ -19,22 +19,22 @@ void BossEncounterLevel::Start()
 	GameEngineSprite::CreateSingle("BossRoom.png");
 	GameEngineSprite::CreateSingle("BossRoom_Debug.png");
 
-	BossEncounterFloor = CreateActor<class BossEncounterFloor>(RenderOrderDungeon::Floor);
+	BossEncounterFloor = CreateActor<class BossEncounterFloor>(RenderOrder::Floor);
 
-	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	MainPlayer->Transform.SetLocalPosition({ 360.0f , -1088.0f });
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
 	{
-		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 192.0f - 128.0f) });
 		TriggerLeft->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}
 
 	{
-		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerRight->SetMoveTriggerPosition({ MapScale.X - 16.0f, -(MapScale.Y - 192.0f - 128.0f) });
 		TriggerRight->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}

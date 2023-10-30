@@ -11,7 +11,7 @@ DungeonNPCInn::~DungeonNPCInn()
 
 void DungeonNPCInn::Start()
 {
-	InnRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrderDungeon::NPC);
+	InnRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	InnRenderer->CreateAnimation("Inn_Idle", "Inn");
 	InnRenderer->SetSprite("Inn");
 

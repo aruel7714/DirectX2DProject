@@ -15,15 +15,15 @@ void Level1F_Last::Start()
 	GameEngineSprite::CreateSingle("Level1F_Last.png");
 	GameEngineSprite::CreateSingle("Level1F_Last_Debug.png");
 
-	FloorLast = CreateActor<class Level1F_Last_Floor>(RenderOrderDungeon::Floor);
+	FloorLast = CreateActor<class Level1F_Last_Floor>(RenderOrder::Floor);
 
-	MainPlayer = CreateActor<Player>(RenderOrderDungeon::Player);
+	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Level1F_Last.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
 	{
-		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrderDungeon::Building);
+		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
 		TriggerLeft->SetMoveTriggerPosition({ 16.0f, -(MapScale.Y - 128.0f - 128.0f) });
 		TriggerLeft->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}
