@@ -74,20 +74,20 @@ void Player::RunUpdate(float _Delta)
 
 void Player::JumpStart()
 {
+	SetGravityForce(float4::UP * JumpPower);
 	ChangeAnimationState("Jump");
 }
 void Player::JumpUpdate(float _Delta)
 {
-	Transform.AddLocalPosition(float4::UP * _Delta * JumpPower);
+	//Transform.AddLocalPosition(float4::UP * _Delta * JumpPower);
+	
 	//Transform.AddLocalPosition(float4::UP * _Delta * 100.0f);
 
-	if (SaveGravityForce.Y + 1.0f < -(JumpPower))
-	{
-	}
 
-	GravityState(_Delta, Transform.GetLocalPosition(), (Scale / 2.0f));
+	GravityState(_Delta, Transform.GetLocalPosition() + float4::UP, (Scale / 2.0f));
 
-	if (GameEngineColor::RED == Color || GameEngineColor::BLUE == Color)
+	
+	if (GameEngineColor::RED == Color || (GameEngineColor::BLUE == Color && PassBlue == false))
 	{
 		ChangeState(PlayerState::Idle);
 	}
@@ -105,7 +105,7 @@ void Player::JumpUpdate(float _Delta)
 
 void Player::DashStart()
 {
-
+	ChangeAnimationState("Jump");
 }
 void Player::DashUpdate(float _Delta)
 {

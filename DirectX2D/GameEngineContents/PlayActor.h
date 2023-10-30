@@ -10,16 +10,21 @@ public:
 	~PlayActor();
 
 	// delete Function
-	PlayActor(const PlayActor & _Other) = delete;
-	PlayActor(PlayActor && _Other) noexcept = delete;
-	PlayActor& operator=(const PlayActor & _Other) = delete;
-	PlayActor& operator=(PlayActor && _Other) noexcept = delete;
+	PlayActor(const PlayActor& _Other) = delete;
+	PlayActor(PlayActor&& _Other) noexcept = delete;
+	PlayActor& operator=(const PlayActor& _Other) = delete;
+	PlayActor& operator=(PlayActor&& _Other) noexcept = delete;
 
 
 
 	void Gravity(float _Delta);
 
 	void GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale);
+
+	void SetGravityForce(float4 _GravityForce)
+	{
+		GravityForce = _GravityForce;
+	}
 
 	void SetGravityForceY(float _GravityForceY)
 	{
@@ -32,12 +37,14 @@ public:
 	}
 
 protected:
-	float4 SaveGravityForce = float4::ZERO;
+	float4 GravityForce = float4::ZERO;
 
 	bool CheckBlue = false;
+	bool PassBlue = true;
+
+	float JumpPower = 700.0f;
 
 private:
-	float4 GravityForce = float4::ZERO;
 
 	float GravityPower = 1000.0f;
 

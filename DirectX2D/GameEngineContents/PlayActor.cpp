@@ -13,9 +13,8 @@ PlayActor::~PlayActor()
 
 void PlayActor::Gravity(float _Delta)
 {
-	GravityForce.Y -= GravityPower * _Delta;
 	Transform.AddLocalPosition(GravityForce * _Delta);
-	SaveGravityForce = GravityForce;
+	GravityForce.Y -= GravityPower * _Delta;
 }
 
 void PlayActor::GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale)
@@ -31,7 +30,7 @@ void PlayActor::GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale)
 		float4 CheckPos = { _CheckPos.X, _CheckPos.Y + _CheckScale.Y };
 		CheckPos += float4::DOWN;
 		GameEngineColor Color = BackGround::DebugBackGround->GetColor(CheckPos, GameEngineColor::RED);
-
+		GravityForce.Y = -JumpPower;
 
 		while (Color == GameEngineColor::RED)
 		{
@@ -69,12 +68,27 @@ void PlayActor::GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale)
 			Transform.AddLocalPosition(float4::LEFT);
 		}
 	}
+
+	if (GravityForce.Y > 0)
+	{
+		PassBlue = true;
+		if (GameEngineColor::BLUE == CheckColor)
+		{
+			Gravity(_Delta);
+			return;
+		}
+	}
+	else
+	{
+		PassBlue = false;
+	}
+	
+	
 	
 
 	if (GameEngineColor::RED != CheckColor && GameEngineColor::BLUE != CheckColor)
 	{
 		Gravity(_Delta);
-
 	}
 	else
 	{
@@ -87,7 +101,7 @@ void PlayActor::GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale)
 			Color = BackGround::DebugBackGround->GetColor(CheckPos, GameEngineColor::RED);
 			Transform.AddLocalPosition(float4::UP);
 		}
-
+		
 		GravityForceReset();
 	}
 }
