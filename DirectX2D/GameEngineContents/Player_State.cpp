@@ -15,23 +15,25 @@ void Player::IdleUpdate(float _Delta)
 		ChangeState(PlayerState::Run);
 	}
 
-
-	//Debug
-	if (true == GameEngineInput::IsPress('W', this)/* || true == GameEngineInput::IsPress('S', this)*/)
-	{
-		ChangeState(PlayerState::Jump);
-		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
-		//ChangeState(PlayerState::Run);
-	}
-
 	if (GameEngineColor::BLUE == BackGround::DebugBackGround->GetColor(Transform.GetLocalPosition(), GameEngineColor::BLUE))
 	{
 		if (true == GameEngineInput::IsPress('S', this) && true == GameEngineInput::IsPress(VK_SPACE, this))
 		{
 			//Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
 			ChangeState(PlayerState::DownJump);
+			return;
 		}
 	}
+
+	//Debug
+	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress(VK_SPACE, this))
+	{
+		ChangeState(PlayerState::Jump);
+		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+		//ChangeState(PlayerState::Run);
+	}
+
+	
 
 	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
 	{
@@ -64,10 +66,24 @@ void Player::RunUpdate(float _Delta)
 	//	ChangeState(PlayerState::Jump);
 	//}
 
-	if (true == GameEngineInput::IsPress('W', this))
+	if (GameEngineColor::BLUE == BackGround::DebugBackGround->GetColor(Transform.GetLocalPosition(), GameEngineColor::BLUE))
+	{
+		if (true == GameEngineInput::IsPress('S', this) && true == GameEngineInput::IsPress(VK_SPACE, this))
+		{
+			//Transform.AddLocalPosition(float4::DOWN * _Delta * Speed);
+			ChangeState(PlayerState::DownJump);
+			return;
+		}
+	}
+
+	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress(VK_SPACE, this))
 	{
 		ChangeState(PlayerState::Jump);
+		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
+		//ChangeState(PlayerState::Run);
 	}
+
+	
 
 
 	if (true == GameEngineInput::IsFree('A', this) && true == GameEngineInput::IsFree('D', this) &&
@@ -113,6 +129,7 @@ void Player::JumpUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
 	{
+		GravityForceReset();
 		ChangeState(PlayerState::Dash);
 	}
 }
@@ -135,6 +152,7 @@ void Player::DashUpdate(float _Delta)
 	if (GetLiveTime() < 0.15f)
 	{
 		Transform.AddLocalPosition(Dir * _Delta);
+		SetGravityForce(float4::UP);
 	}
 	else
 	{
@@ -203,6 +221,10 @@ void Player::DownJumpUpdate(float _Delta)
 	else if (true == GameEngineInput::IsPress('D', this))
 	{
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+	}
+	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
+	{
+		ChangeState(PlayerState::Dash);
 	}
 }
 

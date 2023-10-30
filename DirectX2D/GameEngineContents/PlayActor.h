@@ -42,7 +42,7 @@ protected:
 	bool CheckBlue = false;
 	bool PassBlue = true;
 
-	float JumpPower = 700.0f;
+	float JumpPower = 900.0f;
 
 private:
 
