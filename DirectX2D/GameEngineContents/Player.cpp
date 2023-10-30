@@ -162,14 +162,14 @@ void Player::Update(float _Delta)
 
 	// ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
 	
-	
+	DownFloorFunc();
 
-	EventParameter LevelChangeEvent;
-	LevelChangeEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	{
-		DownFloorFunc();
-	};
-	PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
+	//EventParameter LevelChangeEvent;
+	//LevelChangeEvent.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	//{
+	//	DownFloorFunc();
+	//};
+	//PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
 }
 
 void Player::CameraFocus()
