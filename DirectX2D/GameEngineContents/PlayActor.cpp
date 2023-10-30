@@ -30,7 +30,11 @@ void PlayActor::GravityState(float _Delta, float4 _CheckPos, float4 _CheckScale)
 		float4 CheckPos = { _CheckPos.X, _CheckPos.Y + _CheckScale.Y };
 		CheckPos += float4::DOWN;
 		GameEngineColor Color = BackGround::DebugBackGround->GetColor(CheckPos, GameEngineColor::RED);
-		GravityForce.Y = -JumpPower;
+		//GravityForce.Y = -JumpPower;
+		if (GravityForce.Y > 0)
+		{
+			GravityForce.Y *= -1.0f;
+		}
 
 		while (Color == GameEngineColor::RED)
 		{

@@ -153,6 +153,7 @@ void Player::DashUpdate(float _Delta)
 	{
 		Transform.AddLocalPosition(Dir * _Delta);
 		SetGravityForce(float4::UP);
+		GravityState(_Delta, Transform.GetLocalPosition(), (Scale / 2.0f));
 	}
 	else
 	{
