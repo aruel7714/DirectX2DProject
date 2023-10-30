@@ -46,7 +46,7 @@ protected:
 
 private:
 
-	float GravityPower = 1000.0f;
+	float GravityPower = 2000.0f;
 
 	float4 ColorPosition = Transform.GetWorldPosition();
 

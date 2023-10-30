@@ -161,13 +161,15 @@ void Player::Update(float _Delta)
 	if (Dir == PlayerDir::Left)
 	{
 		//MainRenderer->LeftFlip();
-		Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+		//Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+		MainRenderer->LeftFlip();
 	}
 
 	if (Dir == PlayerDir::Right)
 	{
 		//MainRenderer->RightFlip();
-		Transform.SetLocalScale({ abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+		//Transform.SetLocalScale({ abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
+		MainRenderer->RightFlip();
 	}
 
 	float4 Mat = PlayerCollision->Transform.GetLocalScale();

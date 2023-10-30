@@ -32,6 +32,11 @@ void Player::IdleUpdate(float _Delta)
 			ChangeState(PlayerState::DownJump);
 		}
 	}
+
+	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
+	{
+		ChangeState(PlayerState::Dash);
+	}
 	
 }
 
@@ -70,6 +75,11 @@ void Player::RunUpdate(float _Delta)
 	{
 		ChangeState(PlayerState::Idle);
 	}
+
+	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
+	{
+		ChangeState(PlayerState::Dash);
+	}
 }
 
 void Player::JumpStart()
@@ -101,15 +111,49 @@ void Player::JumpUpdate(float _Delta)
 		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 	}
 
+	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
+	{
+		ChangeState(PlayerState::Dash);
+	}
 }
 
 void Player::DashStart()
 {
 	ChangeAnimationState("Jump");
+	ResetLiveTime();
 }
 void Player::DashUpdate(float _Delta)
 {
+	float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
+	float4 PlayerPos = Transform.GetWorldPosition();
 
+	float4 Dir = WorldMousePos - PlayerPos;
+
+	Dir.Normalize();
+	Dir *= 1500.0f;
+
+	if (GetLiveTime() < 0.15f)
+	{
+		Transform.AddLocalPosition(Dir * _Delta);
+	}
+	else
+	{
+		GravityState(_Delta, Transform.GetLocalPosition(), (Scale / 2.0f));
+	}
+
+	if (GameEngineColor::RED == Color || (GameEngineColor::BLUE == Color && PassBlue == false))
+	{
+		ChangeState(PlayerState::Idle);
+	}
+
+	if (true == GameEngineInput::IsPress('A', this))
+	{
+		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+	}
+	else if (true == GameEngineInput::IsPress('D', this))
+	{
+		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+	}
 }
 
 void Player::DownJumpStart()
