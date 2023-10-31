@@ -193,6 +193,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BigWhiteSkel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossEncounterFloor.cpp">
       <SubType>
       </SubType>
@@ -429,6 +433,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BeforeBossEncounterLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BigWhiteSkel.h">
       <SubType>
       </SubType>
     </ClInclude>

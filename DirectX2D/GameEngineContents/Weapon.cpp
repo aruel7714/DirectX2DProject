@@ -18,7 +18,7 @@ void Weapon::Update(float _Delta)
 
 }
 
-void Weapon::SetWeaponPosition(float4 _Pos)
-{
-	Transform.SetLocalPosition(_Pos);
-}
+//void Weapon::SetWeaponPosition(float4 _Pos)
+//{
+//	Transform.SetLocalPosition(_Pos);
+//}

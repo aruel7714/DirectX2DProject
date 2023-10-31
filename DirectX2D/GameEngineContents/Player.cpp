@@ -271,6 +271,7 @@ void Player::DirCheck()
 {
 	float4 WorldMousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
 	float4 PlayerPos = Transform.GetWorldPosition();
+	//float4 PlayerLocalPos = Transform.GetLocalPosition();
 
 	if (0.0f <= WorldMousePos.X - PlayerPos.X)
 	{

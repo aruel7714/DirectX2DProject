@@ -37,6 +37,11 @@ public:
 
 	void ChangeStateStay();
 
+	static Player* GetMainPlayer()
+	{
+		return MainPlayer;
+	}
+
 protected:
 	void Start();
 	void Update(float _Delta);
@@ -77,8 +82,6 @@ private:
 
 	//void Gravity(float _Delta);
 private:
-	float4 GravityForce = {0.0f, 0.0f, 0.0f, 1.0f};
-
 	PlayerDir Dir = PlayerDir::Right;
 
 	//float Speed = 1000.0f;

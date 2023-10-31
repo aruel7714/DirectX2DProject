@@ -16,6 +16,7 @@ enum class RenderOrder
 	Floor,
 	DungeonProp,
 	DungeonBuilding,
+	Monster,
 	NPC,
 	Weapon,
 	Player,

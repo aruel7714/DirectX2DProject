@@ -178,6 +178,9 @@
     <ClCompile Include="HandCrossbow.cpp">
       <Filter>Object\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="BigWhiteSkel.cpp">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -357,6 +360,9 @@
     <ClInclude Include="HandCrossbow.h">
       <Filter>Object\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="BigWhiteSkel.h">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -424,6 +430,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\Stage2F\AfterBossEncounter">
       <UniqueIdentifier>{86ea3889-4d5f-4f68-893b-a8c56aac04f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Monster">
+      <UniqueIdentifier>{5ef727f6-86b1-45e5-b3ed-0e8cff4abcc5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
