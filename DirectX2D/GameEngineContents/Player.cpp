@@ -131,14 +131,12 @@ void Player::Update(float _Delta)
 
 	if (Dir == PlayerDir::Left)
 	{
-		//MainRenderer->LeftFlip();
 		//Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
 		MainRenderer->LeftFlip();
 	}
 
 	if (Dir == PlayerDir::Right)
 	{
-		//MainRenderer->RightFlip();
 		//Transform.SetLocalScale({ abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
 		MainRenderer->RightFlip();
 	}
@@ -162,14 +160,14 @@ void Player::Update(float _Delta)
 
 	// ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
 	
-	DownFloorFunc();
+	//DownFloorFunc();
 
-	//EventParameter LevelChangeEvent;
-	//LevelChangeEvent.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	//{
-	//	DownFloorFunc();
-	//};
-	//PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
+	EventParameter LevelChangeEvent;
+	LevelChangeEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+		DownFloorFunc();
+	};
+	PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
 }
 
 void Player::CameraFocus()

@@ -29,13 +29,13 @@ void DownDoor::Start()
 }
 void DownDoor::Update(float _Delta)
 {
-	EventParameter FloorDownEvent;
-	FloorDownEvent.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	{
-		//GameEngineCore::ChangeLevel("Level1F_3");
-	};
+	//EventParameter FloorDownEvent;
+	//FloorDownEvent.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	//{
+	//	//GameEngineCore::ChangeLevel("Level1F_3");
+	//};
 
-	DoorCollision->CollisionEvent(CollisionType::Player, FloorDownEvent);
+	//DoorCollision->CollisionEvent(CollisionType::Player, FloorDownEvent);
 }
 
 void DownDoor::SetDoorPosition(float4 _Pos)
