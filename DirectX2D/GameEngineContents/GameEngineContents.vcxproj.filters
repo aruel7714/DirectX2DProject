@@ -181,6 +181,12 @@
     <ClCompile Include="BigWhiteSkel.cpp">
       <Filter>Level\Dungeon\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="RustyShortSwordSkel.cpp">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="RustyGreatSwordSkel.cpp">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -361,6 +367,12 @@
       <Filter>Object\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="BigWhiteSkel.h">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="RustyShortSwordSkel.h">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="RustyGreatSwordSkel.h">
       <Filter>Level\Dungeon\Monster</Filter>
     </ClInclude>
   </ItemGroup>
