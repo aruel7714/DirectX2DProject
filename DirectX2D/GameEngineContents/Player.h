@@ -22,7 +22,7 @@ enum class PlayerDir
 // Ό³Έν : 
 class Player : public PlayActor
 {
-private:
+public:
 	static Player* MainPlayer;
 public:
 	// constrcuter destructer
@@ -40,6 +40,16 @@ public:
 	static Player* GetMainPlayer()
 	{
 		return MainPlayer;
+	}
+
+	float4 GetRendererScale()
+	{
+		return MainRenderer->GetImageTransform().GetLocalScale();
+	}
+
+	PlayerDir GetPlayerDir()
+	{
+		return Dir;
 	}
 
 protected:
@@ -80,14 +90,14 @@ private:
 
 	void DownFloorFunc();
 
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
+
 	//void Gravity(float _Delta);
 private:
 	PlayerDir Dir = PlayerDir::Right;
 
 	//float Speed = 1000.0f;
 	float Speed = 500.0f;
-
-	
 	
 	GameEngineColor Color;
 

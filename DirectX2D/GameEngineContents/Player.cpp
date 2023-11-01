@@ -14,6 +14,7 @@ Player* Player::MainPlayer = nullptr;
 
 Player::Player()
 {
+	MainPlayer = this;
 }
 
 Player::~Player()
@@ -22,7 +23,7 @@ Player::~Player()
 
 void Player::Start()
 {
-	MainPlayer = this;
+
 
 	if(nullptr == GameEngineSprite::Find("Idle"))
 	{
@@ -141,9 +142,6 @@ void Player::Update(float _Delta)
 		MainRenderer->RightFlip();
 	}
 
-	float4 Mat = PlayerCollision->Transform.GetLocalScale();
-	int b = 0;
-
 	EventParameter Parameter;
 	Parameter.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
@@ -151,12 +149,6 @@ void Player::Update(float _Delta)
 	};
 
 	PlayerCollision->CollisionEvent(CollisionType::Trigger, Parameter);
-
-	float4 WeaponPos = PlayerPos;
-
-	//WeaponPos.X += MainRenderer->Transform.GetLocalScale().X;
-	WeaponPos.X += Mat.X;
-	WeaponPos.Y += Mat.Y / 2.0f;
 
 	// ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
 	
@@ -326,4 +318,9 @@ void Player::DownFloorFunc()
 	{
 		GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
 	}
+}
+
+void Player::LevelStart(GameEngineLevel* _PrevLevel) 
+{
+	MainPlayer = this;
 }
