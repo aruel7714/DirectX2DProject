@@ -115,10 +115,9 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
-	PlayerScale = GetRendererScale();
-	PlayerPosition = Transform.GetWorldPosition();
-	PlayerPosition.Y += (PlayerScale.Y / 5.0f);
-
+	float4 PlayerPos = Transform.GetWorldPosition();
+	Color = BackGround::DebugBackGround->GetColor(PlayerPos, GameEngineColor::RED);
+	StatusUpdate();
 
 	StateUpdate(_Delta);
 	CameraFocus();
@@ -326,4 +325,11 @@ void Player::DownFloorFunc()
 void Player::LevelStart(GameEngineLevel* _PrevLevel) 
 {
 	MainPlayer = this;
+}
+
+void Player::StatusUpdate()
+{
+	PlayerScale = GetRendererScale();
+	PlayerPosition = Transform.GetWorldPosition();
+	PlayerPosition.Y += (PlayerScale.Y / 5.0f);
 }

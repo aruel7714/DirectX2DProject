@@ -178,17 +178,23 @@
     <ClCompile Include="HandCrossbow.cpp">
       <Filter>Object\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="BigWhiteSkel.cpp">
-      <Filter>Level\Dungeon\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="RustyShortSwordSkel.cpp">
-      <Filter>Level\Dungeon\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="RustyGreatSwordSkel.cpp">
-      <Filter>Level\Dungeon\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="Arrow.cpp">
       <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="BigWhiteSkel.cpp">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="RustyGreatSwordSkel.cpp">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="RustyShortSwordSkel.cpp">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="LittleGhost.cpp">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcherSkel.cpp">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,17 +375,23 @@
     <ClInclude Include="HandCrossbow.h">
       <Filter>Object\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="BigWhiteSkel.h">
-      <Filter>Level\Dungeon\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="RustyShortSwordSkel.h">
-      <Filter>Level\Dungeon\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="RustyGreatSwordSkel.h">
-      <Filter>Level\Dungeon\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Arrow.h">
       <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="BigWhiteSkel.h">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="RustyGreatSwordSkel.h">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="RustyShortSwordSkel.h">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="LittleGhost.h">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcherSkel.h">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +463,12 @@
     </Filter>
     <Filter Include="Level\Dungeon\Monster">
       <UniqueIdentifier>{5ef727f6-86b1-45e5-b3ed-0e8cff4abcc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Monster\Ground">
+      <UniqueIdentifier>{ef4ff87f-5346-4345-8dcf-0971af5f30ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Monster\Air">
+      <UniqueIdentifier>{5adedbb2-8a42-4259-81b2-11854e08f32f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

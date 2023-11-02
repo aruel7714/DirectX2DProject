@@ -2,6 +2,7 @@
 #include "Level1F_1.h"
 #include "Level1F_1_Floor.h"
 #include "BigWhiteSkel.h"
+#include "RustyGreatSwordSkel.h"
 
 Level1F_1::Level1F_1()
 {
@@ -23,8 +24,14 @@ void Level1F_1::Start()
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Level1F_1.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
-	std::shared_ptr<BigWhiteSkel> MonsterBigWhiteSkel = CreateActor<BigWhiteSkel>(RenderOrder::Monster);
-	MonsterBigWhiteSkel->Transform.SetLocalPosition({ 992.0f, -576.0f });
+	std::shared_ptr<BigWhiteSkel> MonsterBigWhiteSkel1 = CreateActor<BigWhiteSkel>(RenderOrder::Monster);
+	MonsterBigWhiteSkel1->Transform.SetLocalPosition({ 992.0f, -576.0f });
+
+	std::shared_ptr<BigWhiteSkel> MonsterBigWhiteSkel2 = CreateActor<BigWhiteSkel>(RenderOrder::Monster);
+	MonsterBigWhiteSkel2->Transform.SetLocalPosition({ 1504.0f, -576.0f });
+
+	std::shared_ptr<RustyGreatSwordSkel> MonsterRustyGreatSwordSkel = CreateActor< RustyGreatSwordSkel>(RenderOrder::Monster);
+	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1248.0f, -576.0f });
 	
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

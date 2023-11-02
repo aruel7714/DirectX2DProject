@@ -15,6 +15,11 @@ public:
 	HandCrossbow& operator=(const HandCrossbow & _Other) = delete;
 	HandCrossbow& operator=(HandCrossbow && _Other) noexcept = delete;
 
+	void SetPosition(float4 _Position)
+	{
+		WeaponPosition = _Position;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -23,7 +28,7 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> HandCrossbowRenderer;
 
-	
+	float4 WeaponPosition = float4::ZERO;
 
 	float AttackTime = 0.0f;
 	float AttackSpeed = 2.38f;

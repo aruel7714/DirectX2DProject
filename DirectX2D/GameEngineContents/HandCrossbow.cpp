@@ -60,7 +60,7 @@ void HandCrossbow::Update(float _Delta)
 		HandCrossbowRenderer->LeftFlip();
 		HandCrossbowRenderer->SetPivotValue({ 0.2f, 0.7f });
 		//Transform.SetLocalPosition();
-		PlayerPosition.X -= PlayerScale.X / 5.0f;
+		PlayerPosition.X -= PlayerScale.X / 6.0f;
 
 		MouseDeg += 180.0f;
 		if (MousePlayerPos.Y < 0)
@@ -73,7 +73,7 @@ void HandCrossbow::Update(float _Delta)
 	{
 		HandCrossbowRenderer->RightFlip();
 		HandCrossbowRenderer->SetPivotValue({ 0.8f, 0.7f });
-		PlayerPosition.X += PlayerScale.X / 5.0f;
+		PlayerPosition.X += PlayerScale.X / 6.0f;
 
 		if (MousePlayerPos.Y < 0)
 		{

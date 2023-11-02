@@ -177,6 +177,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ArcherSkel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Arrow.cpp">
       <SubType>
       </SubType>
@@ -307,6 +311,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LittleGhost.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MainLogo.cpp">
       <SubType>
       </SubType>
@@ -429,6 +437,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="AfterBossEncounterLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ArcherSkel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -560,6 +572,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Level1F_Shop_Floor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LittleGhost.h">
       <SubType>
       </SubType>
     </ClInclude>

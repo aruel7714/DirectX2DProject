@@ -94,6 +94,8 @@ private:
 
 	//void Gravity(float _Delta);
 private:
+	void StatusUpdate();
+
 	PlayerDir Dir = PlayerDir::Right;
 
 	//float Speed = 1000.0f;

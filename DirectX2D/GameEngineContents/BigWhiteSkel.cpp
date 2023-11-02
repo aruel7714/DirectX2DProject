@@ -39,7 +39,7 @@ void BigWhiteSkel::Start()
 	BigWhiteSkelRenderer->SetSprite("BigWhiteSkelIdle");
 
 	BigWhiteSkelRenderer->SetPivotType(PivotType::Bottom);
-	float4 Scale = BigWhiteSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	float4 Scale = BigWhiteSkelRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BigWhiteSkelRenderer->SetImageScale(Scale);
 
 	ChangeState(BigWhiteSkelState::Idle);
