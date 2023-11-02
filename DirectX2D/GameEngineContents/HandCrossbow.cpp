@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "HandCrossbow.h"
 #include "Player.h"
+#include "Arrow.h"
 
 HandCrossbow::HandCrossbow()
 {
@@ -40,6 +41,8 @@ void HandCrossbow::Start()
 }
 void HandCrossbow::Update(float _Delta)
 {
+	AttackTime += _Delta;
+
 	float4 PlayerScale = Player::MainPlayer->GetRendererScale();
 
 	float4 PlayerPosition = Player::MainPlayer->Transform.GetWorldPosition();
@@ -48,9 +51,9 @@ void HandCrossbow::Update(float _Delta)
 
 	float4 MousePos = GetLevel()->GetMainCamera()->GetWorldMousePos2D();
 	float4 MousePlayerPos = MousePos - PlayerPosition;
-	float4 MouseDir = MousePlayerPos.NormalizeReturn();
+	MouseDir = MousePlayerPos.NormalizeReturn();
 
-	float MouseDeg = MouseDir.Angle2DDeg();
+	MouseDeg = MouseDir.Angle2DDeg();
 
 	if (Player::MainPlayer->GetPlayerDir() == PlayerDir::Left)
 	{
@@ -80,9 +83,24 @@ void HandCrossbow::Update(float _Delta)
 	Transform.SetLocalPosition(PlayerPosition);
 	Transform.SetLocalRotation({ 0.0f, 0.0f, MouseDeg });
 
-	
+	if (AttackTime > (1.0f / AttackSpeed))
+	{
+		AttackReady = true;
+	}
 
-	
+	if (GameEngineInput::IsPress(VK_LBUTTON, this) && AttackReady == true)
+	{
+		std::shared_ptr<Arrow> CrossbowArrow = GetLevel()->CreateActor<Arrow>(RenderOrder::WeaponProjectile);
+
+		AttackReady = false;
+		AttackTime = 0.0f;
+	}
+
+	// 공격속도 2.38
+	// Time = 0;
+	// Time += _Delta
+	// (1 / 2,38) < Time 일때만 공격
+	// 공격하고나면 Time = 0;
 	
 
 	

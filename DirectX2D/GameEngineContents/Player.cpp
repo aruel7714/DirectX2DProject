@@ -115,9 +115,10 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
-	float4 PlayerPos = Transform.GetWorldPosition();
-	Color = BackGround::DebugBackGround->GetColor(PlayerPos, GameEngineColor::RED);
-	int a = 0;
+	PlayerScale = GetRendererScale();
+	PlayerPosition = Transform.GetWorldPosition();
+	PlayerPosition.Y += (PlayerScale.Y / 5.0f);
+
 
 	StateUpdate(_Delta);
 	CameraFocus();
@@ -134,12 +135,14 @@ void Player::Update(float _Delta)
 	{
 		//Transform.SetLocalScale({ -abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
 		MainRenderer->LeftFlip();
+		PlayerPosition.X -= PlayerScale.X / 6.0f;
 	}
 
 	if (Dir == PlayerDir::Right)
 	{
 		//Transform.SetLocalScale({ abs(Transform.GetLocalScale().X), Transform.GetLocalScale().Y });
 		MainRenderer->RightFlip();
+		PlayerPosition.X += PlayerScale.X / 6.0f;
 	}
 
 	EventParameter Parameter;

@@ -20,6 +20,7 @@ enum class RenderOrder
 	Monster,
 	MonsterFrontWeapon,
 	NPC,
+	WeaponProjectile,
 	Weapon,
 	Player,
 	FrontBuilding,

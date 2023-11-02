@@ -187,6 +187,9 @@
     <ClCompile Include="RustyGreatSwordSkel.cpp">
       <Filter>Level\Dungeon\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Arrow.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -374,6 +377,9 @@
     </ClInclude>
     <ClInclude Include="RustyGreatSwordSkel.h">
       <Filter>Level\Dungeon\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrow.h">
+      <Filter>Object\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

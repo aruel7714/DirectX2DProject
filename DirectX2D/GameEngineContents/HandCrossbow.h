@@ -23,5 +23,10 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> HandCrossbowRenderer;
 
+	
+
+	float AttackTime = 0.0f;
+	float AttackSpeed = 2.38f;
+	bool AttackReady = true;
 };
 

@@ -101,6 +101,9 @@ private:
 	
 	GameEngineColor Color;
 
+	float4 PlayerScale = float4::ZERO;
+	float4 PlayerPosition = float4::ZERO;
+
 private:
 	//Debug
 	float CheckDelta = 0.0f;

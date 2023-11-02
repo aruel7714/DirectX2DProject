@@ -16,7 +16,8 @@ public:
 	Weapon& operator=(const Weapon & _Other) = delete;
 	Weapon& operator=(Weapon && _Other) noexcept = delete;
 	
-	void SetWeaponPosition(float4 _Pos);
+	static float4 MouseDir;
+	static float MouseDeg;
 
 protected:
 	void Start();
@@ -24,6 +25,6 @@ protected:
 
 	
 private:
-
+	
 };
 
