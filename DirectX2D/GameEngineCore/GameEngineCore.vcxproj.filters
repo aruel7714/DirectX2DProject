@@ -73,6 +73,9 @@
     <Filter Include="Resources\Font">
       <UniqueIdentifier>{97cb9437-286c-4de6-96d5-9fd50e18669a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PathFind">
+      <UniqueIdentifier>{f3720bbb-7434-4b9a-8fe2-7efc85519459}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -219,6 +222,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineFont.cpp">
       <Filter>Resources\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="AStartPathFinder.cpp">
+      <Filter>PathFind</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -378,6 +384,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineFont.h">
       <Filter>Resources\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="AStartPathFinder.h">
+      <Filter>PathFind</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
