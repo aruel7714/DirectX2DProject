@@ -16,6 +16,7 @@ public:
 	~GameEngineSerializer();
 
 	void Write(const void* Data, unsigned int _Size);
+	void operator<<(std::string_view _Value);
 	void operator<<(const std::string& _Value);
 	void operator<<(const int& _Value);
 	void operator<<(const unsigned int& _Value);
@@ -35,6 +36,8 @@ public:
 	void operator>>(float4& _Value);
 	void operator>>(float4x4& _Value);
 
+	std::string_view GetStringView();
+
 	// delete Function
 	//GameEngineSerializer(const GameEngineSerializer & _Other) = delete;
 	//GameEngineSerializer(GameEngineSerializer && _Other) noexcept = delete;
@@ -49,6 +52,11 @@ public:
 	size_t GetBufferSize()
 	{
 		return Data.size();
+	}
+
+	size_t GetWriteOffset()
+	{
+		return WriteOffset;
 	}
 
 	template<typename PtrType>
