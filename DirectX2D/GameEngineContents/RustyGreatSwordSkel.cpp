@@ -54,6 +54,7 @@ void RustyGreatSwordSkel::Start()
 	float4 SwordScale = RustyGreatSwordRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	RustyGreatSwordRenderer->SetImageScale(SwordScale);
 	
+	ChangeSwordState(RustyGreatSwordState::Attack);
 }
 void RustyGreatSwordSkel::Update(float _Delta)
 {
@@ -63,17 +64,17 @@ void RustyGreatSwordSkel::Update(float _Delta)
 	float4 Pos = float4::ZERO;
 	float4 Scale = RustyGreatSwordSkelRenderer->GetImageTransform().GetLocalScale();
 
-	Pos.Y += Scale.Y / 3.0f;
+	Pos.Y += (Scale.Y / 4.0f) + 6.0f;
 
 	if (SkelDir == RustyGreatSwordSkelDir::Right)
 	{
-		Pos.X += Scale.X / 3.0f;
+		Pos.X += Scale.X / 8.0f * 3.0f;
 		RustyGreatSwordSkelRenderer->RightFlip();
 		RustyGreatSwordRenderer->RightFlip();
 	}
 	if (SkelDir == RustyGreatSwordSkelDir::Left)
 	{
-		Pos.X -= Scale.X / 3.0f;
+		Pos.X -= Scale.X / 8.0f * 3.0f;
 		RustyGreatSwordSkelRenderer->LeftFlip();
 		RustyGreatSwordRenderer->LeftFlip();
 	}
@@ -230,5 +231,8 @@ void RustyGreatSwordSkel::SwordAttackStart()
 }
 void RustyGreatSwordSkel::SwordAttackUpdate(float _Delta)
 {
-
+	if (RustyGreatSwordRenderer->IsCurAnimationEnd())
+	{
+		ChangeSwordState(RustyGreatSwordState::Idle);
+	}
 }

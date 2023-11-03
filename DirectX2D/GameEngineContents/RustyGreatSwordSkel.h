@@ -47,7 +47,7 @@ private:
 
 	RustyGreatSwordSkelState SkelState = RustyGreatSwordSkelState::Max;
 	RustyGreatSwordState SwordState = RustyGreatSwordState::Max;
-	RustyGreatSwordSkelDir SkelDir = RustyGreatSwordSkelDir::Right;
+	RustyGreatSwordSkelDir SkelDir = RustyGreatSwordSkelDir::Left;
 
 	void ChangeSkelState(RustyGreatSwordSkelState _State);
 	void SkelStateUpdate(float _Delta);
