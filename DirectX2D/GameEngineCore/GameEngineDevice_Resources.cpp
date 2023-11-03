@@ -16,6 +16,7 @@
 #include "GameEngineMesh.h"
 #include "GameEngineDepthStencil.h"
 #include "GameEngineMaterial.h"
+#include "GameEngineFont.h"
 
 void GameEngineDevice::ResourcesInit()
 {
@@ -49,6 +50,8 @@ void GameEngineDevice::ResourcesInit()
 	//		GameEngineShader::AutoCompile(File);
 	//	}
 	//}
+
+	GameEngineFont::Load("돋움");
 
 	{
 		// 엔진용 쉐이더를 전부다 전부다 로드하는 코드를 친다.
