@@ -49,7 +49,8 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 		EventCheck = true;
 		//CurTime -= Inter;
 
-		if (CurIndex > End - Start)
+		//if (CurIndex > End - Start)
+		if (CurIndex > InterIndex)
 		{
 			if (nullptr != EndEvent && false == IsEnd)
 			{
@@ -284,21 +285,25 @@ void GameEngineSpriteRenderer::CreateAnimation(
 
 	if (NewAnimation->Start > NewAnimation->End)
 	{
-		int Temp = NewAnimation->End;
-		NewAnimation->End = NewAnimation->Start;
-		NewAnimation->Start = Temp;
-
-		for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i--)
+		for (
+			int i = NewAnimation->Start;
+			i >= NewAnimation->End;
+			i--
+			)
 		{
 			NewAnimation->Index.push_back(i);
 		}
+
+		NewAnimation->InterIndex = NewAnimation->Start - NewAnimation->End;
 	}
 	else
 	{
-		for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i++)
+		for (int i = NewAnimation->Start; i <= NewAnimation->End; i++)
 		{
 			NewAnimation->Index.push_back(i);
 		}
+
+		NewAnimation->InterIndex = NewAnimation->End - NewAnimation->Start;
 	}
 
 	NewAnimation->Inter.resize(NewAnimation->Index.size());
