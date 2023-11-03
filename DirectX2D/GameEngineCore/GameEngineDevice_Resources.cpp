@@ -17,6 +17,7 @@
 #include "GameEngineDepthStencil.h"
 #include "GameEngineMaterial.h"
 #include "GameEngineFont.h"
+#include "GameEngineRenderTarget.h"
 
 void GameEngineDevice::ResourcesInit()
 {
@@ -296,10 +297,10 @@ void GameEngineDevice::ResourcesInit()
 		std::vector<GameEngineVertex> Vertex;
 		Vertex.resize(4);
 
-		Vertex[0] = { { -1.0f, -1.0f, 0.0f, 1.0f }, {0.0f, 0.0f} };
-		Vertex[1] = { { 1.0f, -1.0f, 0.0f, 1.0f },  {1.0f, 0.0f} };
-		Vertex[2] = { { 1.0f, 1.0f, 0.0f, 1.0f },   {1.0f, 1.0f} };
-		Vertex[3] = { { -1.0f, 1.0f, 0.0f, 1.0f },  {0.0f, 1.0f} };
+		Vertex[0] = { { -1.0f, 1.0f, 0.0f, 1.0f },  {0.0f, 0.0f} };
+		Vertex[1] = { { 1.0f, 1.0f, 0.0f, 1.0f } , {1.0f, 0.0f} };
+		Vertex[2] = { { 1.0f, -1.0f, 0.0f, 1.0f }  , {1.0f, 1.0f} };
+		Vertex[3] = { { -1.0f, -1.0f, 0.0f, 1.0f } , {0.0f, 1.0f} };
 
 		GameEngineVertexBuffer::Create("FullRect", Vertex);
 
@@ -310,6 +311,8 @@ void GameEngineDevice::ResourcesInit()
 		};
 
 		GameEngineIndexBuffer::Create("FullRect", Index);
+
+		GameEngineMesh::Create("FullRect");
 	}
 
 	// 나중에 사라질거임.
@@ -568,6 +571,7 @@ void GameEngineDevice::ResourcesInit()
 		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("2DTextureWire");
 		Mat->SetVertexShader("DebugColor_VS");
 		Mat->SetPixelShader("DebugColor_PS");
+		Mat->SetDepthState("AlwaysDepth");
 		Mat->SetRasterizer("EngineWireRasterizer");
 	}
 
@@ -575,10 +579,21 @@ void GameEngineDevice::ResourcesInit()
 		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("2DDebugLine");
 		Mat->SetVertexShader("DebugLine_VS");
 		Mat->SetPixelShader("DebugLine_PS");
+		Mat->SetDepthState("AlwaysDepth");
 		// Mat->SetRasterizer("EngineWireRasterizer");
 
 		Mat->SetRasterizer("EngineRasterizer");
 	}
+
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("TargetMerge");
+		Mat->SetVertexShader("TargetMerge_VS");
+		Mat->SetPixelShader("TargetMerge_PS");
+		Mat->SetDepthState("AlwaysDepth");
+		Mat->SetRasterizer("EngineRasterizer");
+	}
+
+	GameEngineRenderTarget::MergeRenderUnitInit();
 
 	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
 	// 기본 매쉬

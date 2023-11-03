@@ -413,11 +413,13 @@
     <None Include="ThirdParty\DirectXTex\inc\DirectXTex.inl">
       <Filter>ThirdParty\inc</Filter>
     </None>
-    <None Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.dll">
-      <Filter>ThirdParty\Release</Filter>
-    </None>
-    <None Include="ThirdParty\FW1FontWrapper\lib\Debug\FW1FontWrapper.dll">
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\lib\Debug\FW1FontWrapper.dll">
       <Filter>ThirdParty\Debug</Filter>
-    </None>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\lib\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Release</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

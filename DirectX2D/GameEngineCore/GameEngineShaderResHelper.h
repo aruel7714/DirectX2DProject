@@ -69,6 +69,7 @@ public:
 
 	void ShaderResCopy(class GameEngineShader* _Shader);
 
+	void AllShaderResourcesReset();
 	void AllShaderResourcesSetting();
 
 	bool IsConstantBuffer(std::string_view _Name)
