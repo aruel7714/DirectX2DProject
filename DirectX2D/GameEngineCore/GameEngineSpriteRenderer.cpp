@@ -280,10 +280,25 @@ void GameEngineSpriteRenderer::CreateAnimation(
 		NewAnimation->End = Sprite->GetSpriteCount() - 1;
 	}
 
+	int Plus = 1;
 
-	for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i++)
+	if (NewAnimation->Start > NewAnimation->End)
 	{
-		NewAnimation->Index.push_back(i);
+		int Temp = NewAnimation->End;
+		NewAnimation->End = NewAnimation->Start;
+		NewAnimation->Start = Temp;
+
+		for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i--)
+		{
+			NewAnimation->Index.push_back(i);
+		}
+	}
+	else
+	{
+		for (unsigned int i = NewAnimation->Start; i <= NewAnimation->End; i++)
+		{
+			NewAnimation->Index.push_back(i);
+		}
 	}
 
 	NewAnimation->Inter.resize(NewAnimation->Index.size());
