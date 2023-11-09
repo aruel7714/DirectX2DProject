@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="BlurPostEffect.fx" />
     <FxCompile Include="ColorShader.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
@@ -33,6 +34,7 @@
     </FxCompile>
     <FxCompile Include="DebugLineShader.fx" />
     <FxCompile Include="FadePostEffect.fx" />
+    <FxCompile Include="Function.fx" />
     <FxCompile Include="RenderBase.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>

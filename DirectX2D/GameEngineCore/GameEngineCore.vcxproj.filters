@@ -238,6 +238,9 @@
     <ClCompile Include="GameEngineCoreWindow.cpp">
       <Filter>GUI\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="BlurPostEffect.cpp">
+      <Filter>Rendering\PostEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineCore.h" />
@@ -405,6 +408,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineCoreWindow.h">
       <Filter>GUI\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="BlurPostEffect.h">
+      <Filter>Rendering\PostEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
