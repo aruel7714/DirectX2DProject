@@ -2,6 +2,8 @@
 #include "GameEngineTexture.h"
 #include "GameEngineRenderer.h"
 
+#define MAX_RENDER_TARGET_SETTING_COUNT 8
+
 class Effect : public GameEngineObjectBase
 {
 	friend class GameEngineRenderTarget;
@@ -24,6 +26,9 @@ public:
 // 설명 : 기몬적으로 멀티랜더 타겟
 class GameEngineRenderTarget : public GameEngineResources<GameEngineRenderTarget>
 {
+public:
+	static void RenderTargetReset();
+
 public:
 	friend class GameEngineCoreWindow;
 	friend GameEngineDevice;
@@ -71,11 +76,6 @@ public:
 	void Clear();
 	void Setting();
 
-	void SetClearColor(const float4& _Color, int _Index = 0)
-	{
-		ClearColor[_Index] = _Color;
-	}
-
 	void CreateDepthTexture(int _Index = 0);
 
 	void AddNewTexture(DXGI_FORMAT _Format, float4 _Scale, float4 _ClearColor);
@@ -90,6 +90,11 @@ public:
 
 	void EffectInit(Effect* _Effect);
 
+	void SetClearColor(const float4& _Color, int _Index = 0)
+	{
+		ClearColor[_Index] = _Color;
+	}
+
 	template<typename EffectType>
 	std::shared_ptr<EffectType> CreateEffect()
 	{
@@ -99,6 +104,8 @@ public:
 		Effects.push_back(NewEffect);
 		return NewEffect;
 	}
+
+	std::shared_ptr<GameEngineRenderTarget> CreateChildRenderTarget(std::vector<int> _Index);
 
 protected:
 
