@@ -47,11 +47,11 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 		CurTime -= Inter[CurIndex];
 		++CurIndex;
 
-		if (nullptr != FrameChangeFunction)
-		{
-			SpriteData Data = Sprite->GetSpriteData(Index[CurIndex]);
-			FrameChangeFunction(Data, CurIndex);
-		}
+		//if (nullptr != FrameChangeFunction)
+		//{
+		//	SpriteData Data = Sprite->GetSpriteData(Index[CurIndex]);
+		//	FrameChangeFunction(Data, CurIndex);
+		//}
 
 		EventCheck = true;
 		//CurTime -= Inter;
@@ -74,6 +74,12 @@ SpriteData GameEngineFrameAnimation::Update(float _DeltaTime)
 			{
 				--CurIndex;
 			}
+		}
+
+		if (nullptr != FrameChangeFunction)
+		{
+			SpriteData Data = Sprite->GetSpriteData(Index[CurIndex]);
+			FrameChangeFunction(Data, CurIndex);
 		}
 	}
 
@@ -236,17 +242,17 @@ void GameEngineSpriteRenderer::SetSprite(std::string_view _Name, unsigned int in
 	SetImageScale(CurSprite.GetScale() * AutoScaleRatio);
 }
 
-void GameEngineSpriteRenderer::ChangeCurSprite(int _Index)
-{
-	CurFrameAnimations = nullptr;
-
-	if (nullptr == Sprite)
-	{
-		MsgBoxAssert("존재하지 않는 스프라이트를 사용하려고 했습니다.");
-	}
-
-	CurSprite = Sprite->GetSpriteData(_Index);
-}
+//void GameEngineSpriteRenderer::ChangeCurSprite(int _Index)
+//{
+//	CurFrameAnimations = nullptr;
+//
+//	if (nullptr == Sprite)
+//	{
+//		MsgBoxAssert("존재하지 않는 스프라이트를 사용하려고 했습니다.");
+//	}
+//
+//	CurSprite = Sprite->GetSpriteData(_Index);
+//}
 
 void GameEngineSpriteRenderer::CreateAnimation(
 	std::string_view _AnimationName,
@@ -357,6 +363,12 @@ void GameEngineSpriteRenderer::ChangeAnimation(std::string_view _AnimationName, 
 	CurFrameAnimations->Reset();
 	CurFrameAnimations->CurIndex = _FrameIndex;
 	CurSprite = CurFrameAnimations->Sprite->GetSpriteData(CurFrameAnimations->CurIndex);
+
+	if (nullptr != CurFrameAnimations->FrameChangeFunction)
+	{
+		SpriteData Data = Sprite->GetSpriteData(CurFrameAnimations->Index[CurFrameAnimations->CurIndex]);
+		CurFrameAnimations->FrameChangeFunction(Data, CurFrameAnimations->CurIndex);
+	}
 }
 
 void GameEngineSpriteRenderer::AutoSpriteSizeOn()
@@ -400,22 +412,6 @@ void GameEngineSpriteRenderer::SetFrameEvent(std::string_view _AnimationName, in
 	Animation->FrameEventFunction[_Frame] = _Function;
 }
 
-void GameEngineSpriteRenderer::SetFrameChangeFunction(std::string_view _AnimationName, std::function<void(const SpriteData& CurSprite, int _SpriteIndex)> _Function)
-{
-	std::string UpperName = GameEngineString::ToUpperReturn(_AnimationName);
-
-	std::map<std::string, std::shared_ptr<GameEngineFrameAnimation>>::iterator FindIter = FrameAnimations.find(UpperName);
-
-	std::shared_ptr<GameEngineFrameAnimation> Animation = FindIter->second;
-
-	if (nullptr == Animation)
-	{
-		MsgBoxAssert("존재하지 않는 애니메이션에 이벤트를 만들려고 했습니다.");
-	}
-
-	Animation->FrameChangeFunction = _Function;
-}
-
 void GameEngineSpriteRenderer::SetStartEvent(std::string_view _AnimationName, std::function<void(GameEngineSpriteRenderer*)> _Function)
 {
 	std::string UpperName = GameEngineString::ToUpperReturn(_AnimationName);
@@ -446,6 +442,30 @@ void GameEngineSpriteRenderer::SetEndEvent(std::string_view _AnimationName, std:
 	}
 
 	Animation->EndEvent = _Function;
+}
+
+void GameEngineSpriteRenderer::SetFrameChangeFunctionAll(std::function<void(const SpriteData& CurSprite, int _SpriteIndex)> _Function)
+{
+	for (std::pair<const std::string, std::shared_ptr<GameEngineFrameAnimation>>& _Pair : FrameAnimations)
+	{
+		_Pair.second->FrameChangeFunction = _Function;
+	}
+}
+
+void GameEngineSpriteRenderer::SetFrameChangeFunction(std::string_view _AnimationName, std::function<void(const SpriteData& CurSprite, int _SpriteIndex)> _Function)
+{
+	std::string UpperName = GameEngineString::ToUpperReturn(_AnimationName);
+
+	std::map<std::string, std::shared_ptr<GameEngineFrameAnimation>>::iterator FindIter = FrameAnimations.find(UpperName);
+
+	std::shared_ptr<GameEngineFrameAnimation> Animation = FindIter->second;
+
+	if (nullptr == Animation)
+	{
+		MsgBoxAssert("존재하지 않는 애니메이션에 이벤트를 만들려고 했습니다.");
+	}
+
+	Animation->FrameChangeFunction = _Function;
 }
 
 void GameEngineSpriteRenderer::AnimationPauseSwitch()
