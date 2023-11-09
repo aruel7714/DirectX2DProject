@@ -593,6 +593,14 @@ void GameEngineDevice::ResourcesInit()
 		Mat->SetRasterizer("EngineRasterizer");
 	}
 
+	{
+		std::shared_ptr<GameEngineMaterial> Mat = GameEngineMaterial::Create("FadePostEffect");
+		Mat->SetVertexShader("FadePostEffect_VS");
+		Mat->SetPixelShader("FadePostEffect_PS");
+		Mat->SetDepthState("AlwaysDepth");
+		Mat->SetRasterizer("EngineRasterizer");
+	}
+
 	GameEngineRenderTarget::MergeRenderUnitInit();
 
 	// 엔진수준에서 지원해주는 가장 기초적인 리소스들은 여기에서 만들어질 겁니다.
