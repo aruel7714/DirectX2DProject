@@ -9,8 +9,7 @@
 // Ό³Έν : 
 class GameEngineCamera : public GameEngineActor
 {
-	static std::shared_ptr<class GameEngineRenderTarget> AllRenderTarget;
-
+	
 	friend class GameEngineRenderer;
 	friend class GameEngineActor;
 	friend class GameEngineLevel;
@@ -93,6 +92,11 @@ public:
 		YSortMap.insert(_SortOrder);
 	}
 
+	std::shared_ptr<class GameEngineRenderTarget> GetCameraAllRenderTarget()
+	{
+		return AllRenderTarget;
+	}
+
 protected:
 	void Start() override;
 
@@ -130,7 +134,9 @@ private:
 	std::set<int> ZSortMap;
 	std::set<int> YSortMap;
 
-	std::shared_ptr<class GameEngineRenderTarget> CameraTarget;
+	//std::shared_ptr<class GameEngineRenderTarget> CameraTarget;
+	std::shared_ptr<class GameEngineRenderTarget> AllRenderTarget;
+
 
 	void CameraUpdate(float _DeltaTime);
 };
