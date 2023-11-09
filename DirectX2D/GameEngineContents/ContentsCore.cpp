@@ -17,6 +17,9 @@
 #include "BossEncounterLevel.h"
 #include "AfterBossEncounterLevel.h"
 
+#include "OpeningLevel.h"
+#include "EndingLevel.h"
+
 void LevelChangeWindow::Start()
 {
 
@@ -59,6 +62,7 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<PlayLevel>("PlayLevel");
 	GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
 	GameEngineCore::CreateLevel<TownLevel>("TownLevel");
+
 	GameEngineCore::CreateLevel<Level1F>("Level1F");
 	GameEngineCore::CreateLevel<Level1F_Inn>("Level1F_Inn");
 	GameEngineCore::CreateLevel<Level1F_Shop>("Level1F_Shop");
@@ -70,6 +74,10 @@ void ContentsCore::Start()
 	GameEngineCore::CreateLevel<BeforeBossEncounterLevel>("BeforeBossEncounterLevel");
 	GameEngineCore::CreateLevel<BossEncounterLevel>("BossEncounterLevel");
 	GameEngineCore::CreateLevel<AfterBossEncounterLevel>("AfterBossEncounterLevel");
+
+	GameEngineCore::CreateLevel<OpeningLevel>("OpeningLevel");
+	GameEngineCore::CreateLevel<EndingLevel>("EndingLevel");
+
 	//GameEngineCore::ChangeLevel("TownLevel");
 	GameEngineCore::ChangeLevel("TitleLevel");
 	//GameEngineCore::ChangeLevel("PlayLevel");

@@ -44,7 +44,7 @@ private:
 	void ChangeAnimationState(const std::string& _State);
 
 	void IdleStart();
-	void idleUpdate(float _Delta);
+	void IdleUpdate(float _Delta);
 	
 	void MoveStart();
 	void MoveUpdate(float _Delta);

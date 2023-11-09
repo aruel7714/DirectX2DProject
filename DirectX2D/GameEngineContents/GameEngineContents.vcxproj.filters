@@ -196,6 +196,12 @@
     <ClCompile Include="ArcherSkel.cpp">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClCompile>
+    <ClCompile Include="OpeningLevel.cpp">
+      <Filter>Level\Opening</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
+      <Filter>Level\Ending</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -393,6 +399,12 @@
     <ClInclude Include="ArcherSkel.h">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClInclude>
+    <ClInclude Include="OpeningLevel.h">
+      <Filter>Level\Opening</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <Filter>Level\Ending</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -469,6 +481,12 @@
     </Filter>
     <Filter Include="Level\Dungeon\Monster\Air">
       <UniqueIdentifier>{5adedbb2-8a42-4259-81b2-11854e08f32f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Opening">
+      <UniqueIdentifier>{5fc33448-656a-49cb-86ca-aa0b890333b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Ending">
+      <UniqueIdentifier>{243919b1-e459-4183-ba4a-2b2e36f7b31a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
