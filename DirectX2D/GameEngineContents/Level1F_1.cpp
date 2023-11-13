@@ -3,6 +3,8 @@
 #include "Level1F_1_Floor.h"
 #include "BigWhiteSkel.h"
 #include "RustyGreatSwordSkel.h"
+#include "ArcherSkel.h"
+#include "LittleGhost.h"
 
 Level1F_1::Level1F_1()
 {
@@ -32,6 +34,24 @@ void Level1F_1::Start()
 
 	std::shared_ptr<RustyGreatSwordSkel> MonsterRustyGreatSwordSkel = CreateActor< RustyGreatSwordSkel>(RenderOrder::Monster);
 	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1248.0f, -576.0f });
+
+	std::shared_ptr<ArcherSkel> MonsterArcherSkel1 = CreateActor<ArcherSkel>(RenderOrder::Monster);
+	MonsterArcherSkel1->Transform.SetLocalPosition({ 1024.0f, -896.0f });
+
+	std::shared_ptr<ArcherSkel> MonsterArcherSkel2 = CreateActor<ArcherSkel>(RenderOrder::Monster);
+	MonsterArcherSkel2->Transform.SetLocalPosition({ 1472.0f, -896.0f });
+
+	std::shared_ptr<LittleGhost> MonsterLittleGhost1 = CreateActor<LittleGhost>(RenderOrder::Monster);
+	MonsterLittleGhost1->Transform.SetLocalPosition({ 992.0f, -384.0f });
+
+	std::shared_ptr<LittleGhost> MonsterLittleGhost2 = CreateActor<LittleGhost>(RenderOrder::Monster);
+	MonsterLittleGhost2->Transform.SetLocalPosition({ 1120.0f, -384.0f });
+
+	std::shared_ptr<LittleGhost> MonsterLittleGhost3 = CreateActor<LittleGhost>(RenderOrder::Monster);
+	MonsterLittleGhost3->Transform.SetLocalPosition({ 1376.0f, -384.0f });
+
+	std::shared_ptr<LittleGhost> MonsterLittleGhost4 = CreateActor<LittleGhost>(RenderOrder::Monster);
+	MonsterLittleGhost4->Transform.SetLocalPosition({ 1504.0f, -384.0f });
 	
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

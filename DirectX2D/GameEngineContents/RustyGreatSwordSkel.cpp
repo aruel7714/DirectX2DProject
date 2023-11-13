@@ -54,7 +54,7 @@ void RustyGreatSwordSkel::Start()
 	float4 SwordScale = RustyGreatSwordRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	RustyGreatSwordRenderer->SetImageScale(SwordScale);
 	
-	ChangeSwordState(RustyGreatSwordState::Attack);
+	ChangeSwordState(RustyGreatSwordState::Idle);
 }
 void RustyGreatSwordSkel::Update(float _Delta)
 {

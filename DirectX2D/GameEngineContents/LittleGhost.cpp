@@ -35,7 +35,7 @@ void LittleGhost::Start()
 		LittleGhostRenderer->CreateAnimation("LittleGhost_Attack", "LittleGhostAttack");
 	}
 
-	LittleGhostRenderer->SetSprite("LittleGhost_Idle");
+	LittleGhostRenderer->SetSprite("LittleGhostMove");
 	
 	float4 Scale = LittleGhostRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	LittleGhostRenderer->SetImageScale(Scale);
@@ -47,6 +47,15 @@ void LittleGhost::Start()
 void LittleGhost::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (Dir == LittleGhostDir::Left)
+	{
+		LittleGhostRenderer->LeftFlip();
+	}
+	if (Dir == LittleGhostDir::Right)
+	{
+		LittleGhostRenderer->RightFlip();
+	}
 }
 
 void LittleGhost::ChangeState(LittleGhostState _State)

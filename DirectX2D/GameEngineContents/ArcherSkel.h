@@ -9,6 +9,14 @@ enum class ArcherSkelState
 	Max,
 };
 
+enum class SkelBowState
+{
+	Idle,
+	AttckReady,
+	Attack,
+	Max
+};
+
 enum class ArcherSkelDir
 {
 	Left,
@@ -36,6 +44,34 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> ArcherSkelRenderer;
 	std::shared_ptr<GameEngineSpriteRenderer> BowRenderer;
 
-	
+	ArcherSkelState SkelState = ArcherSkelState::Max;
+	SkelBowState BowState = SkelBowState::Max;
+	ArcherSkelDir SkelDir = ArcherSkelDir::Left;
+
+	void ChangeSkelState(ArcherSkelState _State);
+	void SkelStateUpdate(float _Delta);
+	void ChangeSkelAnimationState(const std::string& _State);
+
+	void ChangeBowState(SkelBowState _State);
+	void BowStateUpdate(float _Delta);
+	void ChangeBowAnimationState(const std::string& _State);
+
+	void SkelIdleStart();
+	void SkelIdleUpdate(float _Delta);
+
+	void SkelAttackReadyStart();
+	void SkelAttackReadyUpdate(float _Delta);
+
+	void SkelAttackStart();
+	void SkelAttackUpdate(float _Delta);
+
+	void BowIdleStart();
+	void BowIdleUpdate(float _Delta);
+
+	void BowAttackReadyStart();
+	void BowAttackReadyUpdate(float _Delta);
+
+	void BowAttackStart();
+	void BowAttackUpdate(float _Delta);
 };
 
