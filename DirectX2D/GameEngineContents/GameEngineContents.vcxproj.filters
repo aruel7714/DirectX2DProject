@@ -208,6 +208,9 @@
     <ClCompile Include="BansheeBullet.cpp">
       <Filter>Level\Dungeon\Monster\Air</Filter>
     </ClCompile>
+    <ClCompile Include="Minotaurs.cpp">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -416,6 +419,9 @@
     </ClInclude>
     <ClInclude Include="BansheeBullet.h">
       <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClInclude>
+    <ClInclude Include="Minotaurs.h">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

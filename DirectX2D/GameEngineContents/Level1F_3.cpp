@@ -5,6 +5,7 @@
 #include "BigWhiteSkel.h"
 #include "RustyGreatSwordSkel.h"
 #include "RustyShortSwordSkel.h"
+#include "Minotaurs.h"
 
 Level1F_3::Level1F_3()
 {
@@ -32,7 +33,9 @@ void Level1F_3::Start()
 	std::shared_ptr<RustyGreatSwordSkel> MonsterRustyGreatSwordSkel = CreateActor< RustyGreatSwordSkel>(RenderOrder::Monster);
 	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 768.0f, -512.0f });
 
-
+	//1280
+	std::shared_ptr<Minotaurs> MonsterMinotaurs = CreateActor<Minotaurs>(RenderOrder::Monster);
+	MonsterMinotaurs->Transform.SetLocalPosition({ 640.0f, -1280.0f });
 	
 	std::shared_ptr<RustyShortSwordSkel> MonsterRustyShortSwordSkel = CreateActor< RustyShortSwordSkel>(RenderOrder::Monster);
 	MonsterRustyShortSwordSkel->Transform.SetLocalPosition({ 448.0f, -2048.0f });
