@@ -193,6 +193,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Banshee.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BansheeBullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BeforeBossEncounterFloor.cpp">
       <SubType>
       </SubType>
@@ -461,6 +469,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Banshee.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BansheeBullet.h">
       <SubType>
       </SubType>
     </ClInclude>

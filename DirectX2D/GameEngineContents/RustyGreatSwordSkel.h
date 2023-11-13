@@ -5,16 +5,16 @@ enum class RustyGreatSwordSkelState
 {
 	Idle,
 	Move,
-	Attack,
 	AttackReady,
+	Attack,
 	Max
 };
 
 enum class RustyGreatSwordState
 {
 	Idle,
-	Attack,
 	AttackReady,
+	Attack,
 	Max
 };
 

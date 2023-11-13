@@ -5,6 +5,7 @@
 #include "RustyGreatSwordSkel.h"
 #include "ArcherSkel.h"
 #include "LittleGhost.h"
+#include "Banshee.h"
 
 Level1F_1::Level1F_1()
 {
@@ -52,6 +53,9 @@ void Level1F_1::Start()
 
 	std::shared_ptr<LittleGhost> MonsterLittleGhost4 = CreateActor<LittleGhost>(RenderOrder::Monster);
 	MonsterLittleGhost4->Transform.SetLocalPosition({ 1504.0f, -384.0f });
+
+	std::shared_ptr<Banshee> MonsterBanshee = CreateActor<Banshee>(RenderOrder::Monster);
+	MonsterBanshee->Transform.SetLocalPosition({ 1248.0f, -256.0f });
 	
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

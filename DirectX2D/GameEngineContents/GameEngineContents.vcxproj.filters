@@ -202,6 +202,12 @@
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level\Ending</Filter>
     </ClCompile>
+    <ClCompile Include="Banshee.cpp">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="BansheeBullet.cpp">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -404,6 +410,12 @@
     </ClInclude>
     <ClInclude Include="EndingLevel.h">
       <Filter>Level\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="Banshee.h">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClInclude>
+    <ClInclude Include="BansheeBullet.h">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

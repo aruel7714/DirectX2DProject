@@ -5,14 +5,17 @@ enum class RustyShortSwordSkelState
 {
 	Idle,
 	Move,
+	AttackReady,
 	Attack,
-	AttackReady
+	Max,
 };
 
 enum class RustyShortSwordState
 {
-	Attack,
+	Idle,
 	AttackReady,
+	Attack,
+	Max,
 };
 
 enum class RustyShortSwordSkelDir
@@ -41,5 +44,38 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> RustyShortSwordSkelRenderer;
 	std::shared_ptr<GameEngineSpriteRenderer> RustyShortSwordRenderer;
+
+	RustyShortSwordSkelState SkelState = RustyShortSwordSkelState::Max;
+	RustyShortSwordState SwordState = RustyShortSwordState::Max;
+	RustyShortSwordSkelDir SkelDir = RustyShortSwordSkelDir::Left;
+
+	void ChangeSkelState(RustyShortSwordSkelState _State);
+	void SkelStateUpdate(float _Delta);
+	void ChangeSkelAnimationState(const std::string& _State);
+
+	void ChangeSwordState(RustyShortSwordState _State);
+	void SwordStateUpdate(float _Delta);
+	void ChangeSwordAnimationState(const std::string& _State);
+
+	void SkelIdleStart();
+	void SkelIdleUpdate(float _Delta);
+
+	void SkelMoveStart();
+	void SkelMoveUpdate(float _Delta);
+
+	void SkelAttackReadyStart();
+	void SkelAttackReadyUpdate(float _Delta);
+
+	void SkelAttackStart();
+	void SkelAttackUpdate(float _Delta);
+
+	void SwordIdleStart();
+	void SwordIdleUpdate(float _Delta);
+
+	void SwordAttackReadyStart();
+	void SwordAttackReadyUpdate(float _Delta);
+
+	void SwordAttackStart();
+	void SwordAttackUpdate(float _Delta);
 };
 

@@ -2,6 +2,9 @@
 #include "Level1F_2.h"
 #include "Level1F_2_Floor.h"
 
+#include "Banshee.h"
+#include "RustyShortSwordSkel.h"
+
 Level1F_2::Level1F_2()
 {
 }
@@ -21,6 +24,12 @@ void Level1F_2::Start()
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Level1F_2.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
+
+	std::shared_ptr<Banshee> MonsterBanshee = CreateActor<Banshee>(RenderOrder::Monster);
+	MonsterBanshee->Transform.SetLocalPosition({ 1344.0f, -256.0f });
+
+	std::shared_ptr<RustyShortSwordSkel> MonsterRustyShortSwordSkel = CreateActor<RustyShortSwordSkel>(RenderOrder::Monster);
+	MonsterRustyShortSwordSkel->Transform.SetLocalPosition({ 1920.0f, -448.0f });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
