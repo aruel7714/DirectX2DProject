@@ -40,6 +40,13 @@ void Banshee::Start()
 	BansheeRenderer->SetImageScale(Scale);
 
 	ChangeState(BansheeState::Idle);
+
+	{
+		BansheeCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		BansheeCollision->SetCollisionType(ColType::AABBBOX2D);
+		BansheeCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		BansheeCollision->Transform.SetLocalScale(Scale);
+	}
 }
 void Banshee::Update(float _Delta)
 {
@@ -98,17 +105,42 @@ void Banshee::IdleStart()
 }
 void Banshee::IdleUpdate(float _Delta)
 {
+	DirCheck();
 
+	IdleToAttackTime += _Delta;
+
+	if (IdleToAttackTime > 3.0f)
+	{
+		ChangeState(BansheeState::Attack);
+	}
 }
 
 void Banshee::AttackStart()
 {
 	ChangeAnimationState("Attack");
+	IdleToAttackTime = 0.0f;
 }
 void Banshee::AttackUpdate(float _Delta)
 {
 	if (true == BansheeRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(BansheeState::Idle);
+	}
+}
+
+void Banshee::DirCheck()
+{
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.X - PlayerPos.X;
+
+	if (Check > 0)
+	{
+		Dir = BansheeDir::Left;
+	}
+	else
+	{
+		Dir = BansheeDir::Right;
 	}
 }

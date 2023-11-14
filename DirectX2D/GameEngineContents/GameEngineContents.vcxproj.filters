@@ -214,6 +214,9 @@
     <ClCompile Include="TownDungeonEat.cpp">
       <Filter>Level\Town\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="BowArrow.cpp">
+      <Filter>Level\Dungeon\Monster\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -429,6 +432,9 @@
     <ClInclude Include="TownDungeonEat.h">
       <Filter>Level\Town\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="BowArrow.h">
+      <Filter>Level\Dungeon\Monster\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -511,6 +517,9 @@
     </Filter>
     <Filter Include="Level\Ending">
       <UniqueIdentifier>{243919b1-e459-4183-ba4a-2b2e36f7b31a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Monster\Bullet">
+      <UniqueIdentifier>{fc98c6ee-8b53-49af-9f7a-355fe7672df7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

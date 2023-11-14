@@ -115,7 +115,7 @@ void LittleGhost::MoveStart()
 }
 void LittleGhost::MoveUpdate(float _Delta)
 {
-
+	DirCheck();
 }
 
 void LittleGhost::AttackStart()
@@ -129,5 +129,17 @@ void LittleGhost::AttackUpdate(float _Delta)
 
 void LittleGhost::DirCheck()
 {
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 
+	float Check = MyPos.X - PlayerPos.X;
+
+	if (Check > 0)
+	{
+		Dir = LittleGhostDir::Left;
+	}
+	else
+	{
+		Dir = LittleGhostDir::Right;
+	}
 }

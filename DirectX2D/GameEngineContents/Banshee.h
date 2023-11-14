@@ -36,6 +36,10 @@ private:
 
 	BansheeState State = BansheeState::Max;
 	BansheeDir Dir = BansheeDir::Left;
+
+	std::shared_ptr<GameEngineCollision> BansheeCollision;
+
+	float IdleToAttackTime = 0.0f;
 	
 	void ChangeState(BansheeState _State);
 	void StateUpdate(float _Delta);
@@ -46,5 +50,7 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DirCheck();
 };
 
