@@ -386,6 +386,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TownDungeonEat.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TownDungeonIngurgitate.cpp">
       <SubType>
       </SubType>
@@ -661,6 +665,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TownBuilding.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownDungeonEat.h">
       <SubType>
       </SubType>
     </ClInclude>

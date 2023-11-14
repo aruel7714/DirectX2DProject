@@ -20,6 +20,7 @@
 #include "TownNPCTemple.h"
 #include "TownNPCBuilder.h"
 #include "TownDungeonIngurgitate.h"
+#include "TownDungeonEat.h"
 
 //Trigger
 #include "TownDungeonTrigger.h"
@@ -187,18 +188,18 @@ void TownLevel::Update(float _Delta)
 	{
 		if (Count == 0)
 		{
-			DungeonIngurgitate = CreateActor<TownDungeonIngurgitate>(RenderOrder::NPC);
+			DungeonEat = CreateActor<TownDungeonEat>(RenderOrder::NPC);
 			//DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
 			float4 Pos = MainPlayer->Transform.GetLocalPosition();
-			DungeonIngurgitate->Transform.SetLocalPosition({ Pos.X, Trigger->DungeonTriggerCollision->Transform.GetLocalPosition().Y + 32.0f});
+			DungeonEat->Transform.SetLocalPosition({ Pos.X, Trigger->DungeonTriggerCollision->Transform.GetLocalPosition().Y + 32.0f});
 			Count++;
 		}
 		MainPlayer->ChangeStateStay();
 	}
 
-	if (nullptr != DungeonIngurgitate)
+	if (nullptr != DungeonEat)
 	{
-		if (DungeonIngurgitate->IngurgitateRenderer->IsCurAnimationEnd())
+		if (DungeonEat->EatRenderer->IsCurAnimationEnd())
 		{
 			GameEngineCore::ChangeLevel("Level1F");
 		}

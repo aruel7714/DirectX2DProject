@@ -27,7 +27,7 @@ private:
 	std::shared_ptr<class Player> MainPlayer;
 	std::shared_ptr<class TownFloor> _TownFloor;
 	std::shared_ptr<class TownDungeonTrigger> Trigger;
-	std::shared_ptr<class TownDungeonIngurgitate> DungeonIngurgitate;
+	std::shared_ptr<class TownDungeonEat> DungeonEat;
 
 	int Count = 0;
 };

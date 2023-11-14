@@ -211,6 +211,9 @@
     <ClCompile Include="Minotaurs.cpp">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClCompile>
+    <ClCompile Include="TownDungeonEat.cpp">
+      <Filter>Level\Town\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -422,6 +425,9 @@
     </ClInclude>
     <ClInclude Include="Minotaurs.h">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="TownDungeonEat.h">
+      <Filter>Level\Town\NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
