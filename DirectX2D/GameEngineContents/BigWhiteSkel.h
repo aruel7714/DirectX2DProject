@@ -39,6 +39,13 @@ private:
 	BigWhiteSkelState State = BigWhiteSkelState::Max;
 	BigWhiteSkelDir Dir = BigWhiteSkelDir::Left;
 
+	std::shared_ptr<GameEngineCollision> SkelCollision;
+	std::shared_ptr<GameEngineCollision> AttackCollision;
+
+	float MoveToAttackTime = 0.0f;
+	float AttackReadyTime = 0.0f;
+	float MoveSpeed = 300.0f;
+	
 	void ChangeState(BigWhiteSkelState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
@@ -56,5 +63,7 @@ private:
 	void AttackUpdate(float _Delta);
 
 	void DirCheck();
+
+	
 };
 
