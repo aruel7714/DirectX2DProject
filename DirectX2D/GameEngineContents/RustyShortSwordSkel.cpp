@@ -55,6 +55,20 @@ void RustyShortSwordSkel::Start()
 	RustyShortSwordRenderer->SetImageScale(SwordScale);
 
 	ChangeSwordState(RustyShortSwordState::Idle);
+
+	{
+		SkelCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		SkelCollision->SetCollisionType(ColType::AABBBOX2D);
+		SkelCollision->Transform.SetLocalPosition({ 0.0f, SkelScale.Y / 4.0f, 1.0f });
+		SkelCollision->Transform.SetLocalScale({ SkelScale.X / 3.0f, SkelScale.Y / 2.0f, 1.0f });
+	}
+
+	{
+		AttackCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
+		AttackCollision->SetCollisionType(ColType::AABBBOX2D);
+	}
+
+	AttackCollision->Off();
 }
 void RustyShortSwordSkel::Update(float _Delta)
 {
@@ -154,11 +168,11 @@ void RustyShortSwordSkel::SwordStateUpdate(float _Delta)
 	switch (SwordState)
 	{
 	case RustyShortSwordState::Idle:
-		SwordIdleUpdate(_Delta);
+		return SwordIdleUpdate(_Delta);
 	case RustyShortSwordState::Attack:
-		SwordAttackUpdate(_Delta);
+		return SwordAttackUpdate(_Delta);
 	case RustyShortSwordState::AttackReady:
-		SwordAttackReadyUpdate(_Delta);
+		return SwordAttackReadyUpdate(_Delta);
 	default:
 		break;
 	}
@@ -176,16 +190,51 @@ void RustyShortSwordSkel::SkelIdleStart()
 }
 void RustyShortSwordSkel::SkelIdleUpdate(float _Delta)
 {
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 
+	float Check = MyPos.X - PlayerPos.X;
+
+	Check = abs(Check);
+
+	if (Check < 600.0f)
+	{
+		ChangeSkelState(RustyShortSwordSkelState::Move);
+	}
 }
 
 void RustyShortSwordSkel::SkelMoveStart()
 {
 	ChangeSkelAnimationState("Move");
+	AttackCollision->Off();
 }
 void RustyShortSwordSkel::SkelMoveUpdate(float _Delta)
 {
+	DirCheck();
 
+	if (SkelDir == RustyShortSwordSkelDir::Left)
+	{
+		Transform.AddLocalPosition(float4::LEFT * MoveSpeed * _Delta);
+	}
+	else if (SkelDir == RustyShortSwordSkelDir::Right)
+	{
+		Transform.AddLocalPosition(float4::RIGHT * MoveSpeed * _Delta);
+	}
+
+	{
+		float4 MyPos = Transform.GetLocalPosition();
+		float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+		float Check = MyPos.X - PlayerPos.X;
+
+		Check = abs(Check);
+
+		if (Check < 50.0f)
+		{
+			ChangeSkelState(RustyShortSwordSkelState::AttackReady);
+			ChangeSwordState(RustyShortSwordState::AttackReady);
+		}
+	}
 }
 
 void RustyShortSwordSkel::SkelAttackReadyStart()
@@ -194,12 +243,19 @@ void RustyShortSwordSkel::SkelAttackReadyStart()
 }
 void RustyShortSwordSkel::SkelAttackReadyUpdate(float _Delta)
 {
+	AttackReadyTime += _Delta;
 
+	if (AttackReadyTime >= 1.0f)
+	{
+		ChangeSkelState(RustyShortSwordSkelState::Attack);
+		ChangeSwordState(RustyShortSwordState::Attack);
+	}
 }
 
 void RustyShortSwordSkel::SkelAttackStart()
 {
 	ChangeSkelAnimationState("Attack");
+	AttackReadyTime = 0.0f;
 }
 void RustyShortSwordSkel::SkelAttackUpdate(float _Delta)
 {
@@ -227,8 +283,42 @@ void RustyShortSwordSkel::SwordAttackReadyUpdate(float _Delta)
 void RustyShortSwordSkel::SwordAttackStart()
 {
 	ChangeSwordAnimationState("Attack");
+	AttackCollision->On();
+	float4 Scale = RustyShortSwordRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	//AttackCollision->Transform.SetLocalScale(Scale / 2.0f);
+	AttackCollision->Transform.SetLocalScale({ Scale.X / 4.0f * 3.0f, Scale.Y / 2.0f });
+
+	if (SkelDir == RustyShortSwordSkelDir::Left)
+	{
+		AttackCollision->Transform.SetLocalPosition({ -(Scale.X / 3.0f) , Scale.Y / 4.0f });
+	}
+	else if (SkelDir == RustyShortSwordSkelDir::Right)
+	{
+		AttackCollision->Transform.SetLocalPosition({ Scale.X / 3.0f , Scale.Y / 4.0f });
+	}
 }
 void RustyShortSwordSkel::SwordAttackUpdate(float _Delta)
 {
+	if (RustyShortSwordRenderer->IsCurAnimationEnd())
+	{
+		ChangeSkelState(RustyShortSwordSkelState::Move);
+		ChangeSwordState(RustyShortSwordState::Idle);
+	}
+}
 
+void RustyShortSwordSkel::DirCheck()
+{
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.X - PlayerPos.X;
+
+	if (Check > 0)
+	{
+		SkelDir = RustyShortSwordSkelDir::Left;
+	}
+	else
+	{
+		SkelDir = RustyShortSwordSkelDir::Right;
+	}
 }
