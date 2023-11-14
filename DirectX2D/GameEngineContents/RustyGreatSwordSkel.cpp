@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "RustyGreatSwordSkel.h"
+#include "Player.h"
 
 RustyGreatSwordSkel::RustyGreatSwordSkel()
 {
@@ -38,8 +39,8 @@ void RustyGreatSwordSkel::Start()
 	}
 	{
 		RustyGreatSwordRenderer->CreateAnimation("RustyGreatSword_Idle", "RustyGreatSword", 0.1f, 0, 0, false);
-		RustyGreatSwordRenderer->CreateAnimation("RustyGreatSword_Attack", "RustyGreatSword", 0.1f, 1, 14, false);
-		RustyGreatSwordRenderer->CreateAnimation("RustyGreatSword_AttackReady", "RustyGreatSword", 0.1f, 1, 1, false);
+		RustyGreatSwordRenderer->CreateAnimation("RustyGreatSword_Attack", "RustyGreatSword", 0.1f, 6, 14, false);
+		RustyGreatSwordRenderer->CreateAnimation("RustyGreatSword_AttackReady", "RustyGreatSword", 0.1f, 1, 5, false);
 	}
 
 	RustyGreatSwordSkelRenderer->SetSprite("SkelIdle");
@@ -55,6 +56,20 @@ void RustyGreatSwordSkel::Start()
 	RustyGreatSwordRenderer->SetImageScale(SwordScale);
 	
 	ChangeSwordState(RustyGreatSwordState::Idle);
+
+	{
+		SkelCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		SkelCollision->SetCollisionType(ColType::AABBBOX2D);
+		SkelCollision->Transform.SetLocalPosition({ 0.0f, SkelScale.Y / 4.0f, 1.0f });
+		SkelCollision->Transform.SetLocalScale({ SkelScale.X / 3.0f, SkelScale.Y / 2.0f, 1.0f });
+	}
+
+	{
+		AttackCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
+		AttackCollision->SetCollisionType(ColType::AABBBOX2D);
+	}
+
+	AttackCollision->Off();
 }
 void RustyGreatSwordSkel::Update(float _Delta)
 {
@@ -155,11 +170,11 @@ void RustyGreatSwordSkel::SwordStateUpdate(float _Delta)
 	switch (SwordState)
 	{
 	case RustyGreatSwordState::Idle:
-		SwordIdleUpdate(_Delta);
+		return SwordIdleUpdate(_Delta);
 	case RustyGreatSwordState::Attack:
-		SwordAttackUpdate(_Delta);
+		return SwordAttackUpdate(_Delta);
 	case RustyGreatSwordState::AttackReady:
-		SwordAttackReadyUpdate(_Delta);
+		return SwordAttackReadyUpdate(_Delta);
 	default:
 		break;
 	}
@@ -177,16 +192,51 @@ void RustyGreatSwordSkel::SkelIdleStart()
 }
 void RustyGreatSwordSkel::SkelIdleUpdate(float _Delta)
 {
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 
+	float Check = MyPos.X - PlayerPos.X;
+
+	Check = abs(Check);
+
+	if (Check < 600.0f)
+	{
+		ChangeSkelState(RustyGreatSwordSkelState::Move);
+	}
 }
 
 void RustyGreatSwordSkel::SkelMoveStart()
 {
 	ChangeSkelAnimationState("Move");
+	AttackCollision->Off();
 }
 void RustyGreatSwordSkel::SkelMoveUpdate(float _Delta)
 {
+	DirCheck();
 
+	if (SkelDir == RustyGreatSwordSkelDir::Left)
+	{
+		Transform.AddLocalPosition(float4::LEFT * MoveSpeed * _Delta);
+	}
+	else if (SkelDir == RustyGreatSwordSkelDir::Right)
+	{
+		Transform.AddLocalPosition(float4::RIGHT * MoveSpeed * _Delta);
+	}
+
+	{
+		float4 MyPos = Transform.GetLocalPosition();
+		float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+		float Check = MyPos.X - PlayerPos.X;
+
+		Check = abs(Check);
+
+		if (Check < 50.0f)
+		{
+			ChangeSkelState(RustyGreatSwordSkelState::AttackReady);
+			ChangeSwordState(RustyGreatSwordState::AttackReady);
+		}
+	}
 }
 
 void RustyGreatSwordSkel::SkelAttackReadyStart()
@@ -195,12 +245,19 @@ void RustyGreatSwordSkel::SkelAttackReadyStart()
 }
 void RustyGreatSwordSkel::SkelAttackReadyUpdate(float _Delta)
 {
+	AttackReadyTime += _Delta;
 
+	if (AttackReadyTime >= 1.0f)
+	{
+		ChangeSkelState(RustyGreatSwordSkelState::Attack);
+		ChangeSwordState(RustyGreatSwordState::Attack);
+	}
 }
 
 void RustyGreatSwordSkel::SkelAttackStart()
 {
 	ChangeSkelAnimationState("Attack");
+	AttackReadyTime = 0.0f;
 }
 void RustyGreatSwordSkel::SkelAttackUpdate(float _Delta)
 {
@@ -228,11 +285,41 @@ void RustyGreatSwordSkel::SwordAttackReadyUpdate(float _Delta)
 void RustyGreatSwordSkel::SwordAttackStart()
 {
 	ChangeSwordAnimationState("Attack");
+	AttackCollision->On();
+	float4 Scale = RustyGreatSwordRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	AttackCollision->Transform.SetLocalScale(Scale / 2.0f);
+
+	if (SkelDir == RustyGreatSwordSkelDir::Left)
+	{
+		AttackCollision->Transform.SetLocalPosition({ -(Scale.X / 4.0f) , Scale.Y / 4.0f });
+	}
+	else if (SkelDir == RustyGreatSwordSkelDir::Right)
+	{
+		AttackCollision->Transform.SetLocalPosition({ Scale.X / 4.0f , Scale.Y / 4.0f });
+	}
 }
 void RustyGreatSwordSkel::SwordAttackUpdate(float _Delta)
 {
 	if (RustyGreatSwordRenderer->IsCurAnimationEnd())
 	{
+		ChangeSkelState(RustyGreatSwordSkelState::Move);
 		ChangeSwordState(RustyGreatSwordState::Idle);
+	}
+}
+
+void RustyGreatSwordSkel::DirCheck()
+{
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.X - PlayerPos.X;
+
+	if (Check > 0)
+	{
+		SkelDir = RustyGreatSwordSkelDir::Left;
+	}
+	else
+	{
+		SkelDir = RustyGreatSwordSkelDir::Right;
 	}
 }

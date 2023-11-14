@@ -53,5 +53,6 @@ enum class CollisionType
 	DungeonTrigger,
 	LevelChangeTrigger,
 	Monster,
+	MonsterAttack,
 	NPC,
 };

@@ -49,6 +49,12 @@ private:
 	RustyGreatSwordState SwordState = RustyGreatSwordState::Max;
 	RustyGreatSwordSkelDir SkelDir = RustyGreatSwordSkelDir::Left;
 
+	std::shared_ptr<GameEngineCollision> SkelCollision;
+	std::shared_ptr<GameEngineCollision> AttackCollision;
+
+	float AttackReadyTime = 0.0f;
+	float MoveSpeed = 300.0f;
+
 	void ChangeSkelState(RustyGreatSwordSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);
@@ -77,5 +83,7 @@ private:
 	
 	void SwordAttackStart();
 	void SwordAttackUpdate(float _Delta);
+
+	void DirCheck();
 };
 

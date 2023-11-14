@@ -55,7 +55,7 @@ void BigWhiteSkel::Start()
 	}
 
 	{
-		AttackCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		AttackCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
 		AttackCollision->SetCollisionType(ColType::AABBBOX2D);
 	}
 
@@ -175,7 +175,7 @@ void BigWhiteSkel::MoveUpdate(float _Delta)
 	
 	MoveToAttackTime += SkelCollision->CollisionEvent(CollisionType::Player, AttackParameter);
 
-	if (MoveToAttackTime >= 1.0f)
+	if (MoveToAttackTime >= 0.5f)
 	{
 		ChangeState(BigWhiteSkelState::AttackReady);
 	}
