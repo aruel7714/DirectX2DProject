@@ -12,7 +12,7 @@ enum class ArcherSkelState
 enum class SkelBowState
 {
 	Idle,
-	AttckReady,
+	AttackReady,
 	Attack,
 	Max
 };
@@ -48,6 +48,15 @@ private:
 	SkelBowState BowState = SkelBowState::Max;
 	ArcherSkelDir SkelDir = ArcherSkelDir::Left;
 
+	std::shared_ptr<GameEngineCollision> SkelCollision;
+
+	float IdleToAttackTime = 0.0f;
+	float AttackTime = 0.0f;
+
+	float4 SavePlayerPos = float4::ZERO;
+	float4 SaveDir = float4::ZERO;
+	float SaveDeg = 0.0f;
+
 	void ChangeSkelState(ArcherSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);
@@ -73,5 +82,7 @@ private:
 
 	void BowAttackStart();
 	void BowAttackUpdate(float _Delta);
+
+	void DirCheck();
 };
 

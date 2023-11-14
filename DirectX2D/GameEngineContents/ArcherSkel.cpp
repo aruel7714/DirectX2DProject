@@ -37,8 +37,8 @@ void ArcherSkel::Start()
 
 	{
 		BowRenderer->CreateAnimation("Bow_Idle", "DaimyoOakBow", 0.1f, 0, 0, false);
-		BowRenderer->CreateAnimation("Bow_AttackReady", "DaimyoOakBow", 0.1f, 1, 3, false);
-		BowRenderer->CreateAnimation("Bow_Attack", "DaimyoOakBow", 0.1f, 4, 5, false);
+		BowRenderer->CreateAnimation("Bow_AttackReady", "DaimyoOakBow", 0.05f, 1, 3, false);
+		BowRenderer->CreateAnimation("Bow_Attack", "DaimyoOakBow", 0.05f, 4, 5, false);
 	}
 
 	ArcherSkelRenderer->SetSprite("SkelIdle");
@@ -54,6 +54,13 @@ void ArcherSkel::Start()
 	BowRenderer->SetImageScale(BowScale);
 
 	ChangeBowState(SkelBowState::Idle);
+
+	{
+		SkelCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		SkelCollision->SetCollisionType(ColType::AABBBOX2D);
+		SkelCollision->Transform.SetLocalPosition({ 0.0f, SkelScale.Y / 4.0f, 1.0f });
+		SkelCollision->Transform.SetLocalScale({ SkelScale.X / 3.0f, SkelScale.Y / 2.0f, 1.0f });
+	}
 }
 
 void ArcherSkel::Update(float _Delta)
@@ -68,15 +75,15 @@ void ArcherSkel::Update(float _Delta)
 	
 	if (SkelDir == ArcherSkelDir::Right)
 	{
-		BowRenderer->SetPivotValue({ 0.4f, 0.5f });
-		Pos.X += Scale.X / 8.0f;
+		BowRenderer->SetPivotValue({ 0.6f, 0.5f });
+		//Pos.X -= Scale.X / 8.0f;
 		ArcherSkelRenderer->RightFlip();
 		BowRenderer->RightFlip();
 	}
 	if (SkelDir == ArcherSkelDir::Left)
 	{
-		BowRenderer->SetPivotValue({ 0.6f, 0.5f });
-		Pos.X -= Scale.X / 8.0f;
+		BowRenderer->SetPivotValue({ 0.4f, 0.5f });
+		//Pos.X += Scale.X / 8.0f;
 		ArcherSkelRenderer->LeftFlip();
 		BowRenderer->LeftFlip();
 	}
@@ -110,11 +117,11 @@ void ArcherSkel::SkelStateUpdate(float _Delta)
 	switch (SkelState)
 	{
 	case ArcherSkelState::Idle:
-		SkelIdleUpdate(_Delta);
+		return SkelIdleUpdate(_Delta);
 	case ArcherSkelState::AttackReady:
-		SkelAttackReadyUpdate(_Delta);
+		return SkelAttackReadyUpdate(_Delta);
 	case ArcherSkelState::Attack:
-		SkelAttackUpdate(_Delta);
+		return SkelAttackUpdate(_Delta);
 	default:
 		break;
 	}
@@ -135,7 +142,7 @@ void ArcherSkel::ChangeBowState(SkelBowState _State)
 		case SkelBowState::Idle:
 			BowIdleStart();
 			break;
-		case SkelBowState::AttckReady:
+		case SkelBowState::AttackReady:
 			BowAttackReadyStart();
 			break;
 		case SkelBowState::Attack:
@@ -152,11 +159,11 @@ void ArcherSkel::BowStateUpdate(float _Delta)
 	switch (BowState)
 	{
 	case SkelBowState::Idle:
-		BowIdleUpdate(_Delta);
-	case SkelBowState::AttckReady:
-		BowAttackReadyUpdate(_Delta);
+		return BowIdleUpdate(_Delta);
+	case SkelBowState::AttackReady:
+		return BowAttackReadyUpdate(_Delta);
 	case SkelBowState::Attack:
-		BowAttackUpdate(_Delta);
+		return BowAttackUpdate(_Delta);
 	default:
 		break;
 	}
@@ -174,7 +181,7 @@ void ArcherSkel::SkelIdleStart()
 }
 void ArcherSkel::SkelIdleUpdate(float _Delta)
 {
-
+	DirCheck();
 }
 
 void ArcherSkel::SkelAttackReadyStart()
@@ -198,19 +205,67 @@ void ArcherSkel::SkelAttackUpdate(float _Delta)
 void ArcherSkel::BowIdleStart()
 {
 	ChangeBowAnimationState("Idle");
+	AttackTime = 0.0f;
 }
 void ArcherSkel::BowIdleUpdate(float _Delta)
 {
+	IdleToAttackTime += _Delta;
 
+	float4 PlayerScale = Player::GetMainPlayer()->GetRendererScale();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+	
+	PlayerPos.Y += (PlayerScale.Y / 4.0f);
+
+	float4 Scale = ArcherSkelRenderer->GetImageTransform().GetLocalScale();
+	float4 MyPos = Transform.GetLocalPosition();
+	MyPos.Y += (Scale.Y / 4.0f) - 6.0f;
+
+	float4 TargetPos = MyPos - PlayerPos;
+
+	SaveDir = TargetPos.NormalizeReturn();
+	SaveDeg = SaveDir.Angle2DDeg();
+
+	if (SkelDir == ArcherSkelDir::Left)
+	{
+		
+		if (TargetPos.Y < 0)
+		{
+			SaveDeg *= -1.0f;
+		}
+	}
+
+	if (SkelDir == ArcherSkelDir::Right)
+	{
+		SaveDeg += 180.0f;
+		if (TargetPos.Y < 0)
+		{
+			SaveDeg *= -1.0f;
+		}
+	}
+
+	BowRenderer->Transform.SetLocalRotation({ 0.0f, 0.0f, SaveDeg });
+
+	if (IdleToAttackTime > 2.5f)
+	{
+		ChangeSkelState(ArcherSkelState::AttackReady);
+		ChangeBowState(SkelBowState::AttackReady);
+	}
 }
 
 void ArcherSkel::BowAttackReadyStart()
 {
 	ChangeBowAnimationState("AttackReady");
+	IdleToAttackTime = 0.0f;
 }
 void ArcherSkel::BowAttackReadyUpdate(float _Delta)
 {
+	AttackTime += _Delta;
 
+	if (AttackTime > 1.0f)
+	{
+		ChangeSkelState(ArcherSkelState::Attack);
+		ChangeBowState(SkelBowState::Attack);
+	}
 }
 
 void ArcherSkel::BowAttackStart()
@@ -219,5 +274,26 @@ void ArcherSkel::BowAttackStart()
 }
 void ArcherSkel::BowAttackUpdate(float _Delta)
 {
+	if (true == BowRenderer->IsCurAnimationEnd())
+	{
+		ChangeSkelState(ArcherSkelState::Idle);
+		ChangeBowState(SkelBowState::Idle);
+	}
+}
 
+void ArcherSkel::DirCheck()
+{
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.X - PlayerPos.X;
+
+	if (Check > 0)
+	{
+		SkelDir = ArcherSkelDir::Left;
+	}
+	else
+	{
+		SkelDir = ArcherSkelDir::Right;
+	}
 }
