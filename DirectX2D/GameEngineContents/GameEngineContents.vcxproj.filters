@@ -217,6 +217,9 @@
     <ClCompile Include="BowArrow.cpp">
       <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Belial.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -435,6 +438,9 @@
     <ClInclude Include="BowArrow.h">
       <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Belial.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -520,6 +526,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\Monster\Bullet">
       <UniqueIdentifier>{fc98c6ee-8b53-49af-9f7a-355fe7672df7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Dungeon\Stage2F\Boss">
+      <UniqueIdentifier>{cf0d0766-6035-43f6-bfdb-7371c1797f9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
