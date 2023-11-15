@@ -220,6 +220,15 @@
     <ClCompile Include="Belial.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="RedBat.cpp">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueBat.cpp">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClCompile>
+    <ClCompile Include="SkelDog.cpp">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -440,6 +449,15 @@
     </ClInclude>
     <ClInclude Include="Belial.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBat.h">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueBat.h">
+      <Filter>Level\Dungeon\Monster\Air</Filter>
+    </ClInclude>
+    <ClInclude Include="SkelDog.h">
+      <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

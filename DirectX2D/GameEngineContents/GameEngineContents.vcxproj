@@ -217,6 +217,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BlueBat.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossEncounterFloor.cpp">
       <SubType>
       </SubType>
@@ -366,6 +370,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RedBat.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RustyGreatSwordSkel.cpp">
       <SubType>
       </SubType>
@@ -375,6 +383,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ShortSword.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SkelDog.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -509,6 +521,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BigWhiteSkel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BlueBat.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -656,6 +672,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="RedBat.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RustyGreatSwordSkel.h">
       <SubType>
       </SubType>
@@ -665,6 +685,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ShortSword.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SkelDog.h">
       <SubType>
       </SubType>
     </ClInclude>
