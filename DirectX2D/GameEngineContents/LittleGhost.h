@@ -39,6 +39,16 @@ private:
 	LittleGhostState State = LittleGhostState::Max;
 	LittleGhostDir Dir = LittleGhostDir::Left;
 
+	std::shared_ptr<GameEngineCollision> LittleGhostCollision;
+
+	float4 SaveDir = float4::ZERO;
+	float Distance = 0.0f;
+
+	float MoveToAttackTime = 0.0f;
+	float AttackTime = 0.0f;
+	float MoveSpeed = 150.0f;
+	float AttackSpeed = 200.0f;
+
 	void ChangeState(LittleGhostState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

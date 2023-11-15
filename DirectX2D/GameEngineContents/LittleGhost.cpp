@@ -43,6 +43,13 @@ void LittleGhost::Start()
 	ChangeState(LittleGhostState::Idle);
 
 	LittleGhostRenderer->LeftFlip();
+
+	{
+		LittleGhostCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		LittleGhostCollision->SetCollisionType(ColType::AABBBOX2D);
+		LittleGhostCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
+		LittleGhostCollision->Transform.SetLocalScale(Scale);
+	}
 }
 void LittleGhost::Update(float _Delta)
 {
@@ -106,25 +113,54 @@ void LittleGhost::IdleStart()
 }
 void LittleGhost::IdleUpdate(float _Delta)
 {
-
+	ChangeState(LittleGhostState::Move);
 }
 
 void LittleGhost::MoveStart()
 {
 	ChangeAnimationState("Move");
+	AttackTime = 0.0f;
 }
 void LittleGhost::MoveUpdate(float _Delta)
 {
 	DirCheck();
+
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	SaveDir = PlayerPos - MyPos;
+	Distance = SaveDir.Size();
+
+	if (Distance < 200.0f)
+	{
+		MoveToAttackTime += _Delta;
+	}
+
+	SaveDir.Normalize();
+
+	Transform.AddLocalPosition(SaveDir * _Delta * MoveSpeed);
+
+	if (MoveToAttackTime > 0.5f)
+	{
+		ChangeState(LittleGhostState::Attack);
+	}
 }
 
 void LittleGhost::AttackStart()
 {
 	ChangeAnimationState("Attack");
+	MoveToAttackTime = 0.0f;
 }
 void LittleGhost::AttackUpdate(float _Delta)
 {
+	AttackTime += _Delta;
 
+	Transform.AddLocalPosition(SaveDir * _Delta * AttackSpeed);
+
+	if (AttackTime > 1.0f)
+	{
+		ChangeState(LittleGhostState::Move);
+	}
 }
 
 void LittleGhost::DirCheck()
