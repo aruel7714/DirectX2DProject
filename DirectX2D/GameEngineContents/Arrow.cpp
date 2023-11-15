@@ -93,7 +93,7 @@ void Arrow::Update(float _Delta)
 {
 	if (GetLiveTime() < 0.4f)
 	{
-		Transform.AddLocalPosition(Dir * _Delta * 1500.0f);
+		Transform.AddLocalPosition(Dir * _Delta * ArrowSpeed);
 	}
 	else if (GetLiveTime() >= 0.4f)
 	{

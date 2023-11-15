@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ArcherSkel.h"
+#include "BowArrow.h"
 
 ArcherSkel::ArcherSkel()
 {
@@ -271,9 +272,22 @@ void ArcherSkel::BowAttackReadyUpdate(float _Delta)
 void ArcherSkel::BowAttackStart()
 {
 	ChangeBowAnimationState("Attack");
+	std::shared_ptr<BowArrow> SkelArrow = GetLevel()->CreateActor<BowArrow>(RenderOrder::MonsterProjectile);
+
+	float4 ArcherPos = Transform.GetLocalPosition();
+	float4 ArcherScale = ArcherSkelRenderer->GetImageTransform().GetLocalScale();
+
+	ArcherPos.Y += (ArcherScale.Y / 4.0f) - 6.0f;
+
+	SkelArrow->Transform.SetLocalPosition(ArcherPos);
+
+	SkelArrow->Dir = SaveDir * -1.0f;
+	SkelArrow->Deg = SaveDeg;
 }
 void ArcherSkel::BowAttackUpdate(float _Delta)
 {
+	
+
 	if (true == BowRenderer->IsCurAnimationEnd())
 	{
 		ChangeSkelState(ArcherSkelState::Idle);

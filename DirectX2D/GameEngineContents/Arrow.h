@@ -22,5 +22,6 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> ArrowRenderer;
 
 	float4 Dir = float4::ZERO;
+	float ArrowSpeed = 1500.0f;
 };
 
