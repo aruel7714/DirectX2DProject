@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Banshee.h"
+#include "BansheeBullet.h"
 
 Banshee::Banshee()
 {
@@ -44,7 +45,7 @@ void Banshee::Start()
 	{
 		BansheeCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		BansheeCollision->SetCollisionType(ColType::AABBBOX2D);
-		BansheeCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
+		BansheeCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		BansheeCollision->Transform.SetLocalScale(Scale);
 	}
 }
@@ -119,6 +120,13 @@ void Banshee::AttackStart()
 {
 	ChangeAnimationState("Attack");
 	IdleToAttackTime = 0.0f;
+	float4 MyPos = Transform.GetLocalPosition();
+	for (int i = 0; i < 8; i++)
+	{
+		std::shared_ptr<BansheeBullet> Bullet = GetLevel()->CreateActor<BansheeBullet>(RenderOrder::MonsterProjectile);
+		Bullet->Transform.SetLocalPosition(MyPos);
+		Bullet->SetDir(i);
+	}
 }
 void Banshee::AttackUpdate(float _Delta)
 {

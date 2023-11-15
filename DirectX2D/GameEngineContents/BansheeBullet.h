@@ -4,6 +4,7 @@
 // Ό³Έν : 
 class BansheeBullet : public GameEngineActor
 {
+	friend class Banshee;
 public:
 	// constrcuter destructer
 	BansheeBullet();
@@ -16,8 +17,14 @@ public:
 	BansheeBullet& operator=(BansheeBullet && _Other) noexcept = delete;
 
 protected:
+	void Start() override;
+	void Update(float _Delta) override;
 
+	void SetDir(int _num);
 private:
+	std::shared_ptr<GameEngineSpriteRenderer> BulletRenderer;
 
+	float4 Dir = float4::ZERO;
+	float BulletSpeed = 300.0f;
 };
 
