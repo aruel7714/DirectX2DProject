@@ -40,6 +40,17 @@ private:
 	MinotaursState State = MinotaursState::Max;
 	MinotaursDir Dir = MinotaursDir::Left;
 
+	std::shared_ptr<GameEngineCollision> MinotaursCollision;
+	std::shared_ptr<GameEngineCollision> RushCollision;
+	std::shared_ptr<GameEngineCollision> AttackCollision;
+
+	float ChargeTime = 0.0f;
+	float RushTime = 0.0f;
+	float AttackReadyTime = 0.0f;
+
+	float4 RushDir = float4::ZERO;
+	float RushSpeed = 1000.0f;
+
 	void ChangeState(MinotaursState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
@@ -58,5 +69,7 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DirCheck();
 };
 

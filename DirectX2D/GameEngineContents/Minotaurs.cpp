@@ -44,10 +44,44 @@ void Minotaurs::Start()
 	MinotaursRenderer->SetImageScale(Scale);
 
 	ChangeState(MinotaursState::Idle);
+
+	{
+		MinotaursCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		MinotaursCollision->SetCollisionType(ColType::AABBBOX2D);
+		MinotaursCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 3.0f, 1.0f });
+		MinotaursCollision->Transform.SetLocalScale({ Scale.X / 3.0f * 2.0f, Scale.Y / 3.0f * 2.0f, 1.0f });
+	}
+
+	{
+		RushCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
+		RushCollision->SetCollisionType(ColType::AABBBOX2D);
+		RushCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 3.0f, 1.0f });
+		RushCollision->Transform.SetLocalScale({ Scale.X / 3.0f * 2.0f, Scale.Y / 3.0f * 2.0f, 1.0f });
+	}
+
+	{
+		AttackCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
+		AttackCollision->SetCollisionType(ColType::AABBBOX2D);
+		AttackCollision->Transform.SetLocalScale({ Scale.X / 3.0f * 2.0f, Scale.Y / 3.0f * 2.0f, 1.0f });
+	}
+
+	RushCollision->Off();
+	AttackCollision->Off();
 }
 void Minotaurs::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	if (Dir == MinotaursDir::Left)
+	{
+		MinotaursRenderer->SetPivotValue({ 0.35f, 1.0f });
+		MinotaursRenderer->LeftFlip();
+	}
+	else if (Dir == MinotaursDir::Right)
+	{
+		MinotaursRenderer->SetPivotValue({ 0.65f, 1.0f });
+		MinotaursRenderer->RightFlip();
+	}
 }
 
 void Minotaurs::ChangeState(MinotaursState _State)
@@ -82,15 +116,15 @@ void Minotaurs::StateUpdate(float _Delta)
 	switch (State)
 	{
 	case MinotaursState::Idle:
-		IdleUpdate(_Delta);
+		return IdleUpdate(_Delta);
 	case MinotaursState::Charge:
-		ChargeUpdate(_Delta);
+		return ChargeUpdate(_Delta);
 	case MinotaursState::Rush:
-		RushUpdate(_Delta);
+		return RushUpdate(_Delta);
 	case MinotaursState::AttackReady:
-		AttackReadyUpdate(_Delta);
+		return AttackReadyUpdate(_Delta);
 	case MinotaursState::Attack:
-		AttackUpdate(_Delta);
+		return AttackUpdate(_Delta);
 	default:
 		break;
 	}
@@ -108,7 +142,21 @@ void Minotaurs::IdleStart()
 }
 void Minotaurs::IdleUpdate(float _Delta)
 {
+	DirCheck();
 
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.X - PlayerPos.X;
+	
+	if (abs(Check) <= 200.0f)
+	{
+		ChangeState(MinotaursState::AttackReady);
+	}
+	else if (abs(Check) > 200.0f)
+	{
+		ChangeState(MinotaursState::Charge);
+	}
 }
 
 void Minotaurs::ChargeStart()
@@ -117,32 +165,97 @@ void Minotaurs::ChargeStart()
 }
 void Minotaurs::ChargeUpdate(float _Delta)
 {
-
+	ChargeTime += _Delta;
+	
+	if (ChargeTime >= 0.5f)
+	{
+		ChangeState(MinotaursState::Rush);
+	}
 }
 
 void Minotaurs::RushStart()
 {
 	ChangeAnimationState("Rush");
+	ChargeTime = 0.0f;
+	RushCollision->On();
+
+	if (Dir == MinotaursDir::Left)
+	{
+		RushDir = float4::LEFT;
+	}
+	else if (Dir == MinotaursDir::Right)
+	{
+		RushDir = float4::RIGHT;
+	}
+
 }
 void Minotaurs::RushUpdate(float _Delta)
 {
+	RushTime += _Delta;
 
+	Transform.AddLocalPosition(RushDir * _Delta * RushSpeed);
+
+	if (RushTime > 0.4f && true == MinotaursRenderer->IsCurAnimationEnd())
+	{
+		ChangeState(MinotaursState::AttackReady);
+		RushCollision->Off();
+	}
 }
 
 void Minotaurs::AttackReadyStart()
 {
 	ChangeAnimationState("AttackReady");
+	DirCheck();
+	RushTime = 0.0f;
 }
 void Minotaurs::AttackReadyUpdate(float _Delta)
 {
+	AttackReadyTime += _Delta;
 
+	if (AttackReadyTime > 1.0f)
+	{
+		ChangeState(MinotaursState::Attack);
+	}
 }
 
 void Minotaurs::AttackStart()
 {
 	ChangeAnimationState("Attack");
+	AttackReadyTime = 0.0f;
+	AttackCollision->On();
+	float4 Scale = MinotaursRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+
+	if (Dir == MinotaursDir::Left)
+	{
+		AttackCollision->Transform.SetLocalPosition({ -(Scale.X / 4.0f), Scale.Y / 3.0f, 1.0f });
+	}
+	if (Dir == MinotaursDir::Right)
+	{
+		AttackCollision->Transform.SetLocalPosition({ Scale.X / 4.0f, Scale.Y / 3.0f, 1.0f });
+	}
 }
 void Minotaurs::AttackUpdate(float _Delta)
 {
+	if (MinotaursRenderer->IsCurAnimationEnd())
+	{
+		ChangeState(MinotaursState::Idle);
+		AttackCollision->Off();
+	}
+}
 
+void Minotaurs::DirCheck()
+{
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.X - PlayerPos.X;
+
+	if (Check > 0)
+	{
+		Dir = MinotaursDir::Left;
+	}
+	else
+	{
+		Dir = MinotaursDir::Right;
+	}
 }
