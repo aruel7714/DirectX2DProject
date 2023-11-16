@@ -241,10 +241,16 @@
     <ClCompile Include="BelialBullet.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="BelialLeftLaser.cpp">
+    <ClCompile Include="BelialLeftHandLaserHead.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="BelialRightLaser.cpp">
+    <ClCompile Include="BelialLeftHandLaserBody.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialRightHandLaserHead.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialRightHandLaserBody.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
   </ItemGroup>
@@ -489,10 +495,16 @@
     <ClInclude Include="BelialBullet.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="BelialLeftLaser.h">
+    <ClInclude Include="BelialLeftHandLaserHead.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="BelialRightLaser.h">
+    <ClInclude Include="BelialLeftHandLaserBody.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialRightHandLaserHead.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialRightHandLaserBody.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
   </ItemGroup>
