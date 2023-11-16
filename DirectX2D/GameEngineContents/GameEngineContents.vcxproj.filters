@@ -229,6 +229,18 @@
     <ClCompile Include="SkelDog.cpp">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClCompile>
+    <ClCompile Include="BelialLeftHand.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialRightHand.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialSword.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialBullet.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -458,6 +470,18 @@
     </ClInclude>
     <ClInclude Include="SkelDog.h">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialLeftHand.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialRightHand.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialSword.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialBullet.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

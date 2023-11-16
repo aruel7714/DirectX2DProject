@@ -24,6 +24,8 @@ enum class RenderOrder
 	BossBackParticle,
 	BossBody,
 	BossProjectile,
+	BossProjectileEffect,
+	BossPattern2,
 	NPC,
 	WeaponProjectile,
 	Weapon,

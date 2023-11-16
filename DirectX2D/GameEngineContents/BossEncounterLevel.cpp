@@ -15,7 +15,7 @@ BossEncounterLevel::~BossEncounterLevel()
 
 void BossEncounterLevel::Start()
 {
-	
+	BossResourceLoad();
 	GameEngineSprite::CreateSingle("BossRoom.png");
 	GameEngineSprite::CreateSingle("BossRoom_Debug.png");
 
@@ -80,4 +80,87 @@ void BossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 void BossEncounterLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	//NextLevel = _NextLevel;
+}
+
+void BossEncounterLevel::BossResourceLoad()
+{
+	if (nullptr == GameEngineSprite::Find("BelialBackground"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
+	if (nullptr == GameEngineSprite::Find("BelialBodyIdle"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\BelialBody\\");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
+	if (nullptr == GameEngineSprite::Find("BelialBulletNormal"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\BelialBullet\\");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
+	if (nullptr == GameEngineSprite::Find("BelialLeftHandIdle"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\BelialLeftHand\\");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
+	if (nullptr == GameEngineSprite::Find("BelialPatternSwordSwordBody"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\BelialPatternSword\\");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
 }

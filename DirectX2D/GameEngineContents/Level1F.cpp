@@ -4,9 +4,7 @@
 #include "FloorDoor.h"
 #include "Player.h"
 
-#include "RustyShortSwordSkel.h"
-#include "ArcherSkel.h"
-#include "Minotaurs.h"
+#include "BelialBullet.h"
 
 Level1F::Level1F()
 {
@@ -85,10 +83,7 @@ void Level1F::Start()
 	float4 MapScale = Texture->GetScale() * 4.0f;
 	Door->SetDoorPosition({ 515.0f, -(MapScale.Y - 128.0f) });
 
-	//std::shared_ptr<RustyShortSwordSkel> MonsterRustyGreatSwordSkel = CreateActor< RustyShortSwordSkel>(RenderOrder::Monster);
-	//MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
-
-	std::shared_ptr<Minotaurs> MonsterRustyGreatSwordSkel = CreateActor<Minotaurs>(RenderOrder::Monster);
+	std::shared_ptr<BelialBullet> MonsterRustyGreatSwordSkel = CreateActor<BelialBullet>(RenderOrder::Monster);
 	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
 
 	{

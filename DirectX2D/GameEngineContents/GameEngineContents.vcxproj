@@ -213,6 +213,22 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BelialBullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BelialLeftHand.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BelialRightHand.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BelialSword.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BigWhiteSkel.cpp">
       <SubType>
       </SubType>
@@ -517,6 +533,22 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Belial.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BelialBullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BelialLeftHand.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BelialRightHand.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BelialSword.h">
       <SubType>
       </SubType>
     </ClInclude>

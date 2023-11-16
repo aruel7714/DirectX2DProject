@@ -7,6 +7,15 @@
 //				소환 직후에는 계속 플레이어 위치로 회전하며 발사할때는 회전값 고정
 // Pattern3 : 한쪽 손에서 레이저 발사 최소 1번에서 최대 3번까지
 //				시작 손은 랜덤
+
+enum class BelialPattern
+{
+	Idle,
+	FireBullet,
+	SummonSword,
+	Razer,
+};
+
 class Belial : public GameEngineActor
 {
 public:
