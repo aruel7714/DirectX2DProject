@@ -241,6 +241,12 @@
     <ClCompile Include="BelialBullet.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="BelialLeftLaser.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialRightLaser.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -481,6 +487,12 @@
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
     <ClInclude Include="BelialBullet.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialLeftLaser.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialRightLaser.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
   </ItemGroup>

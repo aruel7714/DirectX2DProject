@@ -35,8 +35,6 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> BelialBackGroundRenderer;
 	std::shared_ptr<GameEngineSpriteRenderer> BelialRenderer;
-	std::shared_ptr<GameEngineSpriteRenderer> LeftHandRenderer;
-	std::shared_ptr<GameEngineSpriteRenderer> RightHandRenderer;
 
 
 };

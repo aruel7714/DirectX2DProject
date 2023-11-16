@@ -163,4 +163,20 @@ void BossEncounterLevel::BossResourceLoad()
 			GameEngineSprite::CreateFolder(Dir.GetStringPath());
 		}
 	}
+
+	if (nullptr == GameEngineSprite::Find("BelialPatternLaserHead"))
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\BelialPatternLaser\\");
+
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
 }

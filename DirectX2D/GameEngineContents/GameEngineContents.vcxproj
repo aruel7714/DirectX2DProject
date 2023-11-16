@@ -221,7 +221,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BelialLeftLaser.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BelialRightHand.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BelialRightLaser.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -544,7 +552,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BelialLeftLaser.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BelialRightHand.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BelialRightLaser.h">
       <SubType>
       </SubType>
     </ClInclude>
