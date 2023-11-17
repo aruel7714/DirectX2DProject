@@ -86,7 +86,8 @@ void Level1F::Start()
 	Door->SetDoorPosition({ 515.0f, -(MapScale.Y - 128.0f) });
 
 	std::shared_ptr<BelialSword> MonsterRustyGreatSwordSkel = CreateActor<BelialSword>(RenderOrder::Monster);
-	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
+	//MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
+	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -540.0f });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
