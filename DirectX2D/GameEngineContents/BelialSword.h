@@ -1,9 +1,18 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class SwordState
+{
+	Idle,
+	Fire,
+	HIt,
+	Max
+};
+
 // Ό³Έν : 
 class BelialSword : public GameEngineActor
 {
+	friend class Belial;
 public:
 	// constrcuter destructer
 	BelialSword();
@@ -21,5 +30,7 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> SwordRenderer;
 	std::shared_ptr<GameEngineSpriteRenderer> SwordChargeRenderer;
+
+	SwordState State = SwordState::Max;
 };
 

@@ -51,7 +51,7 @@ void Belial::Start()
 
 void Belial::Update(float _Delta)
 {
-
+	StateUpdate(_Delta);
 }
 
 void Belial::ChangeState(BelialState _State)
@@ -154,7 +154,7 @@ void Belial::SummonSwordStart()
 }
 void Belial::SummonSwordUpdate(float _Delta)
 {
-
+	SummonSwordTime += _Delta;
 }
 
 void Belial::LaserStart()
