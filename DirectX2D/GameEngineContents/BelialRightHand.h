@@ -4,6 +4,7 @@
 enum class RightHandState
 {
 	Idle,
+	AttackReady,
 	Attack,
 	Max,
 };
@@ -38,7 +39,12 @@ private:
 	void IdleStart();
 	void IdleUpdate(float _Delta);
 
+	void AttackReadyStart();
+	void AttackReadyUpdate(float _Delta);
+
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	float DebugTime = 0.0f;
 };
 

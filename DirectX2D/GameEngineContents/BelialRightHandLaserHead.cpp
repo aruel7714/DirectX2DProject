@@ -39,8 +39,76 @@ void BelialRightHandLaserHead::Start()
 	RightLaserHeadRenderer->SetImageScale(Scale);
 
 	RightLaserHeadRenderer->LeftFlip();
+
+	ChangeState(LaserState::Attack);
 }
 void BelialRightHandLaserHead::Update(float _Delta)
 {
+	StateUpdate(_Delta);
+}
 
+void BelialRightHandLaserHead::ChangeState(LaserState _State)
+{
+	if (_State != State)
+	{
+		switch (_State)
+		{
+		case LaserState::Attack:
+			AttackStart();
+			break;
+		case LaserState::End:
+			EndStart();
+			break;
+		default:
+			break;
+		}
+	}
+	State = _State;
+}
+void BelialRightHandLaserHead::StateUpdate(float _Delta)
+{
+	switch (State)
+	{
+	case LaserState::Attack:
+		return AttackUpdate(_Delta);
+	case LaserState::End:
+		return EndUpdate(_Delta);
+	default:
+		break;
+	}
+}
+void BelialRightHandLaserHead::ChangeAnimationState(const std::string& _State)
+{
+	std::string AnimationName = "BelialRightLaserHead_";
+	AnimationName += _State;
+	RightLaserHeadRenderer->ChangeAnimation(AnimationName);
+}
+
+void BelialRightHandLaserHead::AttackStart()
+{
+	ChangeAnimationState("Attack");
+}
+void BelialRightHandLaserHead::AttackUpdate(float _Delta)
+{
+	if (RightLaserHeadRenderer->IsCurAnimationEnd())
+	{
+		Count++;
+	}
+	if (Count >= 2)
+	{
+		ChangeState(LaserState::End);
+	}
+}
+
+
+void BelialRightHandLaserHead::EndStart()
+{
+	ChangeAnimationState("End");
+}
+void BelialRightHandLaserHead::EndUpdate(float _Delta)
+{
+	if (RightLaserHeadRenderer->IsCurAnimationEnd())
+	{
+		RightLaserHeadRenderer->Death();
+	}
 }

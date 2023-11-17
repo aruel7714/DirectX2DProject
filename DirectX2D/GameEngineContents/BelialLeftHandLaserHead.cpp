@@ -37,8 +37,76 @@ void BelialLeftHandLaserHead::Start()
 	LeftLaserHeadRenderer->SetSprite("BelialPatternLaserHead");
 	float4 Scale = LeftLaserHeadRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	LeftLaserHeadRenderer->SetImageScale(Scale);
+
+	ChangeState(LaserState::Attack);
 }
 void BelialLeftHandLaserHead::Update(float _Delta)
 {
+	StateUpdate(_Delta);
+}
 
+void BelialLeftHandLaserHead::ChangeState(LaserState _State)
+{
+	if (_State != State)
+	{
+		switch (_State)
+		{
+		case LaserState::Attack:
+			AttackStart();
+			break;
+		case LaserState::End:
+			EndStart();
+			break;
+		default:
+			break;
+		}
+	}
+	State = _State;
+}
+void BelialLeftHandLaserHead::StateUpdate(float _Delta)
+{
+	switch (State)
+	{
+	case LaserState::Attack:
+		return AttackUpdate(_Delta);
+	case LaserState::End:
+		return EndUpdate(_Delta);
+	default:
+		break;
+	}
+}
+void BelialLeftHandLaserHead::ChangeAnimationState(const std::string& _State)
+{
+	std::string AnimationName = "BelialLeftLaserHead_";
+	AnimationName += _State;
+	LeftLaserHeadRenderer->ChangeAnimation(AnimationName);
+}
+
+void BelialLeftHandLaserHead::AttackStart()
+{
+	ChangeAnimationState("Attack");
+}
+void BelialLeftHandLaserHead::AttackUpdate(float _Delta)
+{
+	if (LeftLaserHeadRenderer->IsCurAnimationEnd())
+	{
+		Count++;
+	}
+	if (Count >= 2)
+	{
+		ChangeState(LaserState::End);
+	}
+}
+
+
+void BelialLeftHandLaserHead::EndStart()
+{
+	ChangeAnimationState("End");
+}
+void BelialLeftHandLaserHead::EndUpdate(float _Delta)
+{
+	if (LeftLaserHeadRenderer->IsCurAnimationEnd())
+	{
+		LeftLaserHeadRenderer->Death();
+	}
 }

@@ -253,6 +253,9 @@
     <ClCompile Include="BelialRightHandLaserBody.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="BelialLaser.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -505,6 +508,9 @@
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
     <ClInclude Include="BelialRightHandLaserBody.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialLaser.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
   </ItemGroup>

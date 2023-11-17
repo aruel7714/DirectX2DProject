@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "BelialRightHand.h"
+#include "BelialRightHandLaserHead.h"
+#include "BelialRightHandLaserBody.h"
 
 BelialRightHand::BelialRightHand()
 {
@@ -31,7 +33,8 @@ void BelialRightHand::Start()
 
 	{
 		RightHandRenderer->CreateAnimation("BelialRightHand_Idle", "BelialLeftHandIdle");
-		RightHandRenderer->CreateAnimation("BelialRightHand_Attack", "BelialLeftHandAttack", 0.1f, -1, -1, false);
+		RightHandRenderer->CreateAnimation("BelialRightHand_AttackReady", "BelialLeftHandAttack", 0.1f, 0, 7, false);
+		RightHandRenderer->CreateAnimation("BelialRightHand_Attack", "BelialLeftHandAttack", 0.1f, 8, 17, false);
 	}
 
 	RightHandRenderer->SetSprite("BelialLeftHandIdle");
@@ -55,6 +58,9 @@ void BelialRightHand::ChangeState(RightHandState _State)
 		case RightHandState::Idle:
 			IdleStart();
 			break;
+		case RightHandState::AttackReady:
+			AttackReadyStart();
+			break;
 		case RightHandState::Attack:
 			AttackStart();
 			break;
@@ -70,6 +76,8 @@ void BelialRightHand::StateUpdate(float _Delta)
 	{
 	case RightHandState::Idle:
 		return IdleUpdate(_Delta);
+	case RightHandState::AttackReady:
+		return AttackReadyUpdate(_Delta);
 	case RightHandState::Attack:
 		return AttackUpdate(_Delta);
 	default:
@@ -89,14 +97,51 @@ void BelialRightHand::IdleStart()
 }
 void BelialRightHand::IdleUpdate(float _Delta)
 {
+	DebugTime += _Delta;
 
+	if (DebugTime > 5.0f)
+	{
+		ChangeState(RightHandState::AttackReady);
+	}
+}
+
+void BelialRightHand::AttackReadyStart()
+{
+	
+	ChangeAnimationState("AttackReady");
+	
+}
+void BelialRightHand::AttackReadyUpdate(float _Delta)
+{
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	
+	if (RightHandRenderer->IsCurAnimationEnd())
+	{
+		ChangeState(RightHandState::Attack);
+	}
 }
 
 void BelialRightHand::AttackStart()
 {
+	DebugTime = 0.0f;
 	ChangeAnimationState("Attack");
+
+	std::shared_ptr<BelialRightHandLaserHead> LaserHead = GetLevel()->CreateActor<BelialRightHandLaserHead>(RenderOrder::BossProjectile);
+	float4 LaserHeadPos = Transform.GetLocalPosition();
+	LaserHead->Transform.SetLocalPosition(LaserHeadPos);
+
+	for (int i = 1; i < 10; i++)
+	{
+		std::shared_ptr<BelialRightHandLaserBody> LaserBody = GetLevel()->CreateActor<BelialRightHandLaserBody>(RenderOrder::BossProjectile);
+
+		LaserBody->Transform.SetLocalPosition({ LaserHeadPos.X - (32.0f * 4 * i) , LaserHeadPos.Y });
+	}
 }
 void BelialRightHand::AttackUpdate(float _Delta)
 {
-
+	if (RightHandRenderer->IsCurAnimationEnd())
+	{
+		ChangeState(RightHandState::Idle);
+	}
 }

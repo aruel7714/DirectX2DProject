@@ -1,8 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "BelialLaser.h"
 
 // Ό³Έν : 
-class BelialLeftHandLaserHead : public GameEngineActor
+class BelialLeftHandLaserHead : public BelialLaser
 {
 	friend class BelialLeftHand;
 public:
@@ -21,5 +21,15 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> LeftLaserHeadRenderer;
+
+	void ChangeState(LaserState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimationState(const std::string& _State);
+
+	void AttackStart();
+	void AttackUpdate(float _Delta);
+
+	void EndStart();
+	void EndUpdate(float _Delta);
 };
 
