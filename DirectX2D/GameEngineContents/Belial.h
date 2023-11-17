@@ -8,12 +8,14 @@
 // Pattern3 : 한쪽 손에서 레이저 발사 최소 1번에서 최대 3번까지
 //				시작 손은 랜덤
 
-enum class BelialPattern
+enum class BelialState
 {
 	Idle,
+	FireBulletReady,
 	FireBullet,
 	SummonSword,
-	Razer,
+	Laser,
+	Max
 };
 
 class Belial : public GameEngineActor
@@ -36,6 +38,28 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> BelialBackGroundRenderer;
 	std::shared_ptr<GameEngineSpriteRenderer> BelialRenderer;
 
+	BelialState State = BelialState::Max;
 
+	float PatternStartTime = 0.0f;
+	float FireBulletTime = 0.0f;
+
+	void ChangeState(BelialState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimationState(const std::string& _State);
+
+	void IdleStart();
+	void IdleUpdate(float _Delta);
+	
+	void FireBulletReadyStart();
+	void FireBulletReadyUpdate(float _Delta);
+
+	void FireBulletStart();
+	void FireBulletUpdate(float _Delta);
+	
+	void SummonSwordStart();
+	void SummonSwordUpdate(float _Delta);
+
+	void LaserStart();
+	void LaserUpdate(float _Delta);
 };
 
