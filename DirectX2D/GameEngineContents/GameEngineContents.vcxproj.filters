@@ -256,6 +256,9 @@
     <ClCompile Include="BelialLaser.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="DungeonStele.cpp">
+      <Filter>Level\Dungeon\Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -512,6 +515,9 @@
     </ClInclude>
     <ClInclude Include="BelialLaser.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonStele.h">
+      <Filter>Level\Dungeon\Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

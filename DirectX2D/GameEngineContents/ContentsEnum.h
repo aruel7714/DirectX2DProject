@@ -63,4 +63,5 @@ enum class CollisionType
 	Monster,
 	MonsterAttack,
 	NPC,
+	Stele,
 };

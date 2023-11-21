@@ -92,6 +92,8 @@ private:
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 
+	void SteleToPlayerMove(float _Delta);
+
 	//void Gravity(float _Delta);
 private:
 	void StatusUpdate();

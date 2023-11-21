@@ -86,10 +86,14 @@ void Level1F::Start()
 	float4 MapScale = Texture->GetScale() * 4.0f;
 	Door->SetDoorPosition({ 515.0f, -(MapScale.Y - 128.0f) });
 
-	std::shared_ptr<BelialBullet> Bullet = CreateActor<BelialBullet>(RenderOrder::Monster);
-	//MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
-	Bullet->Transform.SetLocalPosition({ 1215.0f , -540.0f });
-	
+	//std::shared_ptr<BelialBullet> Bullet = CreateActor<BelialBullet>(RenderOrder::Monster);
+	////MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
+	//Bullet->Transform.SetLocalPosition({ 1215.0f , -540.0f });
+
+	std::shared_ptr<DungeonStele> Stele = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele->Transform.SetLocalPosition({ 64.0f + 32.0f, -(MapScale.Y - 128.0f - 128.0f) });
+	Stele->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
+	Stele->SetCollisionScale({ 64.0f, 256.0f });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

@@ -18,3 +18,4 @@
 #include "ContentsEnum.h"
 #include "DungeonMoveTrigger.h"
 #include "Player.h"
+#include "DungeonStele.h"

@@ -302,6 +302,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="DungeonStele.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
       <SubType>
       </SubType>
@@ -643,6 +647,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DungeonNPCInn.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DungeonStele.h">
       <SubType>
       </SubType>
     </ClInclude>

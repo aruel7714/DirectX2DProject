@@ -162,6 +162,13 @@ void Player::Update(float _Delta)
 		DownFloorFunc();
 	};
 	PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
+
+	EventParameter WallParameter;
+	WallParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+		SteleToPlayerMove(_Delta);
+	};
+	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
 }
 
 void Player::CameraFocus()
@@ -332,4 +339,9 @@ void Player::StatusUpdate()
 	PlayerScale = GetRendererScale();
 	PlayerPosition = Transform.GetWorldPosition();
 	PlayerPosition.Y += (PlayerScale.Y / 5.0f);
+}
+
+void Player::SteleToPlayerMove(float _Delta)
+{
+	Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
 }
