@@ -34,11 +34,11 @@ void BossEncounterLevel::Start()
 	std::shared_ptr<Belial> BossBelial = CreateActor<Belial>(RenderOrder::BossBody);
 	BossBelial->Transform.SetLocalPosition({ (64.0f * 11.0f), -((64.0f * 11.0f) + 32.0f) });
 
-	std::shared_ptr<BelialLeftHand> BossBelialLeftHand = CreateActor<BelialLeftHand>(RenderOrder::Monster);
-	BossBelialLeftHand->Transform.SetLocalPosition({ (64.0f * 4.0f) + 32.0f , -(MapScale.Y - (64.0f * 7.0f) - 32.0f)});
+	//std::shared_ptr<BelialLeftHand> BossBelialLeftHand = CreateActor<BelialLeftHand>(RenderOrder::Monster);
+	//BossBelialLeftHand->Transform.SetLocalPosition({ (64.0f * 4.0f) + 32.0f , -(MapScale.Y - (64.0f * 7.0f) - 32.0f)});
 
-	std::shared_ptr<BelialRightHand> BossBelialRightHand = CreateActor<BelialRightHand>(RenderOrder::Monster);
-	BossBelialRightHand->Transform.SetLocalPosition({ MapScale.X - (64.0f * 4.0f) - 32.0f, -(MapScale.Y - (64.0f * 10.0f) - 32.0f) });
+	//std::shared_ptr<BelialRightHand> BossBelialRightHand = CreateActor<BelialRightHand>(RenderOrder::Monster);
+	//BossBelialRightHand->Transform.SetLocalPosition({ MapScale.X - (64.0f * 4.0f) - 32.0f, -(MapScale.Y - (64.0f * 10.0f) - 32.0f) });
 
 
 	{

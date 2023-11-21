@@ -38,6 +38,9 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> BelialBackGroundRenderer;
 	std::shared_ptr<GameEngineSpriteRenderer> BelialRenderer;
 
+	std::shared_ptr<class BelialLeftHand> LeftHand;
+	std::shared_ptr<class BelialRightHand> RightHand;
+
 	BelialState State = BelialState::Max;
 
 	GameEngineRandom Random;
@@ -53,6 +56,10 @@ private:
 	bool BulletDegRight = true;
 	
 	int SummonSwordCount = 0;
+
+	float LaserTime = 0.0f;
+	bool LaserRight = true;
+	int LaserCount = 0;
 
 	void ChangeState(BelialState _State);
 	void StateUpdate(float _Delta);

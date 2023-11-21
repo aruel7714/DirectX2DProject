@@ -3,6 +3,8 @@
 
 #include "BelialSword.h"
 #include "BelialBullet.h"
+#include "BelialRightHand.h"
+#include "BelialLeftHand.h"
 
 Belial::Belial()
 {
@@ -48,6 +50,14 @@ void Belial::Start()
 	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BelialRenderer->SetImageScale(Scale);
 	BelialRenderer->SetPivotValue({ 0.4f, 0.7f });
+
+	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
+	float4 MapScale = Texture->GetScale() * 4.0f;
+
+	LeftHand = GetLevel()->CreateActor<BelialLeftHand>(RenderOrder::BossBody);
+	LeftHand->Transform.SetLocalPosition({ (64.0f * 4.0f) + 32.0f , -(MapScale.Y - (64.0f * 7.0f) - 32.0f) });
+	RightHand = GetLevel()->CreateActor<BelialRightHand>(RenderOrder::BossBody);
+	RightHand->Transform.SetLocalPosition({ MapScale.X - (64.0f * 4.0f) - 32.0f, -(MapScale.Y - (64.0f * 10.0f) - 32.0f) });
 
 	ChangeState(BelialState::Idle);
 	//BossBelial->Transform.SetLocalPosition({ (64.0f * 11.0f), -((64.0f * 11.0f) + 32.0f) });
@@ -117,6 +127,8 @@ void Belial::IdleStart()
 	FireBulletTime = 0.0f;
 	SummonSwordCount = 0;
 	SummonSwordTime = 0.0f;
+	LaserTime = 0.0f;
+	PatternStartTime = 0.0f;
 }
 void Belial::IdleUpdate(float _Delta)
 {
@@ -124,7 +136,7 @@ void Belial::IdleUpdate(float _Delta)
 
 	if (PatternStartTime >= 5.0f)
 	{
-		Pattern = Random.RandomInt(1, 2);
+		Pattern = Random.RandomInt(1, 3);
 
 		if (Pattern == 1)
 		{
@@ -133,6 +145,10 @@ void Belial::IdleUpdate(float _Delta)
 		else if (Pattern == 2)
 		{
 			ChangeState(BelialState::SummonSword);
+		}
+		else if (Pattern == 3)
+		{
+			ChangeState(BelialState::Laser);
 		}
 	}
 }
@@ -212,7 +228,7 @@ void Belial::SummonSwordUpdate(float _Delta)
 		SummonSwordTime = 0.0f;
 	}
 
-	if (SummonSwordCount >= 6)
+	if (SummonSwordCount >= 6 && SummonSwordTime >= 1.0f)
 	{
 		ChangeState(BelialState::Idle);
 	}
@@ -220,9 +236,30 @@ void Belial::SummonSwordUpdate(float _Delta)
 
 void Belial::LaserStart()
 {
-
+	LaserCount = Random.RandomInt(1, 3);
 }
 void Belial::LaserUpdate(float _Delta)
 {
+	LaserTime += _Delta;
 
+	if (LaserTime > 1.0f)
+	{
+		if (LaserRight == true)
+		{
+			RightHand->ChangeState(RightHandState::AttackReady);
+		}
+		else
+		{
+			LeftHand->ChangeState(LeftHandState::AttackReady);
+		}
+
+		LaserCount--;
+		LaserRight = !LaserRight;
+		LaserTime = 0.0f;
+	}
+	
+	if (LaserCount <= 0)
+	{
+		ChangeState(BelialState::Idle);
+	}
 }

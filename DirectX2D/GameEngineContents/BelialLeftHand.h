@@ -44,7 +44,5 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
-
-	float DebugTime = 0.0f;
 };
 

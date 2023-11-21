@@ -97,12 +97,7 @@ void BelialRightHand::IdleStart()
 }
 void BelialRightHand::IdleUpdate(float _Delta)
 {
-	DebugTime += _Delta;
-
-	if (DebugTime > 5.0f)
-	{
-		ChangeState(RightHandState::AttackReady);
-	}
+	//ChangeState(RightHandState::AttackReady);
 }
 
 void BelialRightHand::AttackReadyStart()
@@ -124,7 +119,6 @@ void BelialRightHand::AttackReadyUpdate(float _Delta)
 
 void BelialRightHand::AttackStart()
 {
-	DebugTime = 0.0f;
 	ChangeAnimationState("Attack");
 
 	std::shared_ptr<BelialRightHandLaserHead> LaserHead = GetLevel()->CreateActor<BelialRightHandLaserHead>(RenderOrder::BossProjectile);
