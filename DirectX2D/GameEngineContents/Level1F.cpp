@@ -90,15 +90,7 @@ void Level1F::Start()
 	////MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
 	//Bullet->Transform.SetLocalPosition({ 1215.0f , -540.0f });
 
-	std::shared_ptr<DungeonStele> Stele = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
-	Stele->Transform.SetLocalPosition({ 64.0f + 32.0f, -(MapScale.Y - 128.0f - 128.0f) });
-	Stele->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
-	Stele->SetCollisionScale({ 64.0f, 256.0f });
-
-	std::shared_ptr<DungeonStele> Stele2 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
-	Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(MapScale.Y - 128.0f - 128.0f) });
-	Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
-	Stele2->SetCollisionScale({ 64.0f, 256.0f });
+	
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

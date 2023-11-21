@@ -56,6 +56,16 @@ void Level1F_1::Start()
 
 	std::shared_ptr<Banshee> MonsterBanshee = CreateActor<Banshee>(RenderOrder::Monster);
 	MonsterBanshee->Transform.SetLocalPosition({ 1248.0f, -256.0f });
+
+	//std::shared_ptr<DungeonStele> Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	//Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(576.0f - 128.0f) });
+	//Stele1->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
+	//Stele1->SetCollisionScale({ 64.0f, 256.0f });
+
+	//std::shared_ptr<DungeonStele> Stele2 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	//Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(576.0f - 128.0f) });
+	//Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
+	//Stele2->SetCollisionScale({ 64.0f, 256.0f });
 	
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
@@ -85,6 +95,7 @@ void Level1F_1::Update(float _Delta)
 
 	TriggerLeft->MoveTriggerCollision->CollisionEvent(CollisionType::Player, ParameterLeft);
 	TriggerRight->MoveTriggerCollision->CollisionEvent(CollisionType::Player, ParameterRight);
+
 }
 
 void Level1F_1::LevelStart(GameEngineLevel* _PrevLevel)
