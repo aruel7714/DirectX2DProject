@@ -94,6 +94,8 @@ void BelialSword::IdleStart()
 }
 void BelialSword::IdleUpdate(float _Delta)
 {
+	IdleTime += _Delta;
+
 	float4 PlayerScale = Player::GetMainPlayer()->GetRendererScale();
 	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 
@@ -135,6 +137,11 @@ void BelialSword::IdleUpdate(float _Delta)
 	//}
 
 	//SwordRenderer->Transform.SetLocalRotation({ 0.0f, 0.0f, SaveDeg });
+
+	if (IdleTime >= 2.0f)
+	{
+		ChangeState(SwordState::Fire);
+	}
 }
 
 void BelialSword::FireStart()
@@ -145,7 +152,7 @@ void BelialSword::FireStart()
 }
 void BelialSword::FireUpdate(float _Delta)
 {
-
+	Transform.AddLocalPosition(SaveDir * _Delta * 2000.0f);
 }
 
 void BelialSword::HitStart()

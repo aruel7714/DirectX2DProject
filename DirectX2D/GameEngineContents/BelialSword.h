@@ -36,6 +36,8 @@ private:
 	float4 SaveDir = float4::ZERO;
 	float SaveDeg = 0.0f;
 
+	float IdleTime = 0.0f;
+
 	void ChangeState(SwordState _State);
 	void StateUpdate(float _Delta);
 

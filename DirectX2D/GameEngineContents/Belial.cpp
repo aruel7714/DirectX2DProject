@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "Belial.h"
 
+#include "BelialSword.h"
+
 Belial::Belial()
 {
 }
@@ -47,6 +49,7 @@ void Belial::Start()
 	BelialRenderer->SetPivotValue({ 0.4f, 0.7f });
 
 	ChangeState(BelialState::Idle);
+	//BossBelial->Transform.SetLocalPosition({ (64.0f * 11.0f), -((64.0f * 11.0f) + 32.0f) });
 }
 
 void Belial::Update(float _Delta)
@@ -111,6 +114,8 @@ void Belial::IdleStart()
 	ChangeAnimationState("Idle");
 
 	FireBulletTime = 0.0f;
+	SummonSwordCount = 0;
+	SummonSwordTime = 0.0f;
 }
 void Belial::IdleUpdate(float _Delta)
 {
@@ -118,7 +123,7 @@ void Belial::IdleUpdate(float _Delta)
 
 	if (PatternStartTime >= 2.0f)
 	{
-
+		//ChangeState(BelialState::SummonSword);
 	}
 }
 
@@ -150,11 +155,24 @@ void Belial::FireBulletUpdate(float _Delta)
 
 void Belial::SummonSwordStart()
 {
-
+	
 }
 void Belial::SummonSwordUpdate(float _Delta)
 {
 	SummonSwordTime += _Delta;
+
+	if (SummonSwordTime >= 0.5f && SummonSwordCount < 6)
+	{
+		std::shared_ptr<BelialSword> Sword = GetLevel()->CreateActor<BelialSword>(RenderOrder::BossProjectile);
+		Sword->Transform.SetLocalPosition({ (64.0f * 6) + 128.0f * SummonSwordCount, -(64.0f * 8) });
+		SummonSwordCount++;
+		SummonSwordTime = 0.0f;
+	}
+
+	if (SummonSwordCount >= 6)
+	{
+		ChangeState(BelialState::Idle);
+	}
 }
 
 void Belial::LaserStart()

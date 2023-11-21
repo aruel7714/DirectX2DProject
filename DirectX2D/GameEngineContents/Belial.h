@@ -44,7 +44,7 @@ private:
 	float FireBulletTime = 0.0f;
 	float SummonSwordTime = 0.0f;
 	
-	int summonSwordCount = 0;
+	int SummonSwordCount = 0;
 
 	void ChangeState(BelialState _State);
 	void StateUpdate(float _Delta);
