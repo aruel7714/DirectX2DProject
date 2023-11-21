@@ -136,20 +136,22 @@ void Belial::IdleUpdate(float _Delta)
 
 	if (PatternStartTime >= 5.0f)
 	{
-		Pattern = Random.RandomInt(1, 3);
+		//Pattern = Random.RandomInt(1, 3);
 
-		if (Pattern == 1)
-		{
-			ChangeState(BelialState::FireBulletReady);
-		}
-		else if (Pattern == 2)
-		{
-			ChangeState(BelialState::SummonSword);
-		}
-		else if (Pattern == 3)
-		{
-			ChangeState(BelialState::Laser);
-		}
+		//if (Pattern == 1)
+		//{
+		//	ChangeState(BelialState::FireBulletReady);
+		//}
+		//else if (Pattern == 2)
+		//{
+		//	ChangeState(BelialState::SummonSword);
+		//}
+		//else if (Pattern == 3)
+		//{
+		//	ChangeState(BelialState::Laser);
+		//}
+
+		ChangeState(BelialState::Laser);
 	}
 }
 

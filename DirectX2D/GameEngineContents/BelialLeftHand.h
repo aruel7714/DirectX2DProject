@@ -31,6 +31,7 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> LeftHandRenderer;
 
 	LeftHandState State = LeftHandState::Max;
+	float4 PlayerPos = float4::ZERO;
 
 	void ChangeState(LeftHandState _State);
 	void StateUpdate(float _Delta);

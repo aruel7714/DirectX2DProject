@@ -102,15 +102,21 @@ void BelialRightHand::IdleUpdate(float _Delta)
 
 void BelialRightHand::AttackReadyStart()
 {
-	
 	ChangeAnimationState("AttackReady");
-	
+	PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 }
 void BelialRightHand::AttackReadyUpdate(float _Delta)
 {
-	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
-
+	if (0 < PlayerPos.Y - Transform.GetLocalPosition().Y)
+	{
+		Transform.AddLocalPosition(float4::UP * _Delta * abs(PlayerPos.Y - Transform.GetLocalPosition().Y) * 20.0f);
+	}
+	else
+	{
+		Transform.AddLocalPosition(float4::DOWN * _Delta * abs(PlayerPos.Y - Transform.GetLocalPosition().Y) * 20.0f);
+	}
 	
+
 	if (RightHandRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(RightHandState::Attack);

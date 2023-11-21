@@ -32,6 +32,8 @@ private:
 
 	RightHandState State = RightHandState::Max;
 
+	float4 PlayerPos = float4::ZERO;
+
 	void ChangeState(RightHandState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
