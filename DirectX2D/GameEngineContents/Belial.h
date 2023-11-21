@@ -40,6 +40,9 @@ private:
 
 	BelialState State = BelialState::Max;
 
+	GameEngineRandom Random;
+	int Pattern;
+
 	float PatternStartTime = 0.0f;
 	float FireBulletTime = 0.0f;
 	float SummonSwordTime = 0.0f;

@@ -107,6 +107,16 @@ void BelialBullet::NormalUpdate(float _Delta)
 	};
 
 	BulletCollision->CollisionEvent(CollisionType::Player, HitParameter);
+
+	float4 Position = Transform.GetLocalPosition();
+	if (Position.X <= 0.0f || 
+		Position.X >= 352.0f * 4.0f ||
+		Position.Y >= 0.0f ||
+		Position.Y <= -(320.0f * 4.0f))
+	{
+		BulletCollision->Death();
+		BulletRenderer->Death();
+	}
 }
 
 void BelialBullet::HitStart()

@@ -122,9 +122,18 @@ void Belial::IdleUpdate(float _Delta)
 {
 	PatternStartTime += _Delta;
 
-	if (PatternStartTime >= 2.5f)
+	if (PatternStartTime >= 5.0f)
 	{
-		ChangeState(BelialState::FireBulletReady);
+		Pattern = Random.RandomInt(1, 2);
+
+		if (Pattern == 1)
+		{
+			ChangeState(BelialState::FireBulletReady);
+		}
+		else if (Pattern == 2)
+		{
+			ChangeState(BelialState::SummonSword);
+		}
 	}
 }
 
@@ -195,7 +204,7 @@ void Belial::SummonSwordUpdate(float _Delta)
 {
 	SummonSwordTime += _Delta;
 
-	if (SummonSwordTime >= 0.5f && SummonSwordCount < 6)
+	if (SummonSwordTime >= 0.2f && SummonSwordCount < 6)
 	{
 		std::shared_ptr<BelialSword> Sword = GetLevel()->CreateActor<BelialSword>(RenderOrder::BossProjectile);
 		Sword->Transform.SetLocalPosition({ (64.0f * 6) + 128.0f * SummonSwordCount, -(64.0f * 8) });
