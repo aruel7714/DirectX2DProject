@@ -2,6 +2,7 @@
 #include "Belial.h"
 
 #include "BelialSword.h"
+#include "BelialBullet.h"
 
 Belial::Belial()
 {
@@ -121,9 +122,9 @@ void Belial::IdleUpdate(float _Delta)
 {
 	PatternStartTime += _Delta;
 
-	if (PatternStartTime >= 2.0f)
+	if (PatternStartTime >= 2.5f)
 	{
-		//ChangeState(BelialState::SummonSword);
+		ChangeState(BelialState::FireBulletReady);
 	}
 }
 
@@ -142,12 +143,45 @@ void Belial::FireBulletReadyUpdate(float _Delta)
 void Belial::FireBulletStart()
 {
 	ChangeAnimationState("FireBullet");
+	BulletDeg = BulletDir.Angle2DDeg();
+	BulletDegRight = !BulletDegRight;
 }
 void Belial::FireBulletUpdate(float _Delta)
 {
+	SummonBulletTime += _Delta;
 	FireBulletTime += _Delta;
 
-	if (FireBulletTime >= 3.0f)
+	if (SummonBulletTime >= 0.1f)
+	{
+		std::shared_ptr<BelialBullet> Bullet1 = GetLevel()->CreateActor<BelialBullet>(RenderOrder::BossProjectile);
+		Bullet1->Transform.SetLocalPosition(Transform.GetLocalPosition());
+		Bullet1->Deg = BulletDeg;
+
+		std::shared_ptr<BelialBullet> Bullet2 = GetLevel()->CreateActor<BelialBullet>(RenderOrder::BossProjectile);
+		Bullet2->Transform.SetLocalPosition(Transform.GetLocalPosition());
+		Bullet2->Deg = BulletDeg + 90.0f;
+
+		std::shared_ptr<BelialBullet> Bullet3 = GetLevel()->CreateActor<BelialBullet>(RenderOrder::BossProjectile);
+		Bullet3->Transform.SetLocalPosition(Transform.GetLocalPosition());
+		Bullet3->Deg = BulletDeg + 180.0f;
+
+		std::shared_ptr<BelialBullet> Bullet4 = GetLevel()->CreateActor<BelialBullet>(RenderOrder::BossProjectile);
+		Bullet4->Transform.SetLocalPosition(Transform.GetLocalPosition());
+		Bullet4->Deg = BulletDeg + 270.0f;
+
+		if (BulletDegRight == false)
+		{
+			BulletDeg += 6.0f;
+		}
+		else
+		{
+			BulletDeg -= 6.0f;
+		}
+
+		SummonBulletTime = 0.0f;
+	}
+
+	if (FireBulletTime >= 3.2f)
 	{
 		ChangeState(BelialState::Idle);
 	}

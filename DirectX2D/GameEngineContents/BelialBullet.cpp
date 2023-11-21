@@ -96,7 +96,9 @@ void BelialBullet::NormalStart()
 }
 void BelialBullet::NormalUpdate(float _Delta)
 {
-	
+	Dir = float4::GetUnitVectorFromDeg(Deg);
+
+	Transform.AddLocalPosition(Dir * _Delta * 300.0f);
 
 	EventParameter HitParameter;
 	HitParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
@@ -114,5 +116,9 @@ void BelialBullet::HitStart()
 }
 void BelialBullet::HitUpdate(float _Delta)
 {
-
+	if (BulletRenderer->IsCurAnimationEnd())
+	{
+		BulletCollision->Death();
+		BulletRenderer->Death();
+	}
 }

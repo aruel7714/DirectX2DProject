@@ -43,6 +43,11 @@ private:
 	float PatternStartTime = 0.0f;
 	float FireBulletTime = 0.0f;
 	float SummonSwordTime = 0.0f;
+
+	float SummonBulletTime = 0.0f;
+	float4 BulletDir = float4::UP;
+	float BulletDeg = 0.0f;
+	bool BulletDegRight = true;
 	
 	int SummonSwordCount = 0;
 

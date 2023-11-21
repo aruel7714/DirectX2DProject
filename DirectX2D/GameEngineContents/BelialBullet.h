@@ -11,6 +11,7 @@ enum class BulletState
 // Ό³Έν : 
 class BelialBullet : public GameEngineActor
 {
+	friend class Belial;
 public:
 	// constrcuter destructer
 	BelialBullet();
@@ -31,6 +32,9 @@ private:
 	BulletState State = BulletState::Max;
 
 	std::shared_ptr<GameEngineCollision> BulletCollision;
+
+	float Deg = 0.0f;
+	float4 Dir = float4::ZERO;
 
 	void ChangeState(BulletState _State);
 	void StateUpdate(float _Delta);
