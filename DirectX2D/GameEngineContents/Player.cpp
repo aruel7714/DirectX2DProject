@@ -166,7 +166,10 @@ void Player::Update(float _Delta)
 	EventParameter WallParameter;
 	WallParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		SteleToPlayerMove(_Delta);
+		float4 PlayerPos = _This->Transform.GetWorldPosition();
+		float4 StelePos = _Other->Transform.GetWorldPosition();
+		
+		SteleToPlayerMove(_Delta, (StelePos.X - PlayerPos.X));
 	};
 	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
 }
@@ -341,7 +344,24 @@ void Player::StatusUpdate()
 	PlayerPosition.Y += (PlayerScale.Y / 5.0f);
 }
 
-void Player::SteleToPlayerMove(float _Delta)
+void Player::SteleToPlayerMove(float _Delta, float ResultPos)
 {
-	Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+	if (ResultPos > 0)
+	{
+		Transform.AddLocalPosition(float4::LEFT * _Delta * Speed);
+
+		if (State == PlayerState::Dash)
+		{
+			Transform.AddLocalPosition(float4::LEFT * _Delta * Speed * 2.0f);
+		}
+	}
+	else
+	{
+		Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed);
+
+		if (State == PlayerState::Dash)
+		{
+			Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed * 2.0f);
+		}
+	}
 }

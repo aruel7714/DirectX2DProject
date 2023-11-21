@@ -9,12 +9,6 @@ enum class SteleState
 	Max
 };
 
-enum class SteleDir
-{
-	Left,
-	Right,
-};
-
 // Ό³Έν : 
 class DungeonStele : public GameEngineActor
 {
@@ -43,7 +37,6 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> SteleRenderer;
 
 	SteleState State = SteleState::Max;
-	SteleDir Dir = SteleDir::Right;
 
 	std::shared_ptr<GameEngineCollision> SteleCollision;
 

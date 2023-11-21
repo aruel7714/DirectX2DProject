@@ -92,7 +92,7 @@ private:
 
 	void LevelStart(GameEngineLevel* _PrevLevel) override;
 
-	void SteleToPlayerMove(float _Delta);
+	void SteleToPlayerMove(float _Delta, float ResultPos);
 
 	//void Gravity(float _Delta);
 private:
