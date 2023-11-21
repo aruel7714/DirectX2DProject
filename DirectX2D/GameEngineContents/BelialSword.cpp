@@ -107,20 +107,21 @@ void BelialSword::IdleUpdate(float _Delta)
 
 	if (TargetPos.X < 0)
 	{
-		SaveDeg -= 90.0f;
-		if (TargetPos.Y < 0)
-		{
-		}
-		
-	}
-
-	if (TargetPos.X >= 0)
-	{
-		SaveDeg += 90.0f;
 		if (TargetPos.Y < 0)
 		{
 			SaveDeg *= -1.0f;
 		}
+		SaveDeg -= 90.0f;
+	}
+
+	if (TargetPos.X >= 0)
+	{
+		SaveDeg += 180.0f;
+		if (TargetPos.Y < 0)
+		{
+			SaveDeg *= -1.0f;
+		}
+		SaveDeg += 90.0f;
 	}
 
 	Transform.SetLocalRotation({ 0.0f, 0.0f, SaveDeg });
