@@ -37,6 +37,7 @@ private:
 	float SaveDeg = 0.0f;
 
 	float IdleTime = 0.0f;
+	float DeathTime = 0.0f;
 
 	void ChangeState(SwordState _State);
 	void StateUpdate(float _Delta);

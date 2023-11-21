@@ -17,11 +17,15 @@ void BossEncounterFloor::Start()
 	DebugFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Floor);
 	DebugFloorRenderer->SetSprite("BossRoom_Debug.png");
 
+	WallFloorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::DungeonWall);
+	WallFloorRenderer->SetSprite("BossRoomWall.png");
+
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
 	float4 ImageScale = Texture->GetScale() * 4.0f;
 
 	FloorRenderer->SetImageScale(ImageScale);
 	DebugFloorRenderer->SetImageScale(ImageScale);
+	WallFloorRenderer->SetImageScale(ImageScale);
 
 	float4 ImageHalfScale = ImageScale.Half();
 	ImageHalfScale.Y *= -1.0f;

@@ -33,6 +33,7 @@ void BeforeBossEncounterLevel::Start()
 
 	GameEngineSprite::CreateSingle("BossEncount.png");
 	GameEngineSprite::CreateSingle("BossEncount_Debug.png");
+	GameEngineSprite::CreateSingle("BossRoomWall.png");
 
 	BeforeBossEncounterFloor = CreateActor<class BeforeBossEncounterFloor>(RenderOrder::Floor);
 

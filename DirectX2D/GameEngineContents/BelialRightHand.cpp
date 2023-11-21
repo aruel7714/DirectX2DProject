@@ -94,6 +94,8 @@ void BelialRightHand::ChangeAnimationState(const std::string& _State)
 void BelialRightHand::IdleStart()
 {
 	ChangeAnimationState("Idle");
+	float4 Scale = RightHandRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	RightHandRenderer->SetImageScale(Scale);
 }
 void BelialRightHand::IdleUpdate(float _Delta)
 {
@@ -103,6 +105,8 @@ void BelialRightHand::IdleUpdate(float _Delta)
 void BelialRightHand::AttackReadyStart()
 {
 	ChangeAnimationState("AttackReady");
+	float4 Scale = RightHandRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	RightHandRenderer->SetImageScale(Scale);
 	PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 }
 void BelialRightHand::AttackReadyUpdate(float _Delta)
@@ -126,6 +130,8 @@ void BelialRightHand::AttackReadyUpdate(float _Delta)
 void BelialRightHand::AttackStart()
 {
 	ChangeAnimationState("Attack");
+	float4 Scale = RightHandRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	RightHandRenderer->SetImageScale(Scale);
 
 	std::shared_ptr<BelialRightHandLaserHead> LaserHead = GetLevel()->CreateActor<BelialRightHandLaserHead>(RenderOrder::BossProjectile);
 	float4 LaserHeadPos = Transform.GetLocalPosition();

@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "BelialSword.h"
+#include "BackGround.h"
 
 BelialSword::BelialSword()
 {
@@ -31,14 +32,14 @@ void BelialSword::Start()
 	GameEngineSprite::CreateSingle("BossSwordFX.png");
 
 	{
-		SwordChargeRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossProjectileEffect);
+		SwordChargeRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossWallBackProjectileEffect);
 		SwordChargeRenderer->CreateAnimation("SwordChargeFX", "BelialPatternSwordCharge");
 		SwordChargeRenderer->ChangeAnimation("SwordChargeFX");
 		float4 Scale = SwordChargeRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 		SwordChargeRenderer->SetImageScale(Scale);
 	}
 
-	SwordRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossProjectile);
+	SwordRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossWallBackProjectile);
 	SwordRenderer->SetSprite("BossSword.png");
 	float4 Scale = SwordChargeRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	SwordRenderer->SetImageScale(Scale);
@@ -153,6 +154,12 @@ void BelialSword::FireStart()
 void BelialSword::FireUpdate(float _Delta)
 {
 	Transform.AddLocalPosition(SaveDir * _Delta * 2000.0f);
+
+	GameEngineColor CheckColor = BackGround::DebugBackGround->GetColor(Transform.GetLocalPosition(), GameEngineColor::RED);
+	if (CheckColor == GameEngineColor::RED)
+	{
+		ChangeState(SwordState::HIt);
+	}
 }
 
 void BelialSword::HitStart()
@@ -163,5 +170,10 @@ void BelialSword::HitStart()
 }
 void BelialSword::HitUpdate(float _Delta)
 {
+	DeathTime += _Delta;
 
+	if (DeathTime >= 2.0f)
+	{
+		Death();
+	}
 }
