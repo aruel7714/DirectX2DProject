@@ -27,5 +27,15 @@ private:
 	std::shared_ptr<class Player> MainPlayer;
 	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
 	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
+
+	std::shared_ptr<class DungeonStele> Stele1;
+	std::shared_ptr<class DungeonStele> Stele2;
+
+	std::map<std::string, std::shared_ptr<GameEngineActor>> AllMonsters;
+	std::map<std::string, bool> MonsterDeathCheck;
+
+	void DeathOn();
+
+	bool AllDeathCheck();
 };
 

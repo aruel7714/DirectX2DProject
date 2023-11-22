@@ -32,37 +32,61 @@ void Level1F_1::Start()
 	MonsterBigWhiteSkel1->Transform.SetLocalPosition({ 992.0f, -576.0f });
 	MonsterBigWhiteSkel1->SetName(std::string_view("MonsterBigWhiteSkel1"));
 	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterBigWhiteSkel1->GetName() , MonsterBigWhiteSkel1));
-	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBigWhiteSkel1->GetName(), true));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBigWhiteSkel1->GetName(), false));
 
 	std::shared_ptr<BigWhiteSkel> MonsterBigWhiteSkel2 = CreateActor<BigWhiteSkel>(RenderOrder::Monster);
 	MonsterBigWhiteSkel2->Transform.SetLocalPosition({ 1504.0f, -576.0f });
 	MonsterBigWhiteSkel2->SetName(std::string_view("MonsterBigWhiteSkel2"));
-	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>("MonsterBigWhiteSkel2", MonsterBigWhiteSkel2));
-	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBigWhiteSkel2->GetName(), true));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterBigWhiteSkel2->GetName(), MonsterBigWhiteSkel2));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBigWhiteSkel2->GetName(), false));
 
 	std::shared_ptr<RustyGreatSwordSkel> MonsterRustyGreatSwordSkel = CreateActor< RustyGreatSwordSkel>(RenderOrder::Monster);
 	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1248.0f, -576.0f });
+	/*MonsterRustyGreatSwordSkel->SetName(std::string_view("MonsterRustyGreatSwordSkel"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterRustyGreatSwordSkel->GetName(), MonsterRustyGreatSwordSkel));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterRustyGreatSwordSkel->GetName(), false));*/
 
 	std::shared_ptr<ArcherSkel> MonsterArcherSkel1 = CreateActor<ArcherSkel>(RenderOrder::Monster);
 	MonsterArcherSkel1->Transform.SetLocalPosition({ 1024.0f, -896.0f });
+	/*MonsterArcherSkel1->SetName(std::string_view("MonsterArcherSkel1"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterArcherSkel1->GetName(), MonsterArcherSkel1));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterArcherSkel1->GetName(), false));*/
 
 	std::shared_ptr<ArcherSkel> MonsterArcherSkel2 = CreateActor<ArcherSkel>(RenderOrder::Monster);
 	MonsterArcherSkel2->Transform.SetLocalPosition({ 1472.0f, -896.0f });
+	/*MonsterArcherSkel2->SetName(std::string_view("MonsterArcherSkel2"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterArcherSkel2->GetName(), MonsterArcherSkel2));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterArcherSkel2->GetName(), false));*/
 
 	std::shared_ptr<LittleGhost> MonsterLittleGhost1 = CreateActor<LittleGhost>(RenderOrder::Monster);
 	MonsterLittleGhost1->Transform.SetLocalPosition({ 992.0f, -384.0f });
+	/*MonsterLittleGhost1->SetName(std::string_view("MonsterLittleGhost1"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterLittleGhost1->GetName(), MonsterLittleGhost1));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterLittleGhost1->GetName(), false));*/
 
 	std::shared_ptr<LittleGhost> MonsterLittleGhost2 = CreateActor<LittleGhost>(RenderOrder::Monster);
 	MonsterLittleGhost2->Transform.SetLocalPosition({ 1120.0f, -384.0f });
+	/*MonsterLittleGhost2->SetName(std::string_view("MonsterLittleGhost2"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterLittleGhost2->GetName(), MonsterLittleGhost2));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterLittleGhost2->GetName(), false));*/
 
 	std::shared_ptr<LittleGhost> MonsterLittleGhost3 = CreateActor<LittleGhost>(RenderOrder::Monster);
 	MonsterLittleGhost3->Transform.SetLocalPosition({ 1376.0f, -384.0f });
+	/*MonsterLittleGhost3->SetName(std::string_view("MonsterLittleGhost3"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterLittleGhost3->GetName(), MonsterLittleGhost3));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterLittleGhost3->GetName(), false));*/
 
 	std::shared_ptr<LittleGhost> MonsterLittleGhost4 = CreateActor<LittleGhost>(RenderOrder::Monster);
 	MonsterLittleGhost4->Transform.SetLocalPosition({ 1504.0f, -384.0f });
+	/*MonsterLittleGhost4->SetName(std::string_view("MonsterLittleGhost4"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterLittleGhost4->GetName(), MonsterLittleGhost4));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterLittleGhost4->GetName(), false));*/
 
 	std::shared_ptr<Banshee> MonsterBanshee = CreateActor<Banshee>(RenderOrder::Monster);
 	MonsterBanshee->Transform.SetLocalPosition({ 1248.0f, -256.0f });
+	/*MonsterBanshee->SetName(std::string_view("MonsterBanshee"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterBanshee->GetName(), MonsterBanshee));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBanshee->GetName(), false));*/
 
 	Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
 	Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(576.0f - 128.0f) });
@@ -146,7 +170,7 @@ void Level1F_1::DeathOn()
 		if (Pair.second->IsDeath())
 		{
 			std::map<std::string, bool>::iterator Finditer = MonsterDeathCheck.find(Pair.first);
-			Finditer->second = false;
+			Finditer->second = true;
 		}
 	}
 }
@@ -155,7 +179,7 @@ bool Level1F_1::AllDeathCheck()
 {
 	for (std::pair<std::string, bool> Pair : MonsterDeathCheck)
 	{
-		if (Pair.second == true)
+		if (Pair.second == false)
 		{
 			return false;
 		}

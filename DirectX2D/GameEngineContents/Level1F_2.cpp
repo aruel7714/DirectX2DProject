@@ -31,24 +31,45 @@ void Level1F_2::Start()
 
 	std::shared_ptr<Banshee> MonsterBanshee = CreateActor<Banshee>(RenderOrder::Monster);
 	MonsterBanshee->Transform.SetLocalPosition({ 1344.0f, -256.0f });
+	/*MonsterBanshee->SetName(std::string_view("MonsterBanshee"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterBanshee->GetName(), MonsterBanshee));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBanshee->GetName(), false));*/
 
 	std::shared_ptr<RustyShortSwordSkel> MonsterRustyShortSwordSkel = CreateActor<RustyShortSwordSkel>(RenderOrder::Monster);
 	MonsterRustyShortSwordSkel->Transform.SetLocalPosition({ 1920.0f, -448.0f });
+	/*MonsterRustyShortSwordSkel->SetName(std::string_view("MonsterRustyShortSwordSkel"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterRustyShortSwordSkel->GetName(), MonsterRustyShortSwordSkel));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterRustyShortSwordSkel->GetName(), false));*/
 
 	std::shared_ptr<SkelDog> MonsterSkelDog = CreateActor<SkelDog>(RenderOrder::Monster);
 	MonsterSkelDog->Transform.SetLocalPosition({ 1088.0f, -640.0f });
+	/*MonsterSkelDog->SetName(std::string_view("MonsterSkelDog"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterSkelDog->GetName(), MonsterSkelDog));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterSkelDog->GetName(), false));*/
 
-	std::shared_ptr<DungeonTorch> Torch1 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
-	Torch1->Transform.SetLocalPosition({ 672.0f, -640.0f });
+	/*Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(MapScale.Y - 256.0f) });
+	Stele1->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
+	Stele1->SetCollisionScale({ 64.0f, 256.0f });
 
-	std::shared_ptr<DungeonTorch> Torch2 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
-	Torch2->Transform.SetLocalPosition({ 928.0f, -352.0f });
+	Stele2 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(832.0f - 128.0f) });
+	Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
+	Stele2->SetCollisionScale({ 64.0f, 256.0f });*/
 
-	std::shared_ptr<DungeonTorch> Torch3 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
-	Torch3->Transform.SetLocalPosition({ 1760.0f, -352.0f });
+	{
+		std::shared_ptr<DungeonTorch> Torch1 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+		Torch1->Transform.SetLocalPosition({ 672.0f, -640.0f });
 
-	std::shared_ptr<DungeonTorch> Torch4 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
-	Torch4->Transform.SetLocalPosition({ 2016.0f, -640.0f });
+		std::shared_ptr<DungeonTorch> Torch2 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+		Torch2->Transform.SetLocalPosition({ 928.0f, -352.0f });
+
+		std::shared_ptr<DungeonTorch> Torch3 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+		Torch3->Transform.SetLocalPosition({ 1760.0f, -352.0f });
+
+		std::shared_ptr<DungeonTorch> Torch4 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+		Torch4->Transform.SetLocalPosition({ 2016.0f, -640.0f });
+	}
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
@@ -97,4 +118,29 @@ void Level1F_2::LevelStart(GameEngineLevel* _PrevLevel)
 void Level1F_2::LevelEnd(GameEngineLevel* _NextLevel)
 {
 
+}
+
+void Level1F_2::DeathOn()
+{
+	for (std::pair<std::string, std::shared_ptr<GameEngineActor>> Pair : AllMonsters)
+	{
+		if (Pair.second->IsDeath())
+		{
+			std::map<std::string, bool>::iterator Finditer = MonsterDeathCheck.find(Pair.first);
+			Finditer->second = true;
+		}
+	}
+}
+
+bool Level1F_2::AllDeathCheck()
+{
+	for (std::pair<std::string, bool> Pair : MonsterDeathCheck)
+	{
+		if (Pair.second == false)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
