@@ -29,6 +29,8 @@ public:
 		SteleCollision->Transform.SetLocalRotation({0.0f, 0.0f, 90.0f});
 	}
 
+	void SteleOpened();
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

@@ -29,9 +29,15 @@ void Level1F_1::Start()
 
 	std::shared_ptr<BigWhiteSkel> MonsterBigWhiteSkel1 = CreateActor<BigWhiteSkel>(RenderOrder::Monster);
 	MonsterBigWhiteSkel1->Transform.SetLocalPosition({ 992.0f, -576.0f });
+	MonsterBigWhiteSkel1->SetName(std::string_view("MonsterBigWhiteSkel1"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterBigWhiteSkel1->GetName() , MonsterBigWhiteSkel1));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBigWhiteSkel1->GetName(), true));
 
 	std::shared_ptr<BigWhiteSkel> MonsterBigWhiteSkel2 = CreateActor<BigWhiteSkel>(RenderOrder::Monster);
 	MonsterBigWhiteSkel2->Transform.SetLocalPosition({ 1504.0f, -576.0f });
+	MonsterBigWhiteSkel2->SetName(std::string_view("MonsterBigWhiteSkel2"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>("MonsterBigWhiteSkel2", MonsterBigWhiteSkel2));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBigWhiteSkel2->GetName(), true));
 
 	std::shared_ptr<RustyGreatSwordSkel> MonsterRustyGreatSwordSkel = CreateActor< RustyGreatSwordSkel>(RenderOrder::Monster);
 	MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1248.0f, -576.0f });
@@ -57,15 +63,15 @@ void Level1F_1::Start()
 	std::shared_ptr<Banshee> MonsterBanshee = CreateActor<Banshee>(RenderOrder::Monster);
 	MonsterBanshee->Transform.SetLocalPosition({ 1248.0f, -256.0f });
 
-	//std::shared_ptr<DungeonStele> Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
-	//Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(576.0f - 128.0f) });
-	//Stele1->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
-	//Stele1->SetCollisionScale({ 64.0f, 256.0f });
+	Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(576.0f - 128.0f) });
+	Stele1->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
+	Stele1->SetCollisionScale({ 64.0f, 256.0f });
 
-	//std::shared_ptr<DungeonStele> Stele2 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
-	//Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(576.0f - 128.0f) });
-	//Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
-	//Stele2->SetCollisionScale({ 64.0f, 256.0f });
+	Stele2 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(576.0f - 128.0f) });
+	Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
+	Stele2->SetCollisionScale({ 64.0f, 256.0f });
 	
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
@@ -81,6 +87,14 @@ void Level1F_1::Start()
 }
 void Level1F_1::Update(float _Delta)
 {
+	DeathOn();
+
+	if (AllDeathCheck() == true)
+	{
+		Stele1->SteleOpened();
+		Stele2->SteleOpened();
+	}
+
 	EventParameter ParameterLeft;
 	ParameterLeft.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
@@ -116,4 +130,29 @@ void Level1F_1::LevelStart(GameEngineLevel* _PrevLevel)
 void Level1F_1::LevelEnd(GameEngineLevel* _NextLevel)
 {
 
+}
+
+void Level1F_1::DeathOn()
+{
+	for (std::pair<std::string, std::shared_ptr<GameEngineActor>> Pair : AllMonsters)
+	{
+		if (Pair.second->IsDeath())
+		{
+			std::map<std::string, bool>::iterator Finditer = MonsterDeathCheck.find(Pair.first);
+			Finditer->second = false;
+		}
+	}
+}
+
+bool Level1F_1::AllDeathCheck()
+{
+	for (std::pair<std::string, bool> Pair : MonsterDeathCheck)
+	{
+		if (Pair.second == true)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }

@@ -76,6 +76,13 @@ void BigWhiteSkel::Update(float _Delta)
 	{
 		BigWhiteSkelRenderer->RightFlip();
 	}
+
+	EventParameter DamageEvent;
+	DamageEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			ChangeState(BigWhiteSkelState::Death);
+		};
+	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 }
 
 void BigWhiteSkel::ChangeState(BigWhiteSkelState _State)
@@ -96,6 +103,9 @@ void BigWhiteSkel::ChangeState(BigWhiteSkelState _State)
 		case BigWhiteSkelState::AttackReady:
 			AttackReadyStart();
 			break;
+		case BigWhiteSkelState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -114,6 +124,8 @@ void BigWhiteSkel::StateUpdate(float _Delta)
 		return AttackUpdate(_Delta);
 	case BigWhiteSkelState::AttackReady:
 		return AttackReadyUpdate(_Delta);
+	case BigWhiteSkelState::Death:
+		return Update(_Delta);
 	default:
 		break;
 	}
@@ -251,4 +263,13 @@ void BigWhiteSkel::DirCheck()
 	{
 		Dir = BigWhiteSkelDir::Right;
 	}
+}
+
+void BigWhiteSkel::DeathStart()
+{
+	Death();
+}
+void BigWhiteSkel::DeathUpdate(float _Delta)
+{
+
 }

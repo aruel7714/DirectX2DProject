@@ -125,5 +125,14 @@ void DungeonStele::OpenedStart()
 }
 void DungeonStele::OpenedUpdate(float _Delta)
 {
+	if (SteleRenderer->IsCurAnimationEnd())
+	{
+		SteleCollision->Death();
+		SteleRenderer->Death();
+	}
+}
 
+void DungeonStele::SteleOpened()
+{
+	ChangeState(SteleState::Opened);
 }

@@ -84,6 +84,12 @@ void Arrow::Start()
 	//	Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
 	//}
 
+	{
+		ArrowCollision = CreateComponent<GameEngineCollision>(CollisionType::Weapon);
+		ArrowCollision->SetCollisionType(ColType::SPHERE2D);
+		ArrowCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
+		ArrowCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+	}
 	
 	
 	Dir = MouseDir;
@@ -102,6 +108,7 @@ void Arrow::Update(float _Delta)
 			ArrowRenderer->ChangeAnimation("ArrowDisappear");
 			ArrowRenderer->SetImageScale(ArrowRenderer->GetCurSprite().Texture->GetScale() * 4.0f);
 			Transform.SetLocalRotation({ 0.0f, 0.0f, Transform.GetLocalRotationEuler().Z + 180.0f });
+			ArrowCollision->Off();
 		}
 	}
 

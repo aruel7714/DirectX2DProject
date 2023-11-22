@@ -7,6 +7,7 @@ enum class BigWhiteSkelState
 	Move,
 	Attack,
 	AttackReady,
+	Death,
 	Max
 };
 
@@ -61,6 +62,9 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 
 	void DirCheck();
 

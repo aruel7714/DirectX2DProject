@@ -21,6 +21,8 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> ArrowRenderer;
 
+	std::shared_ptr<GameEngineCollision> ArrowCollision;
+
 	float4 Dir = float4::ZERO;
 	float ArrowSpeed = 1500.0f;
 };
