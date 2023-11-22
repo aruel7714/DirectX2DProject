@@ -4,6 +4,7 @@
 
 #include "Banshee.h"
 #include "RustyShortSwordSkel.h"
+#include "SkelDog.h"
 
 Level1F_2::Level1F_2()
 {
@@ -30,6 +31,9 @@ void Level1F_2::Start()
 
 	std::shared_ptr<RustyShortSwordSkel> MonsterRustyShortSwordSkel = CreateActor<RustyShortSwordSkel>(RenderOrder::Monster);
 	MonsterRustyShortSwordSkel->Transform.SetLocalPosition({ 1920.0f, -448.0f });
+
+	std::shared_ptr<SkelDog> MonsterSkelDog = CreateActor<SkelDog>(RenderOrder::Monster);
+	MonsterSkelDog->Transform.SetLocalPosition({ 1088.0f, -640.0f });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

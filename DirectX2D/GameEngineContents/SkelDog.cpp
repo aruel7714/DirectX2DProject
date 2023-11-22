@@ -11,7 +11,7 @@ SkelDog::~SkelDog()
 
 void SkelDog::Start()
 {
-	if (nullptr == GameEngineSprite::Find("BigWhiteSkelIdle"))
+	if (nullptr == GameEngineSprite::Find("SkelDogIdle"))
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("ContentsResources");
@@ -33,12 +33,15 @@ void SkelDog::Start()
 		SkelDogRenderer->CreateAnimation("SkelDog_Idle", "SkelDogIdle");
 		SkelDogRenderer->CreateAnimation("SkelDog_Move", "SkelDogRun");
 		SkelDogRenderer->CreateAnimation("SkelDog_AttackReady", "SkelDogIdle", 0.1f, -1, -1, false);
-		SkelDogRenderer->CreateAnimation("SkelDog_Attack", "SkelDogMove", 0.1f, -1, -1, false);
+		SkelDogRenderer->CreateAnimation("SkelDog_Attack", "SkelDogRun", 0.1f, 0, 3, false);
 	}
 
 	SkelDogRenderer->SetSprite("SkelDogIdle");
+	SkelDogRenderer->SetPivotType(PivotType::Bottom);
 	float4 Scale = SkelDogRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	SkelDogRenderer->SetImageScale(Scale);
+
+	ChangeState(SkelDogState::Idle);
 
 	{
 		SkelDogCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
@@ -54,8 +57,6 @@ void SkelDog::Start()
 	}
 
 	SkelDogAttackCollision->Off();
-
-	ChangeState(SkelDogState::Idle);
 }
 
 void SkelDog::Update(float _Delta)
@@ -74,7 +75,7 @@ void SkelDog::Update(float _Delta)
 
 void SkelDog::ChangeState(SkelDogState _State)
 {
-	if (_State == State)
+	if (_State != State)
 	{
 		switch (_State)
 		{
@@ -144,7 +145,29 @@ void SkelDog::MoveStart()
 }
 void SkelDog::MoveUpdate(float _Delta)
 {
+	GravityState(_Delta, Transform.GetLocalPosition(), SkelDogRenderer->GetImageTransform().GetLocalScale());
 	DirCheck();
+
+	if (Dir == SkelDogDir::Left)
+	{
+		Transform.AddLocalPosition(float4::LEFT * MoveSpeed * _Delta);
+	}
+	else if (Dir == SkelDogDir::Right)
+	{
+		Transform.AddLocalPosition(float4::RIGHT * MoveSpeed * _Delta);
+	}
+
+	EventParameter AttackParameter;
+	AttackParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+		MoveToAttackTime += _Delta;
+	};
+	SkelDogCollision->CollisionEvent(CollisionType::Player, AttackParameter);
+
+	if (MoveToAttackTime >= 0.5f)
+	{
+		ChangeState(SkelDogState::AttackReady);
+	}
 }
 
 void SkelDog::AttackReadyStart()
@@ -153,6 +176,7 @@ void SkelDog::AttackReadyStart()
 }
 void SkelDog::AttackReadyUpdate(float _Delta)
 {
+	GravityState(_Delta, Transform.GetLocalPosition(), SkelDogRenderer->GetImageTransform().GetLocalScale());
 	if (SkelDogRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(SkelDogState::Attack);
@@ -161,6 +185,16 @@ void SkelDog::AttackReadyUpdate(float _Delta)
 
 void SkelDog::AttackStart()
 {
+	Transform.SetLocalPosition(Transform.GetLocalPosition() + float4::UP);
+	if (Dir == SkelDogDir::Left)
+	{
+		SetGravityForce((float4::UP + float4::LEFT) * 400.0f);
+	}
+	else if (Dir == SkelDogDir::Right)
+	{
+		SetGravityForce((float4::UP + float4::RIGHT) * 400.0f);
+	}
+	MoveToAttackTime = 0.0f;
 	ChangeAnimationState("Attack");
 	SkelDogAttackCollision->On();
 }
@@ -168,14 +202,17 @@ void SkelDog::AttackUpdate(float _Delta)
 {
 	GravityState(_Delta, Transform.GetLocalPosition(), SkelDogRenderer->GetImageTransform().GetLocalScale());
 
-	float4 Pos = Transform.GetWorldPosition();
-	GameEngineColor Color = BackGround::DebugBackGround->GetColor(Pos, GameEngineColor::RED);
-
-	if (GameEngineColor::RED == Color || (GameEngineColor::BLUE == Color && PassBlue == false))
+	if (GravityForce.Y <= 0)
 	{
-		ChangeState(SkelDogState::Move);
-	}
+		float4 Pos = Transform.GetWorldPosition();
+		GameEngineColor Color = BackGround::DebugBackGround->GetColor(Pos, GameEngineColor::RED);
 
+		if (GameEngineColor::RED == Color || (GameEngineColor::BLUE == Color && PassBlue == false))
+		{
+			SkelDogAttackCollision->Off();
+			ChangeState(SkelDogState::Move);
+		}
+	}
 }
 
 void SkelDog::DirCheck()

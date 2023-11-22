@@ -185,7 +185,7 @@ void BigWhiteSkel::MoveUpdate(float _Delta)
 		MoveToAttackTime += _Delta;
 	};
 	
-	MoveToAttackTime += SkelCollision->CollisionEvent(CollisionType::Player, AttackParameter);
+	SkelCollision->CollisionEvent(CollisionType::Player, AttackParameter);
 
 	if (MoveToAttackTime >= 0.5f)
 	{

@@ -42,6 +42,9 @@ private:
 	std::shared_ptr<GameEngineCollision> SkelDogCollision;
 	std::shared_ptr<GameEngineCollision> SkelDogAttackCollision;
 
+	float MoveSpeed = 300.0f;
+	float MoveToAttackTime = 0.0f;
+
 	void ChangeState(SkelDogState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
