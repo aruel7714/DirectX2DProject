@@ -6,6 +6,7 @@
 #include "ArcherSkel.h"
 #include "LittleGhost.h"
 #include "Banshee.h"
+#include "DungeonTorch.h"
 
 Level1F_1::Level1F_1()
 {
@@ -72,6 +73,12 @@ void Level1F_1::Start()
 	Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(576.0f - 128.0f) });
 	Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
 	Stele2->SetCollisionScale({ 64.0f, 256.0f });
+
+	std::shared_ptr<DungeonTorch> Torch1 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch1->Transform.SetLocalPosition({ 608.0f, -448.0f });
+
+	std::shared_ptr<DungeonTorch> Torch2 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch2->Transform.SetLocalPosition({ 1952.0f, -448.0f });
 	
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

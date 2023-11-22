@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "DungeonNPCInn.h"
 #include "DungeonBuildingInn.h"
+#include "DungeonTorch.h"
 
 Level1F_Inn::Level1F_Inn()
 {
@@ -30,6 +31,12 @@ void Level1F_Inn::Start()
 
 	BuildingInnRenderer->SetBuildingPosition({ 768.0f, -(MapScale.Y - 192.0f) });
 	InnRenderer->SetInnPosition({ 1024.0f, -(MapScale.Y - 192.0f) });
+
+	std::shared_ptr<DungeonTorch> Torch1 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch1->Transform.SetLocalPosition({ 320.0f, -352.0f });
+
+	std::shared_ptr<DungeonTorch> Torch2 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch2->Transform.SetLocalPosition({ 1216.0f, -352.0f });
 
 	{
 		TriggerRight = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

@@ -7,6 +7,9 @@
 #include "RustyShortSwordSkel.h"
 #include "Minotaurs.h"
 
+#include "DungeonStele.h"
+#include "DungeonTorch.h"
+
 Level1F_3::Level1F_3()
 {
 }
@@ -39,6 +42,12 @@ void Level1F_3::Start()
 	
 	std::shared_ptr<RustyShortSwordSkel> MonsterRustyShortSwordSkel = CreateActor< RustyShortSwordSkel>(RenderOrder::Monster);
 	MonsterRustyShortSwordSkel->Transform.SetLocalPosition({ 448.0f, -2048.0f });
+
+	std::shared_ptr<DungeonTorch> Torch1 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch1->Transform.SetLocalPosition({ 1152.0f, -992.0f });
+
+	std::shared_ptr<DungeonTorch> Torch2 = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch2->Transform.SetLocalPosition({ 224.0f, -1792.0f });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);

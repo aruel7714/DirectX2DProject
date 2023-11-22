@@ -10,6 +10,9 @@
 #include "BelialBullet.h"
 #include "SkelDog.h"
 
+#include "DungeonTorch.h"
+#include "GargoyleStatue.h"
+
 Level1F::Level1F()
 {
 }
@@ -86,6 +89,15 @@ void Level1F::Start()
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Start1F.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 	Door->SetDoorPosition({ 515.0f, -(MapScale.Y - 128.0f) });
+
+	std::shared_ptr<DungeonTorch> Torch = CreateActor<DungeonTorch>(RenderOrder::DungeonProp);
+	Torch->Transform.SetLocalPosition({ 1216.0f, -448.0f });
+
+	std::shared_ptr<GargoyleStatue> Statue1 = CreateActor<GargoyleStatue>(RenderOrder::DungeonProp);
+	Statue1->Transform.SetLocalPosition({ 1056.0f, -640.0f });
+
+	std::shared_ptr<GargoyleStatue> Statue2 = CreateActor<GargoyleStatue>(RenderOrder::DungeonProp);
+	Statue2->Transform.SetLocalPosition({ 1376.0f, -640.0f });
 
 	//std::shared_ptr<BelialBullet> Bullet = CreateActor<BelialBullet>(RenderOrder::Monster);
 	////MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });

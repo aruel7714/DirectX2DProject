@@ -259,6 +259,12 @@
     <ClCompile Include="DungeonStele.cpp">
       <Filter>Level\Dungeon\Global</Filter>
     </ClCompile>
+    <ClCompile Include="DungeonTorch.cpp">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
+    </ClCompile>
+    <ClCompile Include="GargoyleStatue.cpp">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -518,6 +524,12 @@
     </ClInclude>
     <ClInclude Include="DungeonStele.h">
       <Filter>Level\Dungeon\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonTorch.h">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
+    </ClInclude>
+    <ClInclude Include="GargoyleStatue.h">
+      <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
