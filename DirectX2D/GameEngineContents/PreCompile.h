@@ -19,3 +19,4 @@
 #include "DungeonMoveTrigger.h"
 #include "Player.h"
 #include "DungeonStele.h"
+#include "BackGround.h"

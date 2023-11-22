@@ -7,6 +7,13 @@ enum class SkelDogState
 	Move,
 	AttackReady,
 	Attack,
+	Max
+};
+
+enum class SkelDogDir
+{
+	Left,
+	Right
 };
 
 // Ό³Έν : 
@@ -28,5 +35,29 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> SkelDogRenderer;
+
+	SkelDogState State = SkelDogState::Max;
+	SkelDogDir Dir = SkelDogDir::Left;
+
+	std::shared_ptr<GameEngineCollision> SkelDogCollision;
+	std::shared_ptr<GameEngineCollision> SkelDogAttackCollision;
+
+	void ChangeState(SkelDogState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimationState(const std::string& _State);
+
+	void IdleStart();
+	void IdleUpdate(float _Delta);
+
+	void MoveStart();
+	void MoveUpdate(float _Delta);
+
+	void AttackReadyStart();
+	void AttackReadyUpdate(float _Delta);
+
+	void AttackStart();
+	void AttackUpdate(float _Delta);
+
+	void DirCheck();
 };
 
