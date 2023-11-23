@@ -33,5 +33,8 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> RedBatRenderer;
+
+	RedBatState State = RedBatState::Max;
+	RedBatDir Dir = RedBatDir::Left;
 };
 

@@ -1,21 +1,21 @@
 #include "PreCompile.h"
-#include "BelialBullet.h"
+#include "BatBullet.h"
 
-BelialBullet::BelialBullet()
+BatBullet::BatBullet()
 {
 }
 
-BelialBullet::~BelialBullet()
+BatBullet::~BatBullet()
 {
 }
 
-void BelialBullet::Start()
+void BatBullet::Start()
 {
-	if (nullptr == GameEngineSprite::Find("BelialBulletNormal"))
+	if (nullptr == GameEngineSprite::Find("RangeBallBullet"))
 	{
 		GameEngineDirectory Dir;
 		Dir.MoveParentToExistsChild("ContentsResources");
-		Dir.MoveChild("ContentsResources\\Texture\\Boss\\Belial\\BelialBullet\\");
+		Dir.MoveChild("ContentsResources\\Texture\\Monster\\BatBullet\\");
 
 		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
 
@@ -27,15 +27,14 @@ void BelialBullet::Start()
 		}
 	}
 
-	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossProjectile);
-	
+	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::MonsterProjectile);
+
 	{
-		BulletRenderer->CreateAnimation("BelialBullet_Normal", "BelialBulletNormal");
-		BulletRenderer->CreateAnimation("BelialBullet_Hit", "BelialBulletFX", 0.1f, -1, -1, false);
+		BulletRenderer->CreateAnimation("BatBullet_Normal", "RangeBallBullet");
+		BulletRenderer->CreateAnimation("BatBullet_Hit", "RangeBallBulletHit", 0.1f, -1, -1, false);
 	}
 
-	BulletRenderer->SetSprite("BelialBulletNormal");
-
+	BulletRenderer->SetSprite("RangeBallBullet");
 	float4 Scale = BulletRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BulletRenderer->SetImageScale(Scale);
 
@@ -45,15 +44,15 @@ void BelialBullet::Start()
 		BulletCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
 		BulletCollision->SetCollisionType(ColType::SPHERE2D);
 		BulletCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
-		BulletCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+		BulletCollision->Transform.SetLocalScale(Scale);
 	}
 }
-void BelialBullet::Update(float _Delta)
+void BatBullet::Update(float _Delta)
 {
 	StateUpdate(_Delta);
 }
 
-void BelialBullet::ChangeState(BulletState _State)
+void BatBullet::ChangeState(BulletState _State)
 {
 	if (_State != State)
 	{
@@ -71,7 +70,7 @@ void BelialBullet::ChangeState(BulletState _State)
 	}
 	State = _State;
 }
-void BelialBullet::StateUpdate(float _Delta)
+void BatBullet::StateUpdate(float _Delta)
 {
 	switch (State)
 	{
@@ -83,33 +82,31 @@ void BelialBullet::StateUpdate(float _Delta)
 		break;
 	}
 }
-void BelialBullet::ChangeAnimationState(const std::string& _State)
+void BatBullet::ChangeAnimationState(const std::string& _State)
 {
-	std::string AnimationName = "BelialBullet_";
+	std::string AnimationName = "BatBullet_";
 	AnimationName += _State;
 	BulletRenderer->ChangeAnimation(AnimationName);
 }
 
-void BelialBullet::NormalStart()
+void BatBullet::NormalStart()
 {
 	ChangeAnimationState("Normal");
 }
-void BelialBullet::NormalUpdate(float _Delta)
+void BatBullet::NormalUpdate(float _Delta)
 {
-	Dir = float4::GetUnitVectorFromDeg(Deg);
 
-	Transform.AddLocalPosition(Dir * _Delta * 300.0f);
 
 	EventParameter HitParameter;
 	HitParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	{
-		ChangeState(BulletState::Hit);
-	};
+		{
+			ChangeState(BulletState::Hit);
+		};
 
 	BulletCollision->CollisionEvent(CollisionType::Player, HitParameter);
 
 	float4 Position = Transform.GetLocalPosition();
-	if (Position.X <= 0.0f || 
+	if (Position.X <= 0.0f ||
 		Position.X >= 352.0f * 4.0f ||
 		Position.Y >= 0.0f ||
 		Position.Y <= -(320.0f * 4.0f))
@@ -118,12 +115,11 @@ void BelialBullet::NormalUpdate(float _Delta)
 	}
 }
 
-void BelialBullet::HitStart()
+void BatBullet::HitStart()
 {
-	BulletCollision->Off();
 	ChangeAnimationState("Hit");
 }
-void BelialBullet::HitUpdate(float _Delta)
+void BatBullet::HitUpdate(float _Delta)
 {
 	if (BulletRenderer->IsCurAnimationEnd())
 	{

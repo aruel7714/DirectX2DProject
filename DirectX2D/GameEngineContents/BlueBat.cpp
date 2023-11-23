@@ -30,7 +30,7 @@ void BlueBat::Start()
 	BlueBatRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Monster);
 	
 	{
-		BlueBatRenderer->CreateAnimation("BlueBat_Idle", "BlueBatIdle");
+		BlueBatRenderer->CreateAnimation("BlueBat_Move", "BlueBatIdle");
 	}
 }
 

@@ -1,6 +1,19 @@
 #pragma once
 #include "PlayActor.h"
 
+enum class BlueBatState
+{
+	Move,
+	Death,
+	Max,
+};
+
+enum class BlueBatDir
+{
+	Left,
+	Right
+};
+
 // Ό³Έν : 
 class BlueBat : public PlayActor
 {
@@ -20,6 +33,10 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> BlueBatRenderer;
+
+	BlueBatState State = BlueBatState::Max;
+	BlueBatDir Dir = BlueBatDir::Left;
+
 
 };
 

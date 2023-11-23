@@ -286,6 +286,9 @@
     <ClCompile Include="GameMouseCursor.cpp">
       <Filter>Object\Mouse</Filter>
     </ClCompile>
+    <ClCompile Include="BatBullet.cpp">
+      <Filter>Level\Dungeon\Monster\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -572,6 +575,9 @@
     </ClInclude>
     <ClInclude Include="GameMouseCursor.h">
       <Filter>Object\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="BatBullet.h">
+      <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
