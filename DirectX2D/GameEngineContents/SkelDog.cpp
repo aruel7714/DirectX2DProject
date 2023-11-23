@@ -34,6 +34,7 @@ void SkelDog::Start()
 		SkelDogRenderer->CreateAnimation("SkelDog_Move", "SkelDogRun");
 		SkelDogRenderer->CreateAnimation("SkelDog_AttackReady", "SkelDogIdle", 0.1f, -1, -1, false);
 		SkelDogRenderer->CreateAnimation("SkelDog_Attack", "SkelDogRun", 0.1f, 0, 3, false);
+		SkelDogRenderer->CreateAnimation("SkelDog_Death", "Die", 0.025f, -1, -1, false);
 	}
 
 	SkelDogRenderer->SetSprite("SkelDogIdle");
@@ -241,11 +242,17 @@ void SkelDog::AttackUpdate(float _Delta)
 
 void SkelDog::DeathStart()
 {
-	Death();
+	ChangeAnimationState("Death");
+	float4 Scale = SkelDogRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	SkelDogRenderer->SetImageScale(Scale);
+	SkelDogRenderer->SetPivotType(PivotType::Center);
 }
 void SkelDog::DeathUpdate(float _Delta)
 {
-
+	if (true == SkelDogRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }
 
 void SkelDog::DirCheck()

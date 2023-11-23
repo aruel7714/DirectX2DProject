@@ -33,6 +33,7 @@ void Banshee::Start()
 	{
 		BansheeRenderer->CreateAnimation("Banshee_Idle", "BansheeIdle", 0.1f, -1, -1, true);
 		BansheeRenderer->CreateAnimation("Banshee_Attack", "BansheeAttack", 0.1f, -1, -1, false);
+		BansheeRenderer->CreateAnimation("Banshee_Death", "Die", 0.025f, -1, -1, false);
 	}
 
 	BansheeRenderer->SetSprite("BansheeIdle");
@@ -161,11 +162,16 @@ void Banshee::AttackUpdate(float _Delta)
 
 void Banshee::DeathStart()
 {
-	Death();
+	ChangeAnimationState("Death");
+	float4 Scale = BansheeRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	BansheeRenderer->SetImageScale(Scale);
 }
 void Banshee::DeathUpdate(float _Delta)
 {
-
+	if (true == BansheeRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }
 
 void Banshee::DirCheck()

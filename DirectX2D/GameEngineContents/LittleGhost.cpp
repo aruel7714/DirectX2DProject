@@ -33,6 +33,7 @@ void LittleGhost::Start()
 		LittleGhostRenderer->CreateAnimation("LittleGhost_Idle", "LittleGhostMove");
 		LittleGhostRenderer->CreateAnimation("LittleGhost_Move", "LittleGhostMove");
 		LittleGhostRenderer->CreateAnimation("LittleGhost_Attack", "LittleGhostAttack");
+		LittleGhostRenderer->CreateAnimation("LittleGhost_Death", "Die", 0.025f, -1, -1, false);
 	}
 
 	LittleGhostRenderer->SetSprite("LittleGhostMove");
@@ -189,11 +190,16 @@ void LittleGhost::AttackUpdate(float _Delta)
 
 void LittleGhost::DeathStart()
 {
-	Death();
+	ChangeAnimationState("Death");
+	float4 Scale = LittleGhostRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	LittleGhostRenderer->SetImageScale(Scale);
 }
 void LittleGhost::DeathUpdate(float _Delta)
 {
-
+	if (true == LittleGhostRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }
 
 void LittleGhost::DirCheck()

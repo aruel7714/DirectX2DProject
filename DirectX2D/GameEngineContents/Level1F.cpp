@@ -75,6 +75,19 @@ void Level1F::Start()
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Texture\\Monster\\FX\\");
+		std::vector<GameEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++) 
+		{
+			GameEngineDirectory& Dir = Directorys[i];
+			GameEngineSprite::CreateFolder(Dir.GetStringPath());
+		}
+	}
+
 	GameEngineSprite::CreateSingle("Start1F.png");
 	GameEngineSprite::CreateSingle("Start1F_Debug.png");
 

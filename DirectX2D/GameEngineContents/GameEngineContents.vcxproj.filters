@@ -205,9 +205,6 @@
     <ClCompile Include="Banshee.cpp">
       <Filter>Level\Dungeon\Monster\Air</Filter>
     </ClCompile>
-    <ClCompile Include="BansheeBullet.cpp">
-      <Filter>Level\Dungeon\Monster\Air</Filter>
-    </ClCompile>
     <ClCompile Include="Minotaurs.cpp">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClCompile>
@@ -270,6 +267,9 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Level\Dungeon\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="BansheeBullet.cpp">
+      <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -477,9 +477,6 @@
     <ClInclude Include="Banshee.h">
       <Filter>Level\Dungeon\Monster\Air</Filter>
     </ClInclude>
-    <ClInclude Include="BansheeBullet.h">
-      <Filter>Level\Dungeon\Monster\Air</Filter>
-    </ClInclude>
     <ClInclude Include="Minotaurs.h">
       <Filter>Level\Dungeon\Monster\Ground</Filter>
     </ClInclude>
@@ -542,6 +539,9 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>Level\Dungeon\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BansheeBullet.h">
+      <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

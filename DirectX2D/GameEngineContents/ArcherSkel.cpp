@@ -34,6 +34,7 @@ void ArcherSkel::Start()
 		ArcherSkelRenderer->CreateAnimation("ArcherSkel_Idle", "SkelIdle");
 		ArcherSkelRenderer->CreateAnimation("ArcherSkel_AttackReady", "SkelAttack");
 		ArcherSkelRenderer->CreateAnimation("ArcherSkel_Attack", "SkelAttack");
+		ArcherSkelRenderer->CreateAnimation("ArcherSkel_Death", "Die", 0.025f, -1, -1, false);
 	}
 
 	{
@@ -228,11 +229,18 @@ void ArcherSkel::SkelAttackUpdate(float _Delta)
 
 void ArcherSkel::SkelDeathStart()
 {
-	Death();
+	ChangeSkelAnimationState("Death");
+	float4 Scale = ArcherSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	ArcherSkelRenderer->SetImageScale(Scale);
+	ArcherSkelRenderer->SetPivotType(PivotType::Center);
+	BowRenderer->Off();
 }
 void ArcherSkel::SkelDeathUpdate(float _Delta)
 {
-
+	if (true == ArcherSkelRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }
 
 void ArcherSkel::BowIdleStart()

@@ -35,6 +35,7 @@ void RustyShortSwordSkel::Start()
 		RustyShortSwordSkelRenderer->CreateAnimation("RustyShortSwordSkel_Move", "SkelWalk");
 		RustyShortSwordSkelRenderer->CreateAnimation("RustyShortSwordSkel_AttackReady", "SkelAttack");
 		RustyShortSwordSkelRenderer->CreateAnimation("RustyShortSwordSkel_Attack", "SkelAttack");
+		RustyShortSwordSkelRenderer->CreateAnimation("RustyShortSwordSkel_Death", "Die", 0.025f, -1, -1, false);
 	}
 	{
 		RustyShortSwordRenderer->CreateAnimation("RustyShortSword_Idle", "RustyShortSword", 0.1f, 0, 0, false);
@@ -288,11 +289,18 @@ void RustyShortSwordSkel::SkelAttackUpdate(float _Delta)
 
 void RustyShortSwordSkel::SkelDeathStart()
 {
-	Death();
+	ChangeSkelAnimationState("Death");
+	float4 Scale = RustyShortSwordSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	RustyShortSwordSkelRenderer->SetImageScale(Scale);
+	RustyShortSwordSkelRenderer->SetPivotType(PivotType::Center);
+	RustyShortSwordRenderer->Off();
 }
 void RustyShortSwordSkel::SkelDeathUpdate(float _Delta)
 {
-
+	if (true == RustyShortSwordSkelRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }
 
 void RustyShortSwordSkel::SwordIdleStart()

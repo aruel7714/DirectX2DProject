@@ -35,6 +35,7 @@ void BigWhiteSkel::Start()
 		BigWhiteSkelRenderer->CreateAnimation("BigWhiteSkel_Move", "BigWhiteSkelMove");
 		BigWhiteSkelRenderer->CreateAnimation("BigWhiteSkel_Attack", "BigWhiteSkelAttack");
 		BigWhiteSkelRenderer->CreateAnimation("BigWhiteSkel_AttackReady", "BigWhiteSkelAttack", 0.1f, 0, 0, false);
+		BigWhiteSkelRenderer->CreateAnimation("BigWhiteSkel_Death", "Die", 0.025f, -1, -1, false);
 	}
 
 	BigWhiteSkelRenderer->SetSprite("BigWhiteSkelIdle");
@@ -137,7 +138,7 @@ void BigWhiteSkel::StateUpdate(float _Delta)
 	case BigWhiteSkelState::AttackReady:
 		return AttackReadyUpdate(_Delta);
 	case BigWhiteSkelState::Death:
-		return Update(_Delta);
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -278,9 +279,15 @@ void BigWhiteSkel::DirCheck()
 
 void BigWhiteSkel::DeathStart()
 {
-	Death();
+	ChangeAnimationState("Death");
+	float4 Scale = BigWhiteSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	BigWhiteSkelRenderer->SetImageScale(Scale);
+	BigWhiteSkelRenderer->SetPivotType(PivotType::Center);
 }
 void BigWhiteSkel::DeathUpdate(float _Delta)
 {
-
+	if (true == BigWhiteSkelRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }

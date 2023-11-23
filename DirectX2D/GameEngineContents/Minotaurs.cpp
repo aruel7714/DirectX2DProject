@@ -35,6 +35,7 @@ void Minotaurs::Start()
 		MinotaursRenderer->CreateAnimation("Minotaurs_Rush", "MinotaursCharge", 0.1f, 4, 7, false);
 		MinotaursRenderer->CreateAnimation("Minotaurs_AttackReady", "MinotaursAttack", 0.1f, 0, 2, false);
 		MinotaursRenderer->CreateAnimation("Minotaurs_Attack", "MinotaursAttack", 0.1f, 3, 6, false);
+		MinotaursRenderer->CreateAnimation("Minotaurs_Death", "Die", 0.025f, -1, -1, false);
 	}
 
 	MinotaursRenderer->SetSprite("MinotaursIdle");
@@ -268,11 +269,17 @@ void Minotaurs::AttackUpdate(float _Delta)
 
 void Minotaurs::DeathStart()
 {
-	Death();
+	ChangeAnimationState("Death");
+	float4 Scale = MinotaursRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
+	MinotaursRenderer->SetImageScale(Scale);
+	MinotaursRenderer->SetPivotType(PivotType::Center);
 }
 void Minotaurs::DeathUpdate(float _Delta)
 {
-
+	if (true == MinotaursRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
 }
 
 void Minotaurs::DirCheck()
