@@ -9,6 +9,7 @@ enum class MinotaursState
 	AttackReady,
 	Attack,
 	Death,
+	Stay,
 	Max,
 };
 
@@ -31,6 +32,11 @@ public:
 	Minotaurs(Minotaurs && _Other) noexcept = delete;
 	Minotaurs& operator=(const Minotaurs & _Other) = delete;
 	Minotaurs& operator=(Minotaurs && _Other) noexcept = delete;
+
+	void ChangeStateIdle()
+	{
+		ChangeState(MinotaursState::Idle);
+	}
 
 protected:
 	void Start() override;
@@ -73,6 +79,9 @@ private:
 
 	void DeathStart();
 	void DeathUpdate(float _Delta);
+
+	void StayStart();
+	void StayUpdate(float _Delta);
 
 	void DirCheck();
 };

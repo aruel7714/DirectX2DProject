@@ -162,11 +162,13 @@ void BigWhiteSkel::IdleUpdate(float _Delta)
 	float4 MyPos = Transform.GetLocalPosition();
 	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 
-	float Check = MyPos.X - PlayerPos.X;
+	float CheckX = MyPos.X - PlayerPos.X;
+	float CheckY = MyPos.Y - PlayerPos.Y;
 	
-	Check = abs(Check);
+	CheckX = abs(CheckX);
+	CheckY = abs(CheckY);
 
-	if (Check < 600.0f)
+	if (CheckX < 600.0f && CheckY < 200.0f)
 	{
 		ChangeState(BigWhiteSkelState::Move);
 	}

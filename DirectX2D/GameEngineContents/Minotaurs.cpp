@@ -44,7 +44,7 @@ void Minotaurs::Start()
 	float4 Scale = MinotaursRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	MinotaursRenderer->SetImageScale(Scale);
 
-	ChangeState(MinotaursState::Idle);
+	ChangeState(MinotaursState::Stay);
 
 	{
 		// Status
@@ -127,6 +127,9 @@ void Minotaurs::ChangeState(MinotaursState _State)
 		case MinotaursState::Death:
 			DeathStart();
 			break;
+		case MinotaursState::Stay:
+			StayStart();
+			break;
 		default:
 			break;
 		}
@@ -149,6 +152,8 @@ void Minotaurs::StateUpdate(float _Delta)
 		return AttackUpdate(_Delta);
 	case MinotaursState::Death:
 		return DeathUpdate(_Delta);
+	case MinotaursState::Stay:
+		return StayUpdate(_Delta);
 	default:
 		break;
 	}
@@ -279,6 +284,23 @@ void Minotaurs::DeathUpdate(float _Delta)
 	if (true == MinotaursRenderer->IsCurAnimationEnd())
 	{
 		Death();
+	}
+}
+
+void Minotaurs::StayStart()
+{
+	ChangeAnimationState("Idle");
+}
+void Minotaurs::StayUpdate(float _Delta)
+{
+	float4 MyPos = Transform.GetLocalPosition();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	float Check = MyPos.Y - PlayerPos.Y;
+
+	if (abs(Check) < 10.0f)
+	{
+		ChangeState(MinotaursState::Idle);
 	}
 }
 
