@@ -184,6 +184,7 @@ void BigWhiteSkel::MoveStart()
 }
 void BigWhiteSkel::MoveUpdate(float _Delta)
 {
+	GravityState(_Delta, Transform.GetLocalPosition(), BigWhiteSkelRenderer->GetImageTransform().GetLocalScale());
 	DirCheck();
 	if (Dir == BigWhiteSkelDir::Left)
 	{
@@ -224,6 +225,7 @@ void BigWhiteSkel::AttackReadyStart()
 }
 void BigWhiteSkel::AttackReadyUpdate(float _Delta)
 {
+	GravityState(_Delta, Transform.GetLocalPosition(), BigWhiteSkelRenderer->GetImageTransform().GetLocalScale());
 	AttackReadyTime += _Delta;
 
 	if (AttackReadyTime >= 1.0f)
@@ -254,7 +256,7 @@ void BigWhiteSkel::AttackStart()
 }
 void BigWhiteSkel::AttackUpdate(float _Delta)
 {
-
+	GravityState(_Delta, Transform.GetLocalPosition(), BigWhiteSkelRenderer->GetImageTransform().GetLocalScale());
 
 	if (true == BigWhiteSkelRenderer->IsCurAnimationEnd())
 	{

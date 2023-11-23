@@ -239,6 +239,7 @@ void RustyGreatSwordSkel::SkelMoveStart()
 }
 void RustyGreatSwordSkel::SkelMoveUpdate(float _Delta)
 {
+	GravityState(_Delta, Transform.GetLocalPosition(), RustyGreatSwordSkelRenderer->GetImageTransform().GetLocalScale());
 	DirCheck();
 
 	if (SkelDir == RustyGreatSwordSkelDir::Left)
@@ -254,11 +255,13 @@ void RustyGreatSwordSkel::SkelMoveUpdate(float _Delta)
 		float4 MyPos = Transform.GetLocalPosition();
 		float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
 
-		float Check = MyPos.X - PlayerPos.X;
+		float CheckX = MyPos.X - PlayerPos.X;
+		float CheckY = MyPos.Y - PlayerPos.Y;
 
-		Check = abs(Check);
+		CheckX = abs(CheckX);
+		CheckY = abs(CheckY);
 
-		if (Check < 50.0f)
+		if (CheckX < 50.0f && CheckY < 10.0f)
 		{
 			ChangeSkelState(RustyGreatSwordSkelState::AttackReady);
 			ChangeSwordState(RustyGreatSwordState::AttackReady);
@@ -272,6 +275,7 @@ void RustyGreatSwordSkel::SkelAttackReadyStart()
 }
 void RustyGreatSwordSkel::SkelAttackReadyUpdate(float _Delta)
 {
+	GravityState(_Delta, Transform.GetLocalPosition(), RustyGreatSwordSkelRenderer->GetImageTransform().GetLocalScale());
 	AttackReadyTime += _Delta;
 
 	if (AttackReadyTime >= 1.0f)
