@@ -1,11 +1,12 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class ArcherSkelState
 {
 	Idle,
 	AttackReady,
 	Attack,
+	Death,
 	Max,
 };
 
@@ -24,7 +25,7 @@ enum class ArcherSkelDir
 };
 
 // Ό³Έν : 
-class ArcherSkel : public PlayActor
+class ArcherSkel : public Monster
 {
 public:
 	// constrcuter destructer
@@ -57,8 +58,6 @@ private:
 	float4 SaveDir = float4::ZERO;
 	float SaveDeg = 0.0f;
 
-	float ArcherSkelHp = 30.0f;
-
 	void ChangeSkelState(ArcherSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);
@@ -75,6 +74,9 @@ private:
 
 	void SkelAttackStart();
 	void SkelAttackUpdate(float _Delta);
+
+	void SkelDeathStart();
+	void SkelDeathUpdate(float _Delta);
 
 	void BowIdleStart();
 	void BowIdleUpdate(float _Delta);

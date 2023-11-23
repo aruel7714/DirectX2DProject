@@ -46,6 +46,12 @@ void Minotaurs::Start()
 	ChangeState(MinotaursState::Idle);
 
 	{
+		// Status
+		Hp = 85.0f;
+
+	}
+
+	{
 		MinotaursCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		MinotaursCollision->SetCollisionType(ColType::AABBBOX2D);
 		MinotaursCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 3.0f, 1.0f });
@@ -82,6 +88,18 @@ void Minotaurs::Update(float _Delta)
 		MinotaursRenderer->SetPivotValue({ 0.65f, 1.0f });
 		MinotaursRenderer->RightFlip();
 	}
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	MinotaursCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+	if (Hp <= 0)
+	{
+		ChangeState(MinotaursState::Death);
+	}
 }
 
 void Minotaurs::ChangeState(MinotaursState _State)
@@ -105,6 +123,9 @@ void Minotaurs::ChangeState(MinotaursState _State)
 		case MinotaursState::Attack:
 			AttackStart();
 			break;
+		case MinotaursState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -125,6 +146,8 @@ void Minotaurs::StateUpdate(float _Delta)
 		return AttackReadyUpdate(_Delta);
 	case MinotaursState::Attack:
 		return AttackUpdate(_Delta);
+	case MinotaursState::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -241,6 +264,15 @@ void Minotaurs::AttackUpdate(float _Delta)
 		ChangeState(MinotaursState::Idle);
 		AttackCollision->Off();
 	}
+}
+
+void Minotaurs::DeathStart()
+{
+	Death();
+}
+void Minotaurs::DeathUpdate(float _Delta)
+{
+
 }
 
 void Minotaurs::DirCheck()

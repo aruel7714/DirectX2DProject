@@ -1,5 +1,5 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class MinotaursState
 {
@@ -8,6 +8,7 @@ enum class MinotaursState
 	Rush,
 	AttackReady,
 	Attack,
+	Death,
 	Max,
 };
 
@@ -18,7 +19,7 @@ enum class MinotaursDir
 };
 
 // Ό³Έν : 
-class Minotaurs : public PlayActor
+class Minotaurs : public Monster
 {
 public:
 	// constrcuter destructer
@@ -51,8 +52,6 @@ private:
 	float4 RushDir = float4::ZERO;
 	float RushSpeed = 1000.0f;
 
-	float MinotaursHp = 85.0f;
-
 	void ChangeState(MinotaursState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
@@ -71,6 +70,9 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 
 	void DirCheck();
 };

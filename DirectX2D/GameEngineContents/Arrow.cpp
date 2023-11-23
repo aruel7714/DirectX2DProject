@@ -86,9 +86,9 @@ void Arrow::Start()
 
 	{
 		ArrowCollision = CreateComponent<GameEngineCollision>(CollisionType::Weapon);
-		ArrowCollision->SetCollisionType(ColType::SPHERE2D);
+		ArrowCollision->SetCollisionType(ColType::AABBBOX2D);
 		ArrowCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
-		ArrowCollision->Transform.SetLocalScale({ Scale.X, Scale.Y, 1.0f });
+		ArrowCollision->Transform.SetLocalScale({ Scale.X, Scale.X, 1.0f });
 	}
 	
 	
@@ -97,23 +97,36 @@ void Arrow::Start()
 }
 void Arrow::Update(float _Delta)
 {
-	if (GetLiveTime() < 0.4f)
+	if (GetLiveTime() < 0.4f && ArrowRenderer->IsCurAnimation("ArrowFire"))
 	{
 		Transform.AddLocalPosition(Dir * _Delta * ArrowSpeed);
 	}
-	else if (GetLiveTime() >= 0.4f)
+	else if (GetLiveTime() >= 0.4f && ArrowRenderer->IsCurAnimation("ArrowFire"))
 	{
 		if (ArrowRenderer->IsCurAnimation("ArrowFire") && ArrowRenderer->IsCurAnimationEnd())
 		{
-			ArrowRenderer->ChangeAnimation("ArrowDisappear");
-			ArrowRenderer->SetImageScale(ArrowRenderer->GetCurSprite().Texture->GetScale() * 4.0f);
-			Transform.SetLocalRotation({ 0.0f, 0.0f, Transform.GetLocalRotationEuler().Z + 180.0f });
-			ArrowCollision->Off();
+			ArrowDisappear();
 		}
 	}
+
+	EventParameter DisappearEvent;
+	DisappearEvent.Stay = [&](class GameEngineCollision* _this, class GameEngineCollision* _Other)
+		{
+			ArrowDisappear();
+		};
+	ArrowCollision->CollisionEvent(CollisionType::Monster, DisappearEvent);
+	
 
 	if (ArrowRenderer->IsCurAnimation("ArrowDisappear") && ArrowRenderer->IsCurAnimationEnd())
 	{
 		Death();
 	}
+}
+
+void Arrow::ArrowDisappear()
+{
+	ArrowCollision->Death();
+	ArrowRenderer->ChangeAnimation("ArrowDisappear");
+	ArrowRenderer->SetImageScale(ArrowRenderer->GetCurSprite().Texture->GetScale() * 4.0f);
+	Transform.SetLocalRotation({ 0.0f, 0.0f, Transform.GetLocalRotationEuler().Z + 180.0f });
 }

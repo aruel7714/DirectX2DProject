@@ -1,5 +1,5 @@
-#include "PlayActor.h"
 #pragma once
+#include "Monster.h"
 
 enum class SkelDogState
 {
@@ -7,6 +7,7 @@ enum class SkelDogState
 	Move,
 	AttackReady,
 	Attack,
+	Death,
 	Max
 };
 
@@ -17,7 +18,7 @@ enum class SkelDogDir
 };
 
 // Ό³Έν : 
-class SkelDog : public PlayActor
+class SkelDog : public Monster
 {
 public:
 	// constrcuter destructer
@@ -42,10 +43,7 @@ private:
 	std::shared_ptr<GameEngineCollision> SkelDogCollision;
 	std::shared_ptr<GameEngineCollision> SkelDogAttackCollision;
 
-	float MoveSpeed = 300.0f;
 	float MoveToAttackTime = 0.0f;
-	
-	float SkelDogHp = 20.0f;
 
 	void ChangeState(SkelDogState _State);
 	void StateUpdate(float _Delta);
@@ -62,6 +60,9 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 
 	void DirCheck();
 };

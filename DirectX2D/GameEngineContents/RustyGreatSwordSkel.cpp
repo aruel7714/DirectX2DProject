@@ -58,6 +58,12 @@ void RustyGreatSwordSkel::Start()
 	ChangeSwordState(RustyGreatSwordState::Idle);
 
 	{
+		// Status
+		Hp = 37.0f;
+		MoveSpeed = 300.0f;
+	}
+
+	{
 		SkelCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		SkelCollision->SetCollisionType(ColType::AABBBOX2D);
 		SkelCollision->Transform.SetLocalPosition({ 0.0f, SkelScale.Y / 4.0f, 1.0f });
@@ -95,6 +101,19 @@ void RustyGreatSwordSkel::Update(float _Delta)
 	}
 	
 	RustyGreatSwordRenderer->Transform.SetLocalPosition(Pos);
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+
+	if (Hp <= 0)
+	{
+		ChangeSkelState(RustyGreatSwordSkelState::Death);
+	}
 }
 
 void RustyGreatSwordSkel::ChangeSkelState(RustyGreatSwordSkelState _State)
@@ -115,6 +134,9 @@ void RustyGreatSwordSkel::ChangeSkelState(RustyGreatSwordSkelState _State)
 		case RustyGreatSwordSkelState::AttackReady:
 			SkelAttackReadyStart();
 			break;
+		case RustyGreatSwordSkelState::Death:
+			SkelDeathStart();
+			break;
 		default:
 			break;
 		}
@@ -133,6 +155,8 @@ void RustyGreatSwordSkel::SkelStateUpdate(float _Delta)
 		return SkelAttackUpdate(_Delta);
 	case RustyGreatSwordSkelState::AttackReady:
 		return SkelAttackReadyUpdate(_Delta);
+	case RustyGreatSwordSkelState::Death:
+		return SkelDeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -260,6 +284,15 @@ void RustyGreatSwordSkel::SkelAttackStart()
 	AttackReadyTime = 0.0f;
 }
 void RustyGreatSwordSkel::SkelAttackUpdate(float _Delta)
+{
+
+}
+
+void RustyGreatSwordSkel::SkelDeathStart()
+{
+	Death();
+}
+void RustyGreatSwordSkel::SkelDeathUpdate(float _Delta)
 {
 
 }

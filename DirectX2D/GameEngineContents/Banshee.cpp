@@ -43,6 +43,11 @@ void Banshee::Start()
 	ChangeState(BansheeState::Idle);
 
 	{
+		// Status
+		Hp = 40.0f;
+	}
+
+	{
 		BansheeCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		BansheeCollision->SetCollisionType(ColType::AABBBOX2D);
 		BansheeCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
@@ -61,6 +66,19 @@ void Banshee::Update(float _Delta)
 	{
 		BansheeRenderer->RightFlip();
 	}
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	BansheeCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+
+	if (Hp <= 0)
+	{
+		ChangeState(BansheeState::Death);
+	}
 }
 
 void Banshee::ChangeState(BansheeState _State)
@@ -74,6 +92,9 @@ void Banshee::ChangeState(BansheeState _State)
 			break;
 		case BansheeState::Attack:
 			AttackStart();
+			break;
+		case BansheeState::Death:
+			DeathStart();
 			break;
 		default:
 			break;
@@ -89,6 +110,8 @@ void Banshee::StateUpdate(float _Delta)
 		return IdleUpdate(_Delta);
 	case BansheeState::Attack:
 		return AttackUpdate(_Delta);
+	case BansheeState::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -134,6 +157,15 @@ void Banshee::AttackUpdate(float _Delta)
 	{
 		ChangeState(BansheeState::Idle);
 	}
+}
+
+void Banshee::DeathStart()
+{
+	Death();
+}
+void Banshee::DeathUpdate(float _Delta)
+{
+
 }
 
 void Banshee::DirCheck()

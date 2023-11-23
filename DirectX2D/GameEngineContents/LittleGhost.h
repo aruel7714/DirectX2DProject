@@ -1,11 +1,12 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class LittleGhostState
 {
 	Idle,
 	Move,
 	Attack,
+	Death,
 	Max
 };
 
@@ -16,7 +17,7 @@ enum class LittleGhostDir
 };
 
 // Ό³Έν : 
-class LittleGhost : public PlayActor
+class LittleGhost : public Monster
 {
 public:
 	// constrcuter destructer
@@ -46,10 +47,6 @@ private:
 
 	float MoveToAttackTime = 0.0f;
 	float AttackTime = 0.0f;
-	float MoveSpeed = 150.0f;
-	float AttackSpeed = 200.0f;
-
-	float LittleGhostHp = 6.0f;
 
 	void ChangeState(LittleGhostState _State);
 	void StateUpdate(float _Delta);
@@ -63,6 +60,9 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 
 	void DirCheck();
 };

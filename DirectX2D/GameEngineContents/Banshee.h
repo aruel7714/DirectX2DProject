@@ -1,10 +1,11 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class BansheeState
 {
 	Idle,
 	Attack,
+	Death,
 	Max
 };
 
@@ -15,7 +16,7 @@ enum class BansheeDir
 };
 
 // Ό³Έν : 
-class Banshee : public PlayActor
+class Banshee : public Monster
 {
 public:
 	// constrcuter destructer
@@ -41,8 +42,6 @@ private:
 
 	float IdleToAttackTime = 0.0f;
 
-	float BansheeHp = 40.0f;
-
 	void ChangeState(BansheeState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
@@ -52,6 +51,9 @@ private:
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 
 	void DirCheck();
 };

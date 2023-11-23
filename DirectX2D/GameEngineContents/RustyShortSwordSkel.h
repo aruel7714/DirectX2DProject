@@ -1,5 +1,5 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class RustyShortSwordSkelState
 {
@@ -7,6 +7,7 @@ enum class RustyShortSwordSkelState
 	Move,
 	AttackReady,
 	Attack,
+	Death,
 	Max,
 };
 
@@ -25,7 +26,7 @@ enum class RustyShortSwordSkelDir
 };
 
 // Ό³Έν : 
-class RustyShortSwordSkel : public PlayActor
+class RustyShortSwordSkel : public Monster
 {
 public:
 	// constrcuter destructer
@@ -53,9 +54,6 @@ private:
 	std::shared_ptr<GameEngineCollision> AttackCollision;
 
 	float AttackReadyTime = 0.0f;
-	float MoveSpeed = 300.0f;
-
-	float SkelHp = 37.0f;
 
 	void ChangeSkelState(RustyShortSwordSkelState _State);
 	void SkelStateUpdate(float _Delta);
@@ -76,6 +74,9 @@ private:
 
 	void SkelAttackStart();
 	void SkelAttackUpdate(float _Delta);
+
+	void SkelDeathStart();
+	void SkelDeathUpdate(float _Delta);
 
 	void SwordIdleStart();
 	void SwordIdleUpdate(float _Delta);

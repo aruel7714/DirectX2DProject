@@ -44,6 +44,12 @@ void SkelDog::Start()
 	ChangeState(SkelDogState::Idle);
 
 	{
+		// Status
+		Hp = 20.0f;
+		MoveSpeed = 300.0f;
+	}
+
+	{
 		SkelDogCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		SkelDogCollision->SetCollisionType(ColType::AABBBOX2D);
 		SkelDogCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
@@ -71,6 +77,19 @@ void SkelDog::Update(float _Delta)
 	{
 		SkelDogRenderer->RightFlip();
 	}
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	SkelDogCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+
+	if (Hp <= 0)
+	{
+		ChangeState(SkelDogState::Death);
+	}
 }
 
 void SkelDog::ChangeState(SkelDogState _State)
@@ -91,6 +110,9 @@ void SkelDog::ChangeState(SkelDogState _State)
 		case SkelDogState::Attack:
 			AttackStart();
 			break;
+		case SkelDogState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -109,6 +131,8 @@ void SkelDog::StateUpdate(float _Delta)
 		return AttackReadyUpdate(_Delta);
 	case SkelDogState::Attack:
 		return AttackUpdate(_Delta);
+	case SkelDogState::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -213,6 +237,15 @@ void SkelDog::AttackUpdate(float _Delta)
 			ChangeState(SkelDogState::Move);
 		}
 	}
+}
+
+void SkelDog::DeathStart()
+{
+	Death();
+}
+void SkelDog::DeathUpdate(float _Delta)
+{
+
 }
 
 void SkelDog::DirCheck()

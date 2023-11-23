@@ -45,6 +45,12 @@ void LittleGhost::Start()
 	LittleGhostRenderer->LeftFlip();
 
 	{
+		// Status
+		Hp = 6.0f;
+		MoveSpeed = 150.0f;
+	}
+
+	{
 		LittleGhostCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		LittleGhostCollision->SetCollisionType(ColType::AABBBOX2D);
 		LittleGhostCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
@@ -63,6 +69,19 @@ void LittleGhost::Update(float _Delta)
 	{
 		LittleGhostRenderer->RightFlip();
 	}
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	LittleGhostCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+
+	if (Hp <= 0)
+	{
+		ChangeState(LittleGhostState::Death);
+	}
 }
 
 void LittleGhost::ChangeState(LittleGhostState _State)
@@ -80,6 +99,9 @@ void LittleGhost::ChangeState(LittleGhostState _State)
 		case LittleGhostState::Attack:
 			AttackStart();
 			break;
+		case LittleGhostState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -96,6 +118,8 @@ void LittleGhost::StateUpdate(float _Delta)
 		return MoveUpdate(_Delta);
 	case LittleGhostState::Attack:
 		return AttackUpdate(_Delta);
+	case LittleGhostState::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -155,12 +179,21 @@ void LittleGhost::AttackUpdate(float _Delta)
 {
 	AttackTime += _Delta;
 
-	Transform.AddLocalPosition(SaveDir * _Delta * AttackSpeed);
+	Transform.AddLocalPosition(SaveDir * _Delta * (MoveSpeed + 50.0f));
 
 	if (AttackTime > 1.0f)
 	{
 		ChangeState(LittleGhostState::Move);
 	}
+}
+
+void LittleGhost::DeathStart()
+{
+	Death();
+}
+void LittleGhost::DeathUpdate(float _Delta)
+{
+
 }
 
 void LittleGhost::DirCheck()

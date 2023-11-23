@@ -50,6 +50,11 @@ void ArcherSkel::Start()
 
 	ChangeSkelState(ArcherSkelState::Idle);
 
+	{
+		// statue
+		Hp = 30.0f;
+	}
+
 	BowRenderer->SetSprite("DaimyoOakBow");
 	float4 BowScale = BowRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BowRenderer->SetImageScale(BowScale);
@@ -90,6 +95,19 @@ void ArcherSkel::Update(float _Delta)
 	}
 
 	BowRenderer->Transform.SetLocalPosition(Pos);
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+
+	if (Hp <= 0)
+	{
+		ChangeSkelState(ArcherSkelState::Death);
+	}
 }
 
 void ArcherSkel::ChangeSkelState(ArcherSkelState _State)
@@ -107,6 +125,9 @@ void ArcherSkel::ChangeSkelState(ArcherSkelState _State)
 		case ArcherSkelState::Attack:
 			SkelAttackStart();
 			break;
+		case ArcherSkelState::Death:
+			SkelDeathStart();
+			break;
 		default:
 			break;
 		}
@@ -123,6 +144,8 @@ void ArcherSkel::SkelStateUpdate(float _Delta)
 		return SkelAttackReadyUpdate(_Delta);
 	case ArcherSkelState::Attack:
 		return SkelAttackUpdate(_Delta);
+	case ArcherSkelState::Death:
+		return SkelDeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -199,6 +222,15 @@ void ArcherSkel::SkelAttackStart()
 	ChangeSkelAnimationState("Attack");
 }
 void ArcherSkel::SkelAttackUpdate(float _Delta)
+{
+
+}
+
+void ArcherSkel::SkelDeathStart()
+{
+	Death();
+}
+void ArcherSkel::SkelDeathUpdate(float _Delta)
 {
 
 }

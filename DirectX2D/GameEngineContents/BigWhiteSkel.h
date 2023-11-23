@@ -1,5 +1,5 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class BigWhiteSkelState
 {
@@ -18,7 +18,7 @@ enum class BigWhiteSkelDir
 };
 
 // Ό³Έν : 
-class BigWhiteSkel : public PlayActor
+class BigWhiteSkel : public Monster
 {
 public:
 	// constrcuter destructer
@@ -36,6 +36,7 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> BigWhiteSkelRenderer;
+	std::shared_ptr<GameEngineSpriteRenderer> HpRenderer;
 
 	BigWhiteSkelState State = BigWhiteSkelState::Max;
 	BigWhiteSkelDir Dir = BigWhiteSkelDir::Left;
@@ -45,11 +46,7 @@ private:
 
 	float MoveToAttackTime = 0.0f;
 	float AttackReadyTime = 0.0f;
-	float MoveSpeed = 300.0f;
 
-	float BigWhiteSkelHp = 50.0f;
-	
-	
 	void ChangeState(BigWhiteSkelState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
@@ -70,7 +67,5 @@ private:
 	void DeathUpdate(float _Delta);
 
 	void DirCheck();
-
-	void DamageCheck();
 };
 

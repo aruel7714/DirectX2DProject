@@ -48,6 +48,12 @@ void BigWhiteSkel::Start()
 	BigWhiteSkelRenderer->LeftFlip();
 
 	{
+		// Status
+		Hp = 50.0f;
+		MoveSpeed = 300.0f;
+	}
+
+	{
 		SkelCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
 		SkelCollision->SetCollisionType(ColType::AABBBOX2D);
 		SkelCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 2.0f, 1.0f });
@@ -83,8 +89,9 @@ void BigWhiteSkel::Update(float _Delta)
 			DamageCheck();
 		};
 	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+	
 
-	if (BigWhiteSkelHp <= 0)
+	if (Hp <= 0)
 	{
 		ChangeState(BigWhiteSkelState::Death);
 	}
@@ -189,7 +196,6 @@ void BigWhiteSkel::MoveUpdate(float _Delta)
 	{
 		MoveToAttackTime += _Delta;
 	};
-	
 	SkelCollision->CollisionEvent(CollisionType::Player, AttackParameter);
 
 	if (MoveToAttackTime >= 0.5f)
@@ -277,11 +283,4 @@ void BigWhiteSkel::DeathStart()
 void BigWhiteSkel::DeathUpdate(float _Delta)
 {
 
-}
-
-void BigWhiteSkel::DamageCheck()
-{
-	float PlayerDamage = Player::GetMainPlayer()->GetWeaponDamage();
-
-	BigWhiteSkelHp -= PlayerDamage;
 }
