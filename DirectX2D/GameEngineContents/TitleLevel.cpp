@@ -7,6 +7,8 @@
 #include "TitleBird.h"
 #include "TitleMouse.h"
 #include "GameStartButton.h"
+#include "SettingButton.h"
+#include "GameExitButton.h"
 
 TitleLevel::TitleLevel()
 {
@@ -67,6 +69,8 @@ void TitleLevel::Start()
 		std::shared_ptr<TitleBird> BirdObject = CreateActor<TitleBird>(TitleRenderOrder::TitleBird);
 		std::shared_ptr<TitleMouse> MouseObject = CreateActor<TitleMouse>(TitleRenderOrder::Mouse);
 		std::shared_ptr<GameStartButton> GameStartButtonObject = CreateActor<GameStartButton>(TitleRenderOrder::UI);
+		std::shared_ptr<SettingButton> SettingButtonObject = CreateActor<SettingButton>(TitleRenderOrder::UI);
+		std::shared_ptr<GameExitButton> GameExitButtonObject = CreateActor<GameExitButton>(TitleRenderOrder::UI);
 	}
 	GameEngineInput::AddInputObject(this);
 }

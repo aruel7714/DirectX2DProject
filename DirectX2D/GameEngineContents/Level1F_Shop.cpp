@@ -22,6 +22,8 @@ void Level1F_Shop::Start()
 	
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
+
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("1F_Shop.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 

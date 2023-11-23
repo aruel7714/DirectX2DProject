@@ -40,6 +40,8 @@ void BeforeBossEncounterLevel::Start()
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	MainPlayer->Transform.SetLocalPosition({ 478.0f , -576.0f });
 
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
+
 	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder::DungeonProp);
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossEncount.png");

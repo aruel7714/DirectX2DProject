@@ -27,6 +27,8 @@ void Level1F_3::Start()
 
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
+
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Level1F_3.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 

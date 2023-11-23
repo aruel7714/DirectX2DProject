@@ -97,6 +97,8 @@ void Level1F::Start()
 
 	MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
 
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
+
 	std::shared_ptr<class FloorDoor> Door = CreateActor<FloorDoor>(RenderOrder::DungeonProp);
 	
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("Start1F.png");

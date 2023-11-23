@@ -277,6 +277,15 @@
     <ClCompile Include="TitleMouse.cpp">
       <Filter>Object\Mouse</Filter>
     </ClCompile>
+    <ClCompile Include="SettingButton.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="GameExitButton.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMouseCursor.cpp">
+      <Filter>Object\Mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -553,6 +562,15 @@
       <Filter>Level\Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleMouse.h">
+      <Filter>Object\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingButton.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="GameExitButton.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMouseCursor.h">
       <Filter>Object\Mouse</Filter>
     </ClInclude>
   </ItemGroup>

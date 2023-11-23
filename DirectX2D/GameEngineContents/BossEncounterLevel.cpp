@@ -28,6 +28,8 @@ void BossEncounterLevel::Start()
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	MainPlayer->Transform.SetLocalPosition({ 360.0f , -1088.0f });
 
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
+
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 

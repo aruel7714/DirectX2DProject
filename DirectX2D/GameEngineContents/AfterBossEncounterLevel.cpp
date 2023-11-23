@@ -21,6 +21,8 @@ void AfterBossEncounterLevel::Start()
 	AfterBossEncounterFloor = CreateActor<class AfterBossEncounterFloor>(RenderOrder::Floor);
 
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
+	
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
 
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("AfterBossEncounter.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;

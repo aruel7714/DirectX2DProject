@@ -173,6 +173,8 @@ void TownLevel::Start()
 		Trigger = CreateActor<TownDungeonTrigger>(RenderOrder::Building);
 	}
 
+	std::shared_ptr<GameMouseCursor> Mouse = CreateActor<GameMouseCursor>(RenderOrder::Mouse);
+
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
 }

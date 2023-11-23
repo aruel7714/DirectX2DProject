@@ -322,6 +322,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameExitButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameMouseCursor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameStartButton.cpp">
       <SubType>
       </SubType>
@@ -439,6 +447,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="RustyShortSwordSkel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SettingButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -694,6 +706,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameExitButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameMouseCursor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameStartButton.h">
       <SubType>
       </SubType>
@@ -805,6 +825,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="RustyShortSwordSkel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SettingButton.h">
       <SubType>
       </SubType>
     </ClInclude>

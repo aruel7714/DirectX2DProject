@@ -1,31 +1,31 @@
 #include "PreCompile.h"
-#include "GameStartButton.h"
+#include "SettingButton.h"
 
-GameStartButton::GameStartButton()
+SettingButton::SettingButton()
 {
 }
 
-GameStartButton::~GameStartButton()
+SettingButton::~SettingButton()
 {
 }
 
-void GameStartButton::Start()
+void SettingButton::Start()
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExistsChild("ContentsResources");
-	Dir.MoveChild("ContentsResources\\Texture\\UI\\Title\\Play_KOR");
+	Dir.MoveChild("ContentsResources\\Texture\\UI\\Title\\Option_KOR");
 	std::vector<GameEngineFile> Files = Dir.GetAllFile();
 	for (size_t i = 0; i < Files.size(); i++)
 	{
 		GameEngineFile& File = Files[i];
 		GameEngineTexture::Load(File.GetStringPath());
 	}
-	GameEngineSprite::CreateSingle("PlayOff_Kor.png");
-	GameEngineSprite::CreateSingle("PlayOn_Kor.png");
+	GameEngineSprite::CreateSingle("OptionOff_Kor.png");
+	GameEngineSprite::CreateSingle("OptionOn_Kor.png");
 
 	ButtonRenderer = CreateComponent<GameEngineSpriteRenderer>(TitleRenderOrder::UI);
-	ButtonRenderer->SetSprite("PlayOff_kor.png");
-	
+	ButtonRenderer->SetSprite("OptionOff_Kor.png");
+
 	float4 Scale = ButtonRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	ButtonRenderer->SetImageScale(Scale);
 
@@ -35,29 +35,24 @@ void GameStartButton::Start()
 	ButtonCollision->Transform.SetLocalScale(Scale);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
-	Transform.SetLocalPosition({ HalfWindowScale.X, -(HalfWindowScale.Y + 120.0f), -500.0f });
-
-	GameEngineInput::AddInputObject(this);
+	Transform.SetLocalPosition({ HalfWindowScale.X, -(HalfWindowScale.Y + 175.0f), -500.0f });
 }
-void GameStartButton::Update(float _Delta)
+void SettingButton::Update(float _Delta)
 {
 	EventParameter ButtonEvent;
 	ButtonEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 		{
-			ButtonRenderer->SetSprite("PlayOn_kor.png");
+			ButtonRenderer->SetSprite("OptionOn_Kor.png");
 			float4 Scale = ButtonRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 			ButtonRenderer->SetImageScale(Scale);
 		};
 	ButtonEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 		{
-			if (GameEngineInput::IsPress(VK_LBUTTON, this))
-			{
-				GameEngineCore::ChangeLevel("TownLevel");
-			}
+			
 		};
 	ButtonEvent.Exit = [&](class GameEngineCollision* _This, class GameEngineCollision* _Ohter)
 		{
-			ButtonRenderer->SetSprite("PlayOff_kor.png");
+			ButtonRenderer->SetSprite("OptionOff_Kor.png");
 			float4 Scale = ButtonRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 			ButtonRenderer->SetImageScale(Scale);
 		};
