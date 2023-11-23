@@ -47,7 +47,8 @@ enum class TitleRenderOrder
 	MiddleCloud,
 	TitleBird,
 	FrontCloud,
-	MainLogo,
+	UI,
+	Mouse,
 };
 
 enum class CollisionType
@@ -61,4 +62,6 @@ enum class CollisionType
 	NPC,
 	Stele,
 	Weapon,
+	Button,
+	Mouse,
 };

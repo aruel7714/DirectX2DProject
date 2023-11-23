@@ -5,6 +5,8 @@
 #include "FrontCloud.h"
 #include "MainLogo.h"
 #include "TitleBird.h"
+#include "TitleMouse.h"
+#include "GameStartButton.h"
 
 TitleLevel::TitleLevel()
 {
@@ -61,8 +63,10 @@ void TitleLevel::Start()
 	{
 		std::shared_ptr<BackCloud> BackObject = CreateActor<BackCloud>(TitleRenderOrder::BackCloud);
 		std::shared_ptr<FrontCloud> FrontObject = CreateActor<FrontCloud>(TitleRenderOrder::FrontCloud);
-		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(TitleRenderOrder::MainLogo);
+		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(TitleRenderOrder::UI);
 		std::shared_ptr<TitleBird> BirdObject = CreateActor<TitleBird>(TitleRenderOrder::TitleBird);
+		std::shared_ptr<TitleMouse> MouseObject = CreateActor<TitleMouse>(TitleRenderOrder::Mouse);
+		std::shared_ptr<GameStartButton> GameStartButtonObject = CreateActor<GameStartButton>(TitleRenderOrder::UI);
 	}
 	GameEngineInput::AddInputObject(this);
 }

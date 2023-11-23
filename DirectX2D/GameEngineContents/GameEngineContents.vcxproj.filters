@@ -271,6 +271,12 @@
     <ClCompile Include="BansheeBullet.cpp">
       <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="GameStartButton.cpp">
+      <Filter>Level\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMouse.cpp">
+      <Filter>Object\Mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -543,6 +549,12 @@
     <ClInclude Include="BansheeBullet.h">
       <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="GameStartButton.h">
+      <Filter>Level\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMouse.h">
+      <Filter>Object\Mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -634,6 +646,9 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{b7687ae4-4390-40b5-9e3a-4dd844787d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Mouse">
+      <UniqueIdentifier>{19bed36e-cd4f-478f-a8d3-da452914d39c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

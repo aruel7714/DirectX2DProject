@@ -322,6 +322,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameStartButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GargoyleStatue.cpp">
       <SubType>
       </SubType>
@@ -455,6 +459,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleMouse.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -686,6 +694,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameStartButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GargoyleStatue.h">
       <SubType>
       </SubType>
@@ -813,6 +825,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleMouse.h">
       <SubType>
       </SubType>
     </ClInclude>

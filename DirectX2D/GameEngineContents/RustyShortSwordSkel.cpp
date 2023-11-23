@@ -273,7 +273,7 @@ void RustyShortSwordSkel::SkelAttackReadyStart()
 }
 void RustyShortSwordSkel::SkelAttackReadyUpdate(float _Delta)
 {
-	GravityState(_Delta, Transform.GetLocalPosition(), RustyGreatSwordSkelRenderer->GetImageTransform().GetLocalScale());
+	GravityState(_Delta, Transform.GetLocalPosition(), RustyShortSwordSkelRenderer->GetImageTransform().GetLocalScale());
 	AttackReadyTime += _Delta;
 
 	if (AttackReadyTime >= 1.0f)
