@@ -48,7 +48,8 @@ void LittleGhost::Start()
 	{
 		// Status
 		Hp = 6.0f;
-		MoveSpeed = 150.0f;
+		MoveSpeed = 100.0f;
+		Damage = 5.0f;
 	}
 
 	{

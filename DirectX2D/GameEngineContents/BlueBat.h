@@ -1,5 +1,5 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class BlueBatState
 {
@@ -15,7 +15,7 @@ enum class BlueBatDir
 };
 
 // Ό³Έν : 
-class BlueBat : public PlayActor
+class BlueBat : public Monster
 {
 public:
 	// constrcuter destructer

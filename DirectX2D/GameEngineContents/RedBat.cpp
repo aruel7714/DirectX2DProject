@@ -33,6 +33,13 @@ void RedBat::Start()
 		RedBatRenderer->CreateAnimation("RedBat_Idle", "RedBatIdle");
 		RedBatRenderer->CreateAnimation("RedBat_Attack", "RedBatAttack", 0.1f, -1, -1, false);
 	}
+
+	{
+		//Status
+		// Hp = 16.0f;
+		// Damage = 5.0f;
+	}
+	//IdleToAttackTime > 2.5f ?
 }
 
 void RedBat::Update(float _Delta)

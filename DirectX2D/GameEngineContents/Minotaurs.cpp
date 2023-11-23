@@ -49,7 +49,7 @@ void Minotaurs::Start()
 	{
 		// Status
 		Hp = 85.0f;
-
+		Damage = 18.0f;
 	}
 
 	{
@@ -178,6 +178,8 @@ void Minotaurs::IdleUpdate(float _Delta)
 
 	float Check = MyPos.X - PlayerPos.X;
 	
+	// IdleToAttackTime > 2.0f;
+
 	if (abs(Check) <= 200.0f)
 	{
 		ChangeState(MinotaursState::AttackReady);

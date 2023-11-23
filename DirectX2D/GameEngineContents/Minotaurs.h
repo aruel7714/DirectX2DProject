@@ -53,6 +53,7 @@ private:
 
 	float ChargeTime = 0.0f;
 	float RushTime = 0.0f;
+	float IdleToAttackTime = 0.0f;
 	float AttackReadyTime = 0.0f;
 
 	float4 RushDir = float4::ZERO;

@@ -32,6 +32,12 @@ void BlueBat::Start()
 	{
 		BlueBatRenderer->CreateAnimation("BlueBat_Move", "BlueBatIdle");
 	}
+
+	{
+		// Status
+		Hp = 6.0f;
+		// Not Attack
+	}
 }
 
 void BlueBat::Update(float _Delta)

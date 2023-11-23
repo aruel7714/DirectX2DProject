@@ -52,6 +52,7 @@ void BigWhiteSkel::Start()
 		// Status
 		Hp = 50.0f;
 		MoveSpeed = 300.0f;
+		Damage = 20.0f;
 	}
 
 	{
