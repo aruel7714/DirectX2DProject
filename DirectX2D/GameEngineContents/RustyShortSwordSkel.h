@@ -55,6 +55,8 @@ private:
 	float AttackReadyTime = 0.0f;
 	float MoveSpeed = 300.0f;
 
+	float SkelHp = 37.0f;
+
 	void ChangeSkelState(RustyShortSwordSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);

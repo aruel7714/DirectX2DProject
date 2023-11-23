@@ -46,6 +46,9 @@ private:
 	float MoveToAttackTime = 0.0f;
 	float AttackReadyTime = 0.0f;
 	float MoveSpeed = 300.0f;
+
+	float BigWhiteSkelHp = 50.0f;
+	
 	
 	void ChangeState(BigWhiteSkelState _State);
 	void StateUpdate(float _Delta);
@@ -68,6 +71,6 @@ private:
 
 	void DirCheck();
 
-	
+	void DamageCheck();
 };
 

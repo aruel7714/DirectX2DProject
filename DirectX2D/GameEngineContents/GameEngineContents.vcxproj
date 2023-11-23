@@ -407,6 +407,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerLife.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player_State.cpp" />
     <ClCompile Include="PlayLevel.cpp">
       <SubType>
@@ -760,6 +764,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerLife.h">
       <SubType>
       </SubType>
     </ClInclude>

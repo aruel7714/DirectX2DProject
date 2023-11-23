@@ -44,6 +44,8 @@ private:
 
 	float MoveSpeed = 300.0f;
 	float MoveToAttackTime = 0.0f;
+	
+	float SkelDogHp = 20.0f;
 
 	void ChangeState(SkelDogState _State);
 	void StateUpdate(float _Delta);

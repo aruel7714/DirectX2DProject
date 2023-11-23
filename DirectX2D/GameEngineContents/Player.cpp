@@ -99,6 +99,7 @@ void Player::Start()
 
 	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
 	std::shared_ptr<HandCrossbow> WeaponHandCrossbow = GetLevel()->CreateActor<HandCrossbow>(RenderOrder::Weapon);
+	WeaponDamage = WeaponHandCrossbow->GetDamage();
 	
 
 	{
@@ -122,6 +123,8 @@ void Player::Update(float _Delta)
 	StateUpdate(_Delta);
 	CameraFocus();
 
+	PlayerCollisionEvent(_Delta);
+
 	if (State != PlayerState::Stay)
 	{
 		DirCheck();
@@ -144,34 +147,7 @@ void Player::Update(float _Delta)
 		PlayerPosition.X += PlayerScale.X / 6.0f;
 	}
 
-	EventParameter Parameter;
-	Parameter.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	{
-		_Other->Death();
-	};
-
-	PlayerCollision->CollisionEvent(CollisionType::Trigger, Parameter);
-
-	// ShortSword::WeaponShortSword->ShortSwordRenderer->Transform.SetLocalPosition(WeaponPos);
 	
-	//DownFloorFunc();
-
-	EventParameter LevelChangeEvent;
-	LevelChangeEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	{
-		DownFloorFunc();
-	};
-	PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
-
-	EventParameter WallParameter;
-	WallParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	{
-		float4 PlayerPos = _This->Transform.GetWorldPosition();
-		float4 StelePos = _Other->Transform.GetWorldPosition();
-		
-		SteleToPlayerMove(_Delta, (StelePos.X - PlayerPos.X));
-	};
-	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
 }
 
 void Player::CameraFocus()
@@ -364,4 +340,31 @@ void Player::SteleToPlayerMove(float _Delta, float ResultPos)
 			Transform.AddLocalPosition(float4::RIGHT * _Delta * Speed * 2.0f);
 		}
 	}
+}
+
+void Player::PlayerCollisionEvent(float _Delta)
+{
+	EventParameter Parameter;
+	Parameter.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			_Other->Death();
+		};
+	PlayerCollision->CollisionEvent(CollisionType::Trigger, Parameter);
+
+	EventParameter LevelChangeEvent;
+	LevelChangeEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DownFloorFunc();
+		};
+	PlayerCollision->CollisionEvent(CollisionType::LevelChangeTrigger, LevelChangeEvent);
+
+	EventParameter WallParameter;
+	WallParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			float4 PlayerPos = _This->Transform.GetWorldPosition();
+			float4 StelePos = _Other->Transform.GetWorldPosition();
+
+			SteleToPlayerMove(_Delta, (StelePos.X - PlayerPos.X));
+		};
+	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
 }

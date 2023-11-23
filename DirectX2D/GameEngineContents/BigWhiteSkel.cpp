@@ -78,11 +78,16 @@ void BigWhiteSkel::Update(float _Delta)
 	}
 
 	EventParameter DamageEvent;
-	DamageEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 		{
-			ChangeState(BigWhiteSkelState::Death);
+			DamageCheck();
 		};
 	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+	if (BigWhiteSkelHp <= 0)
+	{
+		ChangeState(BigWhiteSkelState::Death);
+	}
 }
 
 void BigWhiteSkel::ChangeState(BigWhiteSkelState _State)
@@ -272,4 +277,11 @@ void BigWhiteSkel::DeathStart()
 void BigWhiteSkel::DeathUpdate(float _Delta)
 {
 
+}
+
+void BigWhiteSkel::DamageCheck()
+{
+	float PlayerDamage = Player::GetMainPlayer()->GetWeaponDamage();
+
+	BigWhiteSkelHp -= PlayerDamage;
 }

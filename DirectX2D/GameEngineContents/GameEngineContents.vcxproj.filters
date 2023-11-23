@@ -265,6 +265,9 @@
     <ClCompile Include="GargoyleStatue.cpp">
       <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerLife.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -531,6 +534,9 @@
     <ClInclude Include="GargoyleStatue.h">
       <Filter>Level\Dungeon\DungeonProp</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerLife.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -619,6 +625,9 @@
     </Filter>
     <Filter Include="Level\Dungeon\Stage2F\Boss">
       <UniqueIdentifier>{cf0d0766-6035-43f6-bfdb-7371c1797f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{b7687ae4-4390-40b5-9e3a-4dd844787d98}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

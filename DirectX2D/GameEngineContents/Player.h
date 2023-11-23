@@ -52,6 +52,11 @@ public:
 		return Dir;
 	}
 
+	float GetWeaponDamage()
+	{
+		return WeaponDamage;
+	}
+
 protected:
 	void Start();
 	void Update(float _Delta);
@@ -94,6 +99,10 @@ private:
 
 	void SteleToPlayerMove(float _Delta, float ResultPos);
 
+	void PlayerCollisionEvent(float _Delta);
+
+	
+
 	//void Gravity(float _Delta);
 private:
 	void StatusUpdate();
@@ -107,6 +116,8 @@ private:
 
 	float4 PlayerScale = float4::ZERO;
 	float4 PlayerPosition = float4::ZERO;
+
+	float WeaponDamage = 0.0f;
 
 private:
 	//Debug

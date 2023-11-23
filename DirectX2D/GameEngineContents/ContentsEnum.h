@@ -33,17 +33,13 @@ enum class RenderOrder
 	Player,
 	FrontBuilding,
 	FrontProp,
+
+	BackUI,
+	MiddleUI,
+	FrontUI,
 };
 
-enum class RenderOrderDungeon
-{
-	BackGround,
-	Floor,
-	Prop,
-	Building,
-	NPC,
-	Player
-};
+
 
 enum class TitleRenderOrder
 {

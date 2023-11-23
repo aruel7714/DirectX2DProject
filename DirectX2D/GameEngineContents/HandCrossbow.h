@@ -20,6 +20,11 @@ public:
 		WeaponPosition = _Position;
 	}
 
+	float GetDamage()
+	{
+		return Damage;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -33,5 +38,7 @@ private:
 	float AttackTime = 0.0f;
 	float AttackSpeed = 2.38f;
 	bool AttackReady = true;
+
+	float Damage = 12.0f;
 };
 

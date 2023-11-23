@@ -40,7 +40,9 @@ private:
 	std::shared_ptr<GameEngineCollision> BansheeCollision;
 
 	float IdleToAttackTime = 0.0f;
-	
+
+	float BansheeHp = 40.0f;
+
 	void ChangeState(BansheeState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

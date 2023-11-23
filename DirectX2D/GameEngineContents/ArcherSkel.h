@@ -57,6 +57,8 @@ private:
 	float4 SaveDir = float4::ZERO;
 	float SaveDeg = 0.0f;
 
+	float ArcherSkelHp = 30.0f;
+
 	void ChangeSkelState(ArcherSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);

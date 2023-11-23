@@ -51,6 +51,8 @@ private:
 	float4 RushDir = float4::ZERO;
 	float RushSpeed = 1000.0f;
 
+	float MinotaursHp = 85.0f;
+
 	void ChangeState(MinotaursState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

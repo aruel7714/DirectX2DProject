@@ -49,6 +49,8 @@ private:
 	float MoveSpeed = 150.0f;
 	float AttackSpeed = 200.0f;
 
+	float LittleGhostHp = 6.0f;
+
 	void ChangeState(LittleGhostState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
