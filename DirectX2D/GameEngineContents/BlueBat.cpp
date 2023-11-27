@@ -124,7 +124,7 @@ void BlueBat::MoveStart()
 void BlueBat::MoveUpdate(float _Delta)
 {
 	DirCheck();
-	AirWallCheck(_Delta, Transform.GetLocalPosition(), RedBatRenderer->GetImageTransform().GetLocalScale() / 2.0f);
+	AirWallCheck(_Delta, Transform.GetLocalPosition(), BlueBatRenderer->GetImageTransform().GetLocalScale() / 2.0f);
 
 	MoveTime += _Delta;
 
