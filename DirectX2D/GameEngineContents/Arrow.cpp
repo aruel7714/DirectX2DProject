@@ -125,6 +125,7 @@ void Arrow::Update(float _Delta)
 
 void Arrow::ArrowDisappear()
 {
+	ArrowRenderer->SetPivotValue({ 0.5f, 0.8f });
 	ArrowCollision->Death();
 	ArrowRenderer->ChangeAnimation("ArrowDisappear");
 	ArrowRenderer->SetImageScale(ArrowRenderer->GetCurSprite().Texture->GetScale() * 4.0f);

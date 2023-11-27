@@ -8,7 +8,7 @@
 #include "BelialLeftHand.h"
 #include "BelialSword.h"
 #include "BelialBullet.h"
-#include "SkelDog.h"
+#include "RedBat.h"
 
 #include "DungeonTorch.h"
 #include "GargoyleStatue.h"
@@ -118,8 +118,8 @@ void Level1F::Start()
 	////MonsterRustyGreatSwordSkel->Transform.SetLocalPosition({ 1215.0f , -640.0f });
 	//Bullet->Transform.SetLocalPosition({ 1215.0f , -540.0f });
 
-	std::shared_ptr<SkelDog> MonsterSkelDog = CreateActor<SkelDog>(RenderOrder::Monster);
-	MonsterSkelDog->Transform.SetLocalPosition({ 1215.0f , -640.0f });
+	std::shared_ptr<RedBat> MonsterSkelDog = CreateActor<RedBat>(RenderOrder::Monster);
+	MonsterSkelDog->Transform.SetLocalPosition({ 1215.0f , -500.0f });
 	
 
 	{

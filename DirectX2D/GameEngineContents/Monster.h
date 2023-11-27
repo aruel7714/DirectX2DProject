@@ -21,6 +21,8 @@ protected:
 	float MoveSpeed = 0.0f;
 
 	void DamageCheck();
+
+	void AirWallCheck(float _Delta, float4 _CheckPos, float4 _CheckScale);
 private:
 	
 };

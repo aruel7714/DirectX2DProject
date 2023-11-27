@@ -1,5 +1,5 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class BlueBatState
 {
@@ -15,7 +15,7 @@ enum class BlueBatDir
 };
 
 // Ό³Έν : 
-class BlueBat : public PlayActor
+class BlueBat : public Monster
 {
 public:
 	// constrcuter destructer
@@ -23,10 +23,10 @@ public:
 	~BlueBat();
 
 	// delete Function
-	BlueBat(const BlueBat & _Other) = delete;
-	BlueBat(BlueBat && _Other) noexcept = delete;
-	BlueBat& operator=(const BlueBat & _Other) = delete;
-	BlueBat& operator=(BlueBat && _Other) noexcept = delete;
+	BlueBat(const BlueBat& _Other) = delete;
+	BlueBat(BlueBat&& _Other) noexcept = delete;
+	BlueBat& operator=(const BlueBat& _Other) = delete;
+	BlueBat& operator=(BlueBat&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;
@@ -37,6 +37,22 @@ private:
 	BlueBatState State = BlueBatState::Max;
 	BlueBatDir Dir = BlueBatDir::Left;
 
+	std::shared_ptr<GameEngineCollision> BlueBatCollision;
 
+	GameEngineRandom Random;
+	float RandomDir;
+
+	float MoveTime = 0.0f;
+
+	void ChangeState(BlueBatState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimationState(const std::string& _State);
+
+	void MoveStart();
+	void MoveUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
+
+	void DirCheck();
 };
-

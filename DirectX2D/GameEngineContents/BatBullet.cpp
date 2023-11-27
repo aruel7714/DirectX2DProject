@@ -111,7 +111,7 @@ void BatBullet::NormalUpdate(float _Delta)
 		Position.Y >= 0.0f ||
 		Position.Y <= -(320.0f * 4.0f))
 	{
-		Death();
+		ChangeState(BulletState::Hit);
 	}
 }
 

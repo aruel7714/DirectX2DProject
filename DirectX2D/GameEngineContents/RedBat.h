@@ -1,10 +1,11 @@
 #pragma once
-#include "PlayActor.h"
+#include "Monster.h"
 
 enum class RedBatState
 {
-	Idle,
+	Move,
 	Attack,
+	Death,
 	Max,
 };
 
@@ -15,7 +16,7 @@ enum class RedBatDir
 };
 
 // Ό³Έν : 
-class RedBat : public PlayActor
+class RedBat : public Monster
 {
 public:
 	// constrcuter destructer
@@ -36,5 +37,28 @@ private:
 
 	RedBatState State = RedBatState::Max;
 	RedBatDir Dir = RedBatDir::Left;
+
+	std::shared_ptr<GameEngineCollision> RedBatCollision;
+
+	GameEngineRandom Random;
+	float RandomDir;
+
+	float MoveTime = 0.0f;
+	float AttackTime = 0.0f;
+
+	void ChangeState(RedBatState _State);
+	void StateUpdate(float _Delta);
+	void ChangeAnimationState(const std::string& _State);
+
+	void MoveStart();
+	void MoveUpdate(float _Delta);
+
+	void AttackStart();
+	void AttackUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
+
+	void DirCheck();
 };
 
