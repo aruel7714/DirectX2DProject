@@ -4,6 +4,7 @@
 enum class RedBatState
 {
 	Move,
+	AttackReady,
 	Attack,
 	Death,
 	Max,
@@ -46,12 +47,18 @@ private:
 	float MoveTime = 0.0f;
 	float AttackTime = 0.0f;
 
+	float4 SavePlayerPos = float4::ZERO;
+	float4 SaveDir = float4::ZERO;
+
 	void ChangeState(RedBatState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
 
 	void MoveStart();
 	void MoveUpdate(float _Delta);
+
+	void AttackReadyStart();
+	void AttackReadyUpdate(float _Delta);
 
 	void AttackStart();
 	void AttackUpdate(float _Delta);

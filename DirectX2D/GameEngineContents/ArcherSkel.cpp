@@ -327,8 +327,6 @@ void ArcherSkel::BowAttackStart()
 }
 void ArcherSkel::BowAttackUpdate(float _Delta)
 {
-	
-
 	if (true == BowRenderer->IsCurAnimationEnd())
 	{
 		ChangeSkelState(ArcherSkelState::Idle);

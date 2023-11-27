@@ -95,7 +95,7 @@ void BatBullet::NormalStart()
 }
 void BatBullet::NormalUpdate(float _Delta)
 {
-
+	Transform.AddLocalPosition(Dir * _Delta * BulletSpeed);
 
 	EventParameter HitParameter;
 	HitParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
@@ -105,19 +105,20 @@ void BatBullet::NormalUpdate(float _Delta)
 
 	BulletCollision->CollisionEvent(CollisionType::Player, HitParameter);
 
-	float4 Position = Transform.GetLocalPosition();
+	/*float4 Position = Transform.GetLocalPosition();
 	if (Position.X <= 0.0f ||
 		Position.X >= 352.0f * 4.0f ||
 		Position.Y >= 0.0f ||
 		Position.Y <= -(320.0f * 4.0f))
 	{
 		ChangeState(BulletState::Hit);
-	}
+	}*/
 }
 
 void BatBullet::HitStart()
 {
 	ChangeAnimationState("Hit");
+	BulletCollision->Off();
 }
 void BatBullet::HitUpdate(float _Delta)
 {

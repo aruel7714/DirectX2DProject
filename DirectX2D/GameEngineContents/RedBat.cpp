@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "RedBat.h"
+#include "BatBullet.h"
 
 RedBat::RedBat()
 {
@@ -31,7 +32,8 @@ void RedBat::Start()
 
 	{
 		RedBatRenderer->CreateAnimation("RedBat_Move", "RedBatIdle");
-		RedBatRenderer->CreateAnimation("RedBat_Attack", "RedBatAttack", 0.1f, -1, -1, false);
+		RedBatRenderer->CreateAnimation("RedBat_AttackReady", "RedBatAttack", 0.1f, 0, 4, false);
+		RedBatRenderer->CreateAnimation("RedBat_Attack", "RedBatAttack", 0.1f, 5, 9, false);
 		RedBatRenderer->CreateAnimation("RedBat_Death", "Die", 0.025f, -1, -1, false);
 	}
 
@@ -97,6 +99,9 @@ void RedBat::ChangeState(RedBatState _State)
 		case RedBatState::Move:
 			MoveStart();
 			break;
+		case RedBatState::AttackReady:
+			AttackReadyStart();
+			break;
 		case RedBatState::Attack:
 			AttackStart();
 			break;
@@ -115,6 +120,8 @@ void RedBat::StateUpdate(float _Delta)
 	{
 	case RedBatState::Move:
 		return MoveUpdate(_Delta);
+	case RedBatState::AttackReady:
+		return AttackReadyUpdate(_Delta);
 	case RedBatState::Attack:
 		return AttackUpdate(_Delta);
 	case RedBatState::Death:
@@ -155,6 +162,32 @@ void RedBat::MoveUpdate(float _Delta)
 
 	if (AttackTime >= 2.5f)
 	{
+		ChangeState(RedBatState::AttackReady);
+	}
+}
+
+void RedBat::AttackReadyStart()
+{
+	ChangeAnimationState("AttackReady");
+	MoveTime = 0.0f;
+	AttackTime = 0.0f;
+}
+void RedBat::AttackReadyUpdate(float _Delta)
+{
+	float4 PlayerScale = Player::GetMainPlayer()->GetRendererScale();
+	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+
+	PlayerPos.Y += (PlayerScale.Y / 4.0f);
+
+	float4 Scale = RedBatRenderer->GetImageTransform().GetLocalScale();
+	float4 MyPos = Transform.GetLocalPosition();
+
+	float4 TargetPos = MyPos - PlayerPos;
+
+	SaveDir = TargetPos.NormalizeReturn();
+
+	if (RedBatRenderer->IsCurAnimationEnd())
+	{
 		ChangeState(RedBatState::Attack);
 	}
 }
@@ -162,8 +195,12 @@ void RedBat::MoveUpdate(float _Delta)
 void RedBat::AttackStart()
 {
 	ChangeAnimationState("Attack");
-	MoveTime = 0.0f;
-	AttackTime = 0.0f;
+	std::shared_ptr<BatBullet> Bullet = GetLevel()->CreateActor<BatBullet>(RenderOrder::MonsterProjectile);
+
+	float4 BatPos = Transform.GetLocalPosition();
+	
+	Bullet->Transform.SetLocalPosition(BatPos);
+	Bullet->Dir = SaveDir * -1.0f;
 }
 void RedBat::AttackUpdate(float _Delta)
 {

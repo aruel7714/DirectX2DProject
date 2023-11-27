@@ -1,5 +1,5 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "Monster.h"
 
 enum class BulletState
 {
@@ -9,8 +9,9 @@ enum class BulletState
 };
 
 // Ό³Έν : 
-class BatBullet : public GameEngineActor
+class BatBullet : public Monster
 {
+	friend class RedBat;
 public:
 	// constrcuter destructer
 	BatBullet();
@@ -30,6 +31,9 @@ private:
 	std::shared_ptr<GameEngineCollision> BulletCollision;
 
 	BulletState State = BulletState::Max;
+
+	float4 Dir = float4::ZERO;
+	float BulletSpeed = 500.0f;
 
 	void ChangeState(BulletState _State);
 	void StateUpdate(float _Delta);
