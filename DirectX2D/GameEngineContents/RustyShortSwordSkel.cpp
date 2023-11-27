@@ -61,6 +61,7 @@ void RustyShortSwordSkel::Start()
 		// Status
 		Hp = 37.0f;
 		MoveSpeed = 300.0f;
+		Damage = 6.0f;
 	}
 
 	{

@@ -51,6 +51,12 @@ void BlueBat::Start()
 		BlueBatCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		BlueBatCollision->Transform.SetLocalScale(Scale / 2.0f);
 	}
+
+	{
+		// Status
+		Hp = 6.0f;
+		// Not Attack
+	}
 }
 
 void BlueBat::Update(float _Delta)

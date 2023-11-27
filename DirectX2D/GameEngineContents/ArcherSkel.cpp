@@ -54,6 +54,7 @@ void ArcherSkel::Start()
 	{
 		// statue
 		Hp = 30.0f;
+		//Damage = 6.0f;
 	}
 
 	BowRenderer->SetSprite("DaimyoOakBow");

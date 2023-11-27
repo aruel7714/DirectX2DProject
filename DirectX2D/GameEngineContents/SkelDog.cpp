@@ -47,7 +47,8 @@ void SkelDog::Start()
 	{
 		// Status
 		Hp = 20.0f;
-		MoveSpeed = 300.0f;
+		MoveSpeed = 500.0f;
+		Damage = 10.0f;
 	}
 
 	{

@@ -46,6 +46,7 @@ void Banshee::Start()
 	{
 		// Status
 		Hp = 40.0f;
+		// Damage = 12.0f;
 	}
 
 	{

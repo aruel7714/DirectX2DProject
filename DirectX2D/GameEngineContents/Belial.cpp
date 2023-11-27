@@ -61,6 +61,13 @@ void Belial::Start()
 
 	ChangeState(BelialState::Idle);
 	//BossBelial->Transform.SetLocalPosition({ (64.0f * 11.0f), -((64.0f * 11.0f) + 32.0f) });
+
+	{
+		// Status
+		// BulletDamage = 6.0f;
+		// LaserDamage = 9.0f;
+		// SwordDamage = 8.0f;
+	}
 }
 
 void Belial::Update(float _Delta)
