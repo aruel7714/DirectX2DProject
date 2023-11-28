@@ -29,7 +29,7 @@ void BelialLeftHand::Start()
 		}
 	}
 
-	LeftHandRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossBody);
+	LeftHandRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossBody2);
 
 	{
 		LeftHandRenderer->CreateAnimation("BelialLeftHand_Idle", "BelialLeftHandIdle");
@@ -107,6 +107,8 @@ void BelialLeftHand::AttackReadyStart()
 	float4 Scale = LeftHandRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	LeftHandRenderer->SetImageScale(Scale);
 	PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
+	float4 PlayerScale = Player::GetMainPlayer()->GetRendererScale();
+	PlayerPos.Y += (PlayerScale.Y / 4.0f);
 }
 void BelialLeftHand::AttackReadyUpdate(float _Delta)
 {

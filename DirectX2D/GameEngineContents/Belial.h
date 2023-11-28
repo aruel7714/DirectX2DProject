@@ -1,5 +1,5 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "Monster.h"
 
 // 설명 : 
 // Pattern1 : 시계방향 또는 반시계방향으로 회전하며 4방향으로 Bullet 발사
@@ -15,10 +15,11 @@ enum class BelialState
 	FireBullet,
 	SummonSword,
 	Laser,
+	Death,
 	Max
 };
 
-class Belial : public GameEngineActor
+class Belial : public Monster
 {
 public:
 	// constrcuter destructer
@@ -41,10 +42,12 @@ private:
 	std::shared_ptr<class BelialLeftHand> LeftHand;
 	std::shared_ptr<class BelialRightHand> RightHand;
 
+	std::shared_ptr<GameEngineCollision> BelialCollision;
+
 	BelialState State = BelialState::Max;
 
 	GameEngineRandom Random;
-	int Pattern;
+	int Pattern = 1;
 
 	float PatternStartTime = 0.0f;
 	float FireBulletTime = 0.0f;
@@ -79,5 +82,8 @@ private:
 
 	void LaserStart();
 	void LaserUpdate(float _Delta);
+
+	void DeathStart();
+	void DeathUpdate(float _Delta);
 };
 

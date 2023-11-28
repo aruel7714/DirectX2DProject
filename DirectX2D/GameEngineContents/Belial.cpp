@@ -43,8 +43,10 @@ void Belial::Start()
 	BelialRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::BossBody);
 	{
 		BelialRenderer->CreateAnimation("Belial_Idle", "BelialBodyIdle");
-		BelialRenderer->CreateAnimation("Belial_FireBulletReady", "BelialBodyAttack", 0.1f, 0, 5, false);
+		BelialRenderer->CreateAnimation("Belial_FireBulletReady", "BelialBodyAttack", 0.05f, 0, 5, false);
 		BelialRenderer->CreateAnimation("Belial_FireBullet", "BelialBodyAttack", 0.1f, 6, 9, true);
+		BelialRenderer->CreateAnimation("Belial_FireBulletEnd", "BelialBodyAttack", 0.05f, 5, 0, false);
+		GameEngineSprite::CreateSingle("SkellBossDead_Head.png");
 	}
 	BelialRenderer->SetSprite("BelialBodyIdle");
 	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
@@ -54,25 +56,49 @@ void Belial::Start()
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
-	LeftHand = GetLevel()->CreateActor<BelialLeftHand>(RenderOrder::BossBody);
+	LeftHand = GetLevel()->CreateActor<BelialLeftHand>(RenderOrder::BossBody2);
 	LeftHand->Transform.SetLocalPosition({ (64.0f * 4.0f) + 32.0f , -(MapScale.Y - (64.0f * 7.0f) - 32.0f) });
-	RightHand = GetLevel()->CreateActor<BelialRightHand>(RenderOrder::BossBody);
+	RightHand = GetLevel()->CreateActor<BelialRightHand>(RenderOrder::BossBody2);
 	RightHand->Transform.SetLocalPosition({ MapScale.X - (64.0f * 4.0f) - 32.0f, -(MapScale.Y - (64.0f * 10.0f) - 32.0f) });
 
-	ChangeState(BelialState::Idle);
+	
 	//BossBelial->Transform.SetLocalPosition({ (64.0f * 11.0f), -((64.0f * 11.0f) + 32.0f) });
 
 	{
 		// Status
+		// Hp = 1000.0f;
+		Hp = 100.0f;
 		// BulletDamage = 6.0f;
 		// LaserDamage = 9.0f;
 		// SwordDamage = 8.0f;
 	}
+
+	{
+		BelialCollision = CreateComponent<GameEngineCollision>(CollisionType::Monster);
+		BelialCollision->SetCollisionType(ColType::AABBBOX2D);
+		BelialCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 6.0f, 1.0f });
+		BelialCollision->Transform.SetLocalScale({ Scale.X / 4.0f * 3.0f, Scale.Y / 4.0f * 3.0f });
+	}
+
+	ChangeState(BelialState::Idle);
 }
 
 void Belial::Update(float _Delta)
 {
 	StateUpdate(_Delta);
+
+	EventParameter DamageEvent;
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			DamageCheck();
+		};
+	BelialCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+
+	if (Hp <= 0)
+	{
+		ChangeState(BelialState::Death);
+	}
 }
 
 void Belial::ChangeState(BelialState _State)
@@ -96,6 +122,9 @@ void Belial::ChangeState(BelialState _State)
 		case BelialState::Laser:
 			LaserStart();
 			break;
+		case BelialState::Death:
+			DeathStart();
+			break;
 		default:
 			break;
 		}
@@ -116,6 +145,8 @@ void Belial::StateUpdate(float _Delta)
 		return SummonSwordUpdate(_Delta);
 	case BelialState::Laser:
 		return LaserUpdate(_Delta);
+	case BelialState::Death:
+		return DeathUpdate(_Delta);
 	default:
 		break;
 	}
@@ -130,12 +161,17 @@ void Belial::ChangeAnimationState(const std::string& _State)
 void Belial::IdleStart()
 {
 	ChangeAnimationState("Idle");
+	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	BelialRenderer->SetImageScale(Scale);
 
 	FireBulletTime = 0.0f;
 	SummonSwordCount = 0;
 	SummonSwordTime = 0.0f;
 	LaserTime = 0.0f;
 	PatternStartTime = 0.0f;
+
+	BelialCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 6.0f, 1.0f });
+	BelialCollision->Transform.SetLocalScale({ Scale.X / 4.0f * 3.0f, Scale.Y / 4.0f * 3.0f });
 }
 void Belial::IdleUpdate(float _Delta)
 {
@@ -164,6 +200,11 @@ void Belial::IdleUpdate(float _Delta)
 void Belial::FireBulletReadyStart()
 {
 	ChangeAnimationState("FireBulletReady");
+	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	BelialRenderer->SetImageScale(Scale);
+
+	BelialCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 6.0f, 1.0f });
+	BelialCollision->Transform.SetLocalScale({ Scale.X / 4.0f * 3.0f, Scale.Y / 7.0f * 6.0f });
 }
 void Belial::FireBulletReadyUpdate(float _Delta)
 {
@@ -176,6 +217,8 @@ void Belial::FireBulletReadyUpdate(float _Delta)
 void Belial::FireBulletStart()
 {
 	ChangeAnimationState("FireBullet");
+	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	BelialRenderer->SetImageScale(Scale);
 	BulletDeg = BulletDir.Angle2DDeg();
 	BulletDegRight = !BulletDegRight;
 }
@@ -215,6 +258,11 @@ void Belial::FireBulletUpdate(float _Delta)
 	}
 
 	if (FireBulletTime >= 3.2f)
+	{
+		ChangeAnimationState("FireBulletEnd");
+	}
+
+	if (BelialRenderer->IsCurAnimation("Belial_FireBulletEnd") && true == BelialRenderer->IsCurAnimationEnd())
 	{
 		ChangeState(BelialState::Idle);
 	}
@@ -270,4 +318,22 @@ void Belial::LaserUpdate(float _Delta)
 	{
 		ChangeState(BelialState::Idle);
 	}
+}
+
+void Belial::DeathStart()
+{
+	BelialRenderer->SetSprite("SkellBossDead_Head.png");
+	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	BelialRenderer->SetImageScale(Scale);
+
+	BelialRenderer->SetPivotValue({ 0.4f, 1.0f });
+
+	BelialCollision->Death();
+	LeftHand->Death();
+	RightHand->Death();
+	BelialBackGroundRenderer->Death();
+}
+void Belial::DeathUpdate(float _Delta)
+{
+	GravityState(_Delta, Transform.GetLocalPosition(), BelialRenderer->GetImageTransform().GetLocalScale());
 }

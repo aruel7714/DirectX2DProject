@@ -26,6 +26,7 @@ enum class RenderOrder
 	BossWallBackProjectile,
 	BossWallBackProjectileEffect,
 	DungeonWall,
+	BossBody2,
 	BossProjectile,
 	NPC,
 	WeaponProjectile,
