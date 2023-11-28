@@ -427,6 +427,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerDashCount.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayerLife.cpp">
       <SubType>
       </SubType>
@@ -812,6 +816,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerDashCount.h">
       <SubType>
       </SubType>
     </ClInclude>

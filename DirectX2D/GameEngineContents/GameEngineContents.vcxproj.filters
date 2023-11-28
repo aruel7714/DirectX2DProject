@@ -289,6 +289,9 @@
     <ClCompile Include="BatBullet.cpp">
       <Filter>Level\Dungeon\Monster\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerDashCount.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -578,6 +581,9 @@
     </ClInclude>
     <ClInclude Include="BatBullet.h">
       <Filter>Level\Dungeon\Monster\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDashCount.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
