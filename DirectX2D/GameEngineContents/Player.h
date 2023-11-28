@@ -119,6 +119,8 @@ private:
 
 	float WeaponDamage = 0.0f;
 
+	std::shared_ptr<class PlayerLife> UILife;
+
 private:
 	//Debug
 	float CheckDelta = 0.0f;

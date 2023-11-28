@@ -14,6 +14,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineRenderTarget.h>
 #include <GameEngineCore/GameEngineTexture.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 
 #include "ContentsEnum.h"
 #include "DungeonMoveTrigger.h"

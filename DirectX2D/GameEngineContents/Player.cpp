@@ -10,6 +10,8 @@
 #include "ShortSword.h"
 #include "HandCrossbow.h"
 
+#include "PlayerLife.h"
+
 Player* Player::MainPlayer = nullptr;
 
 Player::Player()
@@ -109,6 +111,10 @@ void Player::Start()
 		PlayerCollision->Transform.SetLocalScale({Scale.X / 2.0f, Scale.Y / 2.0f, 1.0f });
 		//PlayerCollision->Transform.SetLocalScale({ 100.0f, 10.0f, 1.0f });
 		
+	}
+
+	{
+		UILife = GetLevel()->CreateActor<PlayerLife>(RenderOrder::MiddleUI);
 	}
 
 	GameEngineInput::AddInputObject(this);

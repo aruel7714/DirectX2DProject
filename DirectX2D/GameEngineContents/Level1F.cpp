@@ -13,6 +13,8 @@
 #include "DungeonTorch.h"
 #include "GargoyleStatue.h"
 
+#include <GameEngineCore/FadePostEffect.h>
+
 Level1F::Level1F()
 {
 }
@@ -169,5 +171,5 @@ void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 }
 void Level1F::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	std::shared_ptr<FadePostEffect> FadeEffect = GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
 }

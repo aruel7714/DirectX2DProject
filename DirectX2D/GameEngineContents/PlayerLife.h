@@ -19,9 +19,14 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 private:
-	std::shared_ptr<GameEngineSpriteRenderer> LifeBase;
+	/*std::shared_ptr<GameEngineSpriteRenderer> LifeBase;
 	std::shared_ptr<GameEngineSpriteRenderer> LifeBack;
 	std::shared_ptr<GameEngineSpriteRenderer> LifeBar;
-	std::shared_ptr<GameEngineSpriteRenderer> LifeWave;
+	std::shared_ptr<GameEngineSpriteRenderer> LifeWave;*/
+
+	std::shared_ptr<GameEngineUIRenderer> LifeBack;
+	std::shared_ptr<GameEngineUIRenderer> LifeBase;
+	std::shared_ptr<GameEngineUIRenderer> LifeBar;
+	//std::shared_ptr<GameEngineUIRenderer> LifeWave;
 };
 
