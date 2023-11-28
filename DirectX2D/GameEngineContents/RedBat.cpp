@@ -45,7 +45,9 @@ void RedBat::Start()
 
 	{
 		// Status
+		Hp = 16.0f;
 		MoveSpeed = 100.0f;
+		//Damage = 5.0f;
 	}
 
 	{
@@ -54,13 +56,6 @@ void RedBat::Start()
 		RedBatCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		RedBatCollision->Transform.SetLocalScale(Scale / 2.0f);
 	}
-
-	{
-		//Status
-		// Hp = 16.0f;
-		// Damage = 5.0f;
-	}
-	//IdleToAttackTime > 2.5f ?
 }
 
 void RedBat::Update(float _Delta)
@@ -84,10 +79,10 @@ void RedBat::Update(float _Delta)
 	RedBatCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
 
-	/*if (Hp <= 0)
+	if (Hp <= 0)
 	{
 		ChangeState(RedBatState::Death);
-	}*/
+	}
 }
 
 void RedBat::ChangeState(RedBatState _State)

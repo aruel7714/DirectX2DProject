@@ -5,6 +5,8 @@
 #include "Banshee.h"
 #include "RustyShortSwordSkel.h"
 #include "SkelDog.h"
+#include "RedBat.h"
+#include "BlueBat.h"
 
 #include "DungeonStele.h"
 #include "DungeonTorch.h"
@@ -48,6 +50,18 @@ void Level1F_2::Start()
 	MonsterSkelDog->SetName(std::string_view("MonsterSkelDog"));
 	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterSkelDog->GetName(), MonsterSkelDog));
 	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterSkelDog->GetName(), false));
+
+	std::shared_ptr<BlueBat> MonsterBlueBat = CreateActor<BlueBat>(RenderOrder::Monster);
+	MonsterBlueBat->Transform.SetLocalPosition({ 1600.0f, -640.0f });
+	MonsterBlueBat->SetName(std::string_view("MonsterBlueBat"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterBlueBat->GetName(), MonsterBlueBat));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterBlueBat->GetName(), false));
+
+	std::shared_ptr<RedBat> MonsterRedBat = CreateActor<RedBat>(RenderOrder::Monster);
+	MonsterRedBat->Transform.SetLocalPosition({ 448.0f, -576.0f });
+	MonsterRedBat->SetName(std::string_view("MonsterRedBat"));
+	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterRedBat->GetName(), MonsterRedBat));
+	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterRedBat->GetName(), false));
 
 	Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
 	Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(MapScale.Y - 256.0f) });

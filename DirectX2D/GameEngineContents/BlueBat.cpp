@@ -42,7 +42,9 @@ void BlueBat::Start()
 
 	{
 		// Status
+		Hp = 6.0f;
 		MoveSpeed = 100.0f;
+		// Not ATtack
 	}
 
 	{
@@ -50,12 +52,6 @@ void BlueBat::Start()
 		BlueBatCollision->SetCollisionType(ColType::SPHERE2D);
 		BlueBatCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		BlueBatCollision->Transform.SetLocalScale(Scale / 2.0f);
-	}
-
-	{
-		// Status
-		Hp = 6.0f;
-		// Not Attack
 	}
 }
 
