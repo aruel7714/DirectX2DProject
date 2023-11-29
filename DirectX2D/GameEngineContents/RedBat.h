@@ -30,6 +30,8 @@ public:
 	RedBat& operator=(const RedBat & _Other) = delete;
 	RedBat& operator=(RedBat && _Other) noexcept = delete;
 
+	GameEngineRandom Random;
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -43,7 +45,6 @@ private:
 
 	std::shared_ptr<class MonsterLife> RedBatLife;
 
-	GameEngineRandom Random;
 	float RandomDir;
 
 	float MoveTime = 0.0f;

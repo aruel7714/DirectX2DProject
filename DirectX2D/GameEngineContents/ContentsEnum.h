@@ -31,6 +31,7 @@ enum class RenderOrder
 	BossBody2,
 	BossProjectile,
 	NPC,
+	NPCEventKey,
 	WeaponProjectile,
 	Weapon,
 	Player,

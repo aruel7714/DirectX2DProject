@@ -108,6 +108,18 @@ void TownLevel::Start()
 
 		}
 
+		{
+			GameEngineDirectory Dir;
+			Dir.MoveParentToExistsChild("ContentsResources");
+			Dir.MoveChild("ContentsResources\\Texture\\UI\\Keyboard");
+			std::vector<GameEngineFile> Files = Dir.GetAllFile();
+			for (size_t i = 0; i < Files.size(); i++)
+			{
+				GameEngineFile& File = Files[i];
+				GameEngineTexture::Load(File.GetStringPath());
+			}
+		}
+
 		GameEngineSprite::CreateSingle("Sky_Day2.png");
 		//GameEngineSprite::CreateSingle("TownBG_Day.png");
 		//GameEngineSprite::CreateSingle("TownLayer_Day.png");

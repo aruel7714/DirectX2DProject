@@ -23,5 +23,7 @@ protected:
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> DoorRenderer;
 	std::shared_ptr<class GameEngineCollision> DoorCollision;
+
+	std::shared_ptr<GameEngineSpriteRenderer> KeyRenderer;
 };
 

@@ -12,6 +12,7 @@ DownDoor::~DownDoor()
 void DownDoor::Start()
 {
 	GameEngineSprite::CreateSingle("Door.png");
+	GameEngineSprite::CreateSingle("Keyboard_F.png");
 	DoorRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPC);
 	DoorRenderer->SetSprite("Door.png");
 
@@ -26,16 +27,27 @@ void DownDoor::Start()
 		DoorCollision->Transform.SetLocalPosition({ 0.0f, (ImageScale.Y / 2.0f), 1.0f });
 		DoorCollision->Transform.SetLocalScale({ ImageScale.X, ImageScale.Y, 1.0f });
 	}
+	
+	KeyRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::NPCEventKey);
+	KeyRenderer->SetSprite("Keyboard_F.png");
+	float4 KeyScale = KeyRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	KeyRenderer->SetImageScale(KeyScale);
+	KeyRenderer->Off();
 }
 void DownDoor::Update(float _Delta)
 {
-	//EventParameter FloorDownEvent;
-	//FloorDownEvent.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
-	//{
-	//	//GameEngineCore::ChangeLevel("Level1F_3");
-	//};
+	EventParameter FloorDownEvent;
+	FloorDownEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+			KeyRenderer->On();
+	};
+	FloorDownEvent.Exit = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	{
+			KeyRenderer->Off();
+	};
+	DoorCollision->CollisionEvent(CollisionType::Player, FloorDownEvent);
+	KeyRenderer->Transform.SetLocalPosition({ 0.0f, 196.0f });
 
-	//DoorCollision->CollisionEvent(CollisionType::Player, FloorDownEvent);
 }
 
 void DownDoor::SetDoorPosition(float4 _Pos)

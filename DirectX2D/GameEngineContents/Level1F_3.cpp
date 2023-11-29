@@ -63,12 +63,14 @@ void Level1F_3::Start()
 	MonsterRedBat1->SetName(std::string_view("MonsterRedBat1"));
 	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterRedBat1->GetName(), MonsterRedBat1));
 	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterRedBat1->GetName(), false));
+	MonsterRedBat1->Random.SetSeed(2);
 
 	std::shared_ptr<RedBat> MonsterRedBat2 = CreateActor<RedBat>(RenderOrder::Monster);
 	MonsterRedBat2->Transform.SetLocalPosition({ 320.0f, -1856.0f });
 	MonsterRedBat2->SetName(std::string_view("MonsterRedBat2"));
 	AllMonsters.insert(std::pair<std::string, std::shared_ptr<GameEngineActor>>(MonsterRedBat2->GetName(), MonsterRedBat2));
 	MonsterDeathCheck.insert(std::pair<std::string, bool>(MonsterRedBat2->GetName(), false));
+	MonsterRedBat2->Random.SetSeed(3);
 
 	Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
 	Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(MapScale.Y - 256.0f) });
