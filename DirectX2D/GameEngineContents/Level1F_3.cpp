@@ -140,7 +140,7 @@ void Level1F_3::LevelStart(GameEngineLevel* _PrevLevel)
 
 	if (FindLevel("Level1F_Last") == _PrevLevel)
 	{
-		MainPlayer->Transform.SetLocalPosition({ TriggerRight->MoveTriggerCollision->Transform.GetLocalPosition().X - 96.0f , -576.0f });
+		MainPlayer->Transform.SetLocalPosition({ TriggerRight->MoveTriggerCollision->Transform.GetLocalPosition().X - 96.0f , -512.0f });
 	}
 }
 void Level1F_3::LevelEnd(GameEngineLevel* _NextLevel)

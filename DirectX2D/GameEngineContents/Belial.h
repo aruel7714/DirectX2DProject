@@ -32,6 +32,11 @@ public:
 	Belial& operator=(const Belial & _Other) = delete;
 	Belial& operator=(Belial && _Other) noexcept = delete;
 
+	bool IsBelialDeathState()
+	{
+		return BelialDeathState;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -65,6 +70,8 @@ private:
 	float LaserTime = 0.0f;
 	bool LaserRight = true;
 	int LaserCount = 0;
+
+	bool BelialDeathState = false;
 
 	void ChangeState(BelialState _State);
 	void StateUpdate(float _Delta);

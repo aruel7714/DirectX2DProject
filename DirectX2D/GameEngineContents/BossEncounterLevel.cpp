@@ -33,7 +33,7 @@ void BossEncounterLevel::Start()
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
-	std::shared_ptr<Belial> BossBelial = CreateActor<Belial>(RenderOrder::BossBody);
+	BossBelial = CreateActor<Belial>(RenderOrder::BossBody);
 	BossBelial->Transform.SetLocalPosition({ (64.0f * 11.0f), -((64.0f * 11.0f) + 32.0f) });
 
 	//std::shared_ptr<BelialLeftHand> BossBelialLeftHand = CreateActor<BelialLeftHand>(RenderOrder::Monster);
@@ -42,6 +42,15 @@ void BossEncounterLevel::Start()
 	//std::shared_ptr<BelialRightHand> BossBelialRightHand = CreateActor<BelialRightHand>(RenderOrder::Monster);
 	//BossBelialRightHand->Transform.SetLocalPosition({ MapScale.X - (64.0f * 4.0f) - 32.0f, -(MapScale.Y - (64.0f * 10.0f) - 32.0f) });
 
+	Stele1 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele1->Transform.SetLocalPosition({ 64.0f + 32.0f, -(MapScale.Y - 192.0f - 128.0f) });
+	Stele1->Transform.SetLocalRotation({ 0.0f, 0.0f, 90.0f });
+	Stele1->SetCollisionScale({ 64.0f, 256.0f });
+
+	Stele2 = CreateActor<DungeonStele>(RenderOrder::DungeonBuilding);
+	Stele2->Transform.SetLocalPosition({ (MapScale.X - 64.0f - 32.0f), -(MapScale.Y - 192.0f - 128.0f) });
+	Stele2->Transform.SetLocalRotation({ 0.0f, 0.0f, -90.0f });
+	Stele2->SetCollisionScale({ 64.0f, 256.0f });
 
 	{
 		TriggerLeft = CreateActor<DungeonMoveTrigger>(RenderOrder::DungeonBuilding);
@@ -58,6 +67,12 @@ void BossEncounterLevel::Start()
 
 void BossEncounterLevel::Update(float _Delta)
 {
+	if (true == BossBelial->IsBelialDeathState())
+	{
+		Stele1->SteleOpened();
+		Stele2->SteleOpened();
+	}
+
 	EventParameter ParameterLeft;
 	ParameterLeft.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{

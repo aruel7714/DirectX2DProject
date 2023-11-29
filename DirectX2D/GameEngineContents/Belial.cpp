@@ -340,6 +340,7 @@ void Belial::DeathStart()
 	LeftHand->Death();
 	RightHand->Death();
 	BelialBackGroundRenderer->Death();
+	BelialDeathState = true;
 }
 void Belial::DeathUpdate(float _Delta)
 {
