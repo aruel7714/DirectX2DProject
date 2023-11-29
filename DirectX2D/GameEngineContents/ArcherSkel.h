@@ -51,6 +51,8 @@ private:
 
 	std::shared_ptr<GameEngineCollision> SkelCollision;
 
+	std::shared_ptr<class MonsterLife> ArcherLife;
+
 	float IdleToAttackTime = 0.0f;
 	float AttackTime = 0.0f;
 

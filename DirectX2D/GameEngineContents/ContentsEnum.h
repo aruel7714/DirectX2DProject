@@ -20,6 +20,8 @@ enum class RenderOrder
 	MonsterWeapon,
 	Monster,
 	MonsterFrontWeapon,
+	MonsterLifeBase,
+	MonsterLifeBar,
 	BossBackGround,
 	BossBackParticle,
 	BossBody,

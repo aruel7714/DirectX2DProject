@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "ArcherSkel.h"
 #include "BowArrow.h"
+#include "MonsterLife.h"
 
 ArcherSkel::ArcherSkel()
 {
@@ -53,6 +54,7 @@ void ArcherSkel::Start()
 
 	{
 		// statue
+		MaxHp = 30.0f;
 		Hp = 30.0f;
 		//Damage = 6.0f;
 	}
@@ -69,6 +71,9 @@ void ArcherSkel::Start()
 		SkelCollision->Transform.SetLocalPosition({ 0.0f, SkelScale.Y / 4.0f, 1.0f });
 		SkelCollision->Transform.SetLocalScale({ SkelScale.X / 3.0f, SkelScale.Y / 2.0f, 1.0f });
 	}
+
+	ArcherLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	ArcherLife->Off();
 }
 
 void ArcherSkel::Update(float _Delta)
@@ -105,6 +110,22 @@ void ArcherSkel::Update(float _Delta)
 		};
 	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		ArcherLife->On();
+		ArcherLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 8.0f});
+	}
+	else
+	{
+		ArcherLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == ArcherLife->IsUpdate())
+	{
+		ArcherLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -235,6 +256,8 @@ void ArcherSkel::SkelDeathStart()
 	ArcherSkelRenderer->SetImageScale(Scale);
 	ArcherSkelRenderer->SetPivotType(PivotType::Center);
 	BowRenderer->Off();
+	ArcherLife->Death();
+
 }
 void ArcherSkel::SkelDeathUpdate(float _Delta)
 {

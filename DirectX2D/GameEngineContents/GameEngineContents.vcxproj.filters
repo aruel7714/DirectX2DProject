@@ -295,6 +295,9 @@
     <ClCompile Include="BossLife.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterLife.cpp">
+      <Filter>Level\Dungeon\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -590,6 +593,9 @@
     </ClInclude>
     <ClInclude Include="BossLife.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterLife.h">
+      <Filter>Level\Dungeon\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
