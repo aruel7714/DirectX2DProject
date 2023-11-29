@@ -6,6 +6,8 @@
 #include "BelialRightHand.h"
 #include "BelialLeftHand.h"
 
+#include "BossLife.h"
+
 Belial::Belial()
 {
 }
@@ -67,6 +69,7 @@ void Belial::Start()
 	{
 		// Status
 		// Hp = 1000.0f;
+		MaxHp = 100.0f;
 		Hp = 100.0f;
 		// BulletDamage = 6.0f;
 		// LaserDamage = 9.0f;
@@ -79,8 +82,10 @@ void Belial::Start()
 		BelialCollision->Transform.SetLocalPosition({ 0.0f, Scale.Y / 6.0f, 1.0f });
 		BelialCollision->Transform.SetLocalScale({ Scale.X / 4.0f * 3.0f, Scale.Y / 4.0f * 3.0f });
 	}
+	UIBelialLife = GetLevel()->CreateActor<BossLife>(RenderOrder::MiddleUI);
 
 	ChangeState(BelialState::Idle);
+
 }
 
 void Belial::Update(float _Delta)
@@ -94,6 +99,9 @@ void Belial::Update(float _Delta)
 		};
 	BelialCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	float Per = Hp / MaxHp * 100.0f;
+
+	UIBelialLife->SetLifeBarScale(Per);
 
 	if (Hp <= 0)
 	{

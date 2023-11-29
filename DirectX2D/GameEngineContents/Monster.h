@@ -16,6 +16,7 @@ public:
 	Monster& operator=(Monster && _Other) noexcept = delete;
 
 protected:
+	float MaxHp = 0.0f;
 	float Hp = 0.0f;
 	float Damage = 0.0f;
 	float MoveSpeed = 0.0f;

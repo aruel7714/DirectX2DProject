@@ -292,6 +292,9 @@
     <ClCompile Include="PlayerDashCount.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="BossLife.cpp">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -584,6 +587,9 @@
     </ClInclude>
     <ClInclude Include="PlayerDashCount.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLife.h">
+      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -44,6 +44,8 @@ private:
 
 	std::shared_ptr<GameEngineCollision> BelialCollision;
 
+	std::shared_ptr<class BossLife> UIBelialLife;
+
 	BelialState State = BelialState::Max;
 
 	GameEngineRandom Random;

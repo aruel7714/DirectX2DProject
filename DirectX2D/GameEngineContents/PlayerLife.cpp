@@ -59,11 +59,11 @@ void PlayerLife::Start()
 	float4 Scale = LifeBack->GetCurSprite().Texture->GetScale() * 4.0f;
 	LifeBack->SetImageScale(Scale);
 
-	LifeBase = CreateComponent<GameEngineUIRenderer>(RenderOrder::MiddleUI);
+	LifeBase = CreateComponent<GameEngineUIRenderer>(RenderOrder::FrontUI);
 	LifeBase->SetSprite("PlayerLifeBase1.png");
 	LifeBase->SetImageScale(Scale);
 
-	LifeBar = CreateComponent<GameEngineUIRenderer>(RenderOrder::FrontUI);
+	LifeBar = CreateComponent<GameEngineUIRenderer>(RenderOrder::MiddleUI);
 	LifeBar->SetSprite("LifeBar.png");
 	LifeBar->SetImageScale({ 188.0f, 40.0f });
 	LifeBar->SetPivotType(PivotType::Left);
