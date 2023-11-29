@@ -38,7 +38,7 @@ void MonsterLife::Start()
 }
 void MonsterLife::Update(float _Delta)
 {
-	float4 Pos = Transform.GetLocalPosition();
+
 }
 
 void MonsterLife::SetLifeBarScale(float _Per)

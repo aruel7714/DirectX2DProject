@@ -42,6 +42,8 @@ private:
 
 	std::shared_ptr<GameEngineCollision> LittleGhostCollision;
 
+	std::shared_ptr<class MonsterLife> LittleGhostLife;
+
 	float4 SaveDir = float4::ZERO;
 	float Distance = 0.0f;
 

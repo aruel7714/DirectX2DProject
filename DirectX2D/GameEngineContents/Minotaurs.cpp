@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Minotaurs.h"
+#include "MonsterLife.h"
 
 Minotaurs::Minotaurs()
 {
@@ -48,6 +49,7 @@ void Minotaurs::Start()
 
 	{
 		// Status
+		MaxHp = 85.0f;
 		Hp = 85.0f;
 		Damage = 18.0f;
 	}
@@ -74,6 +76,9 @@ void Minotaurs::Start()
 
 	RushCollision->Off();
 	AttackCollision->Off();
+
+	MinotaursLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	MinotaursLife->Off();
 }
 void Minotaurs::Update(float _Delta)
 {
@@ -96,6 +101,23 @@ void Minotaurs::Update(float _Delta)
 			DamageCheck();
 		};
 	MinotaursCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+
+	if (Hp < MaxHp)
+	{
+		MinotaursLife->On();
+		MinotaursLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 30.0f });
+	}
+	else
+	{
+		MinotaursLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == MinotaursLife->IsUpdate())
+	{
+		MinotaursLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -280,6 +302,7 @@ void Minotaurs::DeathStart()
 	float4 Scale = MinotaursRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	MinotaursRenderer->SetImageScale(Scale);
 	MinotaursRenderer->SetPivotType(PivotType::Center);
+	MinotaursLife->Death();
 }
 void Minotaurs::DeathUpdate(float _Delta)
 {

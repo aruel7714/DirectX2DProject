@@ -40,6 +40,8 @@ private:
 
 	std::shared_ptr<GameEngineCollision> BansheeCollision;
 
+	std::shared_ptr<class MonsterLife> BansheeLife;
+
 	float IdleToAttackTime = 0.0f;
 
 	void ChangeState(BansheeState _State);

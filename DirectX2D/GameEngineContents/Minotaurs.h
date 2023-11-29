@@ -51,6 +51,8 @@ private:
 	std::shared_ptr<GameEngineCollision> RushCollision;
 	std::shared_ptr<GameEngineCollision> AttackCollision;
 
+	std::shared_ptr<class MonsterLife> MinotaursLife;
+
 	float ChargeTime = 0.0f;
 	float RushTime = 0.0f;
 	float IdleToAttackTime = 0.0f;

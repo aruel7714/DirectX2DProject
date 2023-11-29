@@ -44,6 +44,8 @@ private:
 	std::shared_ptr<GameEngineCollision> SkelCollision;
 	std::shared_ptr<GameEngineCollision> AttackCollision;
 
+	std::shared_ptr<class MonsterLife> BigWhiteSkelLife;
+
 	float MoveToAttackTime = 0.0f;
 	float AttackReadyTime = 0.0f;
 

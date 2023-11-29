@@ -113,7 +113,7 @@ void ArcherSkel::Update(float _Delta)
 	if (Hp < MaxHp)
 	{
 		ArcherLife->On();
-		ArcherLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 8.0f});
+		ArcherLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 15.0f});
 	}
 	else
 	{

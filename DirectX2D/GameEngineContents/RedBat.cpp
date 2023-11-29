@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "RedBat.h"
 #include "BatBullet.h"
+#include "MonsterLife.h"
 
 RedBat::RedBat()
 {
@@ -45,6 +46,7 @@ void RedBat::Start()
 
 	{
 		// Status
+		MaxHp = 16.0f;
 		Hp = 16.0f;
 		MoveSpeed = 100.0f;
 		//Damage = 5.0f;
@@ -56,6 +58,9 @@ void RedBat::Start()
 		RedBatCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		RedBatCollision->Transform.SetLocalScale(Scale / 2.0f);
 	}
+
+	RedBatLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	RedBatLife->Off();
 }
 
 void RedBat::Update(float _Delta)
@@ -78,6 +83,22 @@ void RedBat::Update(float _Delta)
 		};
 	RedBatCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		RedBatLife->On();
+		RedBatLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 30.0f });
+	}
+	else
+	{
+		RedBatLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == RedBatLife->IsUpdate())
+	{
+		RedBatLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -210,6 +231,7 @@ void RedBat::DeathStart()
 	ChangeAnimationState("Death");
 	float4 Scale = RedBatRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	RedBatRenderer->SetImageScale(Scale);
+	RedBatLife->Death();
 }
 void RedBat::DeathUpdate(float _Delta)
 {

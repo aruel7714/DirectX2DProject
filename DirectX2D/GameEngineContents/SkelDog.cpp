@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "SkelDog.h"
+#include "MonsterLife.h"
 
 SkelDog::SkelDog()
 {
@@ -46,6 +47,7 @@ void SkelDog::Start()
 
 	{
 		// Status
+		MaxHp = 20.0f;
 		Hp = 20.0f;
 		MoveSpeed = 500.0f;
 		Damage = 10.0f;
@@ -65,6 +67,9 @@ void SkelDog::Start()
 	}
 
 	SkelDogAttackCollision->Off();
+
+	SkelDogLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	SkelDogLife->Off();
 }
 
 void SkelDog::Update(float _Delta)
@@ -87,6 +92,22 @@ void SkelDog::Update(float _Delta)
 		};
 	SkelDogCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		SkelDogLife->On();
+		SkelDogLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 15.0f });
+	}
+	else
+	{
+		SkelDogLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == SkelDogLife->IsUpdate())
+	{
+		SkelDogLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -247,6 +268,7 @@ void SkelDog::DeathStart()
 	float4 Scale = SkelDogRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	SkelDogRenderer->SetImageScale(Scale);
 	SkelDogRenderer->SetPivotType(PivotType::Center);
+	SkelDogLife->Death();
 }
 void SkelDog::DeathUpdate(float _Delta)
 {

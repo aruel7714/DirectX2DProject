@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "BigWhiteSkel.h"
 #include "Player.h"
+#include "MonsterLife.h"
 
 BigWhiteSkel::BigWhiteSkel()
 {
@@ -50,6 +51,7 @@ void BigWhiteSkel::Start()
 
 	{
 		// Status
+		MaxHp = 50.0f;
 		Hp = 50.0f;
 		MoveSpeed = 300.0f;
 		Damage = 20.0f;
@@ -69,8 +71,8 @@ void BigWhiteSkel::Start()
 
 	AttackCollision->Off();
 	
-	GameEngineInput::AddInputObject(this);
-
+	BigWhiteSkelLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	BigWhiteSkelLife->Off();
 }
 void BigWhiteSkel::Update(float _Delta)
 {
@@ -92,6 +94,22 @@ void BigWhiteSkel::Update(float _Delta)
 		};
 	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 	
+	if (Hp < MaxHp)
+	{
+		BigWhiteSkelLife->On();
+		BigWhiteSkelLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 15.0f });
+	}
+	else
+	{
+		BigWhiteSkelLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == BigWhiteSkelLife->IsUpdate())
+	{
+		BigWhiteSkelLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -288,6 +306,7 @@ void BigWhiteSkel::DeathStart()
 	float4 Scale = BigWhiteSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	BigWhiteSkelRenderer->SetImageScale(Scale);
 	BigWhiteSkelRenderer->SetPivotType(PivotType::Center);
+	BigWhiteSkelLife->Death();
 }
 void BigWhiteSkel::DeathUpdate(float _Delta)
 {

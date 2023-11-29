@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Banshee.h"
 #include "BansheeBullet.h"
+#include "MonsterLife.h"
 
 Banshee::Banshee()
 {
@@ -45,6 +46,7 @@ void Banshee::Start()
 
 	{
 		// Status
+		MaxHp = 40.0f;
 		Hp = 40.0f;
 		// Damage = 12.0f;
 	}
@@ -55,6 +57,9 @@ void Banshee::Start()
 		BansheeCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		BansheeCollision->Transform.SetLocalScale(Scale);
 	}
+
+	BansheeLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	BansheeLife->Off();
 }
 void Banshee::Update(float _Delta)
 {
@@ -76,6 +81,22 @@ void Banshee::Update(float _Delta)
 		};
 	BansheeCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		BansheeLife->On();
+		BansheeLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 60.0f });
+	}
+	else
+	{
+		BansheeLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == BansheeLife->IsUpdate())
+	{
+		BansheeLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -166,6 +187,7 @@ void Banshee::DeathStart()
 	ChangeAnimationState("Death");
 	float4 Scale = BansheeRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	BansheeRenderer->SetImageScale(Scale);
+	BansheeLife->Death();
 }
 void Banshee::DeathUpdate(float _Delta)
 {

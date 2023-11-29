@@ -53,6 +53,8 @@ private:
 	std::shared_ptr<GameEngineCollision> SkelCollision;
 	std::shared_ptr<GameEngineCollision> AttackCollision;
 
+	std::shared_ptr<class MonsterLife> RustyGreatSwordSkelLife;
+
 	float AttackReadyTime = 0.0f;
 
 	void ChangeSkelState(RustyGreatSwordSkelState _State);

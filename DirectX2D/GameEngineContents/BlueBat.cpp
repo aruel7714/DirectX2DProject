@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "BlueBat.h"
+#include "MonsterLife.h"
 
 BlueBat::BlueBat()
 {
@@ -42,6 +43,7 @@ void BlueBat::Start()
 
 	{
 		// Status
+		MaxHp = 6.0f;
 		Hp = 6.0f;
 		MoveSpeed = 100.0f;
 		// Not ATtack
@@ -53,6 +55,9 @@ void BlueBat::Start()
 		BlueBatCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		BlueBatCollision->Transform.SetLocalScale(Scale / 2.0f);
 	}
+
+	BlueBatLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	BlueBatLife->Off();
 }
 
 void BlueBat::Update(float _Delta)
@@ -75,6 +80,22 @@ void BlueBat::Update(float _Delta)
 		};
 	BlueBatCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		BlueBatLife->On();
+		BlueBatLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 30.0f });
+	}
+	else
+	{
+		BlueBatLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == BlueBatLife->IsUpdate())
+	{
+		BlueBatLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -147,6 +168,7 @@ void BlueBat::DeathStart()
 	ChangeAnimationState("Death");
 	float4 Scale = BlueBatRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BlueBatRenderer->SetImageScale(Scale);
+	BlueBatLife->Death();
 }
 void BlueBat::DeathUpdate(float _Delta)
 {

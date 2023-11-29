@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "LittleGhost.h"
+#include "MonsterLife.h"
 
 LittleGhost::LittleGhost()
 {
@@ -58,6 +59,9 @@ void LittleGhost::Start()
 		LittleGhostCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
 		LittleGhostCollision->Transform.SetLocalScale(Scale);
 	}
+
+	LittleGhostLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	LittleGhostLife->Off();
 }
 void LittleGhost::Update(float _Delta)
 {
@@ -79,6 +83,22 @@ void LittleGhost::Update(float _Delta)
 		};
 	LittleGhostCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		LittleGhostLife->On();
+		LittleGhostLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 30.0f });
+	}
+	else
+	{
+		LittleGhostLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == LittleGhostLife->IsUpdate())
+	{
+		LittleGhostLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -194,6 +214,7 @@ void LittleGhost::DeathStart()
 	ChangeAnimationState("Death");
 	float4 Scale = LittleGhostRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	LittleGhostRenderer->SetImageScale(Scale);
+	LittleGhostLife->Death();
 }
 void LittleGhost::DeathUpdate(float _Delta)
 {

@@ -39,6 +39,8 @@ private:
 
 	std::shared_ptr<GameEngineCollision> BlueBatCollision;
 
+	std::shared_ptr<class MonsterLife> BlueBatLife;
+
 	GameEngineRandom Random;
 	float RandomDir;
 

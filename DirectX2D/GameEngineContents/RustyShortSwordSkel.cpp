@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "RustyShortSwordSkel.h"
+#include "MonsterLife.h"
 
 RustyShortSwordSkel::RustyShortSwordSkel()
 {
@@ -59,6 +60,7 @@ void RustyShortSwordSkel::Start()
 
 	{
 		// Status
+		MaxHp = 37.0f;
 		Hp = 37.0f;
 		MoveSpeed = 300.0f;
 		Damage = 6.0f;
@@ -77,6 +79,9 @@ void RustyShortSwordSkel::Start()
 	}
 
 	AttackCollision->Off();
+
+	RustyShortSwordSkelLife = GetLevel()->CreateActor<MonsterLife>(RenderOrder::MonsterLifeBase);
+	RustyShortSwordSkelLife->Off();
 }
 void RustyShortSwordSkel::Update(float _Delta)
 {
@@ -109,6 +114,22 @@ void RustyShortSwordSkel::Update(float _Delta)
 		};
 	SkelCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
 
+	if (Hp < MaxHp)
+	{
+		RustyShortSwordSkelLife->On();
+		RustyShortSwordSkelLife->Transform.SetLocalPosition({ Transform.GetLocalPosition().X, Transform.GetLocalPosition().Y - 15.0f });
+	}
+	else
+	{
+		RustyShortSwordSkelLife->Off();
+	}
+
+	float Per = Hp / MaxHp * 100.0f;
+
+	if (true == RustyShortSwordSkelLife->IsUpdate())
+	{
+		RustyShortSwordSkelLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -301,6 +322,7 @@ void RustyShortSwordSkel::SkelDeathStart()
 	RustyShortSwordSkelRenderer->SetImageScale(Scale);
 	RustyShortSwordSkelRenderer->SetPivotType(PivotType::Center);
 	RustyShortSwordRenderer->Off();
+	RustyShortSwordSkelLife->Death();
 }
 void RustyShortSwordSkel::SkelDeathUpdate(float _Delta)
 {
