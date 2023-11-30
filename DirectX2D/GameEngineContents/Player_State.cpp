@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "BackGround.h"
+#include "HandCrossbow.h"
+#include "PlayerLife.h"
 
 void Player::IdleStart()
 {
@@ -237,6 +239,18 @@ void Player::StayUpdate(float _Delta)
 {
 	//Gravity(_Delta);
 	GravityState(_Delta, Transform.GetLocalPosition(), (Scale / 2.0f));
+}
+
+void Player::EndingStart()
+{
+	ChangeAnimationState("Idle");
+	IsFocus = false;
+	WeaponHandCrossbow->Off();
+	UILife->Off();
+}
+void Player::EndingUpdate(float _Delta)
+{
+
 }
 
 //if (GameEngineColor::RED != Color)

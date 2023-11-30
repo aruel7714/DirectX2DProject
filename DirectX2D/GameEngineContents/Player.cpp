@@ -100,7 +100,7 @@ void Player::Start()
 	//ChangeState(PlayerState::Stay);
 
 	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
-	std::shared_ptr<HandCrossbow> WeaponHandCrossbow = GetLevel()->CreateActor<HandCrossbow>(RenderOrder::Weapon);
+	WeaponHandCrossbow = GetLevel()->CreateActor<HandCrossbow>(RenderOrder::Weapon);
 	WeaponDamage = WeaponHandCrossbow->GetDamage();
 	
 
@@ -127,13 +127,22 @@ void Player::Update(float _Delta)
 	StatusUpdate();
 
 	StateUpdate(_Delta);
-	CameraFocus();
+
+	if (true == IsFocus)
+	{
+		CameraFocus();
+	}
 
 	PlayerCollisionEvent(_Delta);
 
-	if (State != PlayerState::Stay)
+	if (State != PlayerState::Stay || State != PlayerState::Ending)
 	{
 		DirCheck();
+	}
+
+	if (State == PlayerState::Ending)
+	{
+		Dir = PlayerDir::Left;
 	}
 	
 	CheckDelta += _Delta;
@@ -153,7 +162,8 @@ void Player::Update(float _Delta)
 		PlayerPosition.X += PlayerScale.X / 6.0f;
 	}
 
-	
+	std::string Name = GetLevel()->GetName();
+	int a = 0;
 }
 
 void Player::CameraFocus()
@@ -217,6 +227,9 @@ void Player::ChangeState(PlayerState _State)
 		case PlayerState::Stay:
 			StayStart();
 			break;
+		case PlayerState::Ending:
+			EndingStart();
+			break;
 		default:
 			break;
 		}
@@ -239,6 +252,8 @@ void Player::StateUpdate(float _Delta)
 		return DownJumpUpdate(_Delta);
 	case PlayerState::Stay:
 		return StayUpdate(_Delta);
+	case PlayerState::Ending:
+		return EndingUpdate(_Delta);
 	default:
 		break;
 	}
@@ -305,12 +320,24 @@ void Player::ChangeStateStay()
 {
 	ChangeState(PlayerState::Stay);
 }
+void Player::ChangeStateEnding()
+{
+	ChangeState(PlayerState::Ending);
+}
 
 void Player::DownFloorFunc()
 {
+	std::string Name = GetLevel()->GetName();
 	if (true == GameEngineInput::IsPress('F', this))
 	{
-		GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
+		if (Name == "Level1F_Last")
+		{
+			GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
+		}
+		else if (Name == "AfterBossEncounterLevel")
+		{
+			GameEngineCore::ChangeLevel("EndingLevel");
+		}
 	}
 }
 

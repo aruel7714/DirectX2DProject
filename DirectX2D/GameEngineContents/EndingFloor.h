@@ -15,10 +15,12 @@ public:
 	EndingFloor& operator=(const EndingFloor & _Other) = delete;
 	EndingFloor& operator=(EndingFloor && _Other) noexcept = delete;
 
+	void SetDebugBackGround();
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
 private:
-
+	
 };
 

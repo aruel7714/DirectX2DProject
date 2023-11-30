@@ -92,6 +92,30 @@ void TownLevel::Start()
 		}
 
 		{
+			GameEngineDirectory Dir;
+			Dir.MoveParentToExistsChild("ContentsResources");
+			Dir.MoveChild("ContentsResources\\Texture\\Town\\TownBG");
+			std::vector<GameEngineFile> Files = Dir.GetAllFile();
+			for (size_t i = 0; i < Files.size(); i++)
+			{
+				GameEngineFile& File = Files[i];
+				GameEngineTexture::Load(File.GetStringPath());
+			}
+		}
+
+		{
+			GameEngineDirectory Dir;
+			Dir.MoveParentToExistsChild("ContentsResources");
+			Dir.MoveChild("ContentsResources\\Texture\\Town\\TownFG");
+			std::vector<GameEngineFile> Files = Dir.GetAllFile();
+			for (size_t i = 0; i < Files.size(); i++)
+			{
+				GameEngineFile& File = Files[i];
+				GameEngineTexture::Load(File.GetStringPath());
+			}
+		}
+
+		{
 			// NPC
 
 			GameEngineDirectory Dir;
@@ -121,8 +145,8 @@ void TownLevel::Start()
 		}
 
 		GameEngineSprite::CreateSingle("Sky_Day2.png");
-		//GameEngineSprite::CreateSingle("TownBG_Day.png");
-		//GameEngineSprite::CreateSingle("TownLayer_Day.png");
+		GameEngineSprite::CreateSingle("TownBG_Day.png");
+		GameEngineSprite::CreateSingle("TownLayer_Day.png");
 		GameEngineSprite::CreateSingle("Town.png");
 		GameEngineSprite::CreateSingle("Town_Debug.png");
 		GameEngineSprite::CreateSingle("Town_DebugAll.png");

@@ -37,6 +37,7 @@ enum class RenderOrder
 	Player,
 	FrontBuilding,
 	FrontProp,
+	FrontFloor,
 
 	BackUI,
 	MiddleUI,

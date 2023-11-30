@@ -1,5 +1,4 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "PlayActor.h"
 
 enum class PlayerState
@@ -10,6 +9,7 @@ enum class PlayerState
 	Dash,
 	DownJump,
 	Stay,
+	Ending,
 	Max
 };
 
@@ -36,6 +36,7 @@ public:
 	Player& operator=(Player && _Other) noexcept = delete;
 
 	void ChangeStateStay();
+	void ChangeStateEnding();
 
 	static Player* GetMainPlayer()
 	{
@@ -65,6 +66,8 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> MainRenderer;
 
 	PlayerState State = PlayerState::Max;
+
+	std::shared_ptr<class HandCrossbow> WeaponHandCrossbow;
 	
 	void ChangeState(PlayerState _State);
 	void StateUpdate(float _Delta);
@@ -88,6 +91,9 @@ private:
 	
 	void StayStart();
 	void StayUpdate(float _Delta);
+
+	void EndingStart();
+	void EndingUpdate(float _Delta);
 
 	void CameraFocus();
 
@@ -120,6 +126,8 @@ private:
 	float WeaponDamage = 0.0f;
 
 	std::shared_ptr<class PlayerLife> UILife;
+
+	bool IsFocus = true;
 
 private:
 	//Debug

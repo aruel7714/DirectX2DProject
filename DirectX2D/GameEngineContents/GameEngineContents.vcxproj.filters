@@ -15,9 +15,6 @@
     <ClCompile Include="BackCloud.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
-    <ClCompile Include="TownSky.cpp">
-      <Filter>Level\Town</Filter>
-    </ClCompile>
     <ClCompile Include="FrontCloud.cpp">
       <Filter>Level\Title</Filter>
     </ClCompile>
@@ -301,6 +298,18 @@
     <ClCompile Include="EndingFloor.cpp">
       <Filter>Level\Ending</Filter>
     </ClCompile>
+    <ClCompile Include="EndingNPCHorse.cpp">
+      <Filter>Level\Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingFrontGround.cpp">
+      <Filter>Level\Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="TownSky.cpp">
+      <Filter>Level\Town\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="TownBackGround.cpp">
+      <Filter>Level\Town\BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -319,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="BackCloud.h">
       <Filter>Level\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="TownSky.h">
-      <Filter>Level\Town</Filter>
     </ClInclude>
     <ClInclude Include="FrontCloud.h">
       <Filter>Level\Title</Filter>
@@ -603,6 +609,18 @@
     <ClInclude Include="EndingFloor.h">
       <Filter>Level\Ending</Filter>
     </ClInclude>
+    <ClInclude Include="EndingNPCHorse.h">
+      <Filter>Level\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingFrontGround.h">
+      <Filter>Level\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="TownSky.h">
+      <Filter>Level\Town\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="TownBackGround.h">
+      <Filter>Level\Town\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -697,6 +715,9 @@
     </Filter>
     <Filter Include="Object\Mouse">
       <UniqueIdentifier>{19bed36e-cd4f-478f-a8d3-da452914d39c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Town\BackGround">
+      <UniqueIdentifier>{fe00254f-de66-4d84-b8e1-3f11f1f6d9be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -322,7 +322,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EndingFrontGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EndingNPCHorse.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -495,6 +503,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleMouse.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TownBackGround.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -726,7 +738,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EndingFrontGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndingLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EndingNPCHorse.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -893,6 +913,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TitleMouse.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TownBackGround.h">
       <SubType>
       </SubType>
     </ClInclude>

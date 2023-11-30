@@ -43,7 +43,10 @@ void LevelChangeWindow::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	{
 		GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
 	}
-	
+	if (ImGui::Button("EndingLevel"))
+	{
+		GameEngineCore::ChangeLevel("EndingLevel");
+	}
 	
 }
 
