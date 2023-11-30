@@ -38,6 +38,7 @@ void TitleLevel::Start()
 		GameEngineSprite::CreateSingle("FrontCloud2.png");
 		//GameEngineSprite::CreateSingle("MainLogo2.png");
 		GameEngineSprite::CreateSingle("MainLogo4x.png");
+		GameEngineSprite::CreateSingle("BlackTexture.png");
 	}
 
 	if (nullptr == GameEngineSprite::Find("Bird"))

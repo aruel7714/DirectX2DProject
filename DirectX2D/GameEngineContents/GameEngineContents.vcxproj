@@ -334,6 +334,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FadeIn.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FadeOut.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FloorDoor.cpp">
       <SubType>
       </SubType>
@@ -747,6 +755,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EndingNPCHorse.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FadeIn.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FadeOut.h">
       <SubType>
       </SubType>
     </ClInclude>

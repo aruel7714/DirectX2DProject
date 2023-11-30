@@ -251,6 +251,8 @@ void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	MainPlayer->Transform.SetWorldPosition({ 3700.0f, -890.0f, -500.0f, 1.0f });
 
 	_TownFloor->SetDebugBackGround();
+
+	std::shared_ptr<FadeOut> Fade = CreateActor<FadeOut>(RenderOrder::Fade);
 }
 void TownLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {

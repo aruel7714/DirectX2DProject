@@ -38,6 +38,9 @@ void GameStartButton::Start()
 	Transform.SetLocalPosition({ HalfWindowScale.X, -(HalfWindowScale.Y + 120.0f), -500.0f });
 
 	GameEngineInput::AddInputObject(this);
+
+	Fade = GetLevel()->CreateActor<FadeIn>(RenderOrder::Fade);
+	Fade->Off();
 }
 void GameStartButton::Update(float _Delta)
 {
@@ -52,7 +55,8 @@ void GameStartButton::Update(float _Delta)
 		{
 			if (GameEngineInput::IsPress(VK_LBUTTON, this))
 			{
-				GameEngineCore::ChangeLevel("TownLevel");
+				Fade->On();
+				
 			}
 		};
 	ButtonEvent.Exit = [&](class GameEngineCollision* _This, class GameEngineCollision* _Ohter)
@@ -62,4 +66,13 @@ void GameStartButton::Update(float _Delta)
 			ButtonRenderer->SetImageScale(Scale);
 		};
 	ButtonCollision->CollisionEvent(CollisionType::Mouse, ButtonEvent);
+
+	if (true == Fade->IsUpdate())
+	{
+		if (0.9f <= Fade->GetMulColorA())
+		{
+			Fade->Off();
+			GameEngineCore::ChangeLevel("TownLevel");
+		}
+	}
 }

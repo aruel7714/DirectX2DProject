@@ -21,5 +21,7 @@ protected:
 private:
 	std::shared_ptr<GameEngineSpriteRenderer> ButtonRenderer;
 	std::shared_ptr<GameEngineCollision> ButtonCollision;
+
+	std::shared_ptr<FadeIn> Fade;
 };
 
