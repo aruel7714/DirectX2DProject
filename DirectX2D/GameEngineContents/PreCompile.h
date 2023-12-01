@@ -22,5 +22,5 @@
 #include "DungeonStele.h"
 #include "BackGround.h"
 #include "GameMouseCursor.h"
-#include "FadeIn.h"
-#include "FadeOut.h"
+#include "LevelFadeIn.h"
+#include "LevelFadeOut.h"

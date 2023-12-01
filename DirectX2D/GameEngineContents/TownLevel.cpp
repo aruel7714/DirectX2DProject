@@ -213,6 +213,8 @@ void TownLevel::Start()
 
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
+
+	std::shared_ptr<LevelFadeOut> Fade = CreateActor<LevelFadeOut>(RenderOrder::Fade);
 }
 
 void TownLevel::Update(float _Delta)
@@ -252,7 +254,7 @@ void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	_TownFloor->SetDebugBackGround();
 
-	std::shared_ptr<FadeOut> Fade = CreateActor<FadeOut>(RenderOrder::Fade);
+	
 }
 void TownLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {

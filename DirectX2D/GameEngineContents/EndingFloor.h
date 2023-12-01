@@ -21,6 +21,8 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 private:
-	
+	float Speed = 0.0f;
+
+	void SetSpeed(float _Speed);
 };
 

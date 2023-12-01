@@ -2,18 +2,18 @@
 #include <GameEngineCore/GameEngineActor.h>
 
 // Ό³Έν : 
-class FadeIn : public GameEngineActor
+class LevelFadeIn : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	FadeIn();
-	~FadeIn();
+	LevelFadeIn();
+	~LevelFadeIn();
 
 	// delete Function
-	FadeIn(const FadeIn & _Other) = delete;
-	FadeIn(FadeIn && _Other) noexcept = delete;
-	FadeIn& operator=(const FadeIn & _Other) = delete;
-	FadeIn& operator=(FadeIn && _Other) noexcept = delete;
+	LevelFadeIn(const LevelFadeIn& _Other) = delete;
+	LevelFadeIn(LevelFadeIn&& _Other) noexcept = delete;
+	LevelFadeIn& operator=(const LevelFadeIn& _Other) = delete;
+	LevelFadeIn& operator=(LevelFadeIn&& _Other) noexcept = delete;
 
 	float GetMulColorA()
 	{

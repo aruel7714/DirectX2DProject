@@ -39,7 +39,7 @@ void GameStartButton::Start()
 
 	GameEngineInput::AddInputObject(this);
 
-	Fade = GetLevel()->CreateActor<FadeIn>(RenderOrder::Fade);
+	Fade = GetLevel()->CreateActor<LevelFadeIn>(RenderOrder::Fade);
 	Fade->Off();
 }
 void GameStartButton::Update(float _Delta)
@@ -69,7 +69,7 @@ void GameStartButton::Update(float _Delta)
 
 	if (true == Fade->IsUpdate())
 	{
-		if (0.9f <= Fade->GetMulColorA())
+		if (1.0f <= Fade->GetMulColorA())
 		{
 			Fade->Off();
 			GameEngineCore::ChangeLevel("TownLevel");

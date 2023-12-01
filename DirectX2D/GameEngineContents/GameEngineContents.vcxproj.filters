@@ -310,10 +310,13 @@
     <ClCompile Include="TownBackGround.cpp">
       <Filter>Level\Town\BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="FadeIn.cpp">
+    <ClCompile Include="FadeOut.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="FadeOut.cpp">
+    <ClCompile Include="LevelFadeIn.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelFadeOut.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -627,10 +630,13 @@
     <ClInclude Include="TownBackGround.h">
       <Filter>Level\Town\BackGround</Filter>
     </ClInclude>
-    <ClInclude Include="FadeIn.h">
+    <ClInclude Include="FadeOut.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="FadeOut.h">
+    <ClInclude Include="LevelFadeIn.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelFadeOut.h">
       <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
