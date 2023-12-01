@@ -71,7 +71,6 @@ void GameStartButton::Update(float _Delta)
 	{
 		if (1.0f <= Fade->GetMulColorA())
 		{
-			Fade->Off();
 			GameEngineCore::ChangeLevel("TownLevel");
 		}
 	}

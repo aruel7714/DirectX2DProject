@@ -319,6 +319,9 @@
     <ClCompile Include="LevelFadeOut.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="EndingBackGround.cpp">
+      <Filter>Level\Ending</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -638,6 +641,9 @@
     </ClInclude>
     <ClInclude Include="LevelFadeOut.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingBackGround.h">
+      <Filter>Level\Ending</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,7 @@ void TownBackGround::Start()
 	BackGroundRenderer->SetSprite("TownBG_Day.png");
 
 	float4 Scale = BackGroundRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	BackGroundRenderer->SetSampler("EngineBaseWRAPSampler");
 	BackGroundRenderer->SetImageScale(Scale);
 }
 void TownBackGround::Update(float _Delta)

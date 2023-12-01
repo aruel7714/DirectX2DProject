@@ -5,6 +5,7 @@
 #include "TownSky.h"
 #include "EndingFloor.h"
 #include "EndingFrontGround.h"
+#include "EndingBackGround.h"
 
 EndingLevel::EndingLevel()
 {
@@ -23,6 +24,8 @@ void EndingLevel::Start()
 	MainPlayer->Transform.SetLocalPosition({ 448.0f, -448.0f });
 	std::shared_ptr<TownSky> BackSky = CreateActor<TownSky>(RenderOrder::BackGround);
 	Floor = CreateActor<EndingFloor>(RenderOrder::FrontFloor);
+
+	std::shared_ptr<EndingBackGround> BackGround = CreateActor<EndingBackGround>(RenderOrder::BackGround2);
 
 	std::shared_ptr<EndingFrontGround> FrontGround = CreateActor<EndingFrontGround>(RenderOrder::BackUI);
 

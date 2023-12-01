@@ -43,7 +43,7 @@ void EndingFloor::Start()
 }
 void EndingFloor::Update(float _Delta)
 {
-	//FloorRenderer->RenderBaseInfoValue.VertexUVPlus += Speed * _Delta;
+	FloorRenderer->RenderBaseInfoValue.VertexUVPlus += Speed * _Delta;
 
 	float4 Pos = Transform.GetLocalPosition();
 	float4 CameraPos = GetLevel()->GetMainCamera()->Transform.GetLocalPosition();
