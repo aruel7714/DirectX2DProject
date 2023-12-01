@@ -92,6 +92,8 @@ public:
 
 	GameEngineShaderResHelper& GetShaderResHelper(int _Index = 0);
 
+	RenderBaseInfo RenderBaseInfoValue;
+
 	float4 GetScreenPosition();
 
 protected:
@@ -109,8 +111,6 @@ protected:
 	//GameEngineShaderResHelper ShaderResHelper;
 
 	std::vector<std::shared_ptr<GameEngineRenderUnit>> Units;
-
-	RenderBaseInfo RenderBaseInfoValue;
 
 	// 분명히 자신의 랜더링 순서이다.
 
