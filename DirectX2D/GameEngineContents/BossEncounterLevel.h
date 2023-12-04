@@ -33,6 +33,8 @@ private:
 	std::shared_ptr<class DungeonStele> Stele1;
 	std::shared_ptr<class DungeonStele> Stele2;
 
+	std::shared_ptr<class BossSpawnTrigger> SpawnTrigger;
+
 	void BossResourceLoad();
 };
 

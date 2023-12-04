@@ -55,6 +55,9 @@ void Belial::Start()
 	BelialRenderer->SetImageScale(Scale);
 	BelialRenderer->SetPivotValue({ 0.4f, 0.7f });
 
+	BelialBackGroundRenderer->GetColorData().MulColor.A = 0.0f;
+	BelialRenderer->GetColorData().MulColor.A = 0.0f;
+
 	std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Find("BossRoom.png");
 	float4 MapScale = Texture->GetScale() * 4.0f;
 
@@ -183,7 +186,10 @@ void Belial::IdleStart()
 }
 void Belial::IdleUpdate(float _Delta)
 {
-	PatternStartTime += _Delta;
+	if (BelialRenderer->GetColorData().MulColor.A >= 0.1f)
+	{
+		PatternStartTime += _Delta;
+	}
 
 	if (PatternStartTime >= 5.0f)
 	{
@@ -345,4 +351,16 @@ void Belial::DeathStart()
 void Belial::DeathUpdate(float _Delta)
 {
 	GravityState(_Delta, Transform.GetLocalPosition(), BelialRenderer->GetImageTransform().GetLocalScale());
+}
+
+void Belial::BelialMulColorPlus(float _Delta)
+{
+	BelialBackGroundRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
+	BelialRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
+
+	if (1.0f <= BelialRenderer->GetColorData().MulColor.A)
+	{
+		LeftHand->LeftHandRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
+		RightHand->RightHandRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
+	}
 }

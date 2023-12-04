@@ -404,3 +404,20 @@ void Player::PlayerCollisionEvent(float _Delta)
 		};
 	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
 }
+
+void Player::WeaponOn()
+{
+	if (true == WeaponHandCrossbow->IsUpdate())
+	{
+		return;
+	}
+	else
+	{
+		WeaponHandCrossbow->On();
+	}
+}
+
+void Player::WeaponOff()
+{
+	WeaponHandCrossbow->Off();
+}

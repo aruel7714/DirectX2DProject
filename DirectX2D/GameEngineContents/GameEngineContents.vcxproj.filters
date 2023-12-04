@@ -322,6 +322,9 @@
     <ClCompile Include="EndingBackGround.cpp">
       <Filter>Level\Ending</Filter>
     </ClCompile>
+    <ClCompile Include="BossSpawnTrigger.cpp">
+      <Filter>Level\Dungeon\Trigger</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -644,6 +647,9 @@
     </ClInclude>
     <ClInclude Include="EndingBackGround.h">
       <Filter>Level\Ending</Filter>
+    </ClInclude>
+    <ClInclude Include="BossSpawnTrigger.h">
+      <Filter>Level\Dungeon\Trigger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

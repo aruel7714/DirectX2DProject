@@ -37,6 +37,8 @@ public:
 		return BelialDeathState;
 	}
 
+	void BelialMulColorPlus(float _Delta);
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

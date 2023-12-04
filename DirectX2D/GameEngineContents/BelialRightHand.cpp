@@ -43,6 +43,8 @@ void BelialRightHand::Start()
 
 	ChangeState(RightHandState::Idle);
 	RightHandRenderer->LeftFlip();
+	
+	RightHandRenderer->GetColorData().MulColor.A = 0.0f;
 }
 void BelialRightHand::Update(float _Delta)
 {

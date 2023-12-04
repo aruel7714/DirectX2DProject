@@ -4,6 +4,7 @@
 #include "BeforeBossEncounterLevel.h"
 #include "Player.h"
 #include "DungeonMoveTrigger.h"
+#include "BossSpawnTrigger.h"
 
 #include "Belial.h"
 #include "BelialLeftHand.h"
@@ -63,10 +64,22 @@ void BossEncounterLevel::Start()
 		TriggerRight->SetMoveTriggerPosition({ MapScale.X - 16.0f, -(MapScale.Y - 192.0f - 128.0f) });
 		TriggerRight->SetMoveTriggerScale({ 64.0f, 256.0f });
 	}
+
+	SpawnTrigger = CreateActor<BossSpawnTrigger>(RenderOrder::DungeonBuilding);
+	SpawnTrigger->SetMoveTriggerPosition({ MapScale.X / 2.0f,  -(MapScale.Y - 192.0f - 480.0f) });
+	SpawnTrigger->SetMoveTriggerScale({ 64.0f, 960.0f });
 }
 
 void BossEncounterLevel::Update(float _Delta)
 {
+	if (SpawnTrigger->BossSpawnTriggerCollision != nullptr)
+	{
+		if (true == SpawnTrigger->BossSpawnTriggerCollision->IsDeath())
+		{
+			BossBelial->BelialMulColorPlus(_Delta);
+		} 
+	}
+
 	if (true == BossBelial->IsBelialDeathState())
 	{
 		Stele1->SteleOpened();

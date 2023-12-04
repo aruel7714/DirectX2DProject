@@ -273,6 +273,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BossSpawnTrigger.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BowArrow.cpp">
       <SubType>
       </SubType>
@@ -701,6 +705,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BossLife.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossSpawnTrigger.h">
       <SubType>
       </SubType>
     </ClInclude>

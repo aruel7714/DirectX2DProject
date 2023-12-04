@@ -68,6 +68,9 @@ public:
 		IsDown = false;
 	}
 
+	void WeaponOn();
+	void WeaponOff();
+
 protected:
 	void Start();
 	void Update(float _Delta);

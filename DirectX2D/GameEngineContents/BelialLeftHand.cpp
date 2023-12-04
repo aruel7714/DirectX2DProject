@@ -41,6 +41,8 @@ void BelialLeftHand::Start()
 	float4 Scale = LeftHandRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	LeftHandRenderer->SetImageScale(Scale);
 
+	LeftHandRenderer->GetColorData().MulColor.A = 0.0f;
+
 	ChangeState(LeftHandState::Idle);
 }
 void BelialLeftHand::Update(float _Delta)

@@ -222,9 +222,9 @@ void TownLevel::Update(float _Delta)
 		GameEngineCore::ChangeLevel("Level1F");
 	}
 
-	if (Trigger->DungeonTriggerCollision->IsDeath())
+	if (Count == 0)
 	{
-		if (Count == 0)
+		if (Trigger->DungeonTriggerCollision->IsDeath())
 		{
 			DungeonEat = CreateActor<TownDungeonEat>(RenderOrder::NPC);
 			//DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
@@ -237,10 +237,22 @@ void TownLevel::Update(float _Delta)
 
 	if (nullptr != DungeonEat)
 	{
-		if (DungeonEat->EatRenderer->IsCurAnimationEnd())
+		if (DungeonEat->EatRenderer->IsCurAnimation("DungeonEat_Spawn"))
 		{
-			FadeIn->On();
+			if (DungeonEat->EatRenderer->IsCurAnimationEnd())
+			{
+				MainPlayer->WeaponOff();
+				MainPlayer->Off();
+			}
 		}
+		else if (DungeonEat->EatRenderer->IsCurAnimation("DungeonEat_Down"))
+		{
+			if (DungeonEat->EatRenderer->IsCurAnimationEnd())
+			{ 
+				FadeIn->On();
+			}
+		}
+		
 	}
 
 	if (true == FadeIn->IsUpdate())
@@ -266,4 +278,6 @@ void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 void TownLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
 	FadeIn->Death();
+	MainPlayer->On();
+	MainPlayer->WeaponOn();
 }
