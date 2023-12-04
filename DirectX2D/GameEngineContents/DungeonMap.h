@@ -21,6 +21,9 @@ protected:
 	GameEngineLevel* NextLevel;
 	GameEngineLevel* PrevLevel;
 
+	std::shared_ptr<LevelFadeIn> FadeIn;
+	std::shared_ptr<LevelFadeOut> FadeOut;
+
 	void Start() override;
 	void Update(float _Delta) override;
 

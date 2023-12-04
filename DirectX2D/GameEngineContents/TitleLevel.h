@@ -23,6 +23,10 @@ protected:
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 
 private:
+	std::shared_ptr<class GameStartButton> GameStartButtonObject;
+	std::shared_ptr<class SettingButton> SettingButtonObject;
+	std::shared_ptr<class GameExitButton> GameExitButtonObject;
 
+	std::shared_ptr<LevelFadeIn> FadeIn;
 };
 

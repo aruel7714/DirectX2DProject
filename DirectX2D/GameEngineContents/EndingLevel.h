@@ -23,5 +23,8 @@ protected:
 	void LevelEnd(GameEngineLevel* _NextLevel) override;
 private:
 	std::shared_ptr<class EndingFloor> Floor;
+
+	std::shared_ptr<LevelFadeIn> FadeIn;
+	std::shared_ptr<LevelFadeOut> FadeOut;
 };
 

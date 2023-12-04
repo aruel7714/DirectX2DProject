@@ -37,17 +37,43 @@ void Level1F_Last::Start()
 void Level1F_Last::Update(float _Delta)
 {
 	EventParameter ParameterLeft;
-	ParameterLeft.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	ParameterLeft.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F_3");
+		FadeIn->On();
+		if (FadeIn->IsUpdate())
+		{
+			if (1.0f <= FadeIn->GetMulColorA())
+			{
+				GameEngineCore::ChangeLevel("Level1F_3");
+			}
+		}
 	};
 
 	TriggerLeft->MoveTriggerCollision->CollisionEvent(CollisionType::Player, ParameterLeft);
+
+	if (true == MainPlayer->GetIsDownValue())
+	{
+		FadeIn->On();
+		if (FadeIn->IsUpdate())
+		{
+			if (1.0f <= FadeIn->GetMulColorA())
+			{
+				GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
+				MainPlayer->IsDownFalse();
+			}
+		}
+	}
 }
 
 void Level1F_Last::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	FloorLast->SetDebugBackGround();
+
+	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
+
+	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
+	FadeIn->Off();
+
 	if (FindLevel("Level1F_3") == _PrevLevel)
 	{
 		MainPlayer->Transform.SetLocalPosition({ 96.0f , TriggerLeft->MoveTriggerCollision->Transform.GetLocalPosition().Y - 128.0f });
@@ -55,5 +81,5 @@ void Level1F_Last::LevelStart(GameEngineLevel* _PrevLevel)
 }
 void Level1F_Last::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	FadeIn->Death();
 }

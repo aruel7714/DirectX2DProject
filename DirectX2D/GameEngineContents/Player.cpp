@@ -11,6 +11,7 @@
 #include "HandCrossbow.h"
 
 #include "PlayerLife.h"
+#include "Level1F_Last.h"
 
 Player* Player::MainPlayer = nullptr;
 
@@ -332,11 +333,13 @@ void Player::DownFloorFunc()
 	{
 		if (Name == "Level1F_Last")
 		{
-			GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
+			IsDown = true;
+			//GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
 		}
 		else if (Name == "AfterBossEncounterLevel")
 		{
-			GameEngineCore::ChangeLevel("EndingLevel");
+			IsDown = true;
+			//GameEngineCore::ChangeLevel("EndingLevel");
 		}
 	}
 }

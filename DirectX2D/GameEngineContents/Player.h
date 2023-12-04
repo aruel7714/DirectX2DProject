@@ -58,6 +58,16 @@ public:
 		return WeaponDamage;
 	}
 
+	bool GetIsDownValue()
+	{
+		return IsDown;
+	}
+
+	void IsDownFalse()
+	{
+		IsDown = false;
+	}
+
 protected:
 	void Start();
 	void Update(float _Delta);
@@ -128,6 +138,8 @@ private:
 	std::shared_ptr<class PlayerLife> UILife;
 
 	bool IsFocus = true;
+
+	bool IsDown = false;
 
 private:
 	//Debug

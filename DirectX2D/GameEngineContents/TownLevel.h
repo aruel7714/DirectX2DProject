@@ -29,6 +29,9 @@ private:
 	std::shared_ptr<class TownDungeonTrigger> Trigger;
 	std::shared_ptr<class TownDungeonEat> DungeonEat;
 
+	std::shared_ptr<LevelFadeIn> FadeIn;
+	std::shared_ptr<LevelFadeOut> FadeOut;
+
 	int Count = 0;
 };
 

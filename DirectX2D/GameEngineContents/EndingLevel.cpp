@@ -39,12 +39,16 @@ void EndingLevel::Update(float _Delta)
 
 void EndingLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	
+	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
+
+	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
+	FadeIn->Off();
+
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y });
 	Floor->SetDebugBackGround();
 }
 void EndingLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	
+	FadeIn->Death();
 }

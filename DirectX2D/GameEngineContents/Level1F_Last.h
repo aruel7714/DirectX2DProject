@@ -4,6 +4,7 @@
 // Ό³Έν : 
 class Level1F_Last : public DungeonMap
 {
+	friend class Player;
 public:
 	// constrcuter destructer
 	Level1F_Last();

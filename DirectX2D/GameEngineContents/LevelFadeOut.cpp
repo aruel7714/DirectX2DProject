@@ -18,7 +18,7 @@ void LevelFadeOut::Start()
 void LevelFadeOut::Update(float _Delta)
 {
 	Transform.SetLocalPosition(GetLevel()->GetMainCamera()->Transform.GetWorldPosition());
-	BlackRenderer->GetColorData().MulColor.A -= _Delta / 1.0f;
+	BlackRenderer->GetColorData().MulColor.A -= _Delta / 0.3f;
 	if (BlackRenderer->GetColorData().MulColor.A <= 0.0f)
 	{
 		Death();

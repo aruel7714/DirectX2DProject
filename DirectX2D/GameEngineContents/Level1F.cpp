@@ -139,15 +139,29 @@ void Level1F::Start()
 void Level1F::Update(float _Delta)
 {
 	EventParameter ParameterLeft;
-	ParameterLeft.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	ParameterLeft.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F_1");
+		FadeIn->On();
+		if (FadeIn->IsUpdate())
+		{
+			if (1.0f <= FadeIn->GetMulColorA())
+			{
+				GameEngineCore::ChangeLevel("Level1F_1");
+			}
+		}
 	};
 
 	EventParameter ParameterRight;
-	ParameterRight.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	ParameterRight.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F_2");
+		FadeIn->On();
+		if (FadeIn->IsUpdate())
+		{
+			if (1.0f <= FadeIn->GetMulColorA())
+			{
+				GameEngineCore::ChangeLevel("Level1F_2");
+			}
+		}
 	};
 
 	TriggerLeft->MoveTriggerCollision->CollisionEvent(CollisionType::Player, ParameterLeft);
@@ -158,6 +172,11 @@ void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	Level1F_Floor->SetDebugBackGround();
 	//MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
+
+	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
+
+	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
+	FadeIn->Off();
 
 	if (FindLevel("Level1F_1") == _PrevLevel)
 	{
@@ -171,5 +190,5 @@ void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 }
 void Level1F::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	//std::shared_ptr<FadePostEffect> FadeEffect = GetLevelRenderTarget()->CreateEffect<FadePostEffect>();
+	FadeIn->Death();
 }

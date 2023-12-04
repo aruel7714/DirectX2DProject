@@ -27,5 +27,6 @@ private:
 
 	std::shared_ptr<class DungeonMoveTrigger> TriggerLeft;
 	std::shared_ptr<class DungeonMoveTrigger> TriggerRight;
+
 };
 

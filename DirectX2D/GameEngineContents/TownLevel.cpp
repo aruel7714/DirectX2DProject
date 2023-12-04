@@ -213,8 +213,6 @@ void TownLevel::Start()
 
 	MainPlayer = CreateActor<Player>(RenderOrder::Player);
 	//std::shared_ptr<ShortSword> WeaponShortSword = CreateActor<ShortSword>(RenderOrder::Weapon);
-
-	std::shared_ptr<LevelFadeOut> Fade = CreateActor<LevelFadeOut>(RenderOrder::Fade);
 }
 
 void TownLevel::Update(float _Delta)
@@ -241,11 +239,17 @@ void TownLevel::Update(float _Delta)
 	{
 		if (DungeonEat->EatRenderer->IsCurAnimationEnd())
 		{
-			GameEngineCore::ChangeLevel("Level1F");
+			FadeIn->On();
 		}
 	}
 
-	
+	if (true == FadeIn->IsUpdate())
+	{
+		if (1.0f <= FadeIn->GetMulColorA())
+		{
+			GameEngineCore::ChangeLevel("Level1F");
+		}
+	}
 }
 
 void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
@@ -254,9 +258,12 @@ void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	_TownFloor->SetDebugBackGround();
 
-	
+	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
+
+	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
+	FadeIn->Off();
 }
 void TownLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	FadeIn->Death();
 }

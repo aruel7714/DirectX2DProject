@@ -111,15 +111,29 @@ void Level1F_2::Update(float _Delta)
 	}
 
 	EventParameter ParameterLeft;
-	ParameterLeft.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	ParameterLeft.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F");
+		FadeIn->On();
+		if (FadeIn->IsUpdate())
+		{
+			if (1.0f <= FadeIn->GetMulColorA())
+			{
+				GameEngineCore::ChangeLevel("Level1F");
+			}
+		}
 	};
 
 	EventParameter ParameterRight;
-	ParameterRight.Stay = [](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	ParameterRight.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 	{
-		GameEngineCore::ChangeLevel("Level1F_Shop");
+		FadeIn->On();
+		if (FadeIn->IsUpdate())
+		{
+			if (1.0f <= FadeIn->GetMulColorA())
+			{
+				GameEngineCore::ChangeLevel("Level1F_Shop");
+			}
+		}
 	};
 
 	TriggerLeft->MoveTriggerCollision->CollisionEvent(CollisionType::Player, ParameterLeft);
@@ -129,6 +143,11 @@ void Level1F_2::Update(float _Delta)
 void Level1F_2::LevelStart(GameEngineLevel* _PrevLevel)
 {
 	Floor2->SetDebugBackGround();
+
+	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
+
+	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
+	FadeIn->Off();
 
 	if (FindLevel("Level1F") == _PrevLevel)
 	{
@@ -142,7 +161,7 @@ void Level1F_2::LevelStart(GameEngineLevel* _PrevLevel)
 }
 void Level1F_2::LevelEnd(GameEngineLevel* _NextLevel)
 {
-
+	FadeIn->Death();
 }
 
 void Level1F_2::DeathOn()

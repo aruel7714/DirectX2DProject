@@ -69,10 +69,14 @@ void TitleLevel::Start()
 		std::shared_ptr<MainLogo> LogoObject = CreateActor<MainLogo>(TitleRenderOrder::UI);
 		std::shared_ptr<TitleBird> BirdObject = CreateActor<TitleBird>(TitleRenderOrder::TitleBird);
 		std::shared_ptr<TitleMouse> MouseObject = CreateActor<TitleMouse>(TitleRenderOrder::Mouse);
-		std::shared_ptr<GameStartButton> GameStartButtonObject = CreateActor<GameStartButton>(TitleRenderOrder::UI);
-		std::shared_ptr<SettingButton> SettingButtonObject = CreateActor<SettingButton>(TitleRenderOrder::UI);
-		std::shared_ptr<GameExitButton> GameExitButtonObject = CreateActor<GameExitButton>(TitleRenderOrder::UI);
 	}
+
+	GameStartButtonObject = CreateActor<GameStartButton>(TitleRenderOrder::UI);
+	SettingButtonObject = CreateActor<SettingButton>(TitleRenderOrder::UI);
+	GameExitButtonObject = CreateActor<GameExitButton>(TitleRenderOrder::UI);
+
+	
+
 	GameEngineInput::AddInputObject(this);
 }
 void TitleLevel::Update(float _Delta)
@@ -81,14 +85,31 @@ void TitleLevel::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("TownLevel");
 	}
+
+	if (GameStartButtonObject->FadeOnOff == true)
+	{
+		FadeIn->On();
+	}
+
+	if (true == FadeIn->IsUpdate())
+	{
+		if (1.0f <= FadeIn->GetMulColorA())
+		{
+			GameEngineCore::ChangeLevel("TownLevel");
+			
+		}
+	}
 }
 
 void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
+	FadeIn->Off();
 	int a = 0;
 }
 
 void TitleLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
+	FadeIn->Death();
 	int a = 0;
 }

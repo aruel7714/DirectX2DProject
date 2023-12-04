@@ -18,5 +18,5 @@ void LevelFadeIn::Start()
 void LevelFadeIn::Update(float _Delta)
 {
 	Transform.SetLocalPosition(GetLevel()->GetMainCamera()->Transform.GetWorldPosition());
-	BlackRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
+	BlackRenderer->GetColorData().MulColor.A += _Delta / 0.3f;
 }

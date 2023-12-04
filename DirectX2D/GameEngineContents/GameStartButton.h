@@ -4,6 +4,7 @@
 // Ό³Έν : 
 class GameStartButton : public GameEngineActor
 {
+	friend class TitleLevel;
 public:
 	// constrcuter destructer
 	GameStartButton();
@@ -23,5 +24,8 @@ private:
 	std::shared_ptr<GameEngineCollision> ButtonCollision;
 
 	std::shared_ptr<LevelFadeIn> Fade;
+
+	bool FadeOnOff = false;
 };
+
 

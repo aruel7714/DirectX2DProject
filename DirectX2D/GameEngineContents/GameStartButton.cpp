@@ -55,8 +55,7 @@ void GameStartButton::Update(float _Delta)
 		{
 			if (GameEngineInput::IsPress(VK_LBUTTON, this))
 			{
-				Fade->On();
-				
+				FadeOnOff = true;
 			}
 		};
 	ButtonEvent.Exit = [&](class GameEngineCollision* _This, class GameEngineCollision* _Ohter)
