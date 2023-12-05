@@ -151,6 +151,7 @@ private:
 	float WeaponDamage = 0.0f;
 
 	std::shared_ptr<class PlayerLife> UILife;
+	std::shared_ptr<class PlayerEquippedWeapon> UIWeapon;
 
 	bool IsFocus = true;
 

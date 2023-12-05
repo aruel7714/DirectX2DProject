@@ -11,6 +11,7 @@
 #include "HandCrossbow.h"
 
 #include "PlayerLife.h"
+#include "PlayerEquippedWeapon.h"
 #include "Level1F_Last.h"
 
 Player* Player::MainPlayer = nullptr;
@@ -116,6 +117,7 @@ void Player::Start()
 
 	{
 		UILife = GetLevel()->CreateActor<PlayerLife>(RenderOrder::MiddleUI);
+		UIWeapon = GetLevel()->CreateActor<PlayerEquippedWeapon>(RenderOrder::MiddleUI);
 	}
 
 	GameEngineInput::AddInputObject(this);

@@ -328,7 +328,10 @@
     <ClCompile Include="BossSpawnFadeOut.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="BossSpawnText.cpp">
+    <ClCompile Include="PlayerEquippedWeapon.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGold.cpp">
       <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -660,7 +663,10 @@
     <ClInclude Include="BossSpawnFadeOut.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="BossSpawnText.h">
+    <ClInclude Include="PlayerEquippedWeapon.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGold.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>

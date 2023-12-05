@@ -230,9 +230,9 @@ void TownLevel::Update(float _Delta)
 			//DungeonIngurgitate->Transform.SetLocalPosition(MainPlayer->Transform.GetLocalPosition());
 			float4 Pos = MainPlayer->Transform.GetLocalPosition();
 			DungeonEat->Transform.SetLocalPosition({ Pos.X, Trigger->DungeonTriggerCollision->Transform.GetLocalPosition().Y + 32.0f});
+			MainPlayer->ChangeStateStay();
 			Count++;
 		}
-		MainPlayer->ChangeStateStay();
 	}
 
 	if (nullptr != DungeonEat)

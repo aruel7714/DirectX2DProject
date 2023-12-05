@@ -277,10 +277,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BossSpawnText.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="BossSpawnTrigger.cpp">
       <SubType>
       </SubType>
@@ -476,6 +472,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerDashCount.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerEquippedWeapon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerGold.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -720,10 +724,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BossSpawnText.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="BossSpawnTrigger.h">
       <SubType>
       </SubType>
@@ -920,6 +920,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerDashCount.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerEquippedWeapon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerGold.h">
       <SubType>
       </SubType>
     </ClInclude>
