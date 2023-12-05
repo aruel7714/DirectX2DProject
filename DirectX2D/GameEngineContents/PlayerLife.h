@@ -28,5 +28,8 @@ private:
 	std::shared_ptr<GameEngineUIRenderer> LifeBase;
 	std::shared_ptr<GameEngineUIRenderer> LifeBar;
 	//std::shared_ptr<GameEngineUIRenderer> LifeWave;
+
+	std::shared_ptr<GameEngineUIRenderer> LevelText;
+	std::shared_ptr<GameEngineUIRenderer> LifeText;
 };
 

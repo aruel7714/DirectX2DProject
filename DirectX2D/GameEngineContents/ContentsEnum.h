@@ -42,6 +42,7 @@ enum class RenderOrder
 	BackUI,
 	MiddleUI,
 	FrontUI,
+	Text,
 	Fade,
 	Mouse,
 };

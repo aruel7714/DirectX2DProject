@@ -65,7 +65,7 @@ void PlayerLife::Start()
 
 	LifeBar = CreateComponent<GameEngineUIRenderer>(RenderOrder::MiddleUI);
 	LifeBar->SetSprite("LifeBar.png");
-	LifeBar->SetImageScale({ 188.0f, 40.0f });
+	LifeBar->SetImageScale({ 196.0f, 40.0f });
 	LifeBar->SetPivotType(PivotType::Left);
 
 	//LifeWave = CreateComponent<GameEngineUIRenderer>(RenderOrder::FrontUI);
@@ -77,8 +77,16 @@ void PlayerLife::Start()
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	Transform.SetLocalPosition({ -(HalfWindowScale.X - (Scale.X / 2.0f) - 16.0f), HalfWindowScale.Y - (Scale.Y / 2.0f) - 16.0f });
-	LifeBar->Transform.SetLocalPosition({ -56.0f, 0.0f });
+	LifeBar->Transform.SetLocalPosition({ -60.0f, 0.0f });
 	//LifeWave->Transform.SetLocalPosition(LifeBar->Transform.GetLocalPosition().X + LifeBar->GetImageTransform().GetLocalScale().X);
+
+	LevelText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
+	LevelText->SetText("µ¸¿ò", "30", 40.0f, float4::WHITE, FW1_CENTER);
+	LevelText->Transform.SetLocalPosition({ -100.0f, 24.0f });
+
+	LifeText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
+	LifeText->SetText("µ¸¿ò", "80 / 80", 40.0f, float4::WHITE, FW1_CENTER);
+	LifeText->Transform.SetLocalPosition({ 38.0f, 24.0f });
 }
 void PlayerLife::Update(float _Delta)
 {
