@@ -325,6 +325,9 @@
     <ClCompile Include="BossSpawnTrigger.cpp">
       <Filter>Level\Dungeon\Trigger</Filter>
     </ClCompile>
+    <ClCompile Include="BossSpawnFadeOut.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -650,6 +653,9 @@
     </ClInclude>
     <ClInclude Include="BossSpawnTrigger.h">
       <Filter>Level\Dungeon\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="BossSpawnFadeOut.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
