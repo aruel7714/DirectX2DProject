@@ -334,6 +334,9 @@
     <ClCompile Include="PlayerGold.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerFood.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -667,6 +670,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerGold.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFood.h">
       <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>

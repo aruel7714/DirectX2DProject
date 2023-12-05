@@ -12,6 +12,8 @@
 
 #include "PlayerLife.h"
 #include "PlayerEquippedWeapon.h"
+#include "PlayerGold.h"
+#include "PlayerFood.h"
 #include "Level1F_Last.h"
 
 Player* Player::MainPlayer = nullptr;
@@ -118,6 +120,8 @@ void Player::Start()
 	{
 		UILife = GetLevel()->CreateActor<PlayerLife>(RenderOrder::MiddleUI);
 		UIWeapon = GetLevel()->CreateActor<PlayerEquippedWeapon>(RenderOrder::MiddleUI);
+		UIHaveGold = GetLevel()->CreateActor<PlayerGold>(RenderOrder::BackUI);
+		UIHaveHungry = GetLevel()->CreateActor<PlayerFood>(RenderOrder::BackUI);
 	}
 
 	GameEngineInput::AddInputObject(this);

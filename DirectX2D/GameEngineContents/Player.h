@@ -149,9 +149,13 @@ private:
 	float4 PlayerPosition = float4::ZERO;
 
 	float WeaponDamage = 0.0f;
+	int HaveGold = 0;
+	int HaveHungry = 0;
 
 	std::shared_ptr<class PlayerLife> UILife;
 	std::shared_ptr<class PlayerEquippedWeapon> UIWeapon;
+	std::shared_ptr<class PlayerGold> UIHaveGold;
+	std::shared_ptr<class PlayerFood> UIHaveHungry;
 
 	bool IsFocus = true;
 
