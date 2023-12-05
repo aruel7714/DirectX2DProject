@@ -88,7 +88,9 @@ void HandCrossbow::Update(float _Delta)
 		AttackReady = true;
 	}
 
-	if (GameEngineInput::IsPress(VK_LBUTTON, this) && AttackReady == true)
+	if (GameEngineInput::IsPress(VK_LBUTTON, this) && 
+		AttackReady == true && 
+		Player::GetMainPlayer()->IsStateStay() == false)
 	{
 		std::shared_ptr<Arrow> CrossbowArrow = GetLevel()->CreateActor<Arrow>(RenderOrder::WeaponProjectile);
 

@@ -136,7 +136,8 @@ void Player::Update(float _Delta)
 
 	PlayerCollisionEvent(_Delta);
 
-	if (State != PlayerState::Stay || State != PlayerState::Ending)
+	if (State != PlayerState::Stay ||
+		State != PlayerState::Ending)
 	{
 		DirCheck();
 	}
@@ -324,6 +325,21 @@ void Player::ChangeStateStay()
 void Player::ChangeStateEnding()
 {
 	ChangeState(PlayerState::Ending);
+}
+void Player::ChangeStateIdle()
+{
+	ChangeState(PlayerState::Idle);
+}
+bool Player::IsStateStay()
+{
+	if (State == PlayerState::Stay)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Player::DownFloorFunc()

@@ -34,7 +34,11 @@ private:
 	std::shared_ptr<class DungeonStele> Stele2;
 
 	std::shared_ptr<class BossSpawnTrigger> SpawnTrigger;
+	std::shared_ptr<class BossSpawnFadeOut> SpawnFadeOut;
 
 	void BossResourceLoad();
+
+	int TriggerDeathCount = 0;
+	int FadeDeathCount = 0;
 };
 

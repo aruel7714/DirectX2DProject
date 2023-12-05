@@ -86,6 +86,7 @@ void Belial::Start()
 		BelialCollision->Transform.SetLocalScale({ Scale.X / 4.0f * 3.0f, Scale.Y / 4.0f * 3.0f });
 	}
 	UIBelialLife = GetLevel()->CreateActor<BossLife>(RenderOrder::MiddleUI);
+	UIBelialLife->Off();
 
 	ChangeState(BelialState::Idle);
 
@@ -100,11 +101,19 @@ void Belial::Update(float _Delta)
 		{
 			DamageCheck();
 		};
-	BelialCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+	
 
-	float Per = Hp / MaxHp * 100.0f;
+	if (true == IsBelialMulColor())
+	{
+		BelialCollision->CollisionEvent(CollisionType::Weapon, DamageEvent);
+		//UIBelialLife->On();
+	}
 
-	UIBelialLife->SetLifeBarScale(Per);
+	if (UIBelialLife->IsUpdate())
+	{
+		float Per = Hp / MaxHp * 100.0f;
+		UIBelialLife->SetLifeBarScale(Per);
+	}
 
 	if (Hp <= 0)
 	{
@@ -362,5 +371,27 @@ void Belial::BelialMulColorPlus(float _Delta)
 	{
 		LeftHand->LeftHandRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
 		RightHand->RightHandRenderer->GetColorData().MulColor.A += _Delta / 1.0f;
+	}
+}
+
+bool Belial::IsBelialMulColor()
+{
+	if (BelialRenderer->GetColorData().MulColor.A >= 1.0f &&
+		LeftHand->LeftHandRenderer->GetColorData().MulColor.A >= 1.0f &&
+		RightHand->RightHandRenderer->GetColorData().MulColor.A >= 1.0f)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Belial::UIBelialLifeOn()
+{
+	if (false == UIBelialLife->IsUpdate())
+	{
+		UIBelialLife->On();
 	}
 }

@@ -37,6 +37,8 @@ public:
 
 	void ChangeStateStay();
 	void ChangeStateEnding();
+	void ChangeStateIdle();
+	bool IsStateStay();
 
 	static Player* GetMainPlayer()
 	{
@@ -61,6 +63,16 @@ public:
 	bool GetIsDownValue()
 	{
 		return IsDown;
+	}
+
+	void IsFocusFalse()
+	{
+		IsFocus = false;
+	}
+
+	void IsFocusTrue()
+	{
+		IsFocus = true;
 	}
 
 	void IsDownFalse()

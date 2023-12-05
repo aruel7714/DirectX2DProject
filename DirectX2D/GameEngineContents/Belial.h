@@ -39,6 +39,10 @@ public:
 
 	void BelialMulColorPlus(float _Delta);
 
+	bool IsBelialMulColor();
+
+	void UIBelialLifeOn();
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

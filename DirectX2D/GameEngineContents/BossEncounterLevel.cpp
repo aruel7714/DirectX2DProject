@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "DungeonMoveTrigger.h"
 #include "BossSpawnTrigger.h"
+#include "BossSpawnFadeOut.h"
 
 #include "Belial.h"
 #include "BelialLeftHand.h"
@@ -72,13 +73,33 @@ void BossEncounterLevel::Start()
 
 void BossEncounterLevel::Update(float _Delta)
 {
-	if (SpawnTrigger->BossSpawnTriggerCollision != nullptr)
+	if (false == BossBelial->IsBelialMulColor())
 	{
 		if (true == SpawnTrigger->BossSpawnTriggerCollision->IsDeath())
 		{
+			MainPlayer->ChangeStateStay();
+			MainPlayer->IsFocusFalse();
+			GetMainCamera()->Transform.SetLocalPosition(BossBelial->Transform.GetLocalPosition());
 			BossBelial->BelialMulColorPlus(_Delta);
+			TriggerDeathCount++;
 		} 
 	}
+	else if (true == BossBelial->IsBelialMulColor())
+	{
+		SpawnFadeOut->On();
+	}
+
+	if (FadeDeathCount == 0)
+	{
+		if (SpawnFadeOut->IsDeath())
+		{
+			MainPlayer->IsFocusTrue();
+			MainPlayer->ChangeStateIdle();
+			BossBelial->UIBelialLifeOn();
+			FadeDeathCount++;
+		}
+	}
+	
 
 	if (true == BossBelial->IsBelialDeathState())
 	{
@@ -128,6 +149,9 @@ void BossEncounterLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
 	FadeIn->Off();
+
+	SpawnFadeOut = CreateActor<BossSpawnFadeOut>(RenderOrder::Fade);
+	SpawnFadeOut->Off();
 
 
 	if (FindLevel("BeforeBossEncounterLevel") == _PrevLevel)

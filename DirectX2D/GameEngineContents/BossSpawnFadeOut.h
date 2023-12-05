@@ -21,5 +21,10 @@ protected:
 private:
 	std::shared_ptr<GameEngineUIRenderer> TopRenderer;
 	std::shared_ptr<GameEngineUIRenderer> BottomRenderer;
+
+	std::shared_ptr<GameEngineUIRenderer> BossTitle;
+	std::shared_ptr<GameEngineUIRenderer> BossSubTitle;
+
+	float DeathTime = 0.0f;
 };
 
