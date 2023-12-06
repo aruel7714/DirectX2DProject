@@ -15,6 +15,7 @@ enum class BelialState
 	FireBullet,
 	SummonSword,
 	Laser,
+	Explosion,
 	Death,
 	Max
 };
@@ -35,6 +36,11 @@ public:
 	bool IsBelialDeathState()
 	{
 		return BelialDeathState;
+	}
+
+	bool IsBelialExplosionState()
+	{
+		return BelialExplosionState;
 	}
 
 	void BelialMulColorPlus(float _Delta);
@@ -77,7 +83,13 @@ private:
 	bool LaserRight = true;
 	int LaserCount = 0;
 
+	float4 Position = float4::ZERO;
+	float DeathExplosionTime = 0.0f;
+	float ExplosionPositionCount = 0;
+	int EffectCount = 1;
+
 	bool BelialDeathState = false;
+	bool BelialExplosionState = false;
 
 	GameEngineSoundPlayer AttackSound;
 
@@ -99,6 +111,9 @@ private:
 
 	void LaserStart();
 	void LaserUpdate(float _Delta);
+
+	void ExplosionStart();
+	void ExplosionUpdate(float _Delta);
 
 	void DeathStart();
 	void DeathUpdate(float _Delta);

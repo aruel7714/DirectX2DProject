@@ -40,8 +40,10 @@ private:
 
 	int TriggerDeathCount = 0;
 	int FadeDeathCount = 0;
+	int BelialDeath = 0;
 
 	bool BossSoundOn = false;
 	GameEngineSoundPlayer BossSpawnSound;
+	float4 BossPos = float4::ZERO;
 };
 

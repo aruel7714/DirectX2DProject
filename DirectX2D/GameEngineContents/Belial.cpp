@@ -5,6 +5,7 @@
 #include "BelialBullet.h"
 #include "BelialRightHand.h"
 #include "BelialLeftHand.h"
+#include "BossExplosionEffect.h"
 
 #include "BossLife.h"
 
@@ -115,7 +116,12 @@ void Belial::Update(float _Delta)
 		UIBelialLife->SetLifeBarScale(Per);
 	}
 
-	if (Hp <= 0)
+	if (Hp <= 0 && BelialDeathState == false)
+	{
+		ChangeState(BelialState::Explosion);
+		//ChangeState(BelialState::Death);
+	}
+	else if (Hp <= 0 && BelialDeathState == true)
 	{
 		ChangeState(BelialState::Death);
 	}
@@ -142,6 +148,9 @@ void Belial::ChangeState(BelialState _State)
 		case BelialState::Laser:
 			LaserStart();
 			break;
+		case BelialState::Explosion:
+			ExplosionStart();
+			break;
 		case BelialState::Death:
 			DeathStart();
 			break;
@@ -165,6 +174,8 @@ void Belial::StateUpdate(float _Delta)
 		return SummonSwordUpdate(_Delta);
 	case BelialState::Laser:
 		return LaserUpdate(_Delta);
+	case BelialState::Explosion:
+		return ExplosionUpdate(_Delta);
 	case BelialState::Death:
 		return DeathUpdate(_Delta);
 	default:
@@ -345,8 +356,9 @@ void Belial::LaserUpdate(float _Delta)
 	}
 }
 
-void Belial::DeathStart()
+void Belial::ExplosionStart()
 {
+	GlobalSound::Bgm.Stop();
 	BelialRenderer->SetSprite("SkellBossDead_Head.png");
 	float4 Scale = BelialRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BelialRenderer->SetImageScale(Scale);
@@ -357,11 +369,45 @@ void Belial::DeathStart()
 	LeftHand->Death();
 	RightHand->Death();
 	BelialBackGroundRenderer->Death();
+	
+	BelialExplosionState = true;
+
+	Position = Transform.GetLocalPosition();
+	Position.Y += 64.0f;
+}
+void Belial::ExplosionUpdate(float _Delta)
+{
+	DeathExplosionTime += _Delta;
+
+	if (DeathExplosionTime > 0.1f)
+	{
+		for (int i = 0; i < 12; i++)
+		{
+			
+			std::shared_ptr<BossExplosionEffect> Effect = GetLevel()->CreateActor<BossExplosionEffect>(RenderOrder::FrontProp);
+			float4 Dir = float4::GetUnitVectorFromDeg(30.0f * i);
+			Effect->Transform.SetLocalPosition(Position + (Dir * static_cast<float>(EffectCount) * 64.0f));
+		}
+		DeathExplosionTime = 0.0f;
+		EffectCount++;
+
+		if (EffectCount > 8)
+		{
+			ChangeState(BelialState::Death);
+		}
+	}
+
+	GravityState(_Delta, Transform.GetLocalPosition(), BelialRenderer->GetImageTransform().GetLocalScale());
+}
+
+void Belial::DeathStart()
+{
+	BelialExplosionState = false;
 	BelialDeathState = true;
 }
 void Belial::DeathUpdate(float _Delta)
 {
-	GravityState(_Delta, Transform.GetLocalPosition(), BelialRenderer->GetImageTransform().GetLocalScale());
+ 	GravityState(_Delta, Transform.GetLocalPosition(), BelialRenderer->GetImageTransform().GetLocalScale());
 }
 
 void Belial::BelialMulColorPlus(float _Delta)

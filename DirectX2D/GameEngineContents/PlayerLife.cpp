@@ -81,12 +81,12 @@ void PlayerLife::Start()
 	//LifeWave->Transform.SetLocalPosition(LifeBar->Transform.GetLocalPosition().X + LifeBar->GetImageTransform().GetLocalScale().X);
 
 	LevelText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
-	LevelText->SetText("µ¸¿ò", "30", 40.0f, float4::WHITE, FW1_CENTER);
-	LevelText->Transform.SetLocalPosition({ -100.0f, 24.0f });
+	LevelText->SetText("Perfect DOS VGA 437", "30", 40.0f, float4::WHITE, FW1_CENTER);
+	LevelText->Transform.SetLocalPosition({ -100.0f, 20.0f });
 
 	LifeText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
-	LifeText->SetText("µ¸¿ò", "80 / 80", 40.0f, float4::WHITE, FW1_CENTER);
-	LifeText->Transform.SetLocalPosition({ 38.0f, 24.0f });
+	LifeText->SetText("Perfect DOS VGA 437", "80 / 80", 40.0f, float4::WHITE, FW1_CENTER);
+	LifeText->Transform.SetLocalPosition({ 38.0f, 20.0f });
 }
 void PlayerLife::Update(float _Delta)
 {

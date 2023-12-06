@@ -30,11 +30,11 @@ void PlayerGold::Start()
 	GoldRenderer->SetImageScale(GoldScale);
 
 	GoldText = CreateComponent<GameEngineUIRenderer>(RenderOrder::BackUI);
-	GoldText->SetText("µ¸¿ò", "30", 40.0f, float4::WHITE, FW1_LEFT);
+	GoldText->SetText("Perfect DOS VGA 437", "0", 30.0f, float4::WHITE, FW1_LEFT);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	Transform.SetLocalPosition({ -HalfWindowScale.X + 32.0f, -HalfWindowScale.Y + 64.0f });
-	GoldText->Transform.SetLocalPosition({ 32.0f, 0.0f });
+	GoldText->Transform.SetLocalPosition({ 40.0f, 16.0f });
 }
 void PlayerGold::Update(float _Delta)
 {

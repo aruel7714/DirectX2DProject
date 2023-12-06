@@ -69,6 +69,9 @@ void BossEncounterLevel::Start()
 	SpawnTrigger = CreateActor<BossSpawnTrigger>(RenderOrder::DungeonBuilding);
 	SpawnTrigger->SetMoveTriggerPosition({ MapScale.X / 2.0f,  -(MapScale.Y - 192.0f - 480.0f) });
 	SpawnTrigger->SetMoveTriggerScale({ 64.0f, 960.0f });
+
+	BossPos = BossBelial->Transform.GetLocalPosition();
+	BossPos.Y += 64.0f;
 }
 
 void BossEncounterLevel::Update(float _Delta)
@@ -79,7 +82,8 @@ void BossEncounterLevel::Update(float _Delta)
 		{
 			MainPlayer->ChangeStateStay();
 			MainPlayer->IsFocusFalse();
-			GetMainCamera()->Transform.SetLocalPosition(BossBelial->Transform.GetLocalPosition());
+			
+			GetMainCamera()->Transform.SetLocalPosition(BossPos);
 			BossBelial->BelialMulColorPlus(_Delta);
 			TriggerDeathCount++;
 
@@ -106,13 +110,28 @@ void BossEncounterLevel::Update(float _Delta)
 			FadeDeathCount++;
 		}
 	}
-	
 
-	if (true == BossBelial->IsBelialDeathState())
+	if (true == BossBelial->IsBelialExplosionState())
 	{
-		Stele1->SteleOpened();
-		Stele2->SteleOpened();
+		MainPlayer->ChangeStateStay();
+		MainPlayer->IsFocusFalse();
+		GetMainCamera()->Transform.SetLocalPosition(BossPos);
 	}
+
+	if (BelialDeath == 0)
+	{
+		if (true == BossBelial->IsBelialDeathState())
+		{
+			MainPlayer->IsFocusTrue();
+			MainPlayer->ChangeStateIdle();
+
+			Stele1->SteleOpened();
+			Stele2->SteleOpened();
+
+			BelialDeath++;
+		}
+	}
+	
 
 	EventParameter ParameterLeft;
 	ParameterLeft.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)

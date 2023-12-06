@@ -30,11 +30,11 @@ void PlayerFood::Start()
 	FoodRenderer->SetImageScale(FoodScale);
 
 	FoodText = CreateComponent<GameEngineUIRenderer>(RenderOrder::BackUI);
-	FoodText->SetText("µ¸¿ò", "30", 40.0f, float4::WHITE, FW1_LEFT);
+	FoodText->SetText("Perfect DOS VGA 437", "0", 30.0f, float4::WHITE, FW1_LEFT);
 
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	Transform.SetLocalPosition({ -HalfWindowScale.X + 32.0f, -HalfWindowScale.Y + 32.0f });
-	FoodText->Transform.SetLocalPosition({ 32.0f, 0.0f });
+	FoodText->Transform.SetLocalPosition({ 40.0f, 16.0f });
 }
 void PlayerFood::Update(float _Delta)
 {

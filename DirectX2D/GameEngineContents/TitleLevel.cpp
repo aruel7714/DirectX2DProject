@@ -70,6 +70,8 @@ void TitleLevel::Start()
 		}
 	}
 
+	GameEngineFont::Load("Perfect DOS VGA 437");
+
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	HalfWindowScale.Y *= -1.0f;
 

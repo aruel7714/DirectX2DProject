@@ -28,11 +28,11 @@ void BossSpawnFadeOut::Start()
 	BossText->GetColorData().MulColor.A = 0.0f;*/
 
 	BossTitle = CreateComponent<GameEngineUIRenderer>(RenderOrder::Fade);
-	BossTitle->SetText("돋움", "벨리알", 50.0f, float4::WHITE, FW1_LEFT);
+	BossTitle->SetText("Perfect DOS VGA 437", "벨리알", 50.0f, float4::WHITE, FW1_LEFT);
 	BossTitle->Transform.SetLocalPosition({ -HalfWindowScale.X + 45.0f, -HalfWindowScale.Y + 144.0f + 96.0f });
 
 	BossSubTitle = CreateComponent<GameEngineUIRenderer>(RenderOrder::Fade);
-	BossSubTitle->SetText("돋움", "감옥의 수문장", 20.0f, float4::WHITE, FW1_LEFT);
+	BossSubTitle->SetText("Perfect DOS VGA 437", "감옥의 수문장", 20.0f, float4::WHITE, FW1_LEFT);
 	BossSubTitle->Transform.SetLocalPosition({ -HalfWindowScale.X + 60.0f, -HalfWindowScale.Y + 144.0f + 96.0f + 30.0f });
 }
 void BossSpawnFadeOut::Update(float _Delta)

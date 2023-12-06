@@ -261,11 +261,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BoseExplosionEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossEncounterFloor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="BossEncounterLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossExplosionEffect.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -716,11 +724,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BoseExplosionEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BossEncounterFloor.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="BossEncounterLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossExplosionEffect.h">
       <SubType>
       </SubType>
     </ClInclude>
