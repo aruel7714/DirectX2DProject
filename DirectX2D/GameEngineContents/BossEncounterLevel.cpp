@@ -82,6 +82,13 @@ void BossEncounterLevel::Update(float _Delta)
 			GetMainCamera()->Transform.SetLocalPosition(BossBelial->Transform.GetLocalPosition());
 			BossBelial->BelialMulColorPlus(_Delta);
 			TriggerDeathCount++;
+
+			if (BossSoundOn == false)
+			{
+				BossSoundOn = true;
+				BossSpawnSound = GameEngineSound::SoundPlay("beliallaugh_rev.wav");
+				GlobalSound::Bgm = GameEngineSound::SoundPlay("1.JailBoss.wav");
+			}
 		} 
 	}
 	else if (true == BossBelial->IsBelialMulColor())

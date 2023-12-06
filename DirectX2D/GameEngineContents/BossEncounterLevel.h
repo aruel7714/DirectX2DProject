@@ -40,5 +40,8 @@ private:
 
 	int TriggerDeathCount = 0;
 	int FadeDeathCount = 0;
+
+	bool BossSoundOn = false;
+	GameEngineSoundPlayer BossSpawnSound;
 };
 

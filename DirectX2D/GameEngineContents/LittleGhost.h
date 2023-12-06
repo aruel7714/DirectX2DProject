@@ -50,6 +50,8 @@ private:
 	float MoveToAttackTime = 0.0f;
 	float AttackTime = 0.0f;
 
+	GameEngineSoundPlayer GhostSound;
+
 	void ChangeState(LittleGhostState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

@@ -28,5 +28,7 @@ private:
 	std::shared_ptr<class GameExitButton> GameExitButtonObject;
 
 	std::shared_ptr<LevelFadeIn> FadeIn;
+
+	GameEngineSoundPlayer Bgm;
 };
 

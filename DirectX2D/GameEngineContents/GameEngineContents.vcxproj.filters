@@ -337,6 +337,9 @@
     <ClCompile Include="PlayerFood.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalSound.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
@@ -674,6 +677,9 @@
     </ClInclude>
     <ClInclude Include="PlayerFood.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSound.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

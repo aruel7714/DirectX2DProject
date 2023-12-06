@@ -54,5 +54,7 @@ private:
 
 	void OpenedStart();
 	void OpenedUpdate(float _Delta);
+
+	GameEngineSoundPlayer MoveSound;
 };
 

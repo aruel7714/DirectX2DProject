@@ -57,6 +57,8 @@ private:
 
 	float AttackReadyTime = 0.0f;
 
+	GameEngineSoundPlayer SkelSound;
+
 	void ChangeSkelState(RustyShortSwordSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);

@@ -46,6 +46,8 @@ private:
 
 	float MoveTime = 0.0f;
 
+	GameEngineSoundPlayer BatSound;
+
 	void ChangeState(BlueBatState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

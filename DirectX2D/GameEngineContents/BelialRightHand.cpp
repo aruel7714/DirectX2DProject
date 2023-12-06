@@ -133,6 +133,7 @@ void BelialRightHand::AttackReadyUpdate(float _Delta)
 
 void BelialRightHand::AttackStart()
 {
+	LaserSound = GameEngineSound::SoundPlay("iceball.wav");
 	ChangeAnimationState("Attack");
 	float4 Scale = RightHandRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	RightHandRenderer->SetImageScale(Scale);

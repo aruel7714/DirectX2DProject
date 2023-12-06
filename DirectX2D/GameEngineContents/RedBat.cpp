@@ -210,6 +210,7 @@ void RedBat::AttackReadyUpdate(float _Delta)
 
 void RedBat::AttackStart()
 {
+	BatSound = GameEngineSound::SoundPlay("monster-sound2_bat.wav");
 	ChangeAnimationState("Attack");
 	std::shared_ptr<BatBullet> Bullet = GetLevel()->CreateActor<BatBullet>(RenderOrder::MonsterProjectile);
 
@@ -228,6 +229,7 @@ void RedBat::AttackUpdate(float _Delta)
 
 void RedBat::DeathStart()
 {
+	BatSound = GameEngineSound::SoundPlay("Explosion.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = RedBatRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	RedBatRenderer->SetImageScale(Scale);

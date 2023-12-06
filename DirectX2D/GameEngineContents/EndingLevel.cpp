@@ -39,6 +39,7 @@ void EndingLevel::Update(float _Delta)
 
 void EndingLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	GlobalSound::Bgm = GameEngineSound::SoundPlay("Credit.wav");
 	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
 
 	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);

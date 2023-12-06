@@ -58,6 +58,7 @@ void Level1F_Last::Update(float _Delta)
 		{
 			if (1.0f <= FadeIn->GetMulColorA())
 			{
+				GlobalSound::Bgm.Stop();
 				GameEngineCore::ChangeLevel("BeforeBossEncounterLevel");
 				MainPlayer->IsDownFalse();
 			}

@@ -319,6 +319,7 @@ void RustyGreatSwordSkel::SkelAttackUpdate(float _Delta)
 
 void RustyGreatSwordSkel::SkelDeathStart()
 {
+	SkelSound = GameEngineSound::SoundPlay("Explosion.wav");
 	ChangeSkelAnimationState("Death");
 	float4 Scale = RustyGreatSwordSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	RustyGreatSwordSkelRenderer->SetImageScale(Scale);
@@ -354,6 +355,7 @@ void RustyGreatSwordSkel::SwordAttackReadyUpdate(float _Delta)
 
 void RustyGreatSwordSkel::SwordAttackStart()
 {
+	SkelSound = GameEngineSound::SoundPlay("swish-7.wav");
 	ChangeSwordAnimationState("Attack");
 	AttackCollision->On();
 	float4 Scale = RustyGreatSwordRenderer->GetCurSprite().Texture->GetScale() * 4.0f;

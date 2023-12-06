@@ -214,6 +214,7 @@ void Minotaurs::IdleUpdate(float _Delta)
 
 void Minotaurs::ChargeStart()
 {
+	MinotaursSound = GameEngineSound::SoundPlay("minotaur_dashready.wav");
 	ChangeAnimationState("Charge");
 }
 void Minotaurs::ChargeUpdate(float _Delta)
@@ -228,6 +229,7 @@ void Minotaurs::ChargeUpdate(float _Delta)
 
 void Minotaurs::RushStart()
 {
+	MinotaursSound = GameEngineSound::SoundPlay("minotaur_dash.wav");
 	ChangeAnimationState("Rush");
 	ChargeTime = 0.0f;
 	RushCollision->On();
@@ -273,6 +275,7 @@ void Minotaurs::AttackReadyUpdate(float _Delta)
 
 void Minotaurs::AttackStart()
 {
+	MinotaursSound = GameEngineSound::SoundPlay("minotaur_attack.wav");
 	ChangeAnimationState("Attack");
 	AttackReadyTime = 0.0f;
 	AttackCollision->On();
@@ -298,6 +301,7 @@ void Minotaurs::AttackUpdate(float _Delta)
 
 void Minotaurs::DeathStart()
 {
+	MinotaursSound = GameEngineSound::SoundPlay("Explosion_02.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = MinotaursRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	MinotaursRenderer->SetImageScale(Scale);

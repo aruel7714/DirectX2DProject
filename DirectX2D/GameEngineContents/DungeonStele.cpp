@@ -97,6 +97,7 @@ void DungeonStele::ChangeAnimationState(const std::string& _State)
 
 void DungeonStele::ClosedStart()
 {
+	//MoveSound = GameEngineSound::SoundPlay("stoneDoor.wav");
 	ChangeAnimationState("Closed");
 	//SteleCollision->On();
 }
@@ -120,6 +121,7 @@ void DungeonStele::IdleUpdate(float _Delta)
 
 void DungeonStele::OpenedStart()
 {
+	MoveSound = GameEngineSound::SoundPlay("stoneDoor.wav");
 	ChangeAnimationState("Opened");
 	//SteleCollision->Off();
 }

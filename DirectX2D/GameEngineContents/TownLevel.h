@@ -32,6 +32,8 @@ private:
 	std::shared_ptr<LevelFadeIn> FadeIn;
 	std::shared_ptr<LevelFadeOut> FadeOut;
 
+	GameEngineSoundPlayer Bgm;
+
 	int Count = 0;
 };
 

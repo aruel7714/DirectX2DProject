@@ -57,6 +57,19 @@ void TitleLevel::Start()
 		}
 	}
 
+	{
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExistsChild("ContentsResources");
+		Dir.MoveChild("ContentsResources\\Sound");
+		std::vector<GameEngineFile> Files = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			GameEngineFile& File = Files[i];
+			GameEngineSound::SoundLoad(File.GetStringPath());
+		}
+	}
+
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	HalfWindowScale.Y *= -1.0f;
 
@@ -95,14 +108,15 @@ void TitleLevel::Update(float _Delta)
 	{
 		if (1.0f <= FadeIn->GetMulColorA())
 		{
+			GlobalSound::Bgm.Stop();
 			GameEngineCore::ChangeLevel("TownLevel");
-			
 		}
 	}
 }
 
 void TitleLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
+	GlobalSound::Bgm = GameEngineSound::SoundPlay("title.wav");
 	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);
 	FadeIn->Off();
 	int a = 0;

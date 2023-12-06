@@ -259,6 +259,7 @@ void TownLevel::Update(float _Delta)
 	{
 		if (1.0f <= FadeIn->GetMulColorA())
 		{
+			GlobalSound::Bgm.Stop();
 			GameEngineCore::ChangeLevel("Level1F");
 		}
 	}
@@ -269,6 +270,8 @@ void TownLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	MainPlayer->Transform.SetWorldPosition({ 3700.0f, -890.0f, -500.0f, 1.0f });
 
 	_TownFloor->SetDebugBackGround();
+
+	GlobalSound::Bgm = GameEngineSound::SoundPlay("0.Town.wav");
 
 	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
 

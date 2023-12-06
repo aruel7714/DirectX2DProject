@@ -40,5 +40,7 @@ private:
 	bool AttackReady = true;
 
 	float Damage = 12.0f;
+
+	GameEngineSoundPlayer AttackSound;
 };
 

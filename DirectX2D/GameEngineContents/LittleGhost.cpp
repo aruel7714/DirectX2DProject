@@ -211,6 +211,7 @@ void LittleGhost::AttackUpdate(float _Delta)
 
 void LittleGhost::DeathStart()
 {
+	GhostSound = GameEngineSound::SoundPlay("Explosion.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = LittleGhostRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	LittleGhostRenderer->SetImageScale(Scale);

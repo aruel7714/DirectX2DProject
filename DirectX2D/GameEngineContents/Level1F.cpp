@@ -173,6 +173,8 @@ void Level1F::LevelStart(GameEngineLevel* _PrevLevel)
 	Level1F_Floor->SetDebugBackGround();
 	//MainPlayer->Transform.SetLocalPosition({ 515.0f , -640.0f });
 
+	GlobalSound::Bgm = GameEngineSound::SoundPlay("1.JailField.wav");
+
 	FadeOut = CreateActor<LevelFadeOut>(RenderOrder::Fade);
 
 	FadeIn = CreateActor<LevelFadeIn>(RenderOrder::Fade);

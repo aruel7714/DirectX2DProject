@@ -252,6 +252,7 @@ void Belial::FireBulletUpdate(float _Delta)
 
 	if (SummonBulletTime >= 0.1f)
 	{
+		AttackSound = GameEngineSound::SoundPlay("BelialBullet.wav");
 		std::shared_ptr<BelialBullet> Bullet1 = GetLevel()->CreateActor<BelialBullet>(RenderOrder::BossProjectile);
 		Bullet1->Transform.SetLocalPosition(Transform.GetLocalPosition());
 		Bullet1->Deg = BulletDeg;
@@ -301,6 +302,7 @@ void Belial::SummonSwordUpdate(float _Delta)
 
 	if (SummonSwordTime >= 0.2f && SummonSwordCount < 6)
 	{
+		AttackSound = GameEngineSound::SoundPlay("slimeball.wav");
 		std::shared_ptr<BelialSword> Sword = GetLevel()->CreateActor<BelialSword>(RenderOrder::BossWallBackProjectile);
 		Sword->Transform.SetLocalPosition({ (64.0f * 6) + 128.0f * SummonSwordCount, -(64.0f * 9) });
 		SummonSwordCount++;

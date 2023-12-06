@@ -30,6 +30,7 @@ void Player::IdleUpdate(float _Delta)
 	//Debug
 	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress(VK_SPACE, this))
 	{
+		PlayerSound = GameEngineSound::SoundPlay("Jumping.wav");
 		ChangeState(PlayerState::Jump);
 		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
 		//ChangeState(PlayerState::Run);
@@ -39,6 +40,7 @@ void Player::IdleUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
 	{
+		PlayerSound = GameEngineSound::SoundPlay("ui-sound-13-dash.wav");
 		ChangeState(PlayerState::Dash);
 	}
 	
@@ -80,6 +82,7 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress('W', this) || true == GameEngineInput::IsPress(VK_SPACE, this))
 	{
+		PlayerSound = GameEngineSound::SoundPlay("Jumping.wav");
 		ChangeState(PlayerState::Jump);
 		//Transform.AddLocalPosition(float4::UP * _Delta * Speed);
 		//ChangeState(PlayerState::Run);
@@ -96,6 +99,7 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
 	{
+		PlayerSound = GameEngineSound::SoundPlay("ui-sound-13-dash.wav");
 		ChangeState(PlayerState::Dash);
 	}
 }
@@ -104,6 +108,7 @@ void Player::JumpStart()
 {
 	SetGravityForce(float4::UP * JumpPower);
 	ChangeAnimationState("Jump");
+	
 }
 void Player::JumpUpdate(float _Delta)
 {
@@ -132,6 +137,7 @@ void Player::JumpUpdate(float _Delta)
 	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
 	{
 		GravityForceReset();
+		PlayerSound = GameEngineSound::SoundPlay("ui-sound-13-dash.wav");
 		ChangeState(PlayerState::Dash);
 	}
 }
@@ -140,6 +146,7 @@ void Player::DashStart()
 {
 	ChangeAnimationState("Jump");
 	ResetLiveTime();
+	
 }
 void Player::DashUpdate(float _Delta)
 {
@@ -227,6 +234,7 @@ void Player::DownJumpUpdate(float _Delta)
 	}
 	if (true == GameEngineInput::IsPress(VK_RBUTTON, this))
 	{
+		PlayerSound = GameEngineSound::SoundPlay("ui-sound-13-dash.wav");
 		ChangeState(PlayerState::Dash);
 	}
 }

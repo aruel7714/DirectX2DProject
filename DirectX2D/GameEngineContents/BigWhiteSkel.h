@@ -49,6 +49,8 @@ private:
 	float MoveToAttackTime = 0.0f;
 	float AttackReadyTime = 0.0f;
 
+	GameEngineSoundPlayer SkelSound;
+
 	void ChangeState(BigWhiteSkelState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

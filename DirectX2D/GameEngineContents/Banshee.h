@@ -44,6 +44,8 @@ private:
 
 	float IdleToAttackTime = 0.0f;
 
+	GameEngineSoundPlayer BansheeSound;
+
 	void ChangeState(BansheeState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

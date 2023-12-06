@@ -161,6 +161,8 @@ private:
 
 	bool IsDown = false;
 
+	GameEngineSoundPlayer PlayerSound;
+
 private:
 	//Debug
 	float CheckDelta = 0.0f;

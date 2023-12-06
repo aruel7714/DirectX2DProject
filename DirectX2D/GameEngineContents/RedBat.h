@@ -53,6 +53,8 @@ private:
 	float4 SavePlayerPos = float4::ZERO;
 	float4 SaveDir = float4::ZERO;
 
+	GameEngineSoundPlayer BatSound;
+
 	void ChangeState(RedBatState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

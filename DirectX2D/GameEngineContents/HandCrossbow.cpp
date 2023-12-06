@@ -92,6 +92,7 @@ void HandCrossbow::Update(float _Delta)
 		AttackReady == true && 
 		Player::GetMainPlayer()->IsStateStay() == false)
 	{
+		AttackSound = GameEngineSound::SoundPlay("crossbow.wav");
 		std::shared_ptr<Arrow> CrossbowArrow = GetLevel()->CreateActor<Arrow>(RenderOrder::WeaponProjectile);
 
 		AttackReady = false;

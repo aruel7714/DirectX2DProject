@@ -33,6 +33,8 @@ private:
 	LeftHandState State = LeftHandState::Max;
 	float4 PlayerPos = float4::ZERO;
 
+	GameEngineSoundPlayer LaserSound;
+
 	void ChangeState(LeftHandState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

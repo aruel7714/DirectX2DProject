@@ -24,3 +24,4 @@
 #include "GameMouseCursor.h"
 #include "LevelFadeIn.h"
 #include "LevelFadeOut.h"
+#include "GlobalSound.h"

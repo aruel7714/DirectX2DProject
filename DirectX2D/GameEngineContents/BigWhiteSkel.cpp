@@ -255,6 +255,7 @@ void BigWhiteSkel::AttackReadyUpdate(float _Delta)
 
 void BigWhiteSkel::AttackStart()
 {
+	SkelSound = GameEngineSound::SoundPlay("swish-7.wav");
 	ChangeAnimationState("Attack");
 	AttackReadyTime = 0.0f;
 	AttackCollision->On();
@@ -302,6 +303,7 @@ void BigWhiteSkel::DirCheck()
 
 void BigWhiteSkel::DeathStart()
 {
+	SkelSound = GameEngineSound::SoundPlay("Explosion_02.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = BigWhiteSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	BigWhiteSkelRenderer->SetImageScale(Scale);

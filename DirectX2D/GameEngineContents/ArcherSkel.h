@@ -60,6 +60,8 @@ private:
 	float4 SaveDir = float4::ZERO;
 	float SaveDeg = 0.0f;
 
+	GameEngineSoundPlayer ArcherSound;
+
 	void ChangeSkelState(ArcherSkelState _State);
 	void SkelStateUpdate(float _Delta);
 	void ChangeSkelAnimationState(const std::string& _State);

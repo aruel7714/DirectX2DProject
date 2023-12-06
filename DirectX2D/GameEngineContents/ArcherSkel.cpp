@@ -251,6 +251,7 @@ void ArcherSkel::SkelAttackUpdate(float _Delta)
 
 void ArcherSkel::SkelDeathStart()
 {
+	ArcherSound = GameEngineSound::SoundPlay("Explosion.wav");
 	ChangeSkelAnimationState("Death");
 	float4 Scale = ArcherSkelRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	ArcherSkelRenderer->SetImageScale(Scale);
@@ -319,6 +320,7 @@ void ArcherSkel::BowIdleUpdate(float _Delta)
 
 void ArcherSkel::BowAttackReadyStart()
 {
+	ArcherSound = GameEngineSound::SoundPlay("bow_crossbow_arrow_draw_stretch1_03.wav");
 	ChangeBowAnimationState("AttackReady");
 	IdleToAttackTime = 0.0f;
 }
@@ -335,6 +337,7 @@ void ArcherSkel::BowAttackReadyUpdate(float _Delta)
 
 void ArcherSkel::BowAttackStart()
 {
+	ArcherSound = GameEngineSound::SoundPlay("bow_crossbow_arrow_shoot_type1_03.wav");
 	ChangeBowAnimationState("Attack");
 	std::shared_ptr<BowArrow> SkelArrow = GetLevel()->CreateActor<BowArrow>(RenderOrder::MonsterProjectile);
 

@@ -167,6 +167,7 @@ void Banshee::AttackStart()
 	ChangeAnimationState("Attack");
 	IdleToAttackTime = 0.0f;
 	float4 MyPos = Transform.GetLocalPosition();
+	BansheeSound = GameEngineSound::SoundPlay("high_pitch_scream_gverb.wav");
 	for (int i = 0; i < 8; i++)
 	{
 		std::shared_ptr<BansheeBullet> Bullet = GetLevel()->CreateActor<BansheeBullet>(RenderOrder::MonsterProjectile);
@@ -184,6 +185,7 @@ void Banshee::AttackUpdate(float _Delta)
 
 void Banshee::DeathStart()
 {
+	BansheeSound = GameEngineSound::SoundPlay("Explosion_02.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = BansheeRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	BansheeRenderer->SetImageScale(Scale);

@@ -165,6 +165,7 @@ void BlueBat::MoveUpdate(float _Delta)
 
 void BlueBat::DeathStart()
 {
+	BatSound = GameEngineSound::SoundPlay("Explosion.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = BlueBatRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BlueBatRenderer->SetImageScale(Scale);

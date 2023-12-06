@@ -24,6 +24,8 @@ protected:
 	std::shared_ptr<LevelFadeIn> FadeIn;
 	std::shared_ptr<LevelFadeOut> FadeOut;
 
+	GameEngineSoundPlayer Bgm;
+
 	void Start() override;
 	void Update(float _Delta) override;
 

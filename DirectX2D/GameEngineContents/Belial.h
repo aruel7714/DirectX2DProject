@@ -79,6 +79,8 @@ private:
 
 	bool BelialDeathState = false;
 
+	GameEngineSoundPlayer AttackSound;
+
 	void ChangeState(BelialState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);
