@@ -3,6 +3,9 @@
 #include "BackGround.h"
 #include "HandCrossbow.h"
 #include "PlayerLife.h"
+#include "PlayerEquippedWeapon.h"
+#include "PlayerGold.h"
+#include "PlayerFood.h"
 
 void Player::IdleStart()
 {
@@ -255,6 +258,9 @@ void Player::EndingStart()
 	IsFocus = false;
 	WeaponHandCrossbow->Off();
 	UILife->Off();
+	UIWeapon->Off();
+	UIHaveGold->Off();
+	UIHaveHungry->Off();
 }
 void Player::EndingUpdate(float _Delta)
 {

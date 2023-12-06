@@ -26,7 +26,7 @@ void PlayerGold::Start()
 
 	GoldRenderer = CreateComponent<GameEngineUIRenderer>(RenderOrder::BackUI);
 	GoldRenderer->SetSprite("PlayerGold.png");
-	float4 GoldScale = GoldRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	float4 GoldScale = GoldRenderer->GetCurSprite().Texture->GetScale() * 2.0f;
 	GoldRenderer->SetImageScale(GoldScale);
 
 	GoldText = CreateComponent<GameEngineUIRenderer>(RenderOrder::BackUI);

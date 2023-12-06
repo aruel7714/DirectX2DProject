@@ -82,11 +82,11 @@ void PlayerLife::Start()
 
 	LevelText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
 	LevelText->SetText("Perfect DOS VGA 437", "30", 40.0f, float4::WHITE, FW1_CENTER);
-	LevelText->Transform.SetLocalPosition({ -100.0f, 20.0f });
+	LevelText->Transform.SetLocalPosition({ -100.0f, 18.0f });
 
 	LifeText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
 	LifeText->SetText("Perfect DOS VGA 437", "80 / 80", 40.0f, float4::WHITE, FW1_CENTER);
-	LifeText->Transform.SetLocalPosition({ 38.0f, 20.0f });
+	LifeText->Transform.SetLocalPosition({ 41.0f, 18.0f });
 }
 void PlayerLife::Update(float _Delta)
 {

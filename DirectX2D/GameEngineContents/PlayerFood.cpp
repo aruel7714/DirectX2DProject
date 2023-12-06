@@ -26,7 +26,7 @@ void PlayerFood::Start()
 
 	FoodRenderer = CreateComponent<GameEngineUIRenderer>(RenderOrder::BackUI);
 	FoodRenderer->SetSprite("PlayerFood.png");
-	float4 FoodScale = FoodRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
+	float4 FoodScale = FoodRenderer->GetCurSprite().Texture->GetScale() * 2.0f;
 	FoodRenderer->SetImageScale(FoodScale);
 
 	FoodText = CreateComponent<GameEngineUIRenderer>(RenderOrder::BackUI);

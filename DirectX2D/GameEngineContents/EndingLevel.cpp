@@ -6,6 +6,7 @@
 #include "EndingFloor.h"
 #include "EndingFrontGround.h"
 #include "EndingBackGround.h"
+#include "EndingText.h"
 
 EndingLevel::EndingLevel()
 {
@@ -48,6 +49,8 @@ void EndingLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	float4 HalfWindowScale = GameEngineCore::MainWindow.GetScale().Half();
 	GetMainCamera()->Transform.SetLocalPosition({ HalfWindowScale.X, -HalfWindowScale.Y });
 	Floor->SetDebugBackGround();
+
+	std::shared_ptr<EndingText> Text = CreateActor<EndingText>(RenderOrder::MiddleUI);
 }
 void EndingLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {

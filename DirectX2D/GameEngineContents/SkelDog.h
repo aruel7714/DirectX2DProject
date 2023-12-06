@@ -47,6 +47,8 @@ private:
 
 	float MoveToAttackTime = 0.0f;
 
+	GameEngineSoundPlayer DogSound;
+
 	void ChangeState(SkelDogState _State);
 	void StateUpdate(float _Delta);
 	void ChangeAnimationState(const std::string& _State);

@@ -261,10 +261,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="BoseExplosionEffect.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="BossEncounterFloor.cpp">
       <SubType>
       </SubType>
@@ -351,6 +347,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EndingNPCHorse.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EndingText.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -724,10 +724,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BoseExplosionEffect.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="BossEncounterFloor.h">
       <SubType>
       </SubType>
@@ -815,6 +811,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EndingNPCHorse.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EndingText.h">
       <SubType>
       </SubType>
     </ClInclude>

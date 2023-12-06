@@ -264,6 +264,7 @@ void SkelDog::AttackUpdate(float _Delta)
 
 void SkelDog::DeathStart()
 {
+	DogSound = GameEngineSound::SoundPlay("Explosion.wav");
 	ChangeAnimationState("Death");
 	float4 Scale = SkelDogRenderer->GetCurSprite().Texture->GetScale() *= 4.0f;
 	SkelDogRenderer->SetImageScale(Scale);

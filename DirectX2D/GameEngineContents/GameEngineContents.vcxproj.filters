@@ -340,11 +340,11 @@
     <ClCompile Include="GlobalSound.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="BoseExplosionEffect.cpp">
-      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
-    </ClCompile>
     <ClCompile Include="BossExplosionEffect.cpp">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingText.cpp">
+      <Filter>Level\Ending</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -687,11 +687,11 @@
     <ClInclude Include="GlobalSound.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="BoseExplosionEffect.h">
-      <Filter>Level\Dungeon\Stage2F\Boss</Filter>
-    </ClInclude>
     <ClInclude Include="BossExplosionEffect.h">
       <Filter>Level\Dungeon\Stage2F\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingText.h">
+      <Filter>Level\Ending</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
