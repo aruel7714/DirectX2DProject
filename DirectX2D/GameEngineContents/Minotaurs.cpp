@@ -194,6 +194,7 @@ void Minotaurs::IdleStart()
 void Minotaurs::IdleUpdate(float _Delta)
 {
 	DirCheck();
+	IdleToAttackTime += _Delta;
 
 	float4 MyPos = Transform.GetLocalPosition();
 	float4 PlayerPos = Player::GetMainPlayer()->Transform.GetLocalPosition();
@@ -202,20 +203,25 @@ void Minotaurs::IdleUpdate(float _Delta)
 	
 	// IdleToAttackTime > 2.0f;
 
-	if (abs(Check) <= 200.0f)
+	if (IdleToAttackTime >= 2.0f)
 	{
-		ChangeState(MinotaursState::AttackReady);
+		if (abs(Check) <= 200.0f)
+		{
+			ChangeState(MinotaursState::AttackReady);
+		}
+		else if (abs(Check) > 200.0f)
+		{
+			ChangeState(MinotaursState::Charge);
+		}
 	}
-	else if (abs(Check) > 200.0f)
-	{
-		ChangeState(MinotaursState::Charge);
-	}
+	
 }
 
 void Minotaurs::ChargeStart()
 {
 	MinotaursSound = GameEngineSound::SoundPlay("minotaur_dashready.wav");
 	ChangeAnimationState("Charge");
+	IdleToAttackTime = 0.0f;
 }
 void Minotaurs::ChargeUpdate(float _Delta)
 {
@@ -262,6 +268,7 @@ void Minotaurs::AttackReadyStart()
 	ChangeAnimationState("AttackReady");
 	DirCheck();
 	RushTime = 0.0f;
+	IdleToAttackTime = 0.0f;
 }
 void Minotaurs::AttackReadyUpdate(float _Delta)
 {
