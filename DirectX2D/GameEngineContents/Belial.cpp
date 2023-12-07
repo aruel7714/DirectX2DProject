@@ -73,8 +73,8 @@ void Belial::Start()
 	{
 		// Status
 		// Hp = 1000.0f;
-		MaxHp = 100.0f;
-		Hp = 100.0f;
+		MaxHp = 1000.0f;
+		Hp = 1000.0f;
 		// BulletDamage = 6.0f;
 		// LaserDamage = 9.0f;
 		// SwordDamage = 8.0f;
@@ -211,24 +211,63 @@ void Belial::IdleUpdate(float _Delta)
 		PatternStartTime += _Delta;
 	}
 
-	if (PatternStartTime >= 5.0f)
+	if (IdleToPatternSelect <= 6)
 	{
-		Pattern = Random.RandomInt(1, 3);
+		if (PatternStartTime >= 5.0f)
+		{
+			switch (IdleToPatternSelect)
+			{
+			case 1:
+				LaserCount = 1;
+				ChangeState(BelialState::Laser);
+				break;
+			case 2:
+				LaserCount = 2;
+				ChangeState(BelialState::Laser);
+				break;
+			case 3:
+				LaserCount = 3;
+				ChangeState(BelialState::Laser);
+				break;
+			case 4:
+				ChangeState(BelialState::FireBulletReady);
+				break;
+			case 5:
+				ChangeState(BelialState::FireBulletReady);
+				break;
+			case 6:
+				ChangeState(BelialState::SummonSword);
+				break;
+			default:
+				break;
+			}
 
-		if (Pattern == 1)
-		{
-			ChangeState(BelialState::FireBulletReady);
+			IdleToPatternSelect++;
 		}
-		else if (Pattern == 2)
-		{
-			ChangeState(BelialState::SummonSword);
-		}
-		else if (Pattern == 3)
-		{
-			ChangeState(BelialState::Laser);
-		}
-
 	}
+	else
+	{
+		IsRandom = true;
+		if (PatternStartTime >= 5.0f)
+		{
+			Pattern = Random.RandomInt(1, 3);
+
+			if (Pattern == 1)
+			{
+				ChangeState(BelialState::FireBulletReady);
+			}
+			else if (Pattern == 2)
+			{
+				ChangeState(BelialState::SummonSword);
+			}
+			else if (Pattern == 3)
+			{
+				ChangeState(BelialState::Laser);
+			}
+		}
+	}
+
+	
 }
 
 void Belial::FireBulletReadyStart()
@@ -328,7 +367,11 @@ void Belial::SummonSwordUpdate(float _Delta)
 
 void Belial::LaserStart()
 {
-	LaserCount = Random.RandomInt(1, 3);
+	if(IsRandom == true)
+	{
+		LaserCount = Random.RandomInt(1, 3);
+	}
+	
 }
 void Belial::LaserUpdate(float _Delta)
 {

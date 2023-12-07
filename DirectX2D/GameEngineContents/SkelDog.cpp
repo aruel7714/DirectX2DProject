@@ -49,7 +49,7 @@ void SkelDog::Start()
 		// Status
 		MaxHp = 20.0f;
 		Hp = 20.0f;
-		MoveSpeed 420.0f;
+		MoveSpeed = 420.0f;
 		Damage = 10.0f;
 	}
 

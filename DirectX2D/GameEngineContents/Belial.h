@@ -68,6 +68,9 @@ private:
 	GameEngineRandom Random;
 	int Pattern = 1;
 
+	int IdleToPatternSelect = 1;
+	bool IsRandom = false;
+
 	float PatternStartTime = 0.0f;
 	float FireBulletTime = 0.0f;
 	float SummonSwordTime = 0.0f;
