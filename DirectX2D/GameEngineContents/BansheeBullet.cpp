@@ -39,12 +39,21 @@ void BansheeBullet::Start()
 	float4 Scale = BulletRenderer->GetCurSprite().Texture->GetScale() * 4.0f;
 	BulletRenderer->SetImageScale(Scale);
 
-	BulletRenderer->ChangeAnimation("BansheeBullet_Idle");
+	ChangeState(BulletState::Idle);
+
+	{
+		BulletCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
+		BulletCollision->SetCollisionType(ColType::AABBBOX2D);
+		BulletCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
+		BulletCollision->Transform.SetLocalScale(Scale);
+	}
+
+	//BulletRenderer->ChangeAnimation("BansheeBullet_Idle");
 }
 
 void BansheeBullet::Update(float _Delta)
 {
-	Transform.AddLocalPosition(Dir * _Delta * BulletSpeed);
+	StateUpdate(_Delta);
 }
 
 void BansheeBullet::SetDir(int _num)
@@ -81,5 +90,72 @@ void BansheeBullet::SetDir(int _num)
 		break;
 	default:
 		break;
+	}
+}
+
+void BansheeBullet::ChangeState(BulletState _State)
+{
+	if (_State != State)
+	{
+		switch (_State)
+		{
+		case BulletState::Idle:
+			IdleStart();
+			break;
+		case BulletState::Hit:
+			HitStart();
+			break;
+		default:
+			break;
+		}
+	}
+	State = _State;
+}
+void BansheeBullet::StateUpdate(float _Delta)
+{
+	switch (State)
+	{
+	case BulletState::Idle:
+		return IdleUpdate(_Delta);
+	case BulletState::Hit:
+		return HitUpdate(_Delta);
+	default:
+		break;
+	}
+}
+void BansheeBullet::ChangeAnimationState(const std::string& _State)
+{
+	std::string AnimationName = "BansheeBullet_";
+	AnimationName += _State;
+	BulletRenderer->ChangeAnimation(AnimationName);
+}
+
+void BansheeBullet::IdleStart()
+{
+	ChangeAnimationState("Idle");
+}
+void BansheeBullet::IdleUpdate(float _Delta)
+{
+	Transform.AddLocalPosition(Dir * _Delta * BulletSpeed);
+
+	EventParameter HitParameter;
+	HitParameter.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			ChangeState(BulletState::Hit);
+		};
+
+	BulletCollision->CollisionEvent(CollisionType::Player, HitParameter);
+}
+
+void BansheeBullet::HitStart()
+{
+	ChangeAnimationState("Hit");
+	BulletCollision->Off();
+}
+void BansheeBullet::HitUpdate(float _Delta)
+{
+	if (BulletRenderer->IsCurAnimationEnd())
+	{
+		Death();
 	}
 }

@@ -54,6 +54,13 @@ void BowArrow::Start()
 
 	float4 Scale = GameEngineTexture::Find("Arrow00.png")->GetScale() * 4.0f;
 	ArrowRenderer->SetImageScale(Scale);
+
+	{
+		ArrowCollision = CreateComponent<GameEngineCollision>(CollisionType::MonsterAttack);
+		ArrowCollision->SetCollisionType(ColType::AABBBOX2D);
+		ArrowCollision->Transform.SetLocalPosition({ 0.0f, 0.0f, 1.0f });
+		ArrowCollision->Transform.SetLocalScale({ Scale.X, Scale.X, 1.0f });
+	}
 }
 
 void BowArrow::Update(float _Delta)
@@ -67,22 +74,36 @@ void BowArrow::Update(float _Delta)
 		Transform.SetLocalRotation({ 0.0f, 0.0f, Deg - 90.0f });
 	}
 	
-	if (GetLiveTime() < 0.4f)
+	if (GetLiveTime() < 0.4f && ArrowRenderer->IsCurAnimation("BowArrow"))
 	{
 		Transform.AddLocalPosition(Dir * _Delta * ArrowSpeed);
 	}
-	else if (GetLiveTime() >= 0.4f)
+	else if (GetLiveTime() >= 0.4f && ArrowRenderer->IsCurAnimation("BowArrow"))
 	{
 		if (ArrowRenderer->IsCurAnimation("BowArrow") && ArrowRenderer->IsCurAnimationEnd())
 		{
-			ArrowRenderer->ChangeAnimation("ArrowDisappear");
-			ArrowRenderer->SetImageScale(ArrowRenderer->GetCurSprite().Texture->GetScale() * 4.0f);
-			Transform.SetLocalRotation({ 0.0f, 0.0f, Transform.GetLocalRotationEuler().Z + 180.0f });
-		}
-
-		if (ArrowRenderer->IsCurAnimation("ArrowDisappear") && ArrowRenderer->IsCurAnimationEnd())
-		{
-			Death();
+			ArrowDisappear();
 		}
 	}
+
+	EventParameter DisappearEvent;
+	DisappearEvent.Stay = [&](class GameEngineCollision* _this, class GameEngineCollision* _Other)
+		{
+			ArrowDisappear();
+		};
+	ArrowCollision->CollisionEvent(CollisionType::Player, DisappearEvent);
+
+	if (ArrowRenderer->IsCurAnimation("ArrowDisappear") && ArrowRenderer->IsCurAnimationEnd())
+	{
+		Death();
+	}
+}
+
+void BowArrow::ArrowDisappear()
+{
+	ArrowRenderer->SetPivotValue({ 0.5f, 0.8f });
+	ArrowCollision->Death();
+	ArrowRenderer->ChangeAnimation("ArrowDisappear");
+	ArrowRenderer->SetImageScale(ArrowRenderer->GetCurSprite().Texture->GetScale() * 4.0f);
+	Transform.SetLocalRotation({ 0.0f, 0.0f, Transform.GetLocalRotationEuler().Z + 180.0f });
 }
