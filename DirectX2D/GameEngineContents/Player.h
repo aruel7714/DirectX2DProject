@@ -152,6 +152,8 @@ private:
 	int HaveGold = 0;
 	int HaveHungry = 0;
 
+	float NotDamageTime = 0.0f;
+
 	std::shared_ptr<class PlayerLife> UILife;
 	std::shared_ptr<class PlayerEquippedWeapon> UIWeapon;
 	std::shared_ptr<class PlayerGold> UIHaveGold;

@@ -142,6 +142,17 @@ void Player::Update(float _Delta)
 
 	PlayerCollisionEvent(_Delta);
 
+	if (MainRenderer->GetColorData().MulColor.A <= 0.9)
+	{
+		NotDamageTime += _Delta;
+	}
+
+	if (NotDamageTime >= 1.0f)
+	{
+		MainRenderer->GetColorData().MulColor.A = 1.0f;
+		NotDamageTime = 0.0f;
+	}
+
 	if (State != PlayerState::Stay ||
 		State != PlayerState::Ending)
 	{
@@ -170,8 +181,6 @@ void Player::Update(float _Delta)
 		PlayerPosition.X += PlayerScale.X / 6.0f;
 	}
 
-	std::string Name = GetLevel()->GetName();
-	int a = 0;
 }
 
 void Player::CameraFocus()
@@ -425,6 +434,13 @@ void Player::PlayerCollisionEvent(float _Delta)
 			SteleToPlayerMove(_Delta, (StelePos.X - PlayerPos.X));
 		};
 	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
+
+	EventParameter DamageEvent;
+	DamageEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+		{
+			MainRenderer->GetColorData().MulColor.A = 0.3f;
+		};
+	PlayerCollision->CollisionEvent(CollisionType::MonsterAttack, DamageEvent);
 }
 
 void Player::WeaponOn()
