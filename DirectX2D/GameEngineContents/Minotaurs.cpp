@@ -266,7 +266,6 @@ void Minotaurs::RushUpdate(float _Delta)
 void Minotaurs::AttackReadyStart()
 {
 	ChangeAnimationState("AttackReady");
-	DirCheck();
 	RushTime = 0.0f;
 	IdleToAttackTime = 0.0f;
 }
