@@ -436,7 +436,7 @@ void Player::PlayerCollisionEvent(float _Delta)
 	PlayerCollision->CollisionEvent(CollisionType::Stele, WallParameter);
 
 	EventParameter DamageEvent;
-	DamageEvent.Stay = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
+	DamageEvent.Enter = [&](class GameEngineCollision* _This, class GameEngineCollision* _Other)
 		{
 			MainRenderer->GetColorData().MulColor.A = 0.3f;
 		};

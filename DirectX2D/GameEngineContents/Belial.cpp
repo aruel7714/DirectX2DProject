@@ -73,8 +73,8 @@ void Belial::Start()
 	{
 		// Status
 		// Hp = 1000.0f;
-		MaxHp = 1000.0f;
-		Hp = 1000.0f;
+		MaxHp = 500.0f;
+		Hp = 500.0f;
 		// BulletDamage = 6.0f;
 		// LaserDamage = 9.0f;
 		// SwordDamage = 8.0f;

@@ -85,7 +85,7 @@ void PlayerLife::Start()
 	LevelText->Transform.SetLocalPosition({ -100.0f, 18.0f });
 
 	LifeText = CreateComponent<GameEngineUIRenderer>(RenderOrder::Text);
-	LifeText->SetText("Perfect DOS VGA 437", "80 / 80", 40.0f, float4::WHITE, FW1_CENTER);
+	LifeText->SetText("Perfect DOS VGA 437", PlayerCurHp + " / " + PlayerMaxHp, 40.0f, float4::WHITE, FW1_CENTER);
 	LifeText->Transform.SetLocalPosition({ 41.0f, 18.0f });
 }
 void PlayerLife::Update(float _Delta)
@@ -97,4 +97,17 @@ void PlayerLife::Update(float _Delta)
 	float4 BaseLocalScale = LifeBase->GetImageTransform().GetLocalScale();
 	float4 BaseWorldScale = LifeBase->GetImageTransform().GetWorldScale();*/
 	int a = 0;
+
+	PlayerCurHp = std::to_string(Player::GetMainPlayer()->GetCurHp());
+	PlayerMaxHp = std::to_string(Player::GetMainPlayer()->GetMaxHp());
+	LifeText->SetText("Perfect DOS VGA 437", PlayerCurHp + " / " + PlayerMaxHp, 40.0f, float4::WHITE, FW1_CENTER);
+	SetLifeBarScale();
+}
+
+void PlayerLife::SetLifeBarScale()
+{
+	float Per = Player::GetMainPlayer()->GetCurHp() / Player::GetMainPlayer()->GetMaxHp() * 100.0f;
+	float LifeBarScale = MaxLifeBarScaleX / 100.0f * Per;
+
+	LifeBar->SetImageScale({ LifeBarScale, 40.0f });
 }

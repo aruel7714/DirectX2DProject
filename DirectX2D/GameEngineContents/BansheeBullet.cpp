@@ -145,6 +145,14 @@ void BansheeBullet::IdleUpdate(float _Delta)
 		};
 
 	BulletCollision->CollisionEvent(CollisionType::Player, HitParameter);
+
+	if (Transform.GetLocalPosition().X <= 0.0f ||
+		Transform.GetLocalPosition().X >= 3000.0f ||
+		Transform.GetLocalPosition().Y >= 0.0f ||
+		Transform.GetLocalPosition().Y <= -3000.0f)
+	{
+		ChangeState(BulletState::Hit);
+	}
 }
 
 void BansheeBullet::HitStart()

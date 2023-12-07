@@ -31,5 +31,12 @@ private:
 
 	std::shared_ptr<GameEngineUIRenderer> LevelText;
 	std::shared_ptr<GameEngineUIRenderer> LifeText;
+
+	std::string PlayerCurHp = "";
+	std::string PlayerMaxHp = "";
+
+	float MaxLifeBarScaleX = 196.0f;
+
+	void SetLifeBarScale();
 };
 

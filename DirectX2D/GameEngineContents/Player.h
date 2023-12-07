@@ -30,10 +30,10 @@ public:
 	~Player();
 
 	// delete Function
-	Player(const Player & _Other) = delete;
-	Player(Player && _Other) noexcept = delete;
-	Player& operator=(const Player & _Other) = delete;
-	Player& operator=(Player && _Other) noexcept = delete;
+	Player(const Player& _Other) = delete;
+	Player(Player&& _Other) noexcept = delete;
+	Player& operator=(const Player& _Other) = delete;
+	Player& operator=(Player&& _Other) noexcept = delete;
 
 	void ChangeStateStay();
 	void ChangeStateEnding();
@@ -78,6 +78,21 @@ public:
 	void IsDownFalse()
 	{
 		IsDown = false;
+	}
+
+	int GetCurHp()
+	{
+		return CurHp;
+	}
+
+	int GetMaxHp()
+	{
+		return MaxHp;
+	}
+
+	void Damaging(int _Damage)
+	{
+		CurHp -= _Damage;
 	}
 
 	void WeaponOn();
@@ -151,6 +166,8 @@ private:
 	float WeaponDamage = 0.0f;
 	int HaveGold = 0;
 	int HaveHungry = 0;
+	int MaxHp = 80;
+	int CurHp = 80;
 
 	float NotDamageTime = 0.0f;
 
