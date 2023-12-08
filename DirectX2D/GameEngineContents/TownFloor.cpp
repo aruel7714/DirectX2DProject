@@ -49,6 +49,8 @@ void TownFloor::Start()
 	//FloorRenderer->On();
 
 	//DebugBackGround = this;
+
+	GameEngineInput::AddInputObject(this);
 }
 
 void TownFloor::Update(float _Delta)
@@ -60,6 +62,11 @@ void TownFloor::Update(float _Delta)
 
 	float4 FloorPos = Transform.GetWorldPosition();
 	int a = 0;
+
+	if (GameEngineInput::IsDown(VK_F2, this))
+	{
+		IsDebug = !IsDebug;
+	}
 
 	if (false == IsDebug)
 	{
