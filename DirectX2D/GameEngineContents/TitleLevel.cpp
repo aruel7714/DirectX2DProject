@@ -92,14 +92,9 @@ void TitleLevel::Start()
 
 	
 
-	GameEngineInput::AddInputObject(this);
 }
 void TitleLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsPress('P', this))
-	{
-		GameEngineCore::ChangeLevel("TownLevel");
-	}
 
 	if (GameStartButtonObject->FadeOnOff == true)
 	{

@@ -17,10 +17,6 @@ void OpeningLevel::Start()
 }
 void OpeningLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsPress(VK_ESCAPE, this))
-	{
-		GameEngineCore::ChangeLevel("TownLevel");
-	}
 }
 
 void OpeningLevel::LevelStart(GameEngineLevel* _PrevLevel)

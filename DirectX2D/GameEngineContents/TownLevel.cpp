@@ -217,10 +217,6 @@ void TownLevel::Start()
 
 void TownLevel::Update(float _Delta)
 {
-	if (GameEngineInput::IsPress('O', this))
-	{
-		GameEngineCore::ChangeLevel("Level1F");
-	}
 
 	if (Count == 0)
 	{

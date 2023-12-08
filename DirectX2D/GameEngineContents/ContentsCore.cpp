@@ -104,6 +104,9 @@ void ContentsCore::Start()
 
 	//int a = 0;
 	GameEngineRenderTarget::IsDepth = false;
+
+	GameEngineInput::AddInputObject(this);
+	GameEngineLevel::IsDebug = false;
 }
 
 void ContentsCore::Update(float _Delta)
@@ -120,6 +123,11 @@ void ContentsCore::Update(float _Delta)
 	
 	//	GameEngineCore::MainWindow.DoubleBuffering();
 	//}
+
+	if (GameEngineInput::IsDown(VK_F1, this))
+	{
+		GameEngineLevel::IsDebug = !GameEngineLevel::IsDebug;
+	}
 }
 
 void ContentsCore::Release()
