@@ -203,7 +203,7 @@ void Minotaurs::IdleUpdate(float _Delta)
 	
 	// IdleToAttackTime > 2.0f;
 
-	if (IdleToAttackTime >= 2.0f)
+	if (IdleToAttackTime >= 1.0f)
 	{
 		if (abs(Check) <= 200.0f)
 		{

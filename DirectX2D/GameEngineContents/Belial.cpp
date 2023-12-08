@@ -350,7 +350,7 @@ void Belial::SummonSwordUpdate(float _Delta)
 {
 	SummonSwordTime += _Delta;
 
-	if (SummonSwordTime >= 0.2f && SummonSwordCount < 6)
+	if (SummonSwordTime >= 0.1f && SummonSwordCount < 6)
 	{
 		AttackSound = GameEngineSound::SoundPlay("slimeball.wav");
 		std::shared_ptr<BelialSword> Sword = GetLevel()->CreateActor<BelialSword>(RenderOrder::BossWallBackProjectile);

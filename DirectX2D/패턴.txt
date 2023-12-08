@@ -1,0 +1,38 @@
+SwordSkel
+Player가 일정 범위 안에 들어오면 Attack
+
+BigSkel, SkelDog
+Player와 맞닿은 상태에서 일정 시간이 지나면 Attack
+
+ArcherSkel
+Idle 상태일때 Player의 위치로 계속 조준하다가 일정 시간 지나면 AttackReady
+AttackReady일때 Player의 위치 저장 후 Attack
+
+LittleGhost
+Player위치로 계속 이동 / 일정 범위 안에 들어오면 시간계산 / 일정 시간 후 공격
+
+BlueBat 공격x
+RedBat
+랜덤으로 방향을 정해서 이동 / 일정 시간 후 Attack
+
+Banshee
+8방향으로 계속 공격
+
+Minotaurs
+Player의 y값이 자신과 비슷해지면 움직이기 시작
+플레이어의 위치에 따라 돌진 또는 공격 시작
+돌진 후에는 무조건 공격
+
+Belial
+랜덤으로 패턴 진행
+패턴 3개
+Laser 패턴의 경우 1번부터 3번까지 발사, 손의 위치는 Bool값으로 계속 변경
+Laser 패턴은 공격이 시작되면 플레이어의 y 위치로 이동 후 발사
+Bullet패턴의 경우 시계방향 또는 반시계방향으로 발사
+마찬가지로 Bool값으로 계속 변경
+SpawnSword패턴
+6개의 검을 소환 하는데 검은 소환한 직후에는 계속 플레이어를 조준하며 회전
+공격할때 플레이어 위치를 저장하여 그 방향으로 발사
+벽에 닿으면 공격 해제
+
+6번의 패턴 진행 후 랜덤 패턴 진행
